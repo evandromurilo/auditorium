@@ -16,7 +16,7 @@ user_id ``INTEGER``
 from_time ``TIME``
   Horário inicial do agendamento.
 
-to_time ``TIME``
+until_time ``TIME``
   Horário final do agendamento.
 
 date ``DATE``
