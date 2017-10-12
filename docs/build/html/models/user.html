@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Auditorium &mdash; documentação auditorium 0.0.1</title>
+  <title>User &mdash; documentação auditorium 0.0.1</title>
   
 
   
@@ -26,20 +26,21 @@
 
   
   
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   
 
   
 
   
         <link rel="index" title="Índice"
-              href="genindex.html"/>
-        <link rel="search" title="Buscar" href="search.html"/>
-    <link rel="top" title="documentação auditorium 0.0.1" href="#"/>
-        <link rel="next" title="Sobre" href="sobre.html"/> 
+              href="../genindex.html"/>
+        <link rel="search" title="Buscar" href="../search.html"/>
+    <link rel="top" title="documentação auditorium 0.0.1" href="../index.html"/>
+        <link rel="up" title="Models" href="../models.html"/>
+        <link rel="prev" title="Request" href="request.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -55,7 +56,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> auditorium
+            <a href="../index.html" class="icon icon-home"> auditorium
           
 
           
@@ -72,7 +73,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -91,11 +92,19 @@
             
               <p class="caption"><span class="caption-text">Ajuda:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sobre.html">Sobre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sobre.html">Sobre</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Índice:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auditorium.html">Auditorium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="request.html">Request</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">User</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#atributos">Atributos</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -110,7 +119,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">auditorium</a>
+          <a href="../index.html">auditorium</a>
         
       </nav>
 
@@ -138,15 +147,17 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Auditorium</li>
+          <li><a href="../models.html">Models</a> &raquo;</li>
+        
+      <li>User</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/models/user.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -159,24 +170,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="auditorium">
-<h1>Auditorium<a class="headerlink" href="#auditorium" title="Link permanente para este título">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Ajuda:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sobre.html">Sobre</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Índice:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="models/auditorium.html">Auditorium</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/request.html">Request</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/user.html">User</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="user">
+<h1>User<a class="headerlink" href="#user" title="Link permanente para este título">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">User</span></code> é o model que representa um pedido de agendamento de auditório.
+Sua tabela correspondente no banco de dados se chama <code class="docutils literal"><span class="pre">users</span></code>.</p>
+<div class="section" id="atributos">
+<h2>Atributos<a class="headerlink" href="#atributos" title="Link permanente para este título">¶</a></h2>
+<dl class="docutils">
+<dt>name <code class="docutils literal"><span class="pre">VARCHAR</span></code></dt>
+<dd>Nome do usuário.</dd>
+<dt>email <code class="docutils literal"><span class="pre">VARCHAR</span></code></dt>
+<dd>Email do usuário, utilizado para o login. Deve ser único.</dd>
+<dt>password <code class="docutils literal"><span class="pre">VARCHAR</span></code></dt>
+<dd>Senha do usuário, utilizada para o login.</dd>
+</dl>
 </div>
 </div>
 
@@ -190,8 +197,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sobre.html" class="btn btn-neutral float-right" title="Sobre" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+        <a href="request.html" class="btn btn-neutral" title="Request" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -221,7 +228,7 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
+            URL_ROOT:'../',
             VERSION:'0.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -229,16 +236,16 @@
             SOURCELINK_SUFFIX: '.txt'
         };
     </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
 
   
 
   
   
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
   
