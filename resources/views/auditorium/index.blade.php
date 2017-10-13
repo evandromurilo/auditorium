@@ -31,19 +31,24 @@
 	<div class="container">
 		<div class="row">
 			@foreach ($auditoria as $aud)
+				<?php $status = $aud->statusOn($date); ?>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 					<div class="well well-hr">
 
 					</div>
 					<div class="well">
 				<h2 class="text-center">{{ $aud->name }}</h2>
-				<p>{{ $aud->statusOn($date) }}</p>
 
-				@if ($aud->statusOn($date)->status == 1)
+				@if ($status->code == 1)
+					<p style="color:green;">{{ $status }}</p>
 					<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
 																							 'id' => $aud->id]) }}>
 					 Agendar
 					</a>
+				@elseif ($status->code == 0)
+					<p style="color:orange;">{{ $status }}</p>
+				@elseif ($status->code == 2)
+					<p style="color:red;">{{ $status }}</p>
 				@endif
 				</div>
 			</div>

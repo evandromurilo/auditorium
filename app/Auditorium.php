@@ -12,7 +12,7 @@ class Auditorium extends Model {
 }
 
 class Status {
-	var $status;
+	var $code;
 	var $date;
 	var $requests;
 
@@ -23,20 +23,20 @@ class Status {
 		$this->date = $date;
 
 		if ($this->requests->count() == 0) {
-			$this->status = 1; // available
+			$this->code = 1; // available
 		} else if ($this->requests->where('status', 2)->count() > 0) {
-			$this->status = 2; // unavailable
+			$this->code = 2; // unavailable
 		} else  {
-			$this->status = 0; // pending
+			$this->code = 0; // pending
 		}
 
 	}
 
 	function __toString() {
-		if ($this->status == 1) {
+		if ($this->code == 1) {
 			return "Disponível";
 		}
-		else if ($this->status == 2) {
+		else if ($this->code == 2) {
 			return "Indisponível";
 		}
 		else {

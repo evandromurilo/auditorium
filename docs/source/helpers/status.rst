@@ -6,7 +6,7 @@ A classe ``Status`` representa o status de um auditório em uma data específica
 Atributos
 ---------
 
-status ``Int``
+code ``Int``
   Representa o status do auditório.
 
   0. pendente
