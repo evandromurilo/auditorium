@@ -17,5 +17,14 @@ font-family: 'Libre Baskerville', serif;
 }
 .position-submit{
   margin-left: 5px;
-  height: 50px;  
+  height: 50px;
+}
+.well{
+  height: 200px;
+}
+.well-hr{
+  background-color: green;
+  height: 15px;
+  margin-top: 50px;
+  margin-bottom: 5px;
 }

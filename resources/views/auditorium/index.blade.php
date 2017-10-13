@@ -32,8 +32,11 @@
 		<div class="row">
 			@foreach ($auditoria as $aud)
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<div class="well well-hr">
+
+					</div>
 					<div class="well">
-				<h2>{{ $aud->name }}</h2>
+				<h2 class="text-center">{{ $aud->name }}</h2>
 				<p>{{ $aud->statusOn($date) }}</p>
 
 				@if ($aud->statusOn($date)->status == 1)
