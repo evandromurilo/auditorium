@@ -30,7 +30,7 @@ class RequestController extends Controller
 
 		$nrequest->save();
 		
-		echo "what";
-		return redirect()->route('auditoria.index', ['date' => $request->date]);
+		$date = (new Carbon($request->date))->format('d/m/Y');
+		return redirect()->route('auditoria.index', ['date' => $date]);
 	}
 }

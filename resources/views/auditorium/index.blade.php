@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<form class="form-group position-form" method="GET" action="{{ route('auditoria.index') }}">
-					<input type="text" id="date" name="date" class="form-control text-center input-date" autocomplete="off" autofocus value="{{-- $date->toDateString() --}}"><br />
+					<input type="text" id="date" name="date" class="form-control text-center input-date" autocomplete="off" value="{{ $date->format('d/m/Y') }}"><br />
 					<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
 				</form>
 			</div>
