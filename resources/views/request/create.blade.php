@@ -4,7 +4,7 @@
 
 @section('content')
 	<h1>Agendar {{ $aud->name }}</h1>
-	<p>Data: {{ $date->toDateString() }}</p>
+	<p>Data: {{ $date->format('d/m/Y') }}</p>
 
 	<form method="POST" action="{{ route('requests.store') }}">
 		{{ csrf_field() }}

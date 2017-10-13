@@ -9,7 +9,8 @@ use \App\Auditorium;
 class AuditoriumController extends Controller {
 	public function index(Request $request) {
 		if ($request->has('date')) {
-			return view('auditorium.index')->with(['date' => new Carbon($request->date),
+			$date = Carbon::createFromFormat('d/m/Y', $request->date);
+			return view('auditorium.index')->with(['date' => $date,
 																						 'auditoria' => Auditorium::all()]);
 		}
 		else {
