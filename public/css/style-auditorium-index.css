@@ -22,9 +22,7 @@ font-family: 'Libre Baskerville', serif;
 .well{
   height: 200px;
 }
-.well-hr{
-  background-color: green;
-  height: 15px;
+.progress{
   margin-top: 50px;
   margin-bottom: 5px;
 }

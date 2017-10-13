@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<form class="form-group position-form" method="GET" action="{{ route('auditoria.index') }}">
-					<input type="text" id="date" name="date" class="form-control text-center input-date" autocomplete="off" value="{{ $date->format('d/m/Y') }}"><br />
+					<input type="text" id="date" name="date" class="form-control text-center input-date" autocomplete="off" placeholder="13/10/2017" value="{{-- $date->format('d/m/Y') --}}"><br />
 					<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
 				</form>
 			</div>
@@ -33,22 +33,30 @@
 			@foreach ($auditoria as $aud)
 				<?php $status = $aud->statusOn($date); ?>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-					<div class="well well-hr">
-
+					<div class="progress">
+					  <div class="progress-bar progress-bar-success" style="width: 100%">
+					    <span class="sr-only">35% Complete (success)</span>
+					  </div>
+					  <div class="progress-bar progress-bar-warning" >
+					    <span class="sr-only">20% Complete (warning)</span>
+					  </div>
+					  <div class="progress-bar progress-bar-danger" >
+					    <span class="sr-only">10% Complete (danger)</span>
+					  </div>
 					</div>
 					<div class="well">
 				<h2 class="text-center">{{ $aud->name }}</h2>
 
 				@if ($status->code == 1)
-					<p style="color:green;">{{ $status }}</p>
+					<p style="color:green;">{{ $status }} <i class="fa fa-plus-square" aria-hidden="true"></i></p>
 					<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
 																							 'id' => $aud->id]) }}>
 					 Agendar
 					</a>
 				@elseif ($status->code == 0)
-					<p style="color:orange;">{{ $status }}</p>
+					<p style="color:orange;">{{ $status }} <i class="fa fa-clock-o" aria-hidden="true"></i></p>
 				@elseif ($status->code == 2)
-					<p style="color:red;">{{ $status }}</p>
+					<p style="color:red;">{{ $status }} <i class="fa fa-lock" aria-hidden="true"></i></p>
 				@endif
 				</div>
 			</div>
