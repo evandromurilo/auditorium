@@ -34,7 +34,7 @@
 		<p>{{ $aud->statusOn($date) }}</p>
 
 		@if ($aud->statusOn($date)->status == 1)
-			<a href={{ route('requests.create', ['date' => $date->toDateString(),
+			<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
 																					 'id' => $aud->id]) }}>
 			 Agendar
 			</a>
