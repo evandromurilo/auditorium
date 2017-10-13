@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<form class="form-group position-form" method="GET" action="{{ route('auditoria.index') }}">
-					<input type="text" id="date" name="date" class="form-control text-center input-date" autocomplete="off" value="{{-- $date->toDateString() --}}"><br />
+					<input type="text" id="date" name="date" class="form-control text-center input-date" autocomplete="off" autofocus value="{{-- $date->toDateString() --}}"><br />
 					<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
 				</form>
 			</div>
@@ -28,16 +28,24 @@
 
 
 
+	<div class="container">
+		<div class="row">
+			@foreach ($auditoria as $aud)
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<div class="well">
+				<h2>{{ $aud->name }}</h2>
+				<p>{{ $aud->statusOn($date) }}</p>
 
-	@foreach ($auditoria as $aud)
-		<h2>{{ $aud->name }}</h2>
-		<p>{{ $aud->statusOn($date) }}</p>
+				@if ($aud->statusOn($date)->status == 1)
+					<a href={{ route('requests.create', ['date' => $date->toDateString(),
+																							 'id' => $aud->id]) }}>
+					 Agendar
+					</a>
+				@endif
+				</div>
+			</div>
+			@endforeach
+		</div>
+	</div>
 
-		@if ($aud->statusOn($date)->status == 1)
-			<a href={{ route('requests.create', ['date' => $date->toDateString(),
-																					 'id' => $aud->id]) }}>
-			 Agendar
-			</a>
-		@endif
-	@endforeach
 @endsection
