@@ -10,9 +10,20 @@ use Carbon\Carbon;
 class RequestController extends Controller
 {
 	public function index(Request $request) {
-		$requests = \App\Request::where('status', 0)->orderBy('date', 'asc')->get();
+		if ($request->filter == "resolved") {
+			$requests = \App\Request::where('status', '<>', 0)->orderBy('date', 'asc')->get();
+		} else if ($request->filter == "rejected") {
+			$requests = \App\Request::where('status', 1)->orderBy('date', 'asc')->get();
+		} else if ($request->filter == "accepted") {
+			$requests = \App\Request::where('status', 2)->orderBy('date', 'asc')->get();
+		} else if ($request->filter == "all") {
+			$requests = \App\Request::orderBy('date', 'asc')->get();
+		} else {
+			$requests = \App\Request::where('status', 0)->orderBy('date', 'asc')->get();
+		}
 
-		return view('request.index')->with('requests', $requests);
+		return view('request.index')->with(['requests' => $requests,
+		                                    'filter' => $request->filter]);
 	}
 
 	public function create(Request $request) {

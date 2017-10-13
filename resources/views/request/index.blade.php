@@ -4,6 +4,16 @@
 
 @section('content')
 	<h1>Pedidos</h1>
+	<form method="GET" action="{{ route('requests.index') }}">
+		<select onchange="this.form.submit()" name="filter">
+			<option value="all">Todos</option>
+			<option value="pendent" {{ $filter == 'pendent'? 'selected':'' }}>Pendentes</option>
+			<option value="resolved" {{ $filter == 'resolved'? 'selected':'' }}>Resolvidos</option>
+			<option value="rejected" {{ $filter == 'rejected'? 'selected':'' }}>Rejeitados</option>
+			<option value="accepted" {{ $filter == 'accepted'? 'selected':'' }}>Aceitos</option>
+		</select>
+	</form>
+		
 	@foreach ($requests as $request)
 		<div>
 			<h2> {{ $request->auditorium->name }} </h2>
