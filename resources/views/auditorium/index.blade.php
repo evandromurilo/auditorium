@@ -28,16 +28,23 @@
 
 
 
+	<div class="container">
+		<div class="row">
+			@foreach ($auditoria as $aud)
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<div class="well">
+				<h2>{{ $aud->name }}</h2>
+				<p>{{ $aud->statusOn($date) }}</p>
 
-	@foreach ($auditoria as $aud)
-		<h2>{{ $aud->name }}</h2>
-		<p>{{ $aud->statusOn($date) }}</p>
-
-		@if ($aud->statusOn($date)->status == 1)
-			<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
-																					 'id' => $aud->id]) }}>
-			 Agendar
-			</a>
-		@endif
-	@endforeach
+				@if ($aud->statusOn($date)->status == 1)
+					<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
+																							 'id' => $aud->id]) }}>
+					 Agendar
+					</a>
+				@endif
+				</div>
+			</div>
+			@endforeach
+		</div>
+	</div>
 @endsection
