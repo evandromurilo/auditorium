@@ -11,9 +11,10 @@ class RequestController extends Controller
 {
 	public function create(Request $request) {
 		$aud = Auditorium::find($request->id);
+		$date = Carbon::createFromFormat('d/m/Y', $request->date);
 
 		return view('request.create', ['aud' => $aud,
-			                             'date' => new Carbon($request->date)]);
+			                             'date' => $date]);
 	}
 
 	public function store(Request $request) {
