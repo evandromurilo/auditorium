@@ -100,12 +100,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../models.html">Models</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Auditorium</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#atributos">Atributos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metodos">Métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#views">Views</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="request.html">Request</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user.html">User</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers.html">Helpers</a></li>
 </ul>
 
             
@@ -188,6 +191,25 @@ no banco de dados se chama <code class="docutils literal"><span class="pre">audi
 <dd>Localização do auditório.</dd>
 <dt>obs <code class="docutils literal"><span class="pre">TEXT</span></code></dt>
 <dd>Observações adicionais sobre o auditório.</dd>
+</dl>
+</div>
+<div class="section" id="metodos">
+<h2>Métodos<a class="headerlink" href="#metodos" title="Link permanente para este título">¶</a></h2>
+<dl class="docutils">
+<dt>statusOn( <code class="docutils literal"><span class="pre">Carbon</span> <span class="pre">$date</span></code> )</dt>
+<dd><p class="first">Retorna um objeto <code class="docutils literal"><span class="pre">Status</span></code> representando o status do auditório na data <code class="docutils literal"><span class="pre">$date</span></code>.</p>
+<p class="last">Ver: <a class="reference internal" href="../helpers/status.html"><span class="doc">Status</span></a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="views">
+<h2>Views<a class="headerlink" href="#views" title="Link permanente para este título">¶</a></h2>
+<dl class="docutils">
+<dt>index</dt>
+<dd><p class="first">View onde são exibidos todos os auditórios e seus status para determinado dia.</p>
+<p class="last">Recebe como parâmetro GET opcional uma <code class="docutils literal"><span class="pre">data</span></code>. Caso nenhuma seja fornecida, utiliza
+a data atual.</p>
+</dd>
 </dl>
 </div>
 </div>

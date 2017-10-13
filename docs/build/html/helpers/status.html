@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Request &mdash; documentação auditorium 0.0.1</title>
+  <title>Status &mdash; documentação auditorium 0.0.1</title>
   
 
   
@@ -36,9 +36,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Buscar" href="../search.html"/>
     <link rel="top" title="documentação auditorium 0.0.1" href="../index.html"/>
-        <link rel="up" title="Models" href="../models.html"/>
-        <link rel="next" title="User" href="user.html"/>
-        <link rel="prev" title="Auditorium" href="auditorium.html"/> 
+        <link rel="up" title="Helpers" href="../helpers.html"/>
+        <link rel="prev" title="Helpers" href="../helpers.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -97,17 +96,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Índice:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../models.html">Models</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="auditorium.html">Auditorium</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Request</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../helpers.html">Helpers</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Status</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#atributos">Atributos</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#views">Views</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="user.html">User</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../helpers.html">Helpers</a></li>
 </ul>
 
             
@@ -152,15 +148,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../models.html">Models</a> &raquo;</li>
+          <li><a href="../helpers.html">Helpers</a> &raquo;</li>
         
-      <li>Request</li>
+      <li>Status</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/models/request.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/helpers/status.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -173,46 +169,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="request">
-<h1>Request<a class="headerlink" href="#request" title="Link permanente para este título">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">Request</span></code> é o model que representa um pedido de agendamento de auditório.
-Sua tabela correspondente no banco de dados se chama <code class="docutils literal"><span class="pre">requests</span></code>.</p>
+  <div class="section" id="status">
+<h1>Status<a class="headerlink" href="#status" title="Link permanente para este título">¶</a></h1>
+<p>A classe <code class="docutils literal"><span class="pre">Status</span></code> representa o status de um auditório em uma data específica.</p>
 <div class="section" id="atributos">
 <h2>Atributos<a class="headerlink" href="#atributos" title="Link permanente para este título">¶</a></h2>
 <dl class="docutils">
-<dt>auditorium_id <code class="docutils literal"><span class="pre">INTEGER</span></code></dt>
-<dd>ID do auditório.</dd>
-<dt>user_id <code class="docutils literal"><span class="pre">INTEGER</span></code></dt>
-<dd>ID do usuário que requisitou o agendamento.</dd>
-<dt>from_time <code class="docutils literal"><span class="pre">TIME</span></code></dt>
-<dd>Horário inicial do agendamento.</dd>
-<dt>until_time <code class="docutils literal"><span class="pre">TIME</span></code></dt>
-<dd>Horário final do agendamento.</dd>
-<dt>date <code class="docutils literal"><span class="pre">DATE</span></code></dt>
-<dd>Data do agendamento.</dd>
-<dt>event <code class="docutils literal"><span class="pre">VARCHAR(100)</span></code></dt>
-<dd>Nome que identifica o agendamento, preferencialmente o nome do
-evento.</dd>
-<dt>description <code class="docutils literal"><span class="pre">TEXT</span></code></dt>
-<dd>Descrição do pedido de agendamento.</dd>
-<dt>status <code class="docutils literal"><span class="pre">TINYINT</span></code></dt>
-<dd><p class="first">Status do pedido:</p>
+<dt>status <code class="docutils literal"><span class="pre">Int</span></code></dt>
+<dd><p class="first">Representa o status do auditório.</p>
 <ol class="last arabic simple" start="0">
 <li>pendente</li>
-<li>rejeitado</li>
-<li>aceito</li>
+<li>disponível</li>
+<li>indisponível</li>
 </ol>
 </dd>
-</dl>
-</div>
-<div class="section" id="views">
-<h2>Views<a class="headerlink" href="#views" title="Link permanente para este título">¶</a></h2>
-<dl class="docutils">
-<dt>create</dt>
-<dd><p class="first">View do formulário de criação de uma nova <code class="docutils literal"><span class="pre">Request</span></code>.</p>
-<p class="last">Recebe como parâmetros GET obrigatórios a <code class="docutils literal"><span class="pre">data</span></code> atual e o <code class="docutils literal"><span class="pre">id</span></code> do auditório
-a ser agendado.</p>
-</dd>
+<dt>date <code class="docutils literal"><span class="pre">Carbon</span></code></dt>
+<dd>A data do <code class="docutils literal"><span class="pre">Status</span></code> em questão.</dd>
+<dt>requests <code class="docutils literal"><span class="pre">Collection</span></code></dt>
+<dd>Uma <code class="docutils literal"><span class="pre">Collection</span></code> contendo todas as <code class="docutils literal"><span class="pre">Requests</span></code> existentes para o auditório
+em questão.</dd>
 </dl>
 </div>
 </div>
@@ -227,10 +202,8 @@ a ser agendado.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="user.html" class="btn btn-neutral float-right" title="User" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="auditorium.html" class="btn btn-neutral" title="Auditorium" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../helpers.html" class="btn btn-neutral" title="Helpers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -5,7 +5,7 @@ User
 Sua tabela correspondente no banco de dados se chama ``users``.
 
 Atributos
-*********
+---------
 
 name ``VARCHAR``
   Nome do usuário.

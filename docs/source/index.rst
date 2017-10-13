@@ -12,3 +12,4 @@ Auditorium
   :caption: Índice:
 
   models
+  helpers

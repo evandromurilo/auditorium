@@ -1,0 +1,23 @@
+_status-class:
+
+Status
+=============
+
+A classe ``Status`` representa o status de um auditório em uma data específica.
+
+Atributos
+*********
+
+status ``Int``
+  Representa o status do auditório.
+
+  0. pendente
+  1. disponível
+  2. indisponível
+
+date ``Carbon``
+  A data do ``Status`` em questão.
+
+requests ``Collection``
+  Uma ``Collection`` contendo todas as ``Requests`` existentes para o auditório
+  em questão.

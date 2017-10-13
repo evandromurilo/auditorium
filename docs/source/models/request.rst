@@ -5,7 +5,7 @@ Request
 Sua tabela correspondente no banco de dados se chama ``requests``.
 
 Atributos
-*********
+---------
 
 auditorium_id ``INTEGER``
   ID do auditório.
@@ -35,3 +35,12 @@ status ``TINYINT``
   0. pendente
   1. rejeitado
   2. aceito
+
+Views
+-----
+
+create
+  View do formulário de criação de uma nova ``Request``.
+
+  Recebe como parâmetros GET obrigatórios a ``data`` atual e o ``id`` do auditório
+  a ser agendado.
