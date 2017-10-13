@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'AuditoriumController@index')->name('home');
+Route::get('/', 'AuditoriumController@index');
+Route::get('/home', 'AuditoriumController@index')->name('home');
 
 Auth::routes();
 
