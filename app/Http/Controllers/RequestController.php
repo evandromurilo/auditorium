@@ -9,6 +9,12 @@ use Carbon\Carbon;
 
 class RequestController extends Controller
 {
+	public function index(Request $request) {
+		$requests = \App\Request::where('status', 0)->orderBy('date', 'asc')->get();
+
+		return view('request.index')->with('requests', $requests);
+	}
+
 	public function create(Request $request) {
 		$aud = Auditorium::find($request->id);
 		$date = Carbon::createFromFormat('d/m/Y', $request->date);
@@ -33,5 +39,14 @@ class RequestController extends Controller
 		
 		$date = (new Carbon($request->date))->format('d/m/Y');
 		return redirect()->route('auditoria.index', ['date' => $date]);
+	}
+
+	public function update(Request $request) {
+		$nrequest = \App\Request::find($request->segment(2));
+
+		$nrequest->status = $request->status;
+		$nrequest->save();
+
+		return redirect()->route('requests.index');
 	}
 }
