@@ -54,9 +54,9 @@
 				<spam>Noite:</spam>
 				@include('partials.status', ['code' => $statusOn->night])
 
-				<p><strong>Capacidade:</strong> {{ $aud->capacity }} pessoas.</p>
+				<label>Capacidade: </label><p>{{ $aud->capacity }} pessoas.</p>
 				@if ($aud->accessible)
-					<p>Este auditório preenche requisitos de acessibilidade.</p>
+					<label>Acessibilidade: </label><p>Este auditório preenche requisitos de acessibilidade.</p>
 				@endif
 
 				</div>

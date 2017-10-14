@@ -2,7 +2,9 @@ body{
   margin: 0;
   padding: 0;
 }
-
+h2{
+  margin-top: 10px;
+}
 .input-date{
 width: 400px;
 height: 50px;
@@ -20,7 +22,7 @@ font-family: 'Libre Baskerville', serif;
   height: 50px;
 }
 .well{
-  height: 200px;
+  height: 300px;
 }
 .progress{
   margin-top: 50px;
