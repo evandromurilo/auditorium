@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="js/jquery.mask.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mask.js"></script>
 	<script type="text/javascript" src="js/jquery-script-register.js"></script>
+	<link rel="stylesheet" href="{{ asset('css/style-register.css')}}">
 
 	<div class="container">
 		<div class="row">
@@ -72,7 +73,7 @@
 							<div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
 								<label for="color" class="col-md-4 control-label">Cor</label>
 
-								<div class="col-md-6">
+								<div class="col-md-3">
 									<input id="color" type="text" class="form-control" name="color" value="{{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }}" required>
 
 									@if ($errors->has('color'))
@@ -81,6 +82,9 @@
 										</span>
 									@endif
 								</div>
+								<div class="col-md-3">
+										<div class="circle" id="cor"></div>
+								</div>								
 							</div>
 
 							<div class="form-group{{ $errors->has('cel') ? ' has-error' : '' }}">
