@@ -6,8 +6,8 @@
 	<h1>Pedidos</h1>
 	<form method="GET" action="{{ route('requests.index') }}">
 		<select onchange="this.form.submit()" name="filter">
-			<option value="all">Todos</option>
-			<option value="pendent" {{ $filter == 'pendent'? 'selected':'' }}>Pendentes</option>
+			<option value="pendent">Pendentes</option>
+			<option value="all" {{ $filter == 'all'? 'selected':'' }}>Todos</option>
 			<option value="resolved" {{ $filter == 'resolved'? 'selected':'' }}>Resolvidos</option>
 			<option value="rejected" {{ $filter == 'rejected'? 'selected':'' }}>Rejeitados</option>
 			<option value="accepted" {{ $filter == 'accepted'? 'selected':'' }}>Aceitos</option>
@@ -18,6 +18,7 @@
 		<div>
 			<h2> {{ $request->auditorium->name }} </h2>
 			<p><strong>Data:</strong> {{ $request->dateC->format('d/m/Y') }}</p>
+			<p><strong>Período:</strong> {{ $request->periodF }}</p>
 			<p><strong>Por:</strong> {{ $request->user->name }}</p>
 
 			<form method="POST" action="{{ route('requests.update', $request->id) }}">

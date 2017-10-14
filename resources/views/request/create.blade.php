@@ -10,8 +10,12 @@
 		{{ csrf_field() }}
 		<input type="hidden" name="date" value="{{ $date->toDateString() }}">
 		<input type="hidden" name="auditorium_id" value="{{ $aud->id }}">
-		<input type="hidden" name="from_time" value="00:00:00">
-		<input type="hidden" name="until_time" value="23:59:59">
+		<label>Período:</label>
+		<select name="period">
+			<option value="0">Manhã</option>
+			<option value="1">Tarde</option>
+			<option value="2">Noite</option>
+		</select></br>
 
 		<label>Evento: </label><input type="text" name="event"></br>
 		<label>Descrição: </label><input type="text" name="description"></br>

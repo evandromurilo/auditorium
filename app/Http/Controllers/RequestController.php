@@ -39,8 +39,7 @@ class RequestController extends Controller
 
 		$nrequest->auditorium_id = $request->auditorium_id;
 		$nrequest->user_id = Auth::id();
-		$nrequest->from_time = $request->from_time;
-		$nrequest->until_time = $request->until_time;
+		$nrequest->period = $request->period;
 		$nrequest->date = $request->date;
 		$nrequest->event = $request->event;
 		$nrequest->description = $request->description;
