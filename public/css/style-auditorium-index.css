@@ -21,8 +21,7 @@ h2 {
   margin-top: 80px;
 }
 
-.position-submit {
-  margin-left: 5px;
+.position-submit {  
   height: 50px;
 }
 
@@ -62,4 +61,12 @@ h2 {
   margin-left: 5px;
   border-radius: 10%;
   float: right;
+}
+.arrow-right{
+  margin-left: 10px;
+  font-size: 50px;
+}
+.arrow-left{
+  margin-right: 10px;
+  font-size: 50px;
 }

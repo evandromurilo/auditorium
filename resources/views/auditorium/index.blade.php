@@ -18,9 +18,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<form class="form-group position-form" method="GET" action="{{ route('auditoria.index') }}">
-					<input type="text" id="date" name="date" class="form-control text-center input-date" autocomplete="off" placeholder="13/10/2017" value="{{ $date->format('d/m/Y') }}"><br />
-					<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
+				<form class="position-form" method="GET" action="{{ route('auditoria.index') }}">
+					<a href="#"><i class="fa fa-chevron-left arrow-left" aria-hidden="true"></i></a>
+					<input type="text" id="date" name="date" class="text-center input-date" autocomplete="off" value="{{ $date->format('d/m/Y') }}"><br />
+					<a href="#"><i class="fa fa-chevron-right arrow-right" aria-hidden="true"></i></a>
+					<div class="btn-position">
+						<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
+					</div>
 				</form>
 			</div>
 		</div>
