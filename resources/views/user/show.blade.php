@@ -18,4 +18,23 @@
 		<p>{{ $user->cel }}</p>
 	</div>
 
+	<div>
+		<h2>Histórico de Agendamentos</h2>
+		@if ($requests->isEmpty())
+			<p>Nenhum agendamento feito.</p>
+		@else
+			@foreach ($requests as $request)
+				<p>{{ $request->auditorium->name }} ({{ $request->dateC->format('d/m/Y') }}) 
+				@if ($request->status == 0)
+					(pendente)
+				@elseif ($request->status == 1)
+					(rejeitado)
+				@else
+					(aceito)
+				@endif
+				</p>
+			@endforeach
+		@endif
+	</div>
+
 @endsection
