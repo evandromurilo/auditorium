@@ -30,7 +30,7 @@
 							'next' => 'true']) }}"><i class="fa fa-chevron-right arrow-right"
 								aria-hidden="true"></i></a>
 					</div>
-					
+
 
 					<div class="btn-position">
 						<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
@@ -54,43 +54,41 @@
 								'period' => 'Noite'])
 						</div>
 					<div class="well">
-				<h2 class="text-center">{{ $aud->name }}</h2>
-				<div class="row">
+						<h2 class="text-center">{{ $aud->name }}</h2>
+							<div class="row">
 
-					<spam class="col-md-4 control-label">Manhã:</spam>
-					<div class="col-md-8">
-						@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0])
-					</div>
+								<spam class="col-md-4 control-label">Manhã:</spam>
+								<div class="col-md-8">
+									@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0])
+								</div>
 
-					<spam class="col-md-4 control-label">Tarde:</spam>
-					<div class="col-md-8">
-						@include('partials.status', ['code' => $statusOn->afternoon, 'period_code' => 1])
-					</div>
+								<spam class="col-md-4 control-label">Tarde:</spam>
+								<div class="col-md-8">
+									@include('partials.status', ['code' => $statusOn->afternoon, 'period_code' => 1])
+								</div>
 
-					<spam class="col-md-4 control-label">Noite:</spam>
-					<div class="col-md-8">
-						@include('partials.status', ['code' => $statusOn->night, 'period_code' => 2])
-					</div>
-				</div>
+								<spam class="col-md-4 control-label">Noite:</spam>
+								<div class="col-md-8">
+									@include('partials.status', ['code' => $statusOn->night, 'period_code' => 2])
+								</div>
+							</div>
 
-				<label>Capacidade: </label><p>{{ $aud->capacity }} pessoas.</p>
-				<div class="row">
-					@if ($aud->accessible)
+					<label>Capacidade: </label><p>{{ $aud->capacity }} pessoas.</p>
 
-						<div class="col-md-12">
-							<p>
-									<i class="fa fa-wheelchair style-icons" aria-hidden="true"
-										data-toggle="tooltip" data-placement="bottom" title="Cadeirante"></i>
-									<i class="fa fa-blind style-icons" aria-hidden="true"
-										data-toggle="tooltip" data-placement="bottom" title="Deficiente Visual"></i>
-									<i class="fa fa-universal-access style-icons" aria-hidden="true"
-									data-toggle="tooltip" data-placement="bottom" title="Acesso Universal"></i>
-							</p>
-						</div>
+						@if ($aud->accessible)
 
-					@endif
-				</div>
-
+							<div class="col-md-12">
+								<p>
+										<i class="fa fa-wheelchair style-icons" aria-hidden="true"
+											data-toggle="tooltip" data-placement="bottom" title="Cadeirante"></i>
+										<i class="fa fa-blind style-icons" aria-hidden="true"
+											data-toggle="tooltip" data-placement="bottom" title="Deficiente Visual"></i>
+										<i class="fa fa-universal-access style-icons" aria-hidden="true"
+										data-toggle="tooltip" data-placement="bottom" title="Acesso Universal"></i>
+								</p>
+							</div>
+						@endif
+					
 				</div>
 			</div>
 			@endforeach
