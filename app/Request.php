@@ -21,6 +21,6 @@ class Request extends Model {
 	public function getPeriodFAttribute() {
 		if ($this->period == 0) return "manhã";
 		else if ($this->period == 1) return "tarde";
-		else "noite";
+		else return "noite";
 	}
 }
