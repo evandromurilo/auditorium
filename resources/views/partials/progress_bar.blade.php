@@ -1,6 +1,3 @@
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 @if ($code == 0)
 <div class="progress-bar progress-bar-warning"  style="width: 33.33%; background-color: #FF4500;"  data-toggle="tooltip" data-placement="top" title="Pendente">{{ $period }}
 	<span class="sr-only">Pendente para a {{ $period }}.</span>
