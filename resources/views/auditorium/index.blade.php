@@ -20,10 +20,17 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<form class="form-group" method="GET" action="{{ route('auditoria.index') }}">
 					<div class="position-form">
-						<a href="#"><i class="fa fa-chevron-left arrow-left" aria-hidden="true"></i></a>
+						<a href="{{ route('auditoria.index', ['date' => $date->format('d/m/Y'),
+							'previous' => 'true']) }}"><i class="fa fa-chevron-left arrow-left"
+								aria-hidden="true"></i></a>
+
 						<input type="text" id="date" name="date" class="text-center input-date" autocomplete="off" value="{{ $date->format('d/m/Y') }}"><br />
-						<a href="#"><i class="fa fa-chevron-right arrow-right" aria-hidden="true"></i></a>
+
+						<a href="{{ route('auditoria.index', ['date' => $date->format('d/m/Y'),
+							'next' => 'true']) }}"><i class="fa fa-chevron-right arrow-right"
+								aria-hidden="true"></i></a>
 					</div>
+					
 
 					<div class="btn-position">
 						<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
