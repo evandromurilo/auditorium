@@ -6,7 +6,7 @@ A classe ``Status`` representa o status de um auditório em uma data específica
 Atributos
 ---------
 
-*morning*, *afternoon* e *night* representam o status do auditório no determinado
+**morning**, **afternoon** e **night** representam o status do auditório no determinado
 período:
 
 0. pendente
@@ -43,9 +43,7 @@ night_requests ``Collection``
 
 Exemplo
 -------
-oushe
-
-Exemplo::
+::
 
   // retorna o código de status do auditório no período da noite de hoje
   $auditorium->statusOn(Carbon::now())->night
