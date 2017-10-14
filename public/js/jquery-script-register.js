@@ -19,8 +19,3 @@ $("body").on('click', '#cor', function() {
   $("#color").val(randomColor());
 	updateColor();
 });
-
-jQuery(function($) {
-  $("#atualiza").click(function() {
-  });
-});

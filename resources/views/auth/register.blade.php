@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -25,7 +25,7 @@
 								<label for="name" class="col-md-4 control-label">Nome</label>
 
 								<div class="col-md-6">
-									<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+									<input id="name" type="text" class="form-control text-capitalize" name="name" value="{{ old('name') }}" required autofocus>
 
 									@if ($errors->has('name'))
 										<span class="help-block">
@@ -85,7 +85,7 @@
 								</div>
 								<div class="col-md-3">
 										<div class="circle" id="cor"></div>
-								</div>								
+								</div>
 							</div>
 
 							<div class="form-group{{ $errors->has('cel') ? ' has-error' : '' }}">
