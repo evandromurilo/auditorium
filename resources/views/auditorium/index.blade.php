@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="js/jquery.mask.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mask.js"></script>
 	<script type="text/javascript" src="js/jquery-scripts.js"></script>
+	<script type="text/javascript" src="js/jquery-scripts-icons-auditorium-index.js"></script>
 
 	<link rel="stylesheet" href="{{ asset('css/style-auditorium-index.css')}}">
 
@@ -88,7 +89,7 @@
 								</p>
 							</div>
 						@endif
-					
+
 				</div>
 			</div>
 			@endforeach

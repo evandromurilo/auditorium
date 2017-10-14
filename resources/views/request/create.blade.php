@@ -20,13 +20,6 @@
 							<input type="hidden" name="date" value="{{ $date->toDateString() }}">
 							<input type="hidden" name="auditorium_id" value="{{ $aud->id }}">
 
-							<label>Período:</label>
-							<select name="period">
-								<option value="0" {{ $period == 0? 'selected':'' }}>Manhã</option>
-								<option value="1" {{ $period == 1? 'selected':'' }}>Tarde</option>
-								<option value="2" {{ $period == 2? 'selected':'' }}>Noite</option>
-							</select></br>
-
 							<div class="form-group space-top">
 								<label class="col-md-2 control-label">Evento </label>
 								<div class="col-md-9">
@@ -38,6 +31,17 @@
 								<label class="col-md-2 control-label">Descrição </label>
 								<div class="col-md-9">
 									<input type="text" name="description" class="form-control" autocomplete="off">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-2 control-label">Período:</label>
+								<div class="col-md-5">
+									<select name="period" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<option value="0" {{ $period == 0? 'selected':'' }}>Manhã</option>
+										<option value="1" {{ $period == 1? 'selected':'' }}>Tarde</option>
+										<option value="2" {{ $period == 2? 'selected':'' }}>Noite</option>
+									</select></br>
 								</div>
 							</div>
 
