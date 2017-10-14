@@ -33,11 +33,11 @@
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 						<div class="progress">
 							@include('partials.progress_bar', ['code' => $statusOn->morning,
-							'period' => 'manhã'])
+							'period' => 'Manhã'])
 							@include('partials.progress_bar', ['code' => $statusOn->afternoon,
-							'period' => 'tarde'])
+							'period' => 'Tarde'])
 							@include('partials.progress_bar', ['code' => $statusOn->night,
-							'period' => 'noite'])
+							'period' => 'Noite'])
 						</div>
 					<div class="well">
 				<h2 class="text-center">{{ $aud->name }}</h2>
