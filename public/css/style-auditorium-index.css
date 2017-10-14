@@ -1,46 +1,56 @@
-body{
+body {
   margin: 0;
   padding: 0;
 }
-h2{
+
+h2 {
   margin-top: 10px;
 }
-.input-date{
-width: 400px;
-height: 50px;
-font-size: 35px;
-font-family: 'Libre Baskerville', serif;
+
+.input-date {
+  width: 400px;
+  height: 50px;
+  font-size: 35px;
+  font-family: 'Libre Baskerville', serif;
 }
-.position-form{
+
+.position-form {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 80px;
 }
-.position-submit{
+
+.position-submit {
   margin-left: 5px;
   height: 50px;
 }
-.well{
+
+.well {
   height: 300px;
 }
-.progress{
+
+.progress {
   margin-top: 50px;
   margin-bottom: 5px;
 }
-.disponivel, .pendente, .indisponivel{
+
+.disponivel, .pendente, .indisponivel {
   display: inline-block;
   color: #fff;
-  padding-right: 3px;
+  padding-right: 5px;
   border-radius: 7%;
-  padding-left: 3px;
+  padding-left: 5px;
 }
-.disponivel{
+
+.disponivel {
   background-color: green;
 }
-.pendente{
+
+.pendente {
   background-color: #FF8C00;
 }
-.indisponivel{
+
+.indisponivel {
   background-color: red;
 }
