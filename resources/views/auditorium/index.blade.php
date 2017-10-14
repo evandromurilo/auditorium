@@ -32,15 +32,12 @@
 				<?php $statusOn = $aud->statusOn($date); ?>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 						<div class="progress">
-						  <div class="progress-bar progress-bar-success"  style="width: 33%">Manhã
-						    <span class="sr-only">35% Complete (success)</span>
-						  </div>
-						  <div class="progress-bar progress-bar-warning" style="width: 33%">tarde
-						    <span class="sr-only">20% Complete (warning)</span>
-						  </div>
-						  <div class="progress-bar progress-bar-danger" style="width: 33%">Noite
-						    <span class="sr-only">10% Complete (danger)</span>
-						  </div>
+							@include('partials.progress_bar', ['code' => $statusOn->morning,
+							'period' => 'manhã'])
+							@include('partials.progress_bar', ['code' => $statusOn->afternoon,
+							'period' => 'tarde'])
+							@include('partials.progress_bar', ['code' => $statusOn->night,
+							'period' => 'noite'])
 						</div>
 					<div class="well">
 				<h2 class="text-center">{{ $aud->name }}</h2>
