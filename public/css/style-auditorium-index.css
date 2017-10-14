@@ -20,8 +20,14 @@ h2 {
   align-items: center;
   margin-top: 80px;
 }
+.btn-position{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
 
-.position-submit {  
+.position-submit {
   height: 50px;
 }
 
@@ -64,9 +70,11 @@ h2 {
 }
 .arrow-right{
   margin-left: 10px;
-  font-size: 50px;
+  font-size: 40px;
+
 }
 .arrow-left{
   margin-right: 10px;
-  font-size: 50px;
+  font-size: 40px;
+
 }
