@@ -48,15 +48,15 @@
 				<h2 class="text-center">{{ $aud->name }}</h2>
 
 				@if ($status->code == 1)
-					<p style="color:green;">{{ $status }} <i class="fa fa-plus-square" aria-hidden="true"></i></p>
+					<p class="disponivel">{{ $status }} <i class="fa fa-plus-square" aria-hidden="true"></i></p><br />
 					<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
 																							 'id' => $aud->id]) }}>
 					 Agendar
 					</a>
 				@elseif ($status->code == 0)
-					<p style="color:orange;">{{ $status }} <i class="fa fa-clock-o" aria-hidden="true"></i></p>
+					<p class="pendente">{{ $status }} <i class="fa fa-clock-o" aria-hidden="true"></i></p>
 				@elseif ($status->code == 2)
-					<p style="color:red;">{{ $status }} <i class="fa fa-lock" aria-hidden="true"></i></p>
+					<p class="indisponivel">{{ $status }} <i class="fa fa-lock" aria-hidden="true"></i></p>
 				@endif
 				</div>
 			</div>
