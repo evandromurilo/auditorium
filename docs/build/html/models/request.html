@@ -184,10 +184,14 @@ Sua tabela correspondente no banco de dados se chama <code class="docutils liter
 <dd>ID do auditório.</dd>
 <dt>user_id <code class="docutils literal"><span class="pre">INTEGER</span></code></dt>
 <dd>ID do usuário que requisitou o agendamento.</dd>
-<dt>from_time <code class="docutils literal"><span class="pre">TIME</span></code></dt>
-<dd>Horário inicial do agendamento.</dd>
-<dt>until_time <code class="docutils literal"><span class="pre">TIME</span></code></dt>
-<dd>Horário final do agendamento.</dd>
+<dt>period <code class="docutils literal"><span class="pre">TINYINT</span></code></dt>
+<dd><p class="first">Período do agendamento:</p>
+<ol class="last arabic simple" start="0">
+<li>manhã</li>
+<li>tarde</li>
+<li>noite</li>
+</ol>
+</dd>
 <dt>date <code class="docutils literal"><span class="pre">DATE</span></code></dt>
 <dd>Data do agendamento.</dd>
 <dt>event <code class="docutils literal"><span class="pre">VARCHAR(100)</span></code></dt>

@@ -100,6 +100,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../helpers.html">Helpers</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Status</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#atributos">Atributos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exemplo">Exemplo</a></li>
 </ul>
 </li>
 </ul>
@@ -174,21 +175,42 @@
 <p>A classe <code class="docutils literal"><span class="pre">Status</span></code> representa o status de um auditório em uma data específica.</p>
 <div class="section" id="atributos">
 <h2>Atributos<a class="headerlink" href="#atributos" title="Link permanente para este título">¶</a></h2>
-<dl class="docutils">
-<dt>code <code class="docutils literal"><span class="pre">Int</span></code></dt>
-<dd><p class="first">Representa o status do auditório.</p>
-<ol class="last arabic simple" start="0">
+<p><strong>morning</strong>, <strong>afternoon</strong> e <strong>night</strong> representam o status do auditório no determinado
+período:</p>
+<ol class="arabic simple" start="0">
 <li>pendente</li>
 <li>disponível</li>
 <li>indisponível</li>
 </ol>
-</dd>
+<dl class="docutils">
+<dt>morning <code class="docutils literal"><span class="pre">Int</span></code></dt>
+<dd>Representa o status do auditório no período da manhã.</dd>
+<dt>afternoon <code class="docutils literal"><span class="pre">Int</span></code></dt>
+<dd>Representa o status do auditório no período da tarde.</dd>
+<dt>night <code class="docutils literal"><span class="pre">Int</span></code></dt>
+<dd>Representa o status do auditório no período da noite.</dd>
 <dt>date <code class="docutils literal"><span class="pre">Carbon</span></code></dt>
 <dd>A data do <code class="docutils literal"><span class="pre">Status</span></code> em questão.</dd>
 <dt>requests <code class="docutils literal"><span class="pre">Collection</span></code></dt>
 <dd>Uma <code class="docutils literal"><span class="pre">Collection</span></code> contendo todas as <code class="docutils literal"><span class="pre">Requests</span></code> existentes para o auditório
 em questão.</dd>
+<dt>morning_requests <code class="docutils literal"><span class="pre">Collection</span></code></dt>
+<dd>Uma <code class="docutils literal"><span class="pre">Collection</span></code> contendo todas as <code class="docutils literal"><span class="pre">Requests</span></code> existentes para o auditório
+em questão no período da manhã.</dd>
+<dt>afternoon_requests <code class="docutils literal"><span class="pre">Collection</span></code></dt>
+<dd>Uma <code class="docutils literal"><span class="pre">Collection</span></code> contendo todas as <code class="docutils literal"><span class="pre">Requests</span></code> existentes para o auditório
+em questão no período da tarde.</dd>
+<dt>night_requests <code class="docutils literal"><span class="pre">Collection</span></code></dt>
+<dd>Uma <code class="docutils literal"><span class="pre">Collection</span></code> contendo todas as <code class="docutils literal"><span class="pre">Requests</span></code> existentes para o auditório
+em questão no período da noite.</dd>
 </dl>
+</div>
+<div class="section" id="exemplo">
+<h2>Exemplo<a class="headerlink" href="#exemplo" title="Link permanente para este título">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span>// retorna o código de status do auditório no período da noite de hoje
+$auditorium-&gt;statusOn(Carbon::now())-&gt;night
+</pre></div>
+</div>
 </div>
 </div>
 
