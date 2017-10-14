@@ -22,9 +22,9 @@
 
 							<label>Período:</label>
 							<select name="period">
-								<option value="0">Manhã</option>
-								<option value="1">Tarde</option>
-								<option value="2">Noite</option>
+								<option value="0" {{ $period == 0? 'selected':'' }}>Manhã</option>
+								<option value="1" {{ $period == 1? 'selected':'' }}>Tarde</option>
+								<option value="2" {{ $period == 2? 'selected':'' }}>Noite</option>
 							</select></br>
 
 							<div class="form-group space-top">
