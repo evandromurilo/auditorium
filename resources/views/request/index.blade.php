@@ -6,26 +6,20 @@
 	<div class="container">
 		<div class="row">
 			<h1>Pedidos</h1>
-				<!--<form method="GET" action="{{ route('requests.index') }}">
-					<select onchange="this.form.submit()" name="filter">
-						<option value="pendent">Pendentes</option>
-						<option value="all" {{ $filter == 'all'? 'selected':'' }}>Todos</option>
-						<option value="resolved" {{ $filter == 'resolved'? 'selected':'' }}>Resolvidos</option>
-						<option value="rejected" {{ $filter == 'rejected'? 'selected':'' }}>Rejeitados</option>
-						<option value="accepted" {{ $filter == 'accepted'? 'selected':'' }}>Aceitos</option>
-					</select>-->
 			<nav class="navbar navbar-default sub-menu" role="navigation">
 				<div class="container">
 					<div class="collapse navbar-collapse" id="navbar">
 		          <ul class="nav navbar-nav">
-		            <li><a href="{{-- route('ads.index', ['o' => 'desc']) --}}"
+		            <li><a href="{{ route('requests.index', ['filter' => 'pending']) }}"
+		              class=" {{ $filter == 'pending' ? 'active' : ''}}">Pendentes</a></li>
+		            <li><a href="{{ route('requests.index', ['filter' => 'all']) }}"
 		              class=" {{ $filter == 'all' ? 'active' : ''}}">Todos</a></li>
-		            <li><a href="{{-- route('ads.index', ['o' => 'asc']) --}}"
-		              class=" {{ $filter == 'resolved' ? 'active' : '' }}">Resolvido</a></li>
-		            <li><a href="{{-- route('ads.index', ['f' => 'm', 'o' => 'asc']) --}}"
+		            <li><a href="{{ route('requests.index', ['filter' => 'resolved']) }}"
+		              class=" {{ $filter == 'resolved' ? 'active' : '' }}">Resolvidos</a></li>
+		            <li><a href="{{ route('requests.index', ['filter' => 'rejected']) }}"
 		              class=" {{ $filter == 'rejected' ? 'active' : '' }}">Rejeitados</a></li>
-		            <li><a href="{{-- route('ads.index', ['f' => 'm', 'o' => 'desc']) --}}"
-		              class=" {{ $filter == 'accepted' ? 'active' : '' }}">Aceito</a></li>
+		            <li><a href="{{ route('requests.index', ['filter' => 'accepted']) }}"
+		              class=" {{ $filter == 'accepted' ? 'active' : '' }}">Aceitos</a></li>
 		          </ul>
 						</div>
 					</div>
