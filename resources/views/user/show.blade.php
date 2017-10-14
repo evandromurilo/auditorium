@@ -3,12 +3,19 @@
 @section('title', 'Perfil de ' . $user->name)
 
 @section('content')
-	<h1>{{ $user->name }}</h1>
-	<div style="width:150px; height:150px; background-color:{{ $user->color }};">
-		<spam style="color:white; font-size:8em;">{{ $user->name[0] }}</spam>
+
+	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
+	<div class="container">
+		<h1>{{ $user->name }}</h1>
+		<div class="perfil-circle" style="background-color:{{ $user->color }};">
+			<div class="letra-perfil">
+				<spam>{{ $user->name[0] }}</spam>
+			</div>
+		</div>
+
+		<p>{{ $user->description }}</p>
+		<p>{{ $user->email }}</p>
+		<p>{{ $user->cel }}</p>
 	</div>
 
-	<p>{{ $user->description }}</p>
-	<p>{{ $user->email }}</p>
-	<p>{{ $user->cel }}</p>
 @endsection

@@ -1,0 +1,14 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.perfil-circle{
+width: 150px;
+height: 150px;
+}
+.letra-perfil{
+  color: #fff;
+  font-size: 13em;
+
+}
