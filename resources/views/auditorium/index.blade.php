@@ -62,8 +62,8 @@
 				<label>Capacidade: </label><p>{{ $aud->capacity }} pessoas.</p>
 				<div class="row">
 					@if ($aud->accessible)
-						<spam class="col-md-4 control-label">Acessibilidade: </spam>
-						<div class="col-md-8">
+
+						<div class="col-md-12">
 							<p>
 									<i class="fa fa-wheelchair style-icons" aria-hidden="true"
 										data-toggle="tooltip" data-placement="bottom" title="Cadeirante"></i>

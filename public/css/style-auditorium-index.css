@@ -28,7 +28,7 @@ h2 {
 
 .well {
   height: 300px;
-    border: 2px solid #d3e0e9;  
+    border: 2px solid #d3e0e9;
 }
 
 .progress {
@@ -60,4 +60,6 @@ h2 {
   border: 3px solid #2a88bd;
   padding: 3px;
   margin-left: 5px;
+  border-radius: 10%;
+  float: right;
 }
