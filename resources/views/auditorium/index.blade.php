@@ -58,6 +58,12 @@
 				@elseif ($status->code == 2)
 					<p class="indisponivel">{{ $status }} <i class="fa fa-lock" aria-hidden="true"></i></p>
 				@endif
+
+				<p><strong>Capacidade:</strong> {{ $aud->capacity }} pessoas.</p>
+				@if ($aud->accessible)
+					<p>Este auditório preenche requisitos de acessibilidade.</p>
+				@endif
+
 				</div>
 			</div>
 			@endforeach
