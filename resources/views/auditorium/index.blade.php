@@ -49,19 +49,19 @@
 
 				@if ($status->code == 1)
 					<p class="disponivel">{{ $status }} <i class="fa fa-plus-square" aria-hidden="true"></i></p><br />
-					<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
+					<a class="btn btn-primary" role="button" href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
 																							 'id' => $aud->id]) }}>
 					 Agendar
-					</a>
+				 </a><br />
 				@elseif ($status->code == 0)
-					<p class="pendente">{{ $status }} <i class="fa fa-clock-o" aria-hidden="true"></i></p>
+					<p class="pendente">{{ $status }} <i class="fa fa-clock-o" aria-hidden="true"></i></p><br />
 				@elseif ($status->code == 2)
-					<p class="indisponivel">{{ $status }} <i class="fa fa-lock" aria-hidden="true"></i></p>
+					<p class="indisponivel">{{ $status }} <i class="fa fa-lock" aria-hidden="true"></i></p><br />
 				@endif
 
-				<p><strong>Capacidade:</strong> {{ $aud->capacity }} pessoas.</p>
+				<label>Capacidade: </label><p>{{ $aud->capacity }} pessoas.</p>
 				@if ($aud->accessible)
-					<p>Este auditório preenche requisitos de acessibilidade.</p>
+					<label>Acessibilidade: </label><p>Este auditório preenche requisitos de acessibilidade.</p>
 				@endif
 
 				</div>
