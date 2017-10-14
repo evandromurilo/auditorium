@@ -34,7 +34,8 @@ class RequestController extends Controller
 		$date = Carbon::createFromFormat('d/m/Y', $request->date);
 
 		return view('request.create', ['aud' => $aud,
-			                             'date' => $date]);
+			'date' => $date,
+			'period' => $request->period]);
 	}
 
 	public function store(Request $request) {

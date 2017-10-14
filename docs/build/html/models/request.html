@@ -215,7 +215,23 @@ evento.</dd>
 <dt>create</dt>
 <dd><p class="first">View do formulário de criação de uma nova <code class="docutils literal"><span class="pre">Request</span></code>.</p>
 <p class="last">Recebe como parâmetros GET obrigatórios a <code class="docutils literal"><span class="pre">data</span></code> atual e o <code class="docutils literal"><span class="pre">id</span></code> do auditório
-a ser agendado.</p>
+a ser agendado, além de um parâmetro opcional <code class="docutils literal"><span class="pre">period</span></code> com um código de período.</p>
+</dd>
+<dt>index</dt>
+<dd><p class="first">View onde as <code class="docutils literal"><span class="pre">Requests</span></code> são exibidas e editadas. Recebe como parâmetro GET
+opcional um <code class="docutils literal"><span class="pre">filter</span></code> que pode ter um dos seguintes valores:</p>
+<dl class="last docutils">
+<dt>all</dt>
+<dd>Todas as <code class="docutils literal"><span class="pre">Requests</span></code> são exibidas.</dd>
+<dt>pendent</dt>
+<dd>São exibidas somente as <code class="docutils literal"><span class="pre">Requests</span></code> pendentes. É o valor padrão.</dd>
+<dt>resolved</dt>
+<dd>São exibidas somente as <code class="docutils literal"><span class="pre">Requests</span></code> que não estão mais pendentes.</dd>
+<dt>accepted</dt>
+<dd>São exibidas somente as <code class="docutils literal"><span class="pre">Requests</span></code> que foram aceitas.</dd>
+<dt>rejected</dt>
+<dd>São exibidas somente as <code class="docutils literal"><span class="pre">Requests</span></code> que foram negadas.</dd>
+</dl>
 </dd>
 </dl>
 </div>

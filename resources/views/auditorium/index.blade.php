@@ -33,11 +33,11 @@
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 						<div class="progress">
 							@include('partials.progress_bar', ['code' => $statusOn->morning,
-							'period' => 'Manhã'])
+								'period' => 'Manhã'])
 							@include('partials.progress_bar', ['code' => $statusOn->afternoon,
-							'period' => 'Tarde'])
+								'period' => 'Tarde'])
 							@include('partials.progress_bar', ['code' => $statusOn->night,
-							'period' => 'Noite'])
+								'period' => 'Noite'])
 						</div>
 					<div class="well">
 				<h2 class="text-center">{{ $aud->name }}</h2>
@@ -45,17 +45,17 @@
 
 					<spam class="col-md-4 control-label">Manhã:</spam>
 					<div class="col-md-8">
-						@include('partials.status', ['code' => $statusOn->morning])
+						@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0])
 					</div>
 
 					<spam class="col-md-4 control-label">Tarde:</spam>
 					<div class="col-md-8">
-						@include('partials.status', ['code' => $statusOn->afternoon])
+						@include('partials.status', ['code' => $statusOn->afternoon, 'period_code' => 1])
 					</div>
 
 					<spam class="col-md-4 control-label">Noite:</spam>
 					<div class="col-md-8">
-						@include('partials.status', ['code' => $statusOn->night])
+						@include('partials.status', ['code' => $statusOn->night, 'period_code' => 2])
 					</div>
 				</div>
 

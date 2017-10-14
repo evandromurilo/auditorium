@@ -1,6 +1,6 @@
 @if ($code == 1)
 	<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
-	'id' => $aud->id]) }}>
+	'id' => $aud->id, 'period' => $period_code]) }}>
 	<p class="disponivel">Disponível <i class="fa fa-plus-square" aria-hidden="true"></i></p>
 	</a><br>
 @elseif ($code == 0)
