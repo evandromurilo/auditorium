@@ -41,20 +41,41 @@
 						</div>
 					<div class="well">
 				<h2 class="text-center">{{ $aud->name }}</h2>
+				<div class="row">
 
-				<spam>Manhã:</spam>
-				@include('partials.status', ['code' => $statusOn->morning])
+					<spam class="col-md-4 control-label">Manhã:</spam>
+					<div class="col-md-8">
+						@include('partials.status', ['code' => $statusOn->morning])
+					</div>
 
-				<spam>Tarde:</spam>
-				@include('partials.status', ['code' => $statusOn->afternoon])
+					<spam class="col-md-4 control-label">Tarde:</spam>
+					<div class="col-md-8">
+						@include('partials.status', ['code' => $statusOn->afternoon])
+					</div>
 
-				<spam>Noite:</spam>
-				@include('partials.status', ['code' => $statusOn->night])
+					<spam class="col-md-4 control-label">Noite:</spam>
+					<div class="col-md-8">
+						@include('partials.status', ['code' => $statusOn->night])
+					</div>
+				</div>
 
 				<label>Capacidade: </label><p>{{ $aud->capacity }} pessoas.</p>
-				@if ($aud->accessible)
-					<label>Acessibilidade: </label><p>Este auditório preenche requisitos de acessibilidade.</p>
-				@endif
+				<div class="row">
+					@if ($aud->accessible)
+						<spam class="col-md-4 control-label">Acessibilidade: </spam>
+						<div class="col-md-8">
+							<p>
+									<i class="fa fa-wheelchair style-icons" aria-hidden="true"
+										data-toggle="tooltip" data-placement="bottom" title="Cadeirante"></i>
+									<i class="fa fa-blind style-icons" aria-hidden="true"
+										data-toggle="tooltip" data-placement="bottom" title="Deficiente Visual"></i>
+									<i class="fa fa-universal-access style-icons" aria-hidden="true"
+									data-toggle="tooltip" data-placement="bottom" title="Acesso Universal"></i>
+							</p>
+						</div>
+
+					@endif
+				</div>
 
 				</div>
 			</div>
