@@ -67,6 +67,7 @@
                                         </form>
                                     </li>
 																		<li><a href="{{ route('requests.index') }}">Pedidos</a></li>
+																		<li><a href="{{ route('users.show', Auth::id()) }}">Perfil</a></li>
                                 </ul>
                             </li>
                         @endguest
