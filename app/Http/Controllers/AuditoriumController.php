@@ -10,12 +10,17 @@ class AuditoriumController extends Controller {
 	public function index(Request $request) {
 		if ($request->has('date')) {
 			$date = Carbon::createFromFormat('d/m/Y', $request->date);
-			return view('auditorium.index')->with(['date' => $date,
-																						 'auditoria' => Auditorium::all()]);
+		} else {
+			$date = Carbon::today();
 		}
-		else {
-			return view('auditorium.index')->with(['date' => Carbon::today(),
-																						 'auditoria' => Auditorium::all()]);
+
+		if ($request->has('next')) {
+			$date->addDay();
+		} else if ($request->has('previous')) {
+			$date->subDay();
 		}
+
+		return view('auditorium.index')->with(['date' => $date,
+			'auditoria' => Auditorium::all()]);
 	}
 }
