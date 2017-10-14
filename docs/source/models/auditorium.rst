@@ -36,5 +36,6 @@ Views
 index
   View onde são exibidos todos os auditórios e seus status para determinado dia.
 
-  Recebe como parâmetro GET opcional uma ``data``. Caso nenhuma seja fornecida, utiliza
-  a data atual.
+  Recebe como parâmetro GET opcional uma ``data``; caso nenhuma seja fornecida, utiliza
+  a data atual. Também recebe os parâmetros ``previous`` e ``next``, que implementam
+  a funcionalidade das setas.
