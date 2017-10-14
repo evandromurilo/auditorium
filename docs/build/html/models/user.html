@@ -102,6 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="request.html">Request</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">User</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#atributos">Atributos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#views">Views</a></li>
 </ul>
 </li>
 </ul>
@@ -174,8 +175,8 @@
             
   <div class="section" id="user">
 <h1>User<a class="headerlink" href="#user" title="Link permanente para este título">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">User</span></code> é o model que representa um pedido de agendamento de auditório.
-Sua tabela correspondente no banco de dados se chama <code class="docutils literal"><span class="pre">users</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">User</span></code> é o model que representa um usuário. Sua tabela correspondente no banco de dados
+se chama <code class="docutils literal"><span class="pre">users</span></code>.</p>
 <div class="section" id="atributos">
 <h2>Atributos<a class="headerlink" href="#atributos" title="Link permanente para este título">¶</a></h2>
 <dl class="docutils">
@@ -185,6 +186,19 @@ Sua tabela correspondente no banco de dados se chama <code class="docutils liter
 <dd>Email do usuário, utilizado para o login. Deve ser único.</dd>
 <dt>password <code class="docutils literal"><span class="pre">VARCHAR</span></code></dt>
 <dd>Senha do usuário, utilizada para o login.</dd>
+<dt>description <code class="docutils literal"><span class="pre">TEXT</span></code></dt>
+<dd>Descrição do usuário, idealmente seu cargo. Ex.: “Coordenador de Sistemas de Informação”.</dd>
+<dt>color <code class="docutils literal"><span class="pre">CHAR(7)</span></code></dt>
+<dd>Código de cor do avatar do usuário em formato hexadecimal.</dd>
+<dt>cel <code class="docutils literal"><span class="pre">VARCHAR(19)</span></code></dt>
+<dd>Número de telefone do usuário.</dd>
+</dl>
+</div>
+<div class="section" id="views">
+<h2>Views<a class="headerlink" href="#views" title="Link permanente para este título">¶</a></h2>
+<dl class="docutils">
+<dt>show</dt>
+<dd>Perfil do usuário.</dd>
 </dl>
 </div>
 </div>
