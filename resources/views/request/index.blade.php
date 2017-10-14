@@ -15,7 +15,6 @@
 						<option value="accepted" {{ $filter == 'accepted'? 'selected':'' }}>Aceitos</option>
 					</select>-->
 			<nav class="navbar navbar-default sub-menu" role="navigation">
-				<div class="container">
 					<div class="collapse navbar-collapse" id="navbar">
 		          <ul class="nav navbar-nav">
 		            <li><a href="{{-- route('ads.index', ['o' => 'desc']) --}}"
@@ -29,8 +28,7 @@
 		          </ul>
 						</div>
 					</div>
-				</div>
-			</div>
+				</div>			
 		</nav>
 
 	<div class="container">
