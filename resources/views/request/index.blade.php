@@ -5,6 +5,7 @@
 @section('content')
 
 	<link rel="stylesheet" href="{{ asset('css/style-auditorium-index.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style-request-index.css') }}">
 
 	<div class="container">
 		<div class="row">
@@ -36,7 +37,7 @@
 							<h2 class="text-center"> {{ $request->auditorium->name }} </h2>
 							<p><strong>Data:</strong> {{ $request->dateC->format('d/m/Y') }}</p>
 							<p><strong>Período:</strong> {{ $request->periodF }}</p>
-							<p><strong>Por:</strong> {{ $request->user->name }}</p>
+							<p class="text-capitalize"><strong>Solicitado por:</strong> {{ $request->user->name }}</p>
 
 							<form method="POST" action="{{ route('requests.update', $request->id) }}">
 								{{ csrf_field() }}
@@ -59,7 +60,9 @@
 											{{ $request->status == 2? 'checked' : '' }}>Aceitar
 									</label><br />
 
-								<input type="submit" class="btn btn-primary" value="Confirma">
+									<div class="btn-confirma">
+										<input type="submit" class="btn btn-primary" value="Confirma">
+									</div>
 							</form>
 						</div>
 					</div>

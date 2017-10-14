@@ -1,0 +1,13 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+.btn-confirma{
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.well{
+  border: 2px solid #d3e0e9;
+}
