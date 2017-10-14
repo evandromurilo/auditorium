@@ -13,11 +13,12 @@ auditorium_id ``INTEGER``
 user_id ``INTEGER``
   ID do usuário que requisitou o agendamento.
 
-from_time ``TIME``
-  Horário inicial do agendamento.
+period ``TINYINT``
+  Período do agendamento:
 
-until_time ``TIME``
-  Horário final do agendamento.
+  0. manhã
+  1. tarde
+  2. noite
 
 date ``DATE``
   Data do agendamento.
