@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mask.js"></script>
+	<script type="text/javascript" src="js/jquery-script-register.js"></script>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
