@@ -14,6 +14,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	  <link rel="stylesheet" href="{{ asset('css/style-norificaton-request-resolver.css') }}">
   
 </head>
 <body>
@@ -50,18 +51,7 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Criar Conta</a></li>
                         @else
-                            <li class="dropdown">
-															<input type="hidden" id="user-id" value={{ Auth::id() }}>
-                                <a href="#" id="notification-menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-																	Notificações <span class="badge">{{ count(Auth::user()->unreadNotifications) }}</span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-																	@foreach (Auth::user()->unreadNotifications as $notification)
-																		@include('partials.notifications.request_resolved')
-																	@endforeach
-                                </ul>
-                            </li>
+													<notification :user_id="{{ Auth::id() }}" :unreads="{{ Auth::user()->unreadNotifications }}"></notification>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

@@ -5,12 +5,6 @@
 // 	});
 // }
 
-var userId = $("#user-id").val();
-
-Echo.private(`App.User.${userId}`)
-    .notification((notification) => {
-        console.log(notification.type);
-    });
 
 // if ($("#user-id".length)) {
 // 	Echo.private(`App.User.${$("#user-id").val()}`)
