@@ -11,9 +11,3 @@
 	<span class="sr-only">Indisponível para a {{ $period }}.</span>
 </div>
 @endif
-
-<script>
-$(function() {
-	$('[data-toggle="tooltip"]').tooltip();
-});
-</script>

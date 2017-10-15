@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class RequestStatusChanged
+class RequestStatusChanged implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -33,6 +33,7 @@ class RequestStatusChanged
      */
     public function broadcastOn()
     {
-        return ['test-channel'];
+			return new PrivateChannel('user.'.$this->request->user_id);
+			/* return ['test']; */
     }
 }
