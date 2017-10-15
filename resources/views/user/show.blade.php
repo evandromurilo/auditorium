@@ -3,14 +3,6 @@
 @section('title', 'Perfil de ' . $user->name)
 
 @section('content')
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
-	<script type="text/javascript" src="js/jquery-user-show.js"></script>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-lg-4">
@@ -49,6 +41,17 @@
 			</div>
 		</div>
 	</div>
+
+@endsection
+
+@section('sources')
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
+	<script type="text/javascript" src="js/jquery-user-show.js"></script>
 
 	<script type="text/javascript">
 	function effectFadeIn(classname) {

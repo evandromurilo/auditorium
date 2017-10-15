@@ -51,7 +51,8 @@
                             <li><a href="{{ route('register') }}">Criar Conta</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+															<input type="hidden" id="user-id" value={{ Auth::id() }}>
+                                <a href="#" id="notification-menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 																	Notificações <span class="badge">{{ count(Auth::user()->unreadNotifications) }}</span>
                                 </a>
 
@@ -92,7 +93,9 @@
         @yield('content')
     </div>
 
+		@yield('sources')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
