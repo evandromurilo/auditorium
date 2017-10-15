@@ -18,21 +18,38 @@
 
 <script>
 export default {
-	props:['unreads', 'user_id'],
+	props:['user_id'],
 	data() {
 		return {
-			unreadNotifications:this.unreads
+			unreadNotifications:''
 		}
+	},
+	methods: {
 	},
 	mounted() {
 		console.log('Component mounted.');
-		console.log(this.unreads);
+
+		var self = this;
+
+		function reloadNotifications() {
+				$.get("/notifications", function (data, status) {
+					if (status == 'success') {
+						console.log('Reloding notifications');
+						self.unreadNotifications = data;
+					}
+				});
+		}
+
+		reloadNotifications();
 
 		Echo.private(`App.User.${this.user_id}`)
 			.notification((notification) => {
 				console.log(notification.type);
-
-				this.unreadNotifications.push(notification);
+				reloadNotifications();
+			})
+			.listen('NotificationRead', (e) => {
+				console.log('App\\Events\\NotificationRead');
+				reloadNotifications();
 			});
 	}
 }

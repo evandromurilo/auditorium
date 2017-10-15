@@ -51,7 +51,7 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Criar Conta</a></li>
                         @else
-													<notification :user_id="{{ Auth::id() }}" :unreads="{{ Auth::user()->unreadNotifications }}"></notification>
+													<notification :user_id="{{ Auth::id() }}"></notification>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

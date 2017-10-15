@@ -47182,22 +47182,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['unreads', 'user_id'],
+	props: ['user_id'],
 	data: function data() {
 		return {
-			unreadNotifications: this.unreads
+			unreadNotifications: ''
 		};
 	},
-	mounted: function mounted() {
-		var _this = this;
 
+	methods: {},
+	mounted: function mounted() {
 		console.log('Component mounted.');
-		console.log(this.unreads);
+
+		var self = this;
+
+		function reloadNotifications() {
+			$.get("/notifications", function (data, status) {
+				if (status == 'success') {
+					console.log('Reloding notifications');
+					self.unreadNotifications = data;
+				}
+			});
+		}
+
+		reloadNotifications();
 
 		Echo.private('App.User.' + this.user_id).notification(function (notification) {
 			console.log(notification.type);
-
-			_this.unreadNotifications.push(notification);
+			reloadNotifications();
+		}).listen('NotificationRead', function (e) {
+			console.log('App\\Events\\NotificationRead');
+			reloadNotifications();
 		});
 	}
 });

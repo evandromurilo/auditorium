@@ -26,3 +26,5 @@ Route::resource('requests', 'RequestController');
 Route::get('/events', 'EventController@index')->name('events.index');
 Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
+
+Route::get('/notifications', 'NotificationController@unreadNotifications');
