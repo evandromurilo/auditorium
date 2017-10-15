@@ -4,8 +4,16 @@
 
 @section('content')
 
+
+
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
 
+	<script type="text/javascript" src="js/teste.js"></script>
 
 	<div class="container">
 		<div class="row">
@@ -22,28 +30,28 @@
 			</div>
 
 			<div class="col-md-8 col-lg-8">
-				aaaaaaaaa
+				<div>
+					<h2>Histórico de Agendamentos</h2>
+					@if ($requests->isEmpty())
+						<div  id="texto" class="nenhum-historico">
+							<p class="text-center">Nenhum agendamento feito.</p>
+						</div>
+					@else
+						@foreach ($requests as $request)
+							<p>{{ $request->auditorium->name }} ({{ $request->dateC->format('d/m/Y') }})
+							@if ($request->status == 0)
+								(pendente)
+							@elseif ($request->status == 1)
+								(rejeitado)
+							@else
+								(aceito)
+							@endif
+							</p>
+						@endforeach
+					@endif
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<div>
-		<h2>Histórico de Agendamentos</h2>
-		@if ($requests->isEmpty())
-			<p>Nenhum agendamento feito.</p>
-		@else
-			@foreach ($requests as $request)
-				<p>{{ $request->auditorium->name }} ({{ $request->dateC->format('d/m/Y') }}) 
-				@if ($request->status == 0)
-					(pendente)
-				@elseif ($request->status == 1)
-					(rejeitado)
-				@else
-					(aceito)
-				@endif
-				</p>
-			@endforeach
-		@endif
 	</div>
 
 @endsection
