@@ -6,12 +6,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class RequestResolved extends Notification
 {
     use Queueable;
 
-		protected $request;
+		public $request;
 
     /**
      * Create a new notification instance.
@@ -31,12 +32,19 @@ class RequestResolved extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
 		public function toArray($notifiable) {
 			return [
 				'request_id' => $this->request->id,
 			];
+		}
+
+		public function toBroadcast($notifiable) {
+			return new BroadcastMessage([
+				'request_id' => $this->request->id,
+				'auditorium_name' => $this->request->auditorium->name,
+			]);
 		}
 }
