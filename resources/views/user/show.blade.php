@@ -52,10 +52,10 @@
 
 	<script type="text/javascript">
 	function effectFadeIn(classname) {
-	$("."+classname).fadeOut(2000).fadeIn(2000, effectFadeOut(classname))
+	$("."+classname).fadeOut(5000).fadeIn(5000, effectFadeOut(classname))
 	}
 	function effectFadeOut(classname) {
-	$("."+classname).fadeIn(2000).fadeOut(2000, effectFadeIn(classname))
+	$("."+classname).fadeIn(1500).fadeOut(1500, effectFadeIn(classname))
 	}
 	$(document).ready(function(){
 	effectFadeIn('nenhum-historico');
