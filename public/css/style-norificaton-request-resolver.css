@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
 }
+/*
 .well{
   margin-top: 5px;
   margin-bottom: 5px;
@@ -9,19 +10,19 @@ body {
   padding-bottom: 5px;
   border: 1px solid #2a88bd;
 }
-
+/*
 .notification{
-  -webkit-transition: background 1s linear, border 3s;
+  -webkit-transition: background 3s linear, border 3s;
   	-moz-transition: background 1s linear, border 3s;
   	-o-transition: background 1s linear, border 3s;
   	transition: background 1s linear, border 3s;
 
 }
-.notification:hover{
+.text:hover{
   background-color: #DCDCDC;
   color: black;
 
-}
+}*/
 .date-hora:hover{
   color: #2a88bd;
 }
