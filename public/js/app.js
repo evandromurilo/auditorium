@@ -47195,6 +47195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		Echo.private('App.User.' + this.user_id).notification(function (notification) {
 			console.log(notification.type);
+			console.log(notification);
 
 			var newUnreadNotification = {
 				created_at: notification.created_at,

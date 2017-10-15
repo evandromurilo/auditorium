@@ -30,6 +30,7 @@ export default {
 		Echo.private(`App.User.${this.user_id}`)
 			.notification((notification) => {
 				console.log(notification.type);
+				console.log(notification);
 
 				let newUnreadNotification= {
 					created_at: notification.created_at,

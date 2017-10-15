@@ -45,6 +45,7 @@ class RequestResolved extends Notification
 			return new BroadcastMessage([
 				'request_id' => $this->request->id,
 				'auditorium_name' => $this->request->auditorium->name,
+				'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
 			]);
 		}
 }
