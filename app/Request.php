@@ -26,7 +26,7 @@ class Request extends Model {
 
 	public function getStatusFAttribute() {
 		if ($this->status == 0) return "pendente";
-		else if ($this->status == 1) return "aceito";
-		else return "rejeitado";
+		else if ($this->status == 1) return "rejeitado";
+		else return "aceito";
 	}
 }
