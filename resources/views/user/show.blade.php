@@ -3,17 +3,13 @@
 @section('title', 'Perfil de ' . $user->name)
 
 @section('content')
-
-
-
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
-
-	<script type="text/javascript" src="js/teste.js"></script>
+	<script type="text/javascript" src="js/jquery-user-show.js"></script>
 
 	<div class="container">
 		<div class="row">
@@ -33,8 +29,8 @@
 				<div>
 					<h2>Histórico de Agendamentos</h2>
 					@if ($requests->isEmpty())
-						<div  id="texto" class="nenhum-historico">
-							<p class="text-center">Nenhum agendamento feito.</p>
+						<div  id="texto" class="nenhum-historico text-center">
+							Nenhum agendamento feito.
 						</div>
 					@else
 						@foreach ($requests as $request)
@@ -54,4 +50,15 @@
 		</div>
 	</div>
 
+	<script type="text/javascript">
+	function effectFadeIn(classname) {
+	$("."+classname).fadeOut(2000).fadeIn(2000, effectFadeOut(classname))
+	}
+	function effectFadeOut(classname) {
+	$("."+classname).fadeIn(2000).fadeOut(2000, effectFadeIn(classname))
+	}
+	$(document).ready(function(){
+	effectFadeIn('nenhum-historico');
+	});
+	</script>
 @endsection

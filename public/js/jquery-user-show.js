@@ -1,15 +1,9 @@
- //3segundos
-/*
-setTimeout(function(){
-  $('#texto').fadeIn();
-}, 3000)
-*/
-$(document).ready(function() {
-  $('p').css('color', 'red');
-});
-
-$(document).ready(function() {
-	setTimeout(function () {
-		$('#texto').hide(); // "foo" é o id do elemento que seja manipular.
-	}, 2500); // O valor é representado em milisegundos.
-});
+/*function effectFadeIn(classname) {
+$("."+classname).fadeOut(1000).fadeIn(1000, effectFadeOut(classname))
+}
+function effectFadeOut(classname) {
+$("."+classname).fadeIn(1000).fadeOut(1000, effectFadeIn(classname))
+}
+$(document).ready(function(){
+effectFadeIn('texto');
+});*/
