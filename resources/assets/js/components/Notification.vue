@@ -25,22 +25,14 @@ export default {
 		}
 	},
 	mounted() {
-		console.log('Component mounted.')
+		console.log('Component mounted.');
+		console.log(this.unreads);
 
 		Echo.private(`App.User.${this.user_id}`)
 			.notification((notification) => {
 				console.log(notification.type);
-				console.log(notification);
 
-				let newUnreadNotification= {
-					created_at: notification.created_at,
-					data: {
-						request_id: notification.request_id,
-						auditorium_name: notification.auditorium_name
-					}
-				};
-
-				this.unreadNotifications.push(newUnreadNotification);
+				this.unreadNotifications.push(notification);
 			});
 	}
 }

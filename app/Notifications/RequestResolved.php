@@ -38,14 +38,17 @@ class RequestResolved extends Notification
 		public function toArray($notifiable) {
 			return [
 				'request_id' => $this->request->id,
+				'auditorium_name' => $this->request->auditorium->name,
 			];
 		}
 
 		public function toBroadcast($notifiable) {
 			return new BroadcastMessage([
-				'request_id' => $this->request->id,
-				'auditorium_name' => $this->request->auditorium->name,
 				'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+				'data' => [
+					'request_id' => $this->request->id,
+					'auditorium_name' => $this->request->auditorium->name
+				]
 			]);
 		}
 }

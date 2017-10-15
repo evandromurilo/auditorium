@@ -47192,20 +47192,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		var _this = this;
 
 		console.log('Component mounted.');
+		console.log(this.unreads);
 
 		Echo.private('App.User.' + this.user_id).notification(function (notification) {
 			console.log(notification.type);
-			console.log(notification);
 
-			var newUnreadNotification = {
-				created_at: notification.created_at,
-				data: {
-					request_id: notification.request_id,
-					auditorium_name: notification.auditorium_name
-				}
-			};
-
-			_this.unreadNotifications.push(newUnreadNotification);
+			_this.unreadNotifications.push(notification);
 		});
 	}
 });
