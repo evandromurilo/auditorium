@@ -23,4 +23,10 @@ class Request extends Model {
 		else if ($this->period == 1) return "tarde";
 		else return "noite";
 	}
+
+	public function getStatusFAttribute() {
+		if ($this->status == 0) return "pendente";
+		else if ($this->status == 1) return "aceito";
+		else return "rejeitado";
+	}
 }

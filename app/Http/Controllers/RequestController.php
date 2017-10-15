@@ -61,6 +61,22 @@ class RequestController extends Controller
 		$nrequest->status = $request->status;
 		$nrequest->save();
 
+		event(new \App\Events\RequestStatusChanged($nrequest));
+
 		return redirect()->route('requests.index');
+	}
+
+	public function show(Request $request) {
+		$nrequest = \App\Request::find($request->segment(2));
+
+		if ($request->has('from') && $request->from == 'notification') {
+				foreach (Auth::user()->unreadNotifications as $notification) {
+					if ($notification->data['request_id'] == $nrequest->id) {
+						$notification->markAsRead();
+					}
+				}
+		}
+
+		return view('request.show')->with('request', $nrequest);
 	}
 }
