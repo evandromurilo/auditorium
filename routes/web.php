@@ -23,5 +23,6 @@ Route::resource('requests', 'RequestController');
 /* Route::post('requests', 'RequestController@store')->name('requests.store'); */
 /* Route::put('requests/{request}', 'RequestController@update')->name('requests.update'); */
 
+Route::get('/events', 'EventController@index')->name('events.index');
 Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
