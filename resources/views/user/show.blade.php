@@ -48,17 +48,21 @@
 
 
 								@if ($request->status == 0)
-								<td><span class="rejeitado">(Pendente)</span></td>
+								<td><span class="pendente">(Pendente)</span><td>
+									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal{{$request->id}}">
+								 Visualizar
+							 		</button>
+						 		</td></td>
 								@elseif ($request->status == 1)
 								<td><span class="indisponivel">(Rejeitado)</span><td>
 										<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal{{$request->id}}">
-									 Abrir
+									 Visualizar
 									</button>
 								</td></td>
 								@else
 								<td><span class="disponivel">(Aceito)</span><td>
 										<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal{{$request->id}}">
-									 Abrir
+									 Visualizar
 									</button>
 								</td></td>
 								@endif
@@ -83,8 +87,28 @@
 			      </div>
 			      <div class="modal-body">
 							<!--exemplo teste-->
-			       <h2>{{ $request->auditorium->name }}</h2>
-			      </div>
+			       <h2 class="text-center">{{ $request->auditorium->name }}</h2>
+						 <div class="row">
+							 <label class="col-md-2 control-label">Evento: </label>
+								<div class="col-md-8">
+										 <p>{{ $request->event }}</p>
+								</div>
+						 </div>
+
+						 <div class="row">
+							 <label class="col-md-2 control-label">Evento: </label>
+								 <div class="col-md-8">
+									  <p>{{ $request->description }}</p>
+								 </div>
+						 </div>
+
+						 <div class="row">
+							 <label class="col-md-2 control-label">Evento: </label>
+								<div class="col-md-8">
+										<p>{{ $request->dateC->format('d/m/Y') }}</p>
+								</div>
+						 </div>
+						</div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			      </div>
@@ -118,4 +142,21 @@
 	effectFadeIn('nenhum-historico');
 	});
 	</script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+    function alignModal(){
+        var modalDialog = $(this).find(".modal-dialog");
+
+        modalDialog.css("margin-top", Math.max(0, ($(window).height() - modalDialog.height()) / 2));
+    }
+
+    $(".modal").on("shown.bs.modal", alignModal);
+
+
+    $(window).on("resize", function(){
+        $(".modal:visible").each(alignModal);
+    });
+});
+</script>
 @endsection
