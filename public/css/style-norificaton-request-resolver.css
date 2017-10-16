@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 /*
 .well{
   margin-top: 5px;
@@ -23,9 +24,11 @@ body {
   color: black;
 
 }*/
-.date-hora:hover{
+
+.date-hora:hover {
   color: #2a88bd;
 }
+
 .date-hora {
   color: gray;
   font-size: 0.8em;

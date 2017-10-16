@@ -65,6 +65,7 @@
 
 						@if ($aud->accessible)
 
+							<!--icons acessibilidade-->
 							<div class="col-md-12">
 								<p>
 										<i class="fa fa-wheelchair style-icons" aria-hidden="true"
