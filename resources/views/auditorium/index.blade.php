@@ -19,6 +19,7 @@
 								aria-hidden="true"></i></a>
 					</div>
 
+					<div class="btn-position"><span id="weekday"></span></div>
 
 					<div class="btn-position">
 						<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
@@ -92,9 +93,29 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery.mask.min.js"></script>
-	<script type="text/javascript" src="js/jquery.mask.js"></script>
-	<script type="text/javascript" src="js/jquery-scripts.js"></script>
-	<script type="text/javascript" src="js/jquery-script-icons-auditorium-index.js"></script>
+	<script type="text/javascript" src="{{ asset('js/date-helpers.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-scripts.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-script-icons-auditorium-index.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-script-icons-auditorium-index.js') }}"></script>
+
+	<script>
+		function updateWeekDay() {
+			var dateString = $('#date').val();
+			var dataParts = dateString.split('/');
+			var weekday = getWeekDay(new Date(dataParts[2], dataParts[1]-1, dataParts[0]));
+			console.log(weekday);
+			$('#weekday').text(weekday);
+		}
+
+		updateWeekDay();
+
+		$("body").on('input', '#date', function() {
+			if ($('#date').val().match(/^(\d{2})\/(\d{2})\/(\d{4})$/)) {
+				updateWeekDay();
+			}
+		});
+	</script>
 @endsection
