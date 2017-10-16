@@ -4,6 +4,7 @@
 
 @section('content')
 	<link rel="stylesheet" href="{{ asset('css/style-request-show.css')}}">
+	<link rel="stylesheet" href="{{ asset('css/style-auditorium-index.css')}}">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4"></div>
@@ -13,13 +14,13 @@
 						<label>Local:</label><p> {{ $request->auditorium->name }}</p>
 						<label>Descrição:</label><p> {{ $request->description }}</p>
 						<label>Organizador:</label><p> {{ $request->user->name }}</p>
-						<label>Status:</label><p>
+						<label>Status:</label><p class="status">
 						@if ($request->status == 0)
-							pendente
+							<span class="pendente" style="background-color: #FF8C00;">Pendente</span>
 						@elseif ($request->status == 1)
-							rejeitado
+							<span class="indisponivel" style="background-color: red;">Rejeitado</span>
 						@elseif ($request->status == 2)
-							aceito
+							<span class="disponivel" style="background-color: green;">Aceito</span>
 						@endif
 						</p>
 					</div>

@@ -20,7 +20,8 @@ h2 {
   align-items: center;
   margin-top: 80px;
 }
-.btn-position{
+
+.btn-position {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +34,7 @@ h2 {
 
 .well {
   height: 300px;
-    border: 2px solid #d3e0e9;
+  border: 2px solid #d3e0e9;
 }
 
 .progress {
@@ -60,7 +61,8 @@ h2 {
 .indisponivel {
   background-color: red;
 }
-.style-icons{
+
+.style-icons {
   color: #2a88bd;
   border: 3px solid #2a88bd;
   padding: 3px;
@@ -68,26 +70,25 @@ h2 {
   border-radius: 10%;
   float: right;
 }
-.arrow-right{
+
+.arrow-right {
   margin-left: 10px;
   font-size: 40px;
-
 }
-.arrow-left{
+
+.arrow-left {
   margin-right: 10px;
   font-size: 40px;
-
 }
 
-@media screen and (max-width: 420px){
+@media screen and (max-width: 420px) {
+  .well {
+    height: 350px;
+  }
+}
 
-.well{
-  height: 350px;
-}
-}
-@media screen and (max-width: 768px) and (min-width: 421px){
-
-.well{
-  height: 350px;
-}
+@media screen and (max-width: 768px) and (min-width: 421px) {
+  .well {
+    height: 350px;
+  }
 }
