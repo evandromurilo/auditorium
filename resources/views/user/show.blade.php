@@ -22,7 +22,7 @@
 					<h2 class="text-center">Histórico de Agendamentos</h2>
 					@if ($requests->isEmpty())
 						<div  id="texto" class="nenhum-historico text-center">
-							<apan>Nenhum histórico agendamento feito.</apan>
+							<span>Nenhum agendamento feito.</span>
 						</div>
 					@else
 						</div>
@@ -40,34 +40,26 @@
 										</tr>
 
 							@foreach ($requests as $request)
-										<tr>
+								<tr>
+									<td>{{ $request->auditorium->name }}</td>
+									<td>{{ $request->dateC->format('d/m/Y') }}</td>
 
+									@if ($request->status == 0)
+										<td><span class="pendente">Pendente</span></td>
+										</td></td>
+									@elseif ($request->status == 1)
+										<td><span class="indisponivel">Rejeitado</span></td>
+									@else
+										<td><span class="disponivel">Aceito</span></td>
+									@endif
 
-								<td>{{ $request->auditorium->name }}</td>
-								<td>{{ $request->dateC->format('d/m/Y') }}</td>
-
-
-								@if ($request->status == 0)
-								<td><span class="pendente">(Pendente)</span><td>
-									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal{{$request->id}}">
-								 Visualizar
-							 		</button>
-						 		</td></td>
-								@elseif ($request->status == 1)
-								<td><span class="indisponivel">(Rejeitado)</span><td>
+									<td>
 										<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal{{$request->id}}">
-									 Visualizar
-									</button>
-								</td></td>
-								@else
-								<td><span class="disponivel">(Aceito)</span><td>
-										<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal{{$request->id}}">
-									 Visualizar
-									</button>
-								</td></td>
-								@endif
+											Visualizar
+										</button>
+									</td>
+								</tr>
 							@endforeach
-						</tr>
 					</table>
 				</div>
 			</div>
@@ -87,27 +79,31 @@
 			      </div>
 			      <div class="modal-body">
 							<!--exemplo teste-->
-			       <h2 class="text-center">{{ $request->auditorium->name }}</h2>
+							<a href="{{ route('requests.show', $request->id) }}">
+								<h2 class="text-center">{{ $request->event }}</h2>
+							</a>
+
 						 <div class="row">
-							 <label class="col-md-2 control-label">Evento: </label>
+							 <label class="col-md-2 control-label">Data: </label>
 								<div class="col-md-8">
-										 <p>{{ $request->event }}</p>
+										<p>{{ $request->dateC->format('d/m/Y') }}</p>
 								</div>
 						 </div>
 
 						 <div class="row">
-							 <label class="col-md-2 control-label">Evento: </label>
+							 <label class="col-md-2 control-label">Local: </label>
+								<div class="col-md-8">
+									<p>{{ $request->auditorium->name }}</p>
+								</div>
+						 </div>
+
+						 <div class="row">
+							 <label class="col-md-2 control-label">Descrição: </label>
 								 <div class="col-md-8">
 									  <p>{{ $request->description }}</p>
 								 </div>
 						 </div>
 
-						 <div class="row">
-							 <label class="col-md-2 control-label">Evento: </label>
-								<div class="col-md-8">
-										<p>{{ $request->dateC->format('d/m/Y') }}</p>
-								</div>
-						 </div>
 						</div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
