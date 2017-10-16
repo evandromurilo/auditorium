@@ -12,17 +12,17 @@
 				</div>
 
 				<p>{{ $user->description }}</p>
-				<p>{{ $user->email }}</p>
+				<p>{{ $user->email }} <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
 				<p>{{ $user->cel }}</p>
 				<p class="chat">Chat <i class="fa fa-comments-o" aria-hidden="true"></i></p>
 			</div>
 
 			<div class="col-md-8 col-lg-8">
 				<div>
-					<h2>Histórico de Agendamentos</h2>
+					<h2 class="text-center">Histórico de Agendamentos</h2>
 					@if ($requests->isEmpty())
 						<div  id="texto" class="nenhum-historico text-center">
-							Nenhum agendamento feito.
+							<apan>Nenhum histórico agendamento feito.</apan>
 						</div>
 					@else
 						@foreach ($requests as $request)
