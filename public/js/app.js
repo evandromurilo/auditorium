@@ -47191,14 +47191,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {},
 	mounted: function mounted() {
-		console.log('Component mounted.');
+		console.log('Notifications: Component mounted.');
 
 		var self = this;
 
 		function reloadNotifications() {
 			$.get("/notifications", function (data, status) {
 				if (status == 'success') {
-					console.log('Reloding notifications');
+					console.log('Notifications: Reloding notifications');
 					self.unreadNotifications = data;
 				}
 			});
@@ -47207,10 +47207,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		reloadNotifications();
 
 		Echo.private('App.User.' + this.user_id).notification(function (notification) {
-			console.log(notification.type);
+			console.log('Notifications: ' + notification.type);
 			reloadNotifications();
 		}).listen('NotificationRead', function (e) {
-			console.log('App\\Events\\NotificationRead');
+			console.log('Notifications: App\\Events\\NotificationRead');
 			reloadNotifications();
 		});
 	}
