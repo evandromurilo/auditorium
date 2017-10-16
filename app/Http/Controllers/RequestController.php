@@ -63,7 +63,7 @@ class RequestController extends Controller
 
 		event(new \App\Events\RequestStatusChanged($nrequest));
 
-		return redirect()->route('requests.index');
+		return redirect()->route('requests.index', ['filter' => $request->filter]);
 	}
 
 	public function show(Request $request) {

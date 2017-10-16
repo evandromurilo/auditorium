@@ -39,7 +39,8 @@
 							<p><strong>Período:</strong> {{ $request->periodF }}</p>
 							<p class="text-capitalize"><strong>Solicitado por:</strong> {{ $request->user->name }}</p>
 
-							<form method="POST" action="{{ route('requests.update', $request->id) }}">
+							<form method="POST" action="{{ route('requests.update', ['id' => $request->id,
+							'filter' => $filter]) }}">
 								{{ csrf_field() }}
 								<input name="_method" type="hidden" value="PUT">
 
@@ -57,7 +58,7 @@
 
 									<label class="disponivel">
 										<input type="radio"  name="status" value="2"
-											{{ $request->status == 2? 'checked' : '' }}>Aceitar
+											{{ $request->status == 2? 'checked' : '' }}>Aceito
 									</label><br />
 
 									<div class="btn-confirma">
