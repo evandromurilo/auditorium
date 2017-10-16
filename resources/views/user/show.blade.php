@@ -15,6 +15,7 @@
 				<p>{{ $user->email }} <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
 				<p>{{ $user->cel }}</p>
 				<p class="chat">Chat <i class="fa fa-comments-o" aria-hidden="true"></i></p>
+				<a href="{{ route('users.edit', $user->id) }}">Editar Perfil</a>
 			</div>
 
 			<div class="col-md-8 col-lg-8">
