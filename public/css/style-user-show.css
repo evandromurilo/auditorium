@@ -14,6 +14,29 @@ p, h2{
   height: 150px;
   margin-top: 5px;
 }
+.well-historico{
+  margin-top: 20px;
+}
+
+.disponivel, .pendente, .indisponivel {
+  display: inline-block;
+  color: #fff;
+  padding-right: 5px;
+  border-radius: 7%;
+  padding-left: 5px;
+}
+
+.disponivel {
+  background-color: green;
+}
+
+.pendente {
+  background-color: #FF8C00;
+}
+
+.indisponivel {
+  background-color: red;
+}
 
 .letra-perfil{
   color: #fff;

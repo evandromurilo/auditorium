@@ -18,27 +18,56 @@
 			</div>
 
 			<div class="col-md-8 col-lg-8">
-				<div>
+
 					<h2 class="text-center">Histórico de Agendamentos</h2>
 					@if ($requests->isEmpty())
 						<div  id="texto" class="nenhum-historico text-center">
 							<apan>Nenhum histórico agendamento feito.</apan>
 						</div>
 					@else
-						@foreach ($requests as $request)
-							<p>{{ $request->auditorium->name }} ({{ $request->dateC->format('d/m/Y') }})
-							@if ($request->status == 0)
-								(pendente)
-							@elseif ($request->status == 1)
-								(rejeitado)
-							@else
-								(aceito)
-							@endif
-							</p>
-						@endforeach
+						</div>
+
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8">
+								<div class="well-historico">
+
+									<table class="table table-bordered">
+										<tr>
+											<th class="text-center">Auditório</th>
+											<th class="text-center">Data do Agendameto</th>
+											<th class="text-center">Status</th>
+										</tr>
+
+							@foreach ($requests as $request)
+										<tr>
+
+
+								<td>{{ $request->auditorium->name }}</td>
+								<td>{{ $request->dateC->format('d/m/Y') }}</td>
+
+
+								@if ($request->status == 0)
+								<td><span class="rejeitado">(Pendente)</span></td>
+								@elseif ($request->status == 1)
+								<td><span class="indisponivel">(Rejeitado)</span></td>
+								@else
+								<td><span class="disponivel">(Aceito)</span></td>
+								@endif
+
+
+							@endforeach
+						</tr>
+						</table>
+							</div>
+							</div>
+						</div>
+						</div>
+
+
 					@endif
-				</div>
-			</div>
+
+
 		</div>
 	</div>
 
