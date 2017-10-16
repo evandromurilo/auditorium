@@ -27,14 +27,14 @@ export default {
 	methods: {
 	},
 	mounted() {
-		console.log('Component mounted.');
+		console.log('Notifications: Component mounted.');
 
 		var self = this;
 
 		function reloadNotifications() {
 				$.get("/notifications", function (data, status) {
 					if (status == 'success') {
-						console.log('Reloding notifications');
+						console.log('Notifications: Reloding notifications');
 						self.unreadNotifications = data;
 					}
 				});
@@ -44,11 +44,11 @@ export default {
 
 		Echo.private(`App.User.${this.user_id}`)
 			.notification((notification) => {
-				console.log(notification.type);
+				console.log('Notifications: ' + notification.type);
 				reloadNotifications();
 			})
 			.listen('NotificationRead', (e) => {
-				console.log('App\\Events\\NotificationRead');
+				console.log('Notifications: App\\Events\\NotificationRead');
 				reloadNotifications();
 			});
 	}

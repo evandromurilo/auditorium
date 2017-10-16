@@ -13,3 +13,7 @@ Auditorium
 
   models
   helpers
+  events
+  listeners
+  notifications
+  outros
