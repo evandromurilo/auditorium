@@ -50,26 +50,51 @@
 								@if ($request->status == 0)
 								<td><span class="rejeitado">(Pendente)</span></td>
 								@elseif ($request->status == 1)
-								<td><span class="indisponivel">(Rejeitado)</span></td>
+								<td><span class="indisponivel">(Rejeitado)</span><td>
+									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+									 Abrir
+									</button>
+								</td></td>
 								@else
-								<td><span class="disponivel">(Aceito)</span></td>
+								<td><span class="disponivel">(Aceito)</span><td>
+									<button type="button" request="{{$request->id}}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+									 Abrir
+									</button>
+								</td></td>
 								@endif
-
-
 							@endforeach
 						</tr>
-						</table>
-							</div>
-							</div>
-						</div>
-						</div>
-
-
-					@endif
-
-
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
+					@endif
+		</div>
+	</div>
+
+			@foreach ($requests as $request)
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  	<div class="modal-dialog" role="document">
+			    	<div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel"></h4>
+			      </div>
+			      <div class="modal-body">
+							<!--exemplo teste-->
+			       <h2>{{ $request->auditorium->name }}</h2>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		@endforeach
+
+
+
 
 @endsection
 
