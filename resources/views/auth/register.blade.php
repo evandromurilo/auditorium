@@ -96,7 +96,7 @@
 								<label for="description" class="col-md-4 control-label">Cargo</label>
 
 								<div class="col-md-6">
-									<input id="description" type="text" class="form-control text-capitalize" name="description" value="{{ old('description') }}">
+									<input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}">
 
 									@if ($errors->has('description'))
 										<span class="help-block">

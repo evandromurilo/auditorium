@@ -20,7 +20,17 @@ class UserController extends Controller {
 		return view('user.edit')->with('user', $user);
 	}
 
-	public function store(Request $request) {
+	public function update(Request $request) {
+		$user = User::find($request->segment(2));
 
+		$user->name = $request->name;
+		$user->color = $request->color;
+		$user->email = $request->email;
+		$user->cel = $request->cel;
+		$user->description = $request->description;
+
+		$user->save();
+
+		return redirect()->route('users.show', $user->id);
 	}
 }

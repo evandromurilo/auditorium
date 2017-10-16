@@ -9,7 +9,7 @@
 					<div class="panel-heading">Editar Usuário</div>
 
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" action="{{ route('users.store', $user->id) }}">
+						<form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id) }}">
 							<input type="hidden" name="_method" value="PUT">
 							{{ csrf_field() }}
 
@@ -76,7 +76,7 @@
 								<label for="description" class="col-md-4 control-label">Cargo</label>
 
 								<div class="col-md-6">
-									<input id="description" type="text" class="form-control text-capitalize" name="description" value="{{ $user->description }}">
+									<input id="description" type="text" class="form-control" name="description" value="{{ $user->description }}">
 
 									@if ($errors->has('description'))
 										<span class="help-block">

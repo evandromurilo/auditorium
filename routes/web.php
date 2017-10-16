@@ -28,6 +28,6 @@ Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
-Route::put('/users/{user}', 'UserController@store')->name('users.store');
+Route::put('/users/{user}', 'UserController@update')->name('users.update');
 
 Route::get('/notifications', 'NotificationController@unreadNotifications')->name('notifications');
