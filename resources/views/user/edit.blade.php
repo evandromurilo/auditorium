@@ -1,21 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
-					<div class="panel-heading">Cria Usuário</div>
+					<div class="panel-heading">Editar Usuário</div>
 
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" action="{{ route('register') }}">
+						<form class="form-horizontal" method="POST" action="{{ route('users.store', $user->id) }}">
+							<input type="hidden" name="_method" value="PUT">
 							{{ csrf_field() }}
 
 							<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 								<label for="name" class="col-md-4 control-label">Nome</label>
 
 								<div class="col-md-6">
-									<input id="name" type="text" class="form-control text-capitalize" name="name" value="{{ old('name') }}" required autofocus>
+									<input id="name" type="text" class="form-control text-capitalize" name="name" value="{{ $user->name }}" required autofocus>
 
 									@if ($errors->has('name'))
 										<span class="help-block">
@@ -29,7 +31,7 @@
 								<label for="email" class="col-md-4 control-label">E-Mail</label>
 
 								<div class="col-md-6">
-									<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+									<input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" required>
 
 									@if ($errors->has('email'))
 										<span class="help-block">
@@ -39,33 +41,11 @@
 								</div>
 							</div>
 
-							<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-								<label for="password" class="col-md-4 control-label">Senha</label>
-
-								<div class="col-md-6">
-									<input id="password" type="password" class="form-control" name="password" required>
-
-									@if ($errors->has('password'))
-										<span class="help-block">
-											<strong>{{ $errors->first('password') }}</strong>
-										</span>
-									@endif
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="password-confirm" class="col-md-4 control-label">Confirme a Senha</label>
-
-								<div class="col-md-6">
-									<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-								</div>
-							</div>
-
 							<div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
 								<label for="color" class="col-md-4 control-label">Cor</label>
 
 								<div class="col-md-3">
-									<input id="color" type="text" class="form-control" name="color" value="{{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }}" required>
+									<input id="color" type="text" class="form-control" name="color" value="{{ $user->color }}" required>
 
 									@if ($errors->has('color'))
 										<span class="help-block">
@@ -82,7 +62,7 @@
 								<label for="cel" class="col-md-4 control-label">Celular</label>
 
 								<div class="col-md-6">
-									<input id="cel" type="text" class="form-control" name="cel" value="{{ old('cel') }}" required>
+									<input id="cel" type="text" class="form-control" name="cel" value="{{ $user->cel }}" required>
 
 									@if ($errors->has('cel'))
 										<span class="help-block">
@@ -96,7 +76,7 @@
 								<label for="description" class="col-md-4 control-label">Cargo</label>
 
 								<div class="col-md-6">
-									<input id="description" type="text" class="form-control text-capitalize" name="description" value="{{ old('description') }}">
+									<input id="description" type="text" class="form-control text-capitalize" name="description" value="{{ $user->description }}">
 
 									@if ($errors->has('description'))
 										<span class="help-block">
@@ -109,7 +89,7 @@
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									<button type="submit" class="btn btn-primary">
-										Cadastrar-se
+										Atualizar
 									</button>
 								</div>
 							</div>

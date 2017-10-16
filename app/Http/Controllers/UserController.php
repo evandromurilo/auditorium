@@ -13,4 +13,14 @@ class UserController extends Controller {
 		return view('user.show')->with(['user' => $user,
 			'requests' => $requests]);
 	}
+
+	public function edit(Request $request) {
+		$user = User::find($request->segment(2));
+
+		return view('user.edit')->with('user', $user);
+	}
+
+	public function store(Request $request) {
+
+	}
 }

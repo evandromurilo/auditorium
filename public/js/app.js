@@ -47804,7 +47804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		function reloadNotifications() {
 			$.get("/notifications", function (data, status) {
 				if (status == 'success') {
-					console.log('Notifications: Reloding notifications');
+					console.log('Notifications: Reloading notifications');
 					self.unreadNotifications = data;
 				}
 			});

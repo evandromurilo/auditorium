@@ -44,5 +44,5 @@ as notificações::
 NotificationItem.vue
 ********************
 
-``NotificationItem.vue`` é o componente que representa cada uma das notificações
+``NotificationItem`` é o componente que representa cada uma das notificações
 que são exibidas no menu de notificações.
