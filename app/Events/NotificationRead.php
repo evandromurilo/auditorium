@@ -10,20 +10,20 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class RequestStatusChanged
+class NotificationRead implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-		public $request;
+		public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Request $request)
+    public function __construct(\App\User $user)
     {
-        $this->request = $request;
+        $this->user = $user;
     }
 
     /**
@@ -31,9 +31,8 @@ class RequestStatusChanged
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    /* public function broadcastOn() */
-    /* { */
-			/* return new PrivateChannel('App.User.'.$this->request->user_id); */
-			/* /1* return ['test']; *1/ */
-    /* } */
+    public function broadcastOn()
+    {
+			return new PrivateChannel('App.User.'.$this->user->id);
+    }
 }
