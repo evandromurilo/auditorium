@@ -51,13 +51,13 @@
 								<td><span class="rejeitado">(Pendente)</span></td>
 								@elseif ($request->status == 1)
 								<td><span class="indisponivel">(Rejeitado)</span><td>
-									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+										<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal{{$request->id}}">
 									 Abrir
 									</button>
 								</td></td>
 								@else
 								<td><span class="disponivel">(Aceito)</span><td>
-									<button type="button" request="{{$request->id}}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+										<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal{{$request->id}}">
 									 Abrir
 									</button>
 								</td></td>
@@ -74,7 +74,7 @@
 	</div>
 
 			@foreach ($requests as $request)
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade" id="modal{{$request->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			  	<div class="modal-dialog" role="document">
 			    	<div class="modal-content">
 			      <div class="modal-header">
