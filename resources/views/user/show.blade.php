@@ -112,30 +112,27 @@
 			  </div>
 			</div>
 		@endforeach
-
-
-
-
+		</div>
 @endsection
 
 @section('sources')
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
-	<script type="text/javascript" src="js/jquery-user-show.js"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-user-show.js') }}"></script>
 
 	<script type="text/javascript">
 	function effectFadeIn(classname) {
-	$("."+classname).fadeOut(5000).fadeIn(5000, effectFadeOut(classname))
-	}
-	function effectFadeOut(classname) {
-	$("."+classname).fadeIn(1500).fadeOut(1500, effectFadeIn(classname))
+		var element = $("."+classname);
+		setInterval(function() {
+			element.fadeToggle(3000, "linear");
+			}, 3000);
 	}
 	$(document).ready(function(){
-	effectFadeIn('nenhum-historico');
+		effectFadeIn('nenhum-historico');
 	});
 	</script>
 
