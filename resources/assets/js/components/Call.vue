@@ -1,15 +1,23 @@
 <template>
 	<div>
-		<h1>{{ call.title }}</h1>
-		<div>
-			<ul class="messages">
-				<call-message v-for="message in n_messages" :message="message"></call-message>
-			</ul>
-		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h1>{{ call.title }}</h1>
+				</div>
 
-		<input type="hidden" name="_token" :value="csrf_token">
-		<input type="text" v-model="body">
-		<button v-on:click="send">Enviar</button>
+				<div class="col-md-8 well">
+					<ul class="messages">
+						<call-message v-for="message in n_messages" :message="message"></call-message>
+					</ul>
+
+					<input type="hidden" name="_token" :value="csrf_token">
+					<input type="text" v-model="body">
+					<button v-on:click="send">Enviar</button>
+
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -86,3 +94,10 @@ export default {
 	}
 }
 </script>
+
+
+<style>
+h1{
+	color: green;
+}
+</style>
