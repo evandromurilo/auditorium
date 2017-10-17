@@ -30,7 +30,7 @@ class SendNewMessageNotification
     {
 			foreach ($event->message->call->members as $member) {
 				if ($member->id != $event->message->user_id) {
-					User::find($member->id)->notify(new NewMessage($event->message));
+					$member->notify(new NewMessage($event->message));
 				}
 			}
     }

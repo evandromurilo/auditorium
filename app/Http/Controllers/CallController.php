@@ -19,15 +19,8 @@ class CallController extends Controller {
 		$call->title = $request->title;
 		$call->save();
 
-		$call_member = new CallMember;
-		$call_member->user_id = $request->user_id;
-		$call_member->call_id = $call->id;
-		$call_member->save();
-
-		$call_member = new CallMember;
-		$call_member->user_id = Auth::id();
-		$call_member->call_id = $call->id;
-		$call_member->save();
+		$call->members()->attach($request->user_id);
+		$call->members()->attach(Auth::id());
 
 		return redirect()->route('calls.show', $call->id);
 	}

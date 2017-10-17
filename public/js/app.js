@@ -882,7 +882,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(54);
+module.exports = __webpack_require__(59);
 
 
 /***/ }),
@@ -909,7 +909,7 @@ Vue.component('example', __webpack_require__(39));
 Vue.component('notification', __webpack_require__(42));
 Vue.component('notification-item', __webpack_require__(45));
 Vue.component('call', __webpack_require__(48));
-Vue.component('call-message', __webpack_require__(51));
+Vue.component('call-message', __webpack_require__(56));
 
 var app = new Vue({
   el: '#app'
@@ -47370,13 +47370,13 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(64)
+  __webpack_require__(49)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(54)
 /* template */
-var __vue_template__ = __webpack_require__(50)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -47417,273 +47417,46 @@ module.exports = Component.exports
 
 /***/ }),
 /* 49 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['user_id', 'call', 'messages', 'members'],
-	data: function data() {
-		return {
-			post_url: "/messages",
-			csrf_token: $('meta[name=csrf-token]').attr('content'),
-			members_lookup: {},
-			n_messages: [],
-			body: ''
-		};
-	},
-
-	methods: {
-		send: function send() {
-			var inputs = {
-				_token: this.csrf_token,
-				body: this.body,
-				call_id: this.call.id,
-				user_id: this.user_id
-			};
-
-			var request = $.post(this.post_url, inputs);
-
-			self = this;
-
-			request.done(function (response, textStatus, jqXHR) {
-				console.log('Mensagem enviada!');
-
-				var message = {
-					body: self.body,
-					author: self.members_lookup[self.user_id]
-				};
-
-				self.n_messages.push(message);
-				self.body = '';
-			});
-
-			request.fail(function (response, textStatus, errorThrown) {
-				console.error("The following error occurred: " + textStatus, errorThrown);
-			});
-		}
-	},
-	mounted: function mounted() {
-		var _this = this;
-
-		console.log('Calls: Component mounted.');
-
-		var self = this;
-
-		for (var i = 0, len = this.members.length; i < len; i++) {
-			this.members_lookup[this.members[i].id] = this.members[i];
-		}
-
-		for (var i = 0, len = this.messages.length; i < len; i++) {
-			this.messages[i].author = this.members_lookup[this.messages[i].user_id];
-			this.n_messages.push(this.messages[i]);
-		}
-
-		Echo.private('App.User.' + this.user_id).notification(function (notification) {
-			if (notification.type == 'App\\Notifications\\NewMessage') {
-				console.log('Calls: New message!');
-
-				var message = notification.data.message;
-				message.author = _this.members_lookup[notification.data.message.user_id];
-
-				_this.n_messages.push(message);
-			}
-		});
-	}
-});
+// load the styles
+var content = __webpack_require__(50);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(52)("1f922da4", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d7292ac6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Call.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d7292ac6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Call.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-4" }, [
-          _c("h1", [_vm._v(_vm._s(_vm.call.title))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-8 well" }, [
-          _c(
-            "ul",
-            { staticClass: "messages" },
-            _vm._l(_vm.n_messages, function(message) {
-              return _c("call-message", { attrs: { message: message } })
-            })
-          ),
-          _vm._v(" "),
-          _c("input", {
-            attrs: { type: "hidden", name: "_token" },
-            domProps: { value: _vm.csrf_token }
-          }),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.body,
-                expression: "body"
-              }
-            ],
-            attrs: { type: "text" },
-            domProps: { value: _vm.body },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.body = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("button", { on: { click: _vm.send } }, [_vm._v("Enviar")])
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d7292ac6", module.exports)
-  }
-}
+exports = module.exports = __webpack_require__(51)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nh1{\n\tcolor: green;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 /* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(52)
-/* template */
-var __vue_template__ = __webpack_require__(53)
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/CallMessage.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-97bfb14c", Component.options)
-  } else {
-    hotAPI.reload("data-v-97bfb14c", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['message'],
-	mounted: function mounted() {
-		console.log("Message: mounted");
-	}
-});
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "messages" }, [
-    _c("p", [
-      _c("strong", [_vm._v(_vm._s(_vm.message.author.name) + ":")]),
-      _vm._v(" " + _vm._s(_vm.message.body))
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-97bfb14c", module.exports)
-  }
-}
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 55 */,
-/* 56 */
 /***/ (function(module, exports) {
 
 /*
@@ -47765,54 +47538,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(65);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(66)("1f922da4", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d7292ac6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Call.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d7292ac6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Call.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(56)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\nh1{\n\tcolor: green;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 66 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -47831,7 +47557,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(67)
+var listToStyles = __webpack_require__(53)
 
 /*
 type StyleObject = {
@@ -48033,7 +47759,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 67 */
+/* 53 */
 /***/ (function(module, exports) {
 
 /**
@@ -48064,6 +47790,269 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['user_id', 'call', 'messages', 'members'],
+	data: function data() {
+		return {
+			post_url: "/messages",
+			csrf_token: $('meta[name=csrf-token]').attr('content'),
+			members_lookup: {},
+			n_messages: [],
+			body: ''
+		};
+	},
+
+	methods: {
+		send: function send() {
+			var inputs = {
+				_token: this.csrf_token,
+				body: this.body,
+				call_id: this.call.id,
+				user_id: this.user_id
+			};
+
+			var request = $.post(this.post_url, inputs);
+
+			var message = {
+				body: this.body,
+				author: this.members_lookup[this.user_id]
+			};
+
+			this.n_messages.push(message);
+			this.body = '';
+
+			request.done(function (response, textStatus, jqXHR) {
+				console.log('Mensagem enviada!');
+			});
+
+			request.fail(function (response, textStatus, errorThrown) {
+				console.error("The following error occurred: " + textStatus, errorThrown);
+			});
+		}
+	},
+	mounted: function mounted() {
+		var _this = this;
+
+		console.log('Calls: Component mounted.');
+
+		var self = this;
+
+		for (var i = 0, len = this.members.length; i < len; i++) {
+			this.members_lookup[this.members[i].id] = this.members[i];
+		}
+
+		for (var i = 0, len = this.messages.length; i < len; i++) {
+			this.messages[i].author = this.members_lookup[this.messages[i].user_id];
+			this.n_messages.push(this.messages[i]);
+		}
+
+		Echo.private('App.Call.' + this.call.id).listen('MessageCreated', function (e) {
+			if (e.message.user_id != _this.user_id) {
+				console.log('Calls: New message!');
+
+				var message = e.message;
+				message.author = _this.members_lookup[message.user_id];
+				_this.n_messages.push(message);
+			}
+		});
+	}
+});
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("h1", [_vm._v(_vm._s(_vm.call.title))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-8 well" }, [
+          _c(
+            "ul",
+            { staticClass: "messages" },
+            _vm._l(_vm.n_messages, function(message) {
+              return _c("call-message", { attrs: { message: message } })
+            })
+          ),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "hidden", name: "_token" },
+            domProps: { value: _vm.csrf_token }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.body,
+                expression: "body"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.body },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.body = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("button", { on: { click: _vm.send } }, [_vm._v("Enviar")])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d7292ac6", module.exports)
+  }
+}
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(57)
+/* template */
+var __vue_template__ = __webpack_require__(58)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/CallMessage.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-97bfb14c", Component.options)
+  } else {
+    hotAPI.reload("data-v-97bfb14c", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['message'],
+	mounted: function mounted() {
+		console.log("Message: mounted");
+	}
+});
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("li", { staticClass: "messages" }, [
+    _c("p", [
+      _c("strong", [_vm._v(_vm._s(_vm.message.author.name) + ":")]),
+      _vm._v(" " + _vm._s(_vm.message.body))
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-97bfb14c", module.exports)
+  }
+}
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

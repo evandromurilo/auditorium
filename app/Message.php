@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model {
-	public function getUserAttribute() {
-		return User::find($this->user_id);
+	public function user() {
+		return $this->belongsTo('App\User');
 	}
 
-	public function getCallAttribute() {
-		return Call::find($this->call_id);
+	public function call() {
+		return $this->belongsTo('App\Call');
 	}
 }

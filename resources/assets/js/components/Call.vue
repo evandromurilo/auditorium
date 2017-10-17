@@ -44,19 +44,18 @@ export default {
 
 			var request = $.post(this.post_url, inputs);
 
-			self = this;
+			var message = {
+				body: this.body,
+				author: this.members_lookup[this.user_id],
+			}
+
+			this.n_messages.push(message);
+			this.body = '';
 
 			request.done(function (response, textStatus, jqXHR) {
 				console.log('Mensagem enviada!');
-
-				var message = {
-					body: self.body,
-					author: self.members_lookup[self.user_id],
-				}
-
-				self.n_messages.push(message);
-				self.body = '';
 			});
+
 
 			request.fail(function (response, textStatus, errorThrown) {
 				console.error(
@@ -80,14 +79,13 @@ export default {
 			this.n_messages.push(this.messages[i]);
 		}
 
-		Echo.private(`App.User.${this.user_id}`)
-			.notification((notification) => {
-				if (notification.type == 'App\\Notifications\\NewMessage') {
+		Echo.private(`App.Call.${this.call.id}`)
+			.listen('MessageCreated', (e) => {
+				if (e.message.user_id != this.user_id) {
 					console.log('Calls: New message!');
 
-					var message = notification.data.message;
-					message.author = this.members_lookup[notification.data.message.user_id];
-
+					var message = e.message;
+					message.author = this.members_lookup[message.user_id];
 					this.n_messages.push(message);
 				}
 			});
