@@ -39,8 +39,8 @@ class RequestResolved extends Notification
 			return [
 				'request_id' => $this->request->id,
 				'auditorium_name' => $this->request->auditorium->name,
-			  'message' => "Sua requisição do ".$this->request->auditorium->name." mudou de status.",
-			  'url' => route('requests.show', ['id' => $this->request->id, 'from' => 'notification']),
+			  'n_message' => "Sua requisição do ".$this->request->auditorium->name." mudou de status.",
+			  'n_url' => route('requests.show', ['id' => $this->request->id, 'from' => 'notification']),
 			];
 		}
 

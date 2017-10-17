@@ -37,8 +37,9 @@ class NewMessage extends Notification
 				'message_id' => $this->message->id,
 				'user_name' => $this->message->user->name,
 				'call_title' => $this->message->call->title,
-				'message' => "Você recebeu uma nova mensagem de ".$this->message->user->name.".",
-			  'url' => route('calls.show', ['id' => $this->message->call_id, 'from' => 'notification']),
+				'n_message' => "Você recebeu uma nova mensagem de ".$this->message->user->name.".",
+			  'n_url' => route('calls.show', ['id' => $this->message->call_id, 'from' => 'notification']),
+			  'message' => $this->message,
 			];
 		}
 

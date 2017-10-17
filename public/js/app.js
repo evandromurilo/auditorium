@@ -47331,7 +47331,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { attrs: { href: _vm.unread.data.url } }, [
+  return _c("a", { attrs: { href: _vm.unread.data.n_url } }, [
     _c(
       "div",
       {
@@ -47339,7 +47339,7 @@ var render = function() {
         staticStyle: { height: "45px" }
       },
       [
-        _vm._v(_vm._s(_vm.unread.data.message)),
+        _vm._v(_vm._s(_vm.unread.data.n_message)),
         _c("br"),
         _vm._v(" "),
         _c("span", { staticClass: "date-hora" }, [
@@ -47432,22 +47432,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['call', 'messages', 'members'],
+	props: ['user_id', 'call', 'messages', 'members'],
 	data: function data() {
 		return {
 			post_url: "/messages",
 			csrf_token: $('meta[name=csrf-token]').attr('content'),
 			members_lookup: {},
-			n_messages: []
+			n_messages: [],
+			body: ''
 		};
 	},
+
+	methods: {
+		send: function send() {
+			var inputs = {
+				_token: this.csrf_token,
+				body: this.body,
+				call_id: this.call.id,
+				user_id: this.user_id
+			};
+
+			var request = $.post(this.post_url, inputs);
+
+			self = this;
+
+			request.done(function (response, textStatus, jqXHR) {
+				console.log('Mensagem enviada!');
+
+				var message = {
+					body: self.body,
+					author: self.members_lookup[self.user_id]
+				};
+
+				self.n_messages.push(message);
+				self.body = '';
+			});
+
+			request.fail(function (response, textStatus, errorThrown) {
+				console.error("The following error occurred: " + textStatus, errorThrown);
+			});
+		}
+	},
 	mounted: function mounted() {
+		var _this = this;
+
 		console.log('Calls: Component mounted.');
+
+		var self = this;
 
 		for (var i = 0, len = this.members.length; i < len; i++) {
 			this.members_lookup[this.members[i].id] = this.members[i];
@@ -47458,7 +47491,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.n_messages.push(this.messages[i]);
 		}
 
-		console.log(this.messages);
+		Echo.private('App.User.' + this.user_id).notification(function (notification) {
+			if (notification.type == 'App\\Notifications\\NewMessage') {
+				console.log('Calls: New message!');
+
+				var message = notification.data.message;
+				message.author = _this.members_lookup[notification.data.message.user_id];
+
+				_this.n_messages.push(message);
+			}
+		});
 	}
 });
 
@@ -47483,25 +47525,33 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("form", { attrs: { method: "POST", action: _vm.post_url } }, [
-      _c("input", {
-        attrs: { type: "hidden", name: "_method", value: "post" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: "hidden", name: "_token" },
-        domProps: { value: _vm.csrf_token }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: "hidden", name: "call_id" },
-        domProps: { value: _vm.call.id }
-      }),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "text", name: "body" } }),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "submit" } })
-    ])
+    _c("input", {
+      attrs: { type: "hidden", name: "_token" },
+      domProps: { value: _vm.csrf_token }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.body,
+          expression: "body"
+        }
+      ],
+      attrs: { type: "text" },
+      domProps: { value: _vm.body },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.body = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.send } }, [_vm._v("Enviar")])
   ])
 }
 var staticRenderFns = []

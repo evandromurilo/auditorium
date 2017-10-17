@@ -15,6 +15,7 @@ class Call extends Model {
 			->join('call_members', 'users.id', '=', 'call_members.user_id')
 			->join('calls', 'calls.id', '=', 'call_members.call_id')
 			->select('users.*')
+			->distinct()
 			->get();
 
 		return $users;

@@ -6,29 +6,62 @@
 				<call-message v-for="message in n_messages" :message="message"></call-message>
 			</ul>
 		</div>
-		<form method="POST" :action="post_url">
-			<input type="hidden" name="_method" value="post">
-			<input type="hidden" name="_token" :value="csrf_token">
-			<input type="hidden" name="call_id" :value="call.id">
-			<input type="text" name="body">
-			<input type="submit">
-		</form>
+
+		<input type="hidden" name="_token" :value="csrf_token">
+		<input type="text" v-model="body">
+		<button v-on:click="send">Enviar</button>
 	</div>
 </template>
 
 <script>
 export default {
-	props:['call', 'messages', 'members'],
+	props:['user_id', 'call', 'messages', 'members'],
 	data() {
 		return {
 			post_url: "/messages",
 			csrf_token: $('meta[name=csrf-token]').attr('content'),
 			members_lookup: {},
 			n_messages: [],
+			body: '',
+		}
+	},
+	methods: {
+		send: function () {
+			var inputs = {
+				_token: this.csrf_token,
+				body: this.body,
+				call_id: this.call.id,
+				user_id: this.user_id
+			}
+
+			var request = $.post(this.post_url, inputs);
+
+			self = this;
+
+			request.done(function (response, textStatus, jqXHR) {
+				console.log('Mensagem enviada!');
+
+				var message = {
+					body: self.body,
+					author: self.members_lookup[self.user_id],
+				}
+
+				self.n_messages.push(message);
+				self.body = '';
+			});
+
+			request.fail(function (response, textStatus, errorThrown) {
+				console.error(
+            "The following error occurred: "+
+            textStatus, errorThrown
+        );
+			});
 		}
 	},
 	mounted() {
 		console.log('Calls: Component mounted.');
+
+		var self = this;
 
 		for (var i = 0, len = this.members.length; i < len; i++) {
 			this.members_lookup[this.members[i].id] = this.members[i];
@@ -39,7 +72,17 @@ export default {
 			this.n_messages.push(this.messages[i]);
 		}
 
-		console.log(this.messages);
+		Echo.private(`App.User.${this.user_id}`)
+			.notification((notification) => {
+				if (notification.type == 'App\\Notifications\\NewMessage') {
+					console.log('Calls: New message!');
+
+					var message = notification.data.message;
+					message.author = this.members_lookup[notification.data.message.user_id];
+
+					this.n_messages.push(message);
+				}
+			});
 	}
 }
 </script>
