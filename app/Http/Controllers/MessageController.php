@@ -18,6 +18,8 @@ class MessageController extends Controller {
 
 		$message->save();
 
+		event(new \App\Events\MessageCreated($message));
+
 		return redirect()->route('calls.show', $message->call_id);
 	}
 }

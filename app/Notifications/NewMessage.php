@@ -8,20 +8,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 
-class RequestResolved extends Notification
+class NewMessage extends Notification
 {
     use Queueable;
 
-		public $request;
-
+		public $message;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(\App\Request $request)
-    {
-        $this->request = $request;
+    public function __construct(\App\Message $message) {
+        $this->message = $message;
     }
 
     /**
@@ -30,17 +28,17 @@ class RequestResolved extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
-    {
+    public function via($notifiable) {
         return ['database', 'broadcast'];
     }
 
 		public function toArray($notifiable) {
 			return [
-				'request_id' => $this->request->id,
-				'auditorium_name' => $this->request->auditorium->name,
-			  'message' => "Sua requisição do ".$this->request->auditorium->name." mudou de status.",
-			  'url' => route('requests.show', ['id' => $this->request->id, 'from' => 'notification']),
+				'message_id' => $this->message->id,
+				'user_name' => $this->message->user->name,
+				'call_title' => $this->message->call->title,
+				'message' => "Você recebeu uma nova mensagem de ".$this->message->user->name.".",
+			  'url' => route('calls.show', ['id' => $this->message->call_id, 'from' => 'notification']),
 			];
 		}
 

@@ -8,10 +8,6 @@
 			<li class="erro">
 				<notification-item v-for="unread in unreadNotifications" :unread="unread"></notification-item>
 			</li>
-
-			<!-- @foreach (Auth::user()->unreadNotifications as $notification) -->
-			<!-- @include('partials.notifications.request_resolved') -->
-			<!-- @endforeach -->
 		</ul>
 	</li>
 </template>

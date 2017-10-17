@@ -47163,10 +47163,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user_id'],
@@ -47322,13 +47318,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['unread'],
 	data: function data() {
-		return {
-			request_url: ''
-		};
+		return {};
 	},
-	mounted: function mounted() {
-		this.request_url = "/requests/" + this.unread.data.request_id + "?from=notification";
-	}
+	mounted: function mounted() {}
 });
 
 /***/ }),
@@ -47339,7 +47331,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { attrs: { href: _vm.request_url } }, [
+  return _c("a", { attrs: { href: _vm.unread.data.url } }, [
     _c(
       "div",
       {
@@ -47347,11 +47339,7 @@ var render = function() {
         staticStyle: { height: "45px" }
       },
       [
-        _vm._v(
-          "Sua requisição do " +
-            _vm._s(_vm.unread.data.auditorium_name) +
-            " mudou de status."
-        ),
+        _vm._v(_vm._s(_vm.unread.data.message)),
         _c("br"),
         _vm._v(" "),
         _c("span", { staticClass: "date-hora" }, [
