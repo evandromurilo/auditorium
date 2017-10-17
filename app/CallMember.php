@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CallMembers extends Model
+class CallMember extends Model
 {
     //
 }

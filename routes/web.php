@@ -18,16 +18,23 @@ Auth::routes();
 
 
 Route::resource('requests', 'RequestController');
+Route::resource('calls', 'CallController');
+Route::resource('messages', 'MessageController');
 /* Route::get('requests', 'RequestController@index')->name('requests.index'); */
 /* Route::get('requests/create', 'RequestController@create')->name('requests.create'); */
 /* Route::post('requests', 'RequestController@store')->name('requests.store'); */
 /* Route::put('requests/{request}', 'RequestController@update')->name('requests.update'); */
 
-Route::get('/events', 'EventController@index')->name('events.index');
+/* Route::get('/events', 'EventController@index')->name('events.index'); */
 Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 
+Route::put('/users/{user}', 'UserController@update')->name('users.update');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
-Route::put('/users/{user}', 'UserController@update')->name('users.update');
 
 Route::get('/notifications', 'NotificationController@unreadNotifications')->name('notifications');
+
+/* Route::put('/messages', 'MessageController@store')->name('messages.store'); */
+/* Route::put('/calls', 'CallController@store')->name('calls.store'); */
+/* Route::get('/calls/{call}', 'CallController@show')->name('calls.show'); */
+/* Route::get('/calls/create', 'CallController@create')->name('calls.create'); */
