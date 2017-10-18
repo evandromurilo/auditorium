@@ -9,7 +9,13 @@ use Carbon\Carbon;
 
 class RequestController extends Controller
 {
+	public function __construct() {
+		$this->middleware('auth');
+	}
+
 	public function index(Request $request) {
+		$this->authorize('resolve', \App\Request::class);
+
 		$filter = $request->filter;
 
 		if ($request->filter == "resolved") {
@@ -30,6 +36,8 @@ class RequestController extends Controller
 	}
 
 	public function create(Request $request) {
+		$this->authorize('create', \App\Request::class);
+
 		$aud = Auditorium::find($request->id);
 		$date = Carbon::createFromFormat('d/m/Y', $request->date);
 
@@ -39,6 +47,8 @@ class RequestController extends Controller
 	}
 
 	public function store(Request $request) {
+		$this->authorize('create', \App\Request::class);
+
 		$nrequest = new \App\Request;
 
 		$nrequest->auditorium_id = $request->auditorium_id;
@@ -56,6 +66,8 @@ class RequestController extends Controller
 	}
 
 	public function update(Request $request) {
+		$this->authorize('resolve', \App\Request::class);
+
 		$nrequest = \App\Request::find($request->segment(2));
 
 		$nrequest->status = $request->status;

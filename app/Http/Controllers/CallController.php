@@ -8,8 +8,14 @@ use \App\Call;
 use \App\CallMember;
 
 class CallController extends Controller {
+	public function __construct() {
+		$this->middleware('auth');
+	}
+
 	public function show(Request $request) {
 		$call = Call::find($request->segment(2));
+
+		$this->authorize('see', $call);
 
 		foreach (Auth::user()->unreadNotifications as $notification) {
 			if ($notification->type == "App\Notifications\NewMessage" &&
@@ -28,6 +34,10 @@ class CallController extends Controller {
 
 		$call->members()->attach($request->user_id);
 		$call->members()->attach(Auth::id());
+
+		foreach ($call->members as $member) {
+			$member->allow('see', $call);
+		}
 
 		return redirect()->route('calls.show', $call->id);
 	}
