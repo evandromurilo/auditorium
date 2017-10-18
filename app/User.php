@@ -38,6 +38,10 @@ class User extends Authenticatable
 			return $this->hasMany('App\CallMember');
 		}
 
+		public function calls() {
+			return $this->belongsToMany('App\Call');
+		}
+
 		public function isMember($callId) {
 		return DB::table('call_user')
 			->select('users.*')

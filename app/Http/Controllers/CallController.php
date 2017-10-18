@@ -12,6 +12,10 @@ class CallController extends Controller {
 		$this->middleware('auth');
 	}
 
+	public function index(Request $request) {
+		return view('call.index')->with('calls', Auth::user()->calls);
+	}
+
 	public function show(Request $request) {
 		$call = Call::find($request->segment(2));
 
