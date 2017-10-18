@@ -47935,6 +47935,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['unread'],
@@ -47968,7 +47974,7 @@ var render = function() {
             staticClass: "fa fa-clock-o",
             attrs: { "aria-hidden": "true" }
           }),
-          _vm._v(" " + _vm._s(_vm.unread.created_at) + "\n\t ")
+          _vm._v(" " + _vm._s(_vm.unread.created_at) + "\n\t\t")
         ])
       ]
     )
