@@ -72,7 +72,8 @@ class RequestController extends Controller
 		if ($request->has('from') && $request->from == 'notification') {
 			$read = false;
 				foreach (Auth::user()->unreadNotifications as $notification) {
-					if ($notification->data['request_id'] == $nrequest->id) {
+					if ($notification->type == "App\Notifications\RequestResolved" &&
+						$notification->data['request_id'] == $nrequest->id) {
 						$read = true;
 						$notification->markAsRead();
 					}

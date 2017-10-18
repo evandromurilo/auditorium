@@ -15,6 +15,10 @@ Broadcast::channel('App.User.{userId}', function ($user, $userId) {
     return (int) $user->id === (int) $userId;
 });
 
+Broadcast::channel('App.Call.{callId}', function ($user, $callId) {
+	return $user->isMember($callId);
+});
+
 Broadcast::channel('user.{userId}', function ($user, $userId) {
     return (int) $user->id === (int) $userId;
 });

@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
 class Request extends Model {
-	public function getAuditoriumAttribute() {
-		return Auditorium::find($this->auditorium_id);
+	public function auditorium() {
+		return $this->belongsTo('App\Auditorium');
 	}
 
-	public function getUserAttribute() {
-		return User::find($this->user_id);
+	public function user() {
+		return $this->belongsTo('App\User');
 	}
 
 	public function getDateCAttribute() {

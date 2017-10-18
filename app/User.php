@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+		public function requests() {
+			return $this->hasMany('App\Request');
+		}
+
+		public function callMembers() {
+			return $this->hasMany('App\CallMember');
+		}
+
+		public function isMember($callId) {
+		return DB::table('call_user')
+			->select('users.*')
+			->where('user_id', $this->id)
+			->where('call_id', $callId)
+			->count() > 0;
+		}
 }

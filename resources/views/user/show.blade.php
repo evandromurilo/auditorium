@@ -26,6 +26,12 @@
 				<p>{{ $user->email }} <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
 				<p>{{ $user->cel }}</p>
 				<p class="chat">Chat <i class="fa fa-comments-o" aria-hidden="true"></i></p>
+				<form method="POST" action="{{ route('calls.store') }}">
+					{{ csrf_field() }}
+					<input type="hidden" name="user_id" value="{{ $user->id }}">
+					<input type="hidden" name="title" value="{{ $user->name }}">
+					<input type="submit" value="Chamada">
+				</form>
 			</div>
 
 			<div class="col-md-8 col-lg-8">
