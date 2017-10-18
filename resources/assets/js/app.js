@@ -17,6 +17,7 @@ window.Vue = require('vue');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('notification-item', require('./components/NotificationItem.vue'));
+Vue.component('new-call', require('./components/NewCall.vue'));
 Vue.component('call', require('./components/Call.vue'));
 Vue.component('call-message', require('./components/CallMessage.vue'));
 

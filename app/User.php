@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 class User extends Authenticatable
 {
     use Notifiable;
+		use HasRolesAndAbilities;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +36,10 @@ class User extends Authenticatable
 
 		public function callMembers() {
 			return $this->hasMany('App\CallMember');
+		}
+
+		public function calls() {
+			return $this->belongsToMany('App\Call');
 		}
 
 		public function isMember($callId) {

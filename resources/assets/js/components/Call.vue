@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<link rel="stylesheet" href="/css/style-call-vue.css">
 		<div class="container">
 			<div class="row">
 				<!-- User Perfil -->
@@ -13,7 +14,9 @@
 				<div class="col-md-6">
 					<div class="well well-chat">
 						<ul class="messages">
-							<call-message  v-for="message in n_messages" :message="message"></call-message>
+							<call-message  v-for="message in n_messages"
+								:user_id="user_id"
+								:message="message"></call-message>
 						</ul>
 						<div class="row">
 							<div class="col-md-12 col-lg-12">
@@ -30,7 +33,6 @@
 
 					</div>
 				</div>
-
 
 				<div class="col-md-3">
 					<div class="well well-assunto">
@@ -115,29 +117,3 @@ export default {
 	}
 }
 </script>
-
-<!-- CSS por aqui ate ver o que fazer-->
-<style >
-
-body{
-	margin: 0;
-	padding: 0;
-	  font-family: 'Roboto', sans-serif;
-}
-
-.well-perfil{
-	width: 120px;
-	height: 120px;
-	border-radius: 100%;
-}
-.well-chat{
-	margin-top: 70px;
-	height: 400px;
-	overflow: auto;
-
-}
-.well-assunto{
-
-}
-
-</style>

@@ -1,12 +1,17 @@
 <template>
 	<li class="messages">
-		<p><strong>{{ message.author.name  }}:</strong> {{ message.body }}</p>
+		<link rel="stylesheet" href="/css/style-callmessage-vue.css">
+		<p class="text-right msg-user"
+			v-if="user_id == message.author.id">
+			<strong>Você:</strong> {{ message.body }}
+		</p>
+		<p class="text-left msg-secundario" v-else><strong>{{ message.author.name  }}:</strong> {{ message.body }}</p>
 	</li>
 </template>
 
 <script>
 export default {
-	props:['message'],
+	props:['message', 'user_id'],
 	mounted() {
 		console.log("Message: mounted");
 	}
