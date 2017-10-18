@@ -31,9 +31,9 @@ class SendNewMessageNotification
 			foreach ($event->message->call->members as $member) {
 				if ($member->id != $event->message->user_id) {
 					$send = true;
-					foreach ($member->unreadNotifications as $notificaton) {
+					foreach ($member->unreadNotifications as $notification) {
 						if ($notification->type == "App\Notifications\NewMessage" &&
-							$notification->data->call_id == $event->message->call_id) {
+							$notification->data['call_id'] == $event->message->call_id) {
 							$send = false;
 							break;
 						}
