@@ -10,19 +10,18 @@
 					</div>
 				</div>
 
-				<div class="col-md-6"> well well-chat">
+				<div class="col-md-6">
 					<div class="well well-chat">
 						<ul class="messages text-right">
-							<call-message  v-for="message in n_messages" :message="message"></call-message>
+							<call-message  v-for="message in n_messages"
+								:user_id="user_id"
+								:message="message"></call-message>
 						</ul>
-
+					</div>
 						<input type="hidden" name="_token" :value="csrf_token">
 						<input type="text" class="input-group" v-model="body">
 						<button v-on:click="send" class="btn btn-primary">Enviar</button>
-
-					</div>
 				</div>
-
 
 				<div class="col-md-3">
 					<div class="well well-assunto">
