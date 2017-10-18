@@ -7,10 +7,21 @@
 		<div class="row">
 			<div class="col-md-4 col-lg-4">
 				<h1>{{ $user->name }}</h1>
-				<div class="well" style="background-color:{{ $user->color }};">
-						<p class="letra-perfil text-center">{{ $user->name[0] }}</p>
-				</div>
-				<a href="{{ route('users.edit', $user->id) }}">Editar Perfil</a>
+
+
+					<div class="well" style="background-color:{{ $user->color }};">
+							<p class="letra-perfil text-center">{{ $user->name[0] }}</p>
+					</div>
+
+
+						<a href="{{ route('users.edit', $user->id) }}">
+							<button type="button" class="btn">Editar Perfil
+							 	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						 </button>
+					 </a>
+
+
+
 				<p>{{ $user->description }}</p>
 				<p>{{ $user->email }} <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
 				<p>{{ $user->cel }}</p>
