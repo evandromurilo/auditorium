@@ -1,6 +1,6 @@
 <template>
 	<li class="messages">
-		<p class="text-left"><strong>{{ message.author.name  }}:</strong> {{ message.body }}</p>
+		<p><strong>{{ message.author.name  }}:</strong> {{ message.body }}</p>
 	</li>
 </template>
 
@@ -12,6 +12,11 @@ export default {
 	}
 }
 </script>
-<style media="screen">
-	
+<style>
+
+body{
+	margin: 0;
+	padding: 0;
+	  font-family: 'Roboto', sans-serif;
+}
 </style>

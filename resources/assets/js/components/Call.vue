@@ -10,15 +10,23 @@
 					</div>
 				</div>
 
-				<div class="col-md-6"> well well-chat">
+				<div class="col-md-6">
 					<div class="well well-chat">
-						<ul class="messages text-right">
+						<ul class="messages">
 							<call-message  v-for="message in n_messages" :message="message"></call-message>
 						</ul>
+						<div class="row">
+							<div class="col-md-12 col-lg-12">
+								<div class="input-group">
+									<input type="hidden" name="_token" :value="csrf_token">
+									<input type="text" class="form-control" v-model="body">
+									<span class="input-group-btn">
+										<button v-on:click="send" class="btn btn-primary">Enviar</button>
+									</span>
+								</div>
+							</div>
+						</div>
 
-						<input type="hidden" name="_token" :value="csrf_token">
-						<input type="text" class="input-group" v-model="body">
-						<button v-on:click="send" class="btn btn-primary">Enviar</button>
 
 					</div>
 				</div>
@@ -114,6 +122,7 @@ export default {
 body{
 	margin: 0;
 	padding: 0;
+	  font-family: 'Roboto', sans-serif;
 }
 
 .well-perfil{

@@ -48071,7 +48071,7 @@ exports = module.exports = __webpack_require__(53)(undefined);
 
 
 // module
-exports.push([module.i, "\nbody{\r\n\tmargin: 0;\r\n\tpadding: 0;\n}\n.well-perfil{\r\n\twidth: 120px;\r\n\theight: 120px;\r\n\tborder-radius: 100%;\n}\n.well-chat{\r\n\tmargin-top: 70px;\r\n\theight: 400px;\r\n\toverflow: auto;\n}\n.well-assunto{\n}\r\n\r\n", ""]);
+exports.push([module.i, "\nbody{\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\t  font-family: 'Roboto', sans-serif;\n}\n.well-perfil{\r\n\twidth: 120px;\r\n\theight: 120px;\r\n\tborder-radius: 100%;\n}\n.well-chat{\r\n\tmargin-top: 70px;\r\n\theight: 400px;\r\n\toverflow: auto;\n}\n.well-assunto{\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -48454,6 +48454,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user_id', 'call', 'messages', 'members'],
@@ -48543,48 +48551,58 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
-          _vm._v(' well well-chat">\n\t\t\t\t'),
           _c("div", { staticClass: "well well-chat" }, [
             _c(
               "ul",
-              { staticClass: "messages text-right" },
+              { staticClass: "messages" },
               _vm._l(_vm.n_messages, function(message) {
                 return _c("call-message", { attrs: { message: message } })
               })
             ),
             _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "_token" },
-              domProps: { value: _vm.csrf_token }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.body,
-                  expression: "body"
-                }
-              ],
-              staticClass: "input-group",
-              attrs: { type: "text" },
-              domProps: { value: _vm.body },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.body = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-primary", on: { click: _vm.send } },
-              [_vm._v("Enviar")]
-            )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12 col-lg-12" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf_token }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.body,
+                        expression: "body"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.body },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.body = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "input-group-btn" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: { click: _vm.send }
+                      },
+                      [_vm._v("Enviar")]
+                    )
+                  ])
+                ])
+              ])
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -48695,7 +48713,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("li", { staticClass: "messages" }, [
-    _c("p", { staticClass: "text-left" }, [
+    _c("p", [
       _c("strong", [_vm._v(_vm._s(_vm.message.author.name) + ":")]),
       _vm._v(" " + _vm._s(_vm.message.body))
     ])
@@ -48760,7 +48778,7 @@ exports = module.exports = __webpack_require__(53)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\nbody{\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\t  font-family: 'Roboto', sans-serif;\n}\r\n", ""]);
 
 // exports
 
