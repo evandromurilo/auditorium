@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
+	public function __construct() {
+		$this->middleware('auth');
+	}
+
 	public function show(Request $request) {
 		$user = User::find($request->segment(2));
 		$requests = \App\Request::where('user_id', $user->id)->get();
@@ -16,6 +21,10 @@ class UserController extends Controller {
 
 	public function edit(Request $request) {
 		$user = User::find($request->segment(2));
+
+		if (!$user->id == Auth::user()->id) {
+			$this->authorize('edit', \App\Request::class);
+		}
 
 		return view('user.edit')->with('user', $user);
 	}

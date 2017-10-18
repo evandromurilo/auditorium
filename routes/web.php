@@ -39,3 +39,5 @@ Route::get('/notifications/newmessage/{id}', 'NotificationController@markNewMess
 /* Route::put('/calls', 'CallController@store')->name('calls.store'); */
 /* Route::get('/calls/{call}', 'CallController@show')->name('calls.show'); */
 /* Route::get('/calls/create', 'CallController@create')->name('calls.create'); */
+
+Route::get('/roles/setup', 'RoleController@setup');

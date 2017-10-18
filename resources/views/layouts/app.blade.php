@@ -70,7 +70,9 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-																		<li><a href="{{ route('requests.index') }}">Pedidos</a></li>
+																		@can('resolve', App\Request::class)
+																			<li><a href="{{ route('requests.index') }}">Pedidos</a></li>
+																		@endcan
 																		<li><a href="{{ route('users.show', Auth::id()) }}">Perfil</a></li>
                                 </ul>
                             </li>
