@@ -48140,7 +48140,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("li", { staticClass: "messages" }, [
-    _vm.user_id == _vm.message.user_id
+    _vm.user_id == _vm.message.author.id
       ? _c("p", { staticClass: "text-left" }, [
           _c("strong", [_vm._v("Você:")]),
           _vm._v(" " + _vm._s(_vm.message.body) + "\n\t")
