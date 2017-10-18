@@ -33,6 +33,7 @@ Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 
 Route::get('/notifications', 'NotificationController@unreadNotifications')->name('notifications');
+Route::get('/notifications/newmessage/{id}', 'NotificationController@markNewMessageAsRead');
 
 /* Route::put('/messages', 'MessageController@store')->name('messages.store'); */
 /* Route::put('/calls', 'CallController@store')->name('calls.store'); */

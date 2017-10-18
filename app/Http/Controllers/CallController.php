@@ -11,6 +11,13 @@ class CallController extends Controller {
 	public function show(Request $request) {
 		$call = Call::find($request->segment(2));
 
+		foreach (Auth::user()->unreadNotifications as $notification) {
+			if ($notification->type == "App\Notifications\NewMessage" &&
+				$notification->data['call_id']	== $call->id) {
+				$notification->markAsRead();
+			}
+		}
+
 		return view('call.show')->with('call', $call);
 	}
 

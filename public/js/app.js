@@ -47884,6 +47884,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				var message = e.message;
 				message.author = _this.members_lookup[message.user_id];
 				_this.n_messages.push(message);
+
+				$.get('/notifications/newmessage/' + _this.call.id + '?markasread');
 			}
 		});
 	}

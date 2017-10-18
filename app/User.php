@@ -37,8 +37,10 @@ class User extends Authenticatable
 		}
 
 		public function isMember($callId) {
-			return CallMember::where('user_id', $this->id)
-				->where('call_id', $callId)
-				->count() > 0;
+		return DB::table('call_user')
+			->select('users.*')
+			->where('user_id', $this->id)
+			->where('call_id', $callId)
+			->count() > 0;
 		}
 }

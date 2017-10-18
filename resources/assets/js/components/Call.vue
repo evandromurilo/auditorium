@@ -87,6 +87,8 @@ export default {
 					var message = e.message;
 					message.author = this.members_lookup[message.user_id];
 					this.n_messages.push(message);
+
+					$.get('/notifications/newmessage/'+this.call.id+'?markasread');
 				}
 			});
 	}
