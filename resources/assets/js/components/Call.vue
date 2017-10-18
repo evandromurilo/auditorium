@@ -2,19 +2,32 @@
 	<div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
+				<!-- User Perfil -->
+				<div class="col-md-3">
 					<h1>{{ call.title }}</h1>
+					<div class="well well-perfil">
+
+					</div>
 				</div>
 
-				<div class="col-md-8 well">
-					<ul class="messages">
-						<call-message v-for="message in n_messages" :message="message"></call-message>
-					</ul>
+				<div class="col-md-6"> well well-chat">
+					<div class="well well-chat">
+						<ul class="messages text-right">
+							<call-message  v-for="message in n_messages" :message="message"></call-message>
+						</ul>
 
-					<input type="hidden" name="_token" :value="csrf_token">
-					<input type="text" v-model="body">
-					<button v-on:click="send">Enviar</button>
+						<input type="hidden" name="_token" :value="csrf_token">
+						<input type="text" class="input-group" v-model="body">
+						<button v-on:click="send" class="btn btn-primary">Enviar</button>
 
+					</div>
+				</div>
+
+
+				<div class="col-md-3">
+					<div class="well well-assunto">
+						<h2>Assuntos</h2>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -95,9 +108,27 @@ export default {
 }
 </script>
 
+<!-- CSS por aqui ate ver o que fazer-->
+<style >
 
-<style>
-h1{
-	color: green;
+body{
+	margin: 0;
+	padding: 0;
 }
+
+.well-perfil{
+	width: 120px;
+	height: 120px;
+	border-radius: 100%;
+}
+.well-chat{
+	margin-top: 70px;
+	height: 400px;
+	overflow: auto;
+
+}
+.well-assunto{
+
+}
+
 </style>

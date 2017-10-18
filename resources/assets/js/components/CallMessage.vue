@@ -1,6 +1,6 @@
 <template>
 	<li class="messages">
-		<p><strong>{{ message.author.name  }}:</strong> {{ message.body }}</p>
+		<p class="text-left"><strong>{{ message.author.name  }}:</strong> {{ message.body }}</p>
 	</li>
 </template>
 
@@ -12,3 +12,6 @@ export default {
 	}
 }
 </script>
+<style media="screen">
+	
+</style>
