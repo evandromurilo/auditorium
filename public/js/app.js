@@ -1211,6 +1211,7 @@ window.Vue = __webpack_require__(40);
 Vue.component('example', __webpack_require__(41));
 Vue.component('notification', __webpack_require__(44));
 Vue.component('notification-item', __webpack_require__(47));
+Vue.component('new-call', __webpack_require__(70));
 Vue.component('call', __webpack_require__(50));
 Vue.component('call-message', __webpack_require__(56));
 
@@ -48166,6 +48167,256 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(71)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(73)
+/* template */
+var __vue_template__ = __webpack_require__(74)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/NewCall.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2b3d09af", Component.options)
+  } else {
+    hotAPI.reload("data-v-2b3d09af", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(72);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(10)("94e449c6", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b3d09af\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./NewCall.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b3d09af\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./NewCall.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(9)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody{\n\tmargin: 0;\n\tpadding: 0;\n}\n.well-perfil{\n\twidth: 120px;\n\theight: 120px;\n\tborder-radius: 100%;\n}\n.well-chat{\n\tmargin-top: 70px;\n\theight: 400px;\n\toverflow: auto;\n}\n.well-assunto{\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['user'],
+	data: function data() {
+		return {
+			post_url: "/calls",
+			csrf_token: $('meta[name=csrf-token]').attr('content'),
+			members: [this.user],
+			email: '',
+			title: ''
+		};
+	},
+
+	methods: {
+		insert: function insert() {
+			//$.get("/users/json?email="+this.email);
+			self = this;
+
+			var user = {
+				email: self.email
+			};
+
+			this.members.push(user);
+			this.email = '';
+		},
+
+		send: function send() {
+			var inputs = {
+				_token: this.csrf_token,
+				title: this.body,
+				members: this.members,
+				user_id: this.user.id
+			};
+
+			var request = $.post(this.post_url, inputs);
+
+			request.done(function (response, textStatus, jqXHR) {
+				console.log('Call criada!');
+				window.location.replace(response);
+			});
+
+			request.fail(function (response, textStatus, errorThrown) {
+				console.error("The following error occurred: " + textStatus, errorThrown);
+			});
+		}
+	},
+	mounted: function mounted() {
+		console.log('NewCall: Component mounted.');
+	}
+});
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("label", [_vm._v("Título: ")]),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.title,
+          expression: "title"
+        }
+      ],
+      attrs: { type: "text" },
+      domProps: { value: _vm.title },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.title = $event.target.value
+        }
+      }
+    }),
+    _c("br"),
+    _vm._v(" "),
+    _c("label", [_vm._v("Membros:")]),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.members, function(member) {
+        return _c("li", [_c("p", [_vm._v(_vm._s(member.email))])])
+      })
+    ),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.email,
+          expression: "email"
+        }
+      ],
+      attrs: { type: "text" },
+      domProps: { value: _vm.email },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.email = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.insert } }, [_vm._v("Add")]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.send } }, [_vm._v("Criar chamada")])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2b3d09af", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

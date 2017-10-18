@@ -4,6 +4,9 @@
 
 @section('content')
 	<h1>Chamadas</h1>
+	<a href="{{ route('calls.create') }}">
+		Nova Chamada
+	</a>
 	<ul>
 	@foreach ($calls as $call)
 		<li><a href="{{ route('calls.show', $call->id) }}">

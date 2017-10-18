@@ -16,6 +16,10 @@ class CallController extends Controller {
 		return view('call.index')->with('calls', Auth::user()->calls);
 	}
 
+	public function create() {
+		return view('call.create');
+	}
+
 	public function show(Request $request) {
 		$call = Call::find($request->segment(2));
 
@@ -35,6 +39,9 @@ class CallController extends Controller {
 		$call = new Call;
 		$call->title = $request->title;
 		$call->save();
+
+		/* foreach ($request->members as $member) { */
+		/* 	$user = User::find */
 
 		$call->members()->attach($request->user_id);
 		$call->members()->attach(Auth::id());
