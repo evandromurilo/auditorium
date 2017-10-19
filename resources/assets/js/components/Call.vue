@@ -32,6 +32,9 @@
       <div class="col-md-3">
         <div class="well well-assunto">
           <h2>Assuntos</h2>
+					<div v-for="call in calls">
+						<a :href="'/calls/'+call.id">{{ call.title}}</a>
+					</div>
         </div>
       </div>
     </div>
@@ -41,7 +44,7 @@
 
 <script>
 export default {
-  props: ['user_id', 'call', 'messages', 'members'],
+  props: ['user_id', 'call', 'messages', 'members', 'calls'],
   data() {
     return {
       post_url: "/messages",
