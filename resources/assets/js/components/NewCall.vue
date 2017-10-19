@@ -23,6 +23,7 @@ export default {
 			members: [this.user],
 			email: '',
 			title: '',
+			request : false,
 		}
 	},
 	methods: {
@@ -39,6 +40,10 @@ export default {
 		},
 
 		send: function() {
+			if (this.request) {
+				return;
+			}
+
 			var inputs = {
 				_token: this.csrf_token,
 				title: this.title,
@@ -46,15 +51,15 @@ export default {
 				user_id: this.user.id,
 			}
 
-			var request = $.post(this.post_url, inputs);
+			this.request = $.post(this.post_url, inputs);
 
-			request.done(function (response, textStatus, jqXHR) {
+			this.request.done(function (response, textStatus, jqXHR) {
 				console.log('Call criada!');
 				window.location.replace(response);
 			});
 
 
-			request.fail(function (response, textStatus, errorThrown) {
+			this.request.fail(function (response, textStatus, errorThrown) {
 				console.error(
             "The following error occurred: "+
             textStatus, errorThrown
