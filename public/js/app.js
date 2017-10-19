@@ -48682,78 +48682,75 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['user_id', 'call', 'messages', 'members'],
-	data: function data() {
-		return {
-			post_url: "/messages",
-			csrf_token: $('meta[name=csrf-token]').attr('content'),
-			members_lookup: {},
-			n_messages: [],
-			body: ''
-		};
-	},
+  props: ['user_id', 'call', 'messages', 'members'],
+  data: function data() {
+    return {
+      post_url: "/messages",
+      csrf_token: $('meta[name=csrf-token]').attr('content'),
+      members_lookup: {},
+      n_messages: [],
+      body: ''
+    };
+  },
 
-	methods: {
-		send: function send() {
-			var inputs = {
-				_token: this.csrf_token,
-				body: this.body,
-				call_id: this.call.id,
-				user_id: this.user_id
-			};
+  methods: {
+    send: function send() {
+      var inputs = {
+        _token: this.csrf_token,
+        body: this.body,
+        call_id: this.call.id,
+        user_id: this.user_id
+      };
 
-			var request = $.post(this.post_url, inputs);
+      var request = $.post(this.post_url, inputs);
 
-			var message = {
-				body: this.body,
-				author: this.members_lookup[this.user_id]
-			};
+      var message = {
+        body: this.body,
+        author: this.members_lookup[this.user_id]
+      };
 
-			this.n_messages.push(message);
-			this.body = '';
+      this.n_messages.push(message);
+      this.body = '';
 
-			request.done(function (response, textStatus, jqXHR) {
-				console.log('Mensagem enviada!');
-			});
+      request.done(function (response, textStatus, jqXHR) {
+        console.log('Mensagem enviada!');
+      });
 
-			request.fail(function (response, textStatus, errorThrown) {
-				console.error("The following error occurred: " + textStatus, errorThrown);
-			});
-		}
-	},
-	mounted: function mounted() {
-		var _this = this;
+      request.fail(function (response, textStatus, errorThrown) {
+        console.error("The following error occurred: " + textStatus, errorThrown);
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
 
-		console.log('Calls: Component mounted.');
+    console.log('Calls: Component mounted.');
 
-		var self = this;
+    var self = this;
 
-		for (var i = 0, len = this.members.length; i < len; i++) {
-			this.members_lookup[this.members[i].id] = this.members[i];
-		}
+    for (var i = 0, len = this.members.length; i < len; i++) {
+      this.members_lookup[this.members[i].id] = this.members[i];
+    }
 
-		for (var i = 0, len = this.messages.length; i < len; i++) {
-			this.messages[i].author = this.members_lookup[this.messages[i].user_id];
-			this.n_messages.push(this.messages[i]);
-		}
+    for (var i = 0, len = this.messages.length; i < len; i++) {
+      this.messages[i].author = this.members_lookup[this.messages[i].user_id];
+      this.n_messages.push(this.messages[i]);
+    }
 
-		Echo.private('App.Call.' + this.call.id).listen('MessageCreated', function (e) {
-			if (e.message.user_id != _this.user_id) {
-				console.log('Calls: New message!');
+    Echo.private('App.Call.' + this.call.id).listen('MessageCreated', function (e) {
+      if (e.message.user_id != _this.user_id) {
+        console.log('Calls: New message!');
 
-				var message = e.message;
-				message.author = _this.members_lookup[message.user_id];
-				_this.n_messages.push(message);
+        var message = e.message;
+        message.author = _this.members_lookup[message.user_id];
+        _this.n_messages.push(message);
 
-				$.get('/notifications/newmessage/' + _this.call.id + '?markasread');
-			}
-		});
-	}
+        $.get('/notifications/newmessage/' + _this.call.id + '?markasread');
+      }
+    });
+  }
 });
 
 /***/ }),
@@ -48780,7 +48777,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "well well-chat" }, [
             _c(
-              "ul",
+              "div",
               { staticClass: "messages" },
               _vm._l(_vm.n_messages, function(message) {
                 return _c("call-message", {
@@ -48970,6 +48967,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['message', 'user_id'],
@@ -48986,20 +48987,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "messages" }, [
+  return _c("div", { staticClass: "messages" }, [
     _c("link", {
       attrs: { rel: "stylesheet", href: "/css/style-callmessage-vue.css" }
     }),
     _vm._v(" "),
-    _vm.user_id == _vm.message.author.id
-      ? _c("p", { staticClass: "text-right msg-user" }, [
-          _c("strong", [_vm._v("Você:")]),
-          _vm._v(" " + _vm._s(_vm.message.body) + "\n\t")
-        ])
-      : _c("p", { staticClass: "text-left msg-secundario" }, [
-          _c("strong", [_vm._v(_vm._s(_vm.message.author.name) + ":")]),
-          _vm._v(" " + _vm._s(_vm.message.body))
-        ])
+    _c("div", [
+      _vm.user_id == _vm.message.author.id
+        ? _c("p", { staticClass: "text-right msg-user" }, [
+            _c("strong", [_vm._v("Você:")]),
+            _vm._v(" " + _vm._s(_vm.message.body) + "\n\t\t\t")
+          ])
+        : _c("p", { staticClass: "msg-secundario" }, [
+            _c("strong", [_vm._v(_vm._s(_vm.message.author.name) + ":")]),
+            _vm._v(" " + _vm._s(_vm.message.body))
+          ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "clearfix" })
   ])
 }
 var staticRenderFns = []
