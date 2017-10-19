@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<link rel="stylesheet" href="/css/style-call-vue.css">
 		<div class="container">
 			<div class="row">
 				<!-- User Perfil -->
@@ -116,5 +117,3 @@ export default {
 	}
 }
 </script>
-
-<style scr="/css/style-call-vue.css"></style>

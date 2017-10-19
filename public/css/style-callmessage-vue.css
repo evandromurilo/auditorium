@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.msg-user, .msg-secundario{
+  padding-left: 4px;
+  padding-right: 4px;
+  word-wrap: normal;
+}
+
+.msg-secundario {
+  border-radius: 30px 30px 30px 2px;
+  display: inline-block;
+  background-color: #ffffff;
+}
+
+.msg-user {
+  border-radius: 30px 30px 2px 30px;
+  float: right;
+  display: inline-block;
+  clear: both;
+  background-color: #91A192;
+}
