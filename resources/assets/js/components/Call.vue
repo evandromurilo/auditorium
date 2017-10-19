@@ -2,13 +2,16 @@
 <div>
   <link rel="stylesheet" href="/css/style-call-vue.css">
   <div class="container">
-    <div class="row" >
+    <div class="row">
+
       <!-- User Perfil -->
-      <div class="row"  v-for="member in members">
-        <call-member :member="member"></call-member>
+      <div class="col-md-3">
+        <div v-for="member in members">
+          <call-member :member="member"></call-member>
+        </div>
       </div>
 
-			<!-- well do chat center-->
+      <!-- well do chat center-->
       <div class="col-md-6">
         <h1> {{ call.title }}</h1>
         <div class="well well-chat">
@@ -28,7 +31,7 @@
           </div>
         </div>
       </div>
-			<!--Assuntos do chat-->
+      <!--Assuntos do chat-->
       <div class="col-md-3">
         <div class="well well-assunto">
           <h2>Assuntos</h2>
