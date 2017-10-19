@@ -19,6 +19,8 @@ Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('notification-item', require('./components/NotificationItem.vue'));
 Vue.component('new-call', require('./components/NewCall.vue'));
 Vue.component('call', require('./components/Call.vue'));
+Vue.component('call-member', require('./components/CallMember.vue'));
+
 Vue.component('call-message', require('./components/CallMessage.vue'));
 
 const app = new Vue({

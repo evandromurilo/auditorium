@@ -2,17 +2,15 @@
 <div>
   <link rel="stylesheet" href="/css/style-call-vue.css">
   <div class="container">
-    <div class="row">
+    <div class="row" >
       <!-- User Perfil -->
-      <div class="col-md-3">
-        <h1>{{ call.title }}</h1>
-        <div class="well well-perfil">
-
-        </div>
+      <div class="row"  v-for="member in members">
+        <call-member :member="member"></call-member>
       </div>
 
 			<!-- well do chat center-->
       <div class="col-md-6">
+        <h1> {{ call.title }}</h1>
         <div class="well well-chat">
           <div class="messages">
             <call-message v-for="message in n_messages" :user_id="user_id" :message="message"></call-message>
