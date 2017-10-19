@@ -18,7 +18,7 @@ export default {
 	props:['user'],
 	data() {
 		return {
-			post_url: "/calls",
+			post_url: "/calls?from=create_call",
 			csrf_token: $('meta[name=csrf-token]').attr('content'),
 			members: [this.user],
 			email: '',
@@ -41,7 +41,7 @@ export default {
 		send: function() {
 			var inputs = {
 				_token: this.csrf_token,
-				title: this.body,
+				title: this.title,
 				members: this.members,
 				user_id: this.user.id,
 			}
