@@ -58,6 +58,10 @@ class CallController extends Controller {
 			$member->allow('see', $call);
 		}
 
-		return route('calls.show', $call->id);
+		if ($request->from == "create_call") {
+			return route('calls.show', $call->id);
+		} else {
+			return redirect()->route('calls.show', $call->id);
+		}
 	}
 }
