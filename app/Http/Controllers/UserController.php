@@ -38,6 +38,14 @@ class UserController extends Controller {
 		$user->cel = $request->cel;
 		$user->description = $request->description;
 
+		if (Auth::user()->isAn('admin')) {
+			$user->retract('admin');
+			$user->retract('secre');
+			$user->retract('coord');
+
+			$user->assign($request->role);
+		}
+
 		$user->save();
 
 		return redirect()->route('users.show', $user->id);

@@ -87,6 +87,24 @@
 							</div>
 
 							<div class="form-group">
+								<div class="col-md-6">
+									@if (Auth::user()->isAn('admin'))
+										<select name="role">
+											<option value="admin" {{ $user->isAn('admin')? 'selected':'' }}>
+												Administrador (a)
+											</option>
+											<option value="secre" {{ $user->isAn('secre')? 'selected':'' }}>
+												Secretário (a)
+											</option>
+											<option value="coord" {{ $user->isAn('coord')? 'selected':'' }}>
+												Coordenador (a)
+											</option>
+										</select>
+									@endif
+								</div>
+							</div>
+
+							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									<button type="submit" class="btn btn-primary">
 										Atualizar
