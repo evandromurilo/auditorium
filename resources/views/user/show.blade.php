@@ -14,14 +14,22 @@
 					</div>
 
 
+					@if (Auth::user()->isAn('admin') || $user->id == Auth::id())
 						<a href="{{ route('users.edit', $user->id) }}">
 							<button type="button" class="btn">Editar Perfil
 							 	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 						 </button>
 					 </a>
+				 @endif
 
 
-
+					 @if ($user->isAn('admin'))
+						 <p>Administrador</p>
+					 @elseif ($user->isAn('secre'))
+						 <p>Secretário (a)</p>
+					 @elseif ($user->isAn('coord'))
+						 <p>Coordenador (a)</p>
+					 @endif
 				<p>{{ $user->description }}</p>
 				<p>{{ $user->email }} <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
 				<p>{{ $user->cel }}</p>
