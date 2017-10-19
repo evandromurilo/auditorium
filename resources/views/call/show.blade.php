@@ -6,5 +6,6 @@
 	<call :call="{{ $call }}"
 		:messages="{{ $call->messages }}"
 		:user_id="{{ Auth::id() }}"
-		:members="{{ $call->members }}"></call>
+		:members="{{ $call->members }}"
+		:calls="{{ Auth::user()->calls }}"></call>
 @endsection

@@ -1,21 +1,64 @@
-
-body{
-	margin: 0;
-	padding: 0;
-	  font-family: 'Roboto', sans-serif;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
-.well-perfil{
-	width: 120px;
-	height: 120px;
-	border-radius: 100%;
+/*pessoas relacionadas*/
+
+.user-relacionado {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: red;
 }
-.well-chat{
-	margin-top: 70px;
-	height: 400px;
+
+.well-perfil {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+
+.well-pessoa {
+  margin-top: 25px;
+}
+
+/*chat*/
+
+.altura-title {
+  margin-top: 25px;
+}
+
+.well-chat {
+  margin-top: 30px;
+  height: 400px;
+  overflow: auto;
+}
+
+/*assunto*/
+.well-assunto {
+  margin-top: 25px;
+	height: 430px;
 	overflow: auto;
+}
+
+.user-assunto {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: red;
+}
+.well-list-assunto{
+	height: 30px;
+	}
+a{
+	text-decoration: none;
+	color: #000;
 
 }
-.well-assunto{
+a:link{
+	text-decoration: none;
+	color: #000;
+}
 
+.description-assunto{
+/*falta*/
 }

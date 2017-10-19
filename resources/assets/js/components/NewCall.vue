@@ -7,7 +7,7 @@
 				<p>{{ member.email }}</p>
 			</li>
 		</ul>
-		<input type="text" v-model="email">
+		<input type="text" size="30" maxlength="30" v-model="email">
 		<button v-on:click="insert">Add</button>
 		<button v-on:click="send">Criar chamada</button>
 	</div>

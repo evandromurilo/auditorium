@@ -1,22 +1,21 @@
 <template>
+<div>
+  <link rel="stylesheet" href="/css/style-callmember-vue.css">
 
-    <div>
-      <h4>{{ member.name }}</h4>
-      <div class="well well-perfil" v-bind:style="{ backgroundColor: member.color }">
-        <span>{{ member.name[0] }}</span>
-      </div>
+  <h5 class="text-left">{{ member.name }}</h5>
+  <div class="well well-perfil" v-bind:style="{ backgroundColor: member.color }">
+    <div class="letra-perfil-member">
+      <span id="letra">{{ member.name[0] }}</span>
     </div>
-
-
-
-
+  </div>
+</div>
 </template>
 
 <script>
-    export default {
-      props: ['member'],
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+export default {
+  props: ['member'],
+  mounted() {
+    console.log('Component mounted.')
+  }
+}
 </script>

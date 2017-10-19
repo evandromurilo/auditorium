@@ -6,14 +6,17 @@
 
       <!-- User Perfil -->
       <div class="col-md-3">
-        <div v-for="member in members">
-          <call-member :member="member"></call-member>
+        <div class="well well-pessoa">
+          <h3 class="text-center user-relacionado">Pessoas Relacionadas</h3>
+          <div v-for="member in members">
+            <call-member :member="member"></call-member>
+          </div>
         </div>
       </div>
 
       <!-- well do chat center-->
       <div class="col-md-6">
-        <h1> {{ call.title }}</h1>
+        <h2 class="text-justify altura-title"> {{ call.title }}</h2>
         <div class="well well-chat">
           <div class="messages">
             <call-message v-for="message in n_messages" :user_id="user_id" :message="message"></call-message>
@@ -31,10 +34,19 @@
           </div>
         </div>
       </div>
-      <!--Assuntos do chat-->
+      <!--Assuntos do chat
+      Parei Aqui
+    -->
       <div class="col-md-3">
         <div class="well well-assunto">
-          <h2>Assuntos</h2>
+          <h3 class="text-center user-assunto">Assuntos</h3>
+					<div v-for="call in calls">
+            <div class="well well-list-assunto">
+              <div class="description-assunto">
+                <a class="text-justify" :href="'/calls/'+call.id">{{ call.title}}</a>
+              </div>
+            </div>
+					</div>
         </div>
       </div>
     </div>
@@ -44,7 +56,7 @@
 
 <script>
 export default {
-  props: ['user_id', 'call', 'messages', 'members'],
+  props: ['user_id', 'call', 'messages', 'members', 'calls'],
   data() {
     return {
       post_url: "/messages",

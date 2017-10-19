@@ -48560,7 +48560,7 @@ var render = function() {
           expression: "email"
         }
       ],
-      attrs: { type: "text" },
+      attrs: { type: "text", size: "30", maxlength: "30" },
       domProps: { value: _vm.email },
       on: {
         input: function($event) {
@@ -48685,9 +48685,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_id', 'call', 'messages', 'members'],
+  props: ['user_id', 'call', 'messages', 'members', 'calls'],
   data: function data() {
     return {
       post_url: "/messages",
@@ -48771,20 +48783,31 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-3" },
-          _vm._l(_vm.members, function(member) {
-            return _c(
-              "div",
-              [_c("call-member", { attrs: { member: member } })],
-              1
-            )
-          })
-        ),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c(
+            "div",
+            { staticClass: "well well-pessoa" },
+            [
+              _c("h3", { staticClass: "text-center user-relacionado" }, [
+                _vm._v("Pessoas Relacionadas")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.members, function(member) {
+                return _c(
+                  "div",
+                  [_c("call-member", { attrs: { member: member } })],
+                  1
+                )
+              })
+            ],
+            2
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
-          _c("h1", [_vm._v(" " + _vm._s(_vm.call.title))]),
+          _c("h2", { staticClass: "text-justify altura-title" }, [
+            _vm._v(" " + _vm._s(_vm.call.title))
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "well well-chat" }, [
             _c(
@@ -48843,23 +48866,40 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "col-md-3" }, [
+          _c(
+            "div",
+            { staticClass: "well well-assunto" },
+            [
+              _c("h3", { staticClass: "text-center user-assunto" }, [
+                _vm._v("Assuntos")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.calls, function(call) {
+                return _c("div", [
+                  _c("div", { staticClass: "well well-list-assunto" }, [
+                    _c("div", { staticClass: "description-assunto" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-justify",
+                          attrs: { href: "/calls/" + call.id }
+                        },
+                        [_vm._v(_vm._s(call.title))]
+                      )
+                    ])
+                  ])
+                ])
+              })
+            ],
+            2
+          )
+        ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "well well-assunto" }, [
-        _c("h2", [_vm._v("Assuntos")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48936,13 +48976,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['member'],
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
+  props: ['member'],
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  }
 });
 
 /***/ }),
@@ -48954,7 +48993,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h4", [_vm._v(_vm._s(_vm.member.name))]),
+    _c("link", {
+      attrs: { rel: "stylesheet", href: "/css/style-callmember-vue.css" }
+    }),
+    _vm._v(" "),
+    _c("h5", { staticClass: "text-left" }, [_vm._v(_vm._s(_vm.member.name))]),
     _vm._v(" "),
     _c(
       "div",
@@ -48962,7 +49005,13 @@ var render = function() {
         staticClass: "well well-perfil",
         style: { backgroundColor: _vm.member.color }
       },
-      [_c("span", [_vm._v(_vm._s(_vm.member.name[0]))])]
+      [
+        _c("div", { staticClass: "letra-perfil-member" }, [
+          _c("span", { attrs: { id: "letra" } }, [
+            _vm._v(_vm._s(_vm.member.name[0]))
+          ])
+        ])
+      ]
     )
   ])
 }
