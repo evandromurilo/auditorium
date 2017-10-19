@@ -48461,7 +48461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	props: ['user'],
 	data: function data() {
 		return {
-			post_url: "/calls",
+			post_url: "/calls?from=create_call",
 			csrf_token: $('meta[name=csrf-token]').attr('content'),
 			members: [this.user],
 			email: '',
@@ -48485,7 +48485,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		send: function send() {
 			var inputs = {
 				_token: this.csrf_token,
-				title: this.body,
+				title: this.title,
 				members: this.members,
 				user_id: this.user.id
 			};
