@@ -27,7 +27,7 @@
                 <input type="hidden" name="_token" :value="csrf_token">
                 <input type="text" class="form-control" v-model="body">
                 <span class="input-group-btn">
-										<button v-on:click="send" class="btn btn-primary">Enviar</button>
+										<button v-on:click="send" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
 									</span>
               </div>
             </div>
@@ -41,11 +41,10 @@
         <div class="well well-assunto">
           <h3 class="text-center user-assunto">Assuntos</h3>
 					<div v-for="call in calls">
-            <div class="well well-list-assunto">
-              <div class="description-assunto">
-                <a class="text-justify" :href="'/calls/'+call.id">{{ call.title}}</a>
+              <div id="teste" class="description-assunto">
+                <a class="text-justify text-assunto" :href="'/calls/'+call.id">{{ call.title}}</a>
               </div>
-            </div>
+
 					</div>
         </div>
       </div>

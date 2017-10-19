@@ -9,7 +9,6 @@ body {
 .user-relacionado {
   margin-top: 0;
   margin-bottom: 20px;
-  color: red;
 }
 
 .well-perfil {
@@ -44,21 +43,19 @@ body {
 .user-assunto {
   margin-top: 0;
   margin-bottom: 20px;
-  color: red;
-}
-.well-list-assunto{
-	height: 30px;
-	}
-a{
-	text-decoration: none;
-	color: #000;
 
 }
-a:link{
+
+.text-assunto:link, .text-assunto{
 	text-decoration: none;
-	color: #000;
+	color: #636b6f;
+
+}
+.text-assunto:hover{
+  background-color: pink;
 }
 
-.description-assunto{
-/*falta*/
+#teste{
+margin-top: 15px;
+
 }

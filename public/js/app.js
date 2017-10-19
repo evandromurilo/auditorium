@@ -48696,7 +48696,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id', 'call', 'messages', 'members', 'calls'],
@@ -48857,7 +48856,12 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         on: { click: _vm.send }
                       },
-                      [_vm._v("Enviar")]
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-paper-plane",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
                     )
                   ])
                 ])
@@ -48877,18 +48881,23 @@ var render = function() {
               _vm._v(" "),
               _vm._l(_vm.calls, function(call) {
                 return _c("div", [
-                  _c("div", { staticClass: "well well-list-assunto" }, [
-                    _c("div", { staticClass: "description-assunto" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "description-assunto",
+                      attrs: { id: "teste" }
+                    },
+                    [
                       _c(
                         "a",
                         {
-                          staticClass: "text-justify",
+                          staticClass: "text-justify text-assunto",
                           attrs: { href: "/calls/" + call.id }
                         },
                         [_vm._v(_vm._s(call.title))]
                       )
-                    ])
-                  ])
+                    ]
+                  )
                 ])
               })
             ],
