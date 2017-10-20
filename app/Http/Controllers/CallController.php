@@ -15,7 +15,7 @@ class CallController extends Controller {
 	}
 
 	public function index(Request $request) {
-		return view('call.index')->with('calls', Auth::user()->calls);
+		return view('call.index')->with('calls', Auth::user()->calls->reverse());
 	}
 
 	public function create() {
