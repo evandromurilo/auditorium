@@ -75,7 +75,11 @@ class RequestController extends Controller
 
 		event(new \App\Events\RequestStatusChanged($nrequest));
 
-		return redirect()->route('requests.index', ['filter' => $request->filter]);
+		if ($request->from == 'index') {
+			return redirect()->route('requests.index', ['filter' => $request->filter]);
+		} else if ($request->from == 'show') {
+			return redirect()->route('requests.show', $nrequest->id);
+		}
 	}
 
 	public function show(Request $request) {
