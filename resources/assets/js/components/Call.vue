@@ -63,6 +63,7 @@ export default {
       members_lookup: {},
       n_messages: [],
       body: '',
+			//calls: this.r_calls.reverse(),
     }
   },
   methods: {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\User;
@@ -15,7 +16,7 @@ class CallController extends Controller {
 	}
 
 	public function index(Request $request) {
-		return view('call.index')->with('calls', Auth::user()->calls);
+		return view('call.index')->with('calls', Auth::user()->calls->reverse());
 	}
 
 	public function create() {
@@ -37,21 +38,51 @@ class CallController extends Controller {
 		return view('call.show')->with('call', $call);
 	}
 
-	public function store(Request $request) {
-		$call = new Call;
-		$call->title = $request->title;
-		$call->save();
-
-		if ($request->from == "create_call") {
-			foreach ($request->members as $member) {
-        \Log::info('member', ['member' => $member["email"]]);
-				$user = User::where('email', $member["email"])->first();
-        \Log::info('user', ['user' => $user]);
-				$call->members()->attach($user->id);
+	public function createCall(Request $request) {
+			if (sizeof($request->members) == 2) {
+				$user_id = User::where('email', $request->members[1]["email"])->first()->id;
+				$call = $this->createOneToOneCall($user_id);
 			}
+			else {
+				$call = new Call;
+				$call->title = $request->title;
+				$call->save();
+
+				foreach ($request->members as $member) {
+					$user = User::where('email', $member["email"])->first();
+					$call->members()->attach($user->id);
+				}
+			}
+
+			return $call;
+	}
+
+	public function createOneToOneCall($user_id) {
+		$call_user = DB::table('call_user as first')
+			->join('call_user as second', 'first.call_id', '=', 'second.call_id')
+			->where('first.user_id', '=', $user_id)
+			->where('second.user_id', '=', Auth::id())
+			->first();
+
+		if ($call_user) {
+			$call = Call::find($call_user->call_id);
 		} else {
-			$call->members()->attach($request->user_id);
+			$call = new Call;
+			$call->title = User::find($user_id)->name.' e '.Auth::user()->name;
+			$call->save();
+
+			$call->members()->attach($user_id);
 			$call->members()->attach(Auth::id());
+		}
+
+		return $call;
+	}
+
+	public function store(Request $request) {
+		if ($request->from == "create_call") {
+			$call = $this->createCall($request);
+		} else {
+			$call = $this->createOneToOneCall($request->user_id);
 		}
 
 		foreach ($call->members as $member) {
