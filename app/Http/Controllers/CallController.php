@@ -58,15 +58,23 @@ class CallController extends Controller {
 	}
 
 	public function createOneToOneCall($user_id) {
-		$call_user = DB::table('call_user as first')
+		$call_user_list = DB::table('call_user as first')
 			->join('call_user as second', 'first.call_id', '=', 'second.call_id')
 			->where('first.user_id', '=', $user_id)
 			->where('second.user_id', '=', Auth::id())
-			->first();
+			->get();
 
-		if ($call_user) {
-			$call = Call::find($call_user->call_id);
-		} else {
+		$found_call = false;
+
+		foreach ($call_user_list as $call_user) {
+			if (count(Call::find($call_user->call_id)->members) == 2) {
+				$call = Call::find($call_user->call_id);
+				$found_call = true;
+				break;
+			}
+		}
+
+		if (!$found_call) {
 			$call = new Call;
 			$call->title = User::find($user_id)->name.' e '.Auth::user()->name;
 			$call->save();
