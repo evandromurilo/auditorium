@@ -23,7 +23,7 @@
 							<div class="form-group space-top">
 								<label class="col-md-2 control-label">Evento </label>
 								<div class="col-md-9">
-									<input type="text" name="event" class="form-control text-capitalize" autocomplete="off">
+									<input type="text" name="event" class="form-control" autocomplete="off">
 								</div>
 							</div>
 
