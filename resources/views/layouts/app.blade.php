@@ -41,7 +41,13 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+											&nbsp;
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('auditoria.index') }}">Auditórios </a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('users.index') }}">Usuários </a>
+											</li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

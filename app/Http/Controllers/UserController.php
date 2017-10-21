@@ -11,6 +11,10 @@ class UserController extends Controller {
 		$this->middleware('auth');
 	}
 
+	public function index(Request $request) {
+		return view('user.index')->with('users', User::all());
+	}
+
 	public function show(Request $request) {
 		$user = User::find($request->segment(2));
 		$requests = \App\Request::where('user_id', $user->id)->get();
