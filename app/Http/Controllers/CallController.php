@@ -20,7 +20,7 @@ class CallController extends Controller {
 	}
 
 	public function create() {
-		return view('call.create');
+		return view('call.create')->with('users', User::all());
 	}
 
 	public function show(Request $request) {
@@ -40,7 +40,7 @@ class CallController extends Controller {
 
 	public function createCall(Request $request) {
 			if (sizeof($request->members) == 2) {
-				$user_id = User::where('email', $request->members[1]["email"])->first()->id;
+				$user_id = User::where('email', $request->members[1]['email'])->first()->id;
 				$call = $this->createOneToOneCall($user_id);
 			}
 			else {
@@ -49,7 +49,7 @@ class CallController extends Controller {
 				$call->save();
 
 				foreach ($request->members as $member) {
-					$user = User::where('email', $member["email"])->first();
+					$user = User::where('email', $member['email'])->first();
 					$call->members()->attach($user->id);
 				}
 			}

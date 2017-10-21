@@ -47837,31 +47837,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['user'],
+	props: ['user', 'users'],
 	data: function data() {
 		return {
 			post_url: "/calls?from=create_call",
 			csrf_token: $('meta[name=csrf-token]').attr('content'),
-			members: [this.user],
-			email: '',
+			members: [{ name: this.user.name, email: this.user.email }],
 			title: '',
 			request: false
 		};
 	},
 
 	methods: {
-		insert: function insert() {
-			//$.get("/users/json?email="+this.email);
-			self = this;
+		added: function added(email) {
+			return this.members.some(function (el) {
+				return el.email == email;
+			});
+		},
 
-			var user = {
-				email: self.email
-			};
+		insert: function insert(n, m) {
+			this.members.push({ name: n, email: m });
+		},
 
-			this.members.push(user);
-			this.email = '';
+		remove: function remove(member) {
+			this.members.splice(this.members.indexOf(member));
 		},
 
 		send: function send() {
@@ -47901,65 +47909,87 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("label", [_vm._v("Título: ")]),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.title,
-          expression: "title"
-        }
-      ],
-      attrs: { type: "text" },
-      domProps: { value: _vm.title },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+  return _c(
+    "div",
+    [
+      _c("label", [_vm._v("Título: ")]),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.title,
+            expression: "title"
           }
-          _vm.title = $event.target.value
-        }
-      }
-    }),
-    _c("br"),
-    _vm._v(" "),
-    _c("label", [_vm._v("Membros:")]),
-    _c("br"),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.members, function(member) {
-        return _c("li", [_c("p", [_vm._v(_vm._s(member.email))])])
-      })
-    ),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.email,
-          expression: "email"
-        }
-      ],
-      attrs: { type: "text", size: "30", maxlength: "30" },
-      domProps: { value: _vm.email },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.title },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.title = $event.target.value
           }
-          _vm.email = $event.target.value
         }
-      }
-    }),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.insert } }, [_vm._v("Add")]),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.send } }, [_vm._v("Criar chamada")])
-  ])
+      }),
+      _c("br"),
+      _vm._v(" "),
+      _c("label", [_vm._v("Membros:")]),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "ul",
+        [
+          _c("li", [_vm._v(_vm._s(_vm.user.name))]),
+          _vm._v(" "),
+          _vm._l(_vm.members, function(member) {
+            return _c("span", [
+              member.email != _vm.user.email
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.remove(member)
+                          }
+                        }
+                      },
+                      [_vm._v("-" + _vm._s(member.name))]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.users, function(user) {
+        return _c("ul", [
+          !_vm.added(user.email)
+            ? _c("li", [
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.insert(user.name, user.email)
+                      }
+                    }
+                  },
+                  [_vm._v("+" + _vm._s(user.name))]
+                )
+              ])
+            : _vm._e()
+        ])
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.send } }, [_vm._v("Criar chamada")])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
