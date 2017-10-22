@@ -88,6 +88,7 @@
 								</tr>
 							@endforeach
 					</table>
+					{{ $requests->links() }}
 				</div>
 			</div>
 		</div>
