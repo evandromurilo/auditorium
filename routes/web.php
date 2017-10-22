@@ -34,6 +34,7 @@ Route::get('/users', 'UserController@index')->name('users.index');
 
 Route::get('/notifications', 'NotificationController@unreadNotifications')->name('notifications');
 Route::get('/notifications/newmessage/{id}', 'NotificationController@markNewMessageAsRead');
+Route::get('/notifications/{id}', 'NotificationController@markAsRead');
 
 /* Route::put('/messages', 'MessageController@store')->name('messages.store'); */
 /* Route::put('/calls', 'CallController@store')->name('calls.store'); */

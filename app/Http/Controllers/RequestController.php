@@ -60,6 +60,8 @@ class RequestController extends Controller
 		$nrequest->status = 0;
 
 		$nrequest->save();
+
+		event(new \App\Events\RequestCreated($nrequest));
 		
 		$date = (new Carbon($request->date))->format('d/m/Y');
 		return redirect()->route('auditoria.index', ['date' => $date]);
@@ -84,19 +86,6 @@ class RequestController extends Controller
 
 	public function show(Request $request) {
 		$nrequest = \App\Request::find($request->segment(2));
-
-		if ($request->has('from') && $request->from == 'notification') {
-			$read = false;
-				foreach (Auth::user()->unreadNotifications as $notification) {
-					if ($notification->type == "App\Notifications\RequestResolved" &&
-						$notification->data['request_id'] == $nrequest->id) {
-						$read = true;
-						$notification->markAsRead();
-					}
-				}
-
-			if ($read) event(new \App\Events\NotificationRead($nrequest->user));
-		}
 
 		return view('request.show')->with('request', $nrequest);
 	}

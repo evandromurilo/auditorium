@@ -28,13 +28,13 @@ class CallController extends Controller {
 
 		$this->authorize('see', $call);
 
-		foreach (Auth::user()->unreadNotifications as $notification) {
-			if (($notification->type == "App\Notifications\NewMessage"
-				|| $notification->type == "App\Notifications\NewCall")	&&
-				$notification->data['call_id']	== $call->id) {
-				$notification->markAsRead();
-			}
-		}
+		/* foreach (Auth::user()->unreadNotifications as $notification) { */
+		/* 	if (($notification->type == "App\Notifications\NewMessage" */
+		/* 		|| $notification->type == "App\Notifications\NewCall")	&& */
+		/* 		$notification->data['call_id']	== $call->id) { */
+		/* 		$notification->markAsRead(); */
+		/* 	} */
+		/* } */
 
 		return view('call.show')->with('call', $call);
 	}

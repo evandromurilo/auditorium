@@ -47638,6 +47638,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {};
 	},
+
+	methods: {
+		markAsRead: function markAsRead() {
+			var request = $.get("/notifications/" + this.unread.id + "?read=true");
+
+			self = this;
+
+			request.always(function () {
+				window.location.replace(self.unread.data.n_url);
+			});
+		}
+	},
 	mounted: function mounted() {}
 });
 
@@ -47649,7 +47661,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { attrs: { href: _vm.unread.data.n_url } }, [
+  return _c("a", { attrs: { href: "#" }, on: { click: _vm.markAsRead } }, [
     _c(
       "div",
       {

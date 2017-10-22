@@ -13,6 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'App\Events\RequestCreated' => [
+					'App\Listeners\SendNewRequestNotification',
+        ],
         'App\Events\RequestStatusChanged' => [
 					'App\Listeners\SendStatusChangeNotification',
         ],
