@@ -48129,14 +48129,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_id', 'call', 'messages', 'members', 'calls'],
+  props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
   data: function data() {
     return {
       post_url: "/messages",
       csrf_token: $('meta[name=csrf-token]').attr('content'),
-      members_lookup: {},
+      users_lookup: {},
       n_messages: [],
       body: ''
       //calls: this.r_calls.reverse(),
@@ -48144,6 +48146,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    exit: function exit() {
+      var request = $.get("/calls/" + this.call.id + "/exit");
+
+      request.done(function () {
+        window.location.replace("/calls");
+      });
+    },
+
     send: function send() {
       var inputs = {
         _token: this.csrf_token,
@@ -48156,7 +48166,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var message = {
         body: this.body,
-        author: this.members_lookup[this.user_id]
+        author: this.users_lookup[this.user_id]
       };
 
       this.n_messages.push(message);
@@ -48178,12 +48188,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     var self = this;
 
-    for (var i = 0, len = this.members.length; i < len; i++) {
-      this.members_lookup[this.members[i].id] = this.members[i];
+    for (var i = 0, len = this.users.length; i < len; i++) {
+      this.users_lookup[this.users[i].id] = this.users[i];
     }
 
     for (var i = 0, len = this.messages.length; i < len; i++) {
-      this.messages[i].author = this.members_lookup[this.messages[i].user_id];
+      this.messages[i].author = this.users_lookup[this.messages[i].user_id];
       this.n_messages.push(this.messages[i]);
     }
 
@@ -48192,7 +48202,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('Calls: New message!');
 
         var message = e.message;
-        message.author = _this.members_lookup[message.user_id];
+        message.author = _this.users_lookup[message.user_id];
         _this.n_messages.push(message);
 
         $.get('/notifications/newmessage/' + _this.call.id + '?markasread');
@@ -48339,7 +48349,11 @@ var render = function() {
           )
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    !_vm.call.user_to_user
+      ? _c("a", { on: { click: _vm.exit } }, [_vm._v("Sair")])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

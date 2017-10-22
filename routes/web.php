@@ -18,6 +18,7 @@ Auth::routes();
 
 Route::resource('requests', 'RequestController');
 Route::resource('calls', 'CallController');
+Route::get('/calls/{call}/exit', 'CallController@getOut')->name('calls.exit');
 Route::resource('messages', 'MessageController');
 /* Route::get('requests', 'RequestController@index')->name('requests.index'); */
 /* Route::get('requests/create', 'RequestController@create')->name('requests.create'); */

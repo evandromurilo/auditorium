@@ -109,4 +109,9 @@ class CallController extends Controller {
 			return redirect()->route('calls.show', $call->id);
 		}
 	}
+
+	public function getOut(Request $request) {
+		$call = Call::find($request->segment(2));
+		$call->members()->detach(Auth::id());
+	}
 }

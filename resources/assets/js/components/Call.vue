@@ -50,23 +50,33 @@
       </div>
     </div>
   </div>
+	<a v-if="!call.user_to_user"
+		v-on:click="exit">Sair</a>
 </div>
 </template>
 
 <script>
 export default {
-  props: ['user_id', 'call', 'messages', 'members', 'calls'],
+  props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
   data() {
     return {
       post_url: "/messages",
       csrf_token: $('meta[name=csrf-token]').attr('content'),
-      members_lookup: {},
+      users_lookup: {},
       n_messages: [],
       body: '',
 			//calls: this.r_calls.reverse(),
     }
   },
   methods: {
+		exit: function() {
+			var request = $.get("/calls/"+this.call.id+"/exit");
+
+			request.done(function () {
+				window.location.replace("/calls");
+			});
+		},
+
     send: function() {
       var inputs = {
         _token: this.csrf_token,
@@ -79,7 +89,7 @@ export default {
 
       var message = {
         body: this.body,
-        author: this.members_lookup[this.user_id],
+        author: this.users_lookup[this.user_id],
       }
 
       this.n_messages.push(message);
@@ -103,12 +113,12 @@ export default {
 
     var self = this;
 
-    for (var i = 0, len = this.members.length; i < len; i++) {
-      this.members_lookup[this.members[i].id] = this.members[i];
+    for (var i = 0, len = this.users.length; i < len; i++) {
+      this.users_lookup[this.users[i].id] = this.users[i];
     }
 
     for (var i = 0, len = this.messages.length; i < len; i++) {
-      this.messages[i].author = this.members_lookup[this.messages[i].user_id];
+      this.messages[i].author = this.users_lookup[this.messages[i].user_id];
       this.n_messages.push(this.messages[i]);
     }
 
@@ -118,7 +128,7 @@ export default {
           console.log('Calls: New message!');
 
           var message = e.message;
-          message.author = this.members_lookup[message.user_id];
+          message.author = this.users_lookup[message.user_id];
           this.n_messages.push(message);
 
           $.get('/notifications/newmessage/' + this.call.id + '?markasread');
