@@ -33,12 +33,14 @@
 				<p>{{ $user->description }}</p>
 				<p>{{ $user->email }} <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
 				<p>{{ $user->cel }}</p>
-				<p class="chat">Chat <i class="fa fa-comments-o" aria-hidden="true"></i></p>
-				<form method="POST" action="{{ route('calls.store') }}">
+				<form id="call-form" method="POST" action="{{ route('calls.store') }}">
 					{{ csrf_field() }}
 					<input type="hidden" name="user_id" value="{{ $user->id }}">
 					<input type="hidden" name="title" value="{{ $user->name }}">
-					<input type="submit" value="Chamada">
+					<p id="chat-button" class="chat" onclick="$('#call-form').submit()">
+						Chat
+						<i class="fa fa-comments-o" aria-hidden="true"></i>
+					</p>
 				</form>
 			</div>
 
