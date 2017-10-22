@@ -19,19 +19,19 @@ class RequestController extends Controller
 		$filter = $request->filter;
 
 		if ($request->filter == "resolved") {
-			$requests = \App\Request::where('status', '<>', 0)->orderBy('date', 'desc')->get();
+			$requests = \App\Request::where('status', '<>', 0)->orderBy('date', 'desc');
 		} else if ($request->filter == "rejected") {
-			$requests = \App\Request::where('status', 1)->orderBy('date', 'desc')->get();
+			$requests = \App\Request::where('status', 1)->orderBy('date', 'desc');
 		} else if ($request->filter == "accepted") {
-			$requests = \App\Request::where('status', 2)->orderBy('date', 'desc')->get();
+			$requests = \App\Request::where('status', 2)->orderBy('date', 'desc');
 		} else if ($request->filter == "all") {
-			$requests = \App\Request::orderBy('date', 'desc')->get();
+			$requests = \App\Request::orderBy('date', 'desc');
 		} else {
 			$filter = "pending";
-			$requests = \App\Request::where('status', 0)->orderBy('date', 'asc')->get();
+			$requests = \App\Request::where('status', 0)->orderBy('date', 'asc');
 		}
 
-		return view('request.index')->with(['requests' => $requests,
+		return view('request.index')->with(['requests' => $requests->paginate(9),
 		                                    'filter' => $filter]);
 	}
 

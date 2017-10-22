@@ -54,5 +54,6 @@
 					</div>
 				@endforeach
 			</div>
+			{{ $requests->appends(['filter' => $filter])->links() }}
 		</div>
 @endsection
