@@ -9,6 +9,9 @@
 				 <span v-else-if="unread.type == 'App\\Notifications\\RequestResolved'">
 					 {{ unread.data.n_message }}
 				 </span>
+				 <span v-else>
+					 {{ unread.data.n_message }}
+				 </span>
 
 				 <br>
 			 <span class="date-hora">

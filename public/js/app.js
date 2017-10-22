@@ -47629,6 +47629,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['unread'],
@@ -47666,7 +47669,11 @@ var render = function() {
                   "\n\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t\t "
                 )
               ])
-            : _vm._e(),
+            : _c("span", [
+                _vm._v(
+                  "\n\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t\t "
+                )
+              ]),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),

@@ -29,7 +29,8 @@ class CallController extends Controller {
 		$this->authorize('see', $call);
 
 		foreach (Auth::user()->unreadNotifications as $notification) {
-			if ($notification->type == "App\Notifications\NewMessage" &&
+			if (($notification->type == "App\Notifications\NewMessage"
+				|| $notification->type == "App\Notifications\NewCall")	&&
 				$notification->data['call_id']	== $call->id) {
 				$notification->markAsRead();
 			}
@@ -52,6 +53,8 @@ class CallController extends Controller {
 					$user = User::where('email', $member['email'])->first();
 					$call->members()->attach($user->id);
 				}
+
+				event(new \App\Events\CallCreated($call, Auth::user()));
 			}
 
 			return $call;
@@ -81,6 +84,8 @@ class CallController extends Controller {
 
 			$call->members()->attach($user_id);
 			$call->members()->attach(Auth::id());
+
+			event(new \App\Events\CallCreated($call, Auth::user()));
 		}
 
 		return $call;

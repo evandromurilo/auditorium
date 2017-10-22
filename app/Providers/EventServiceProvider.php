@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
 				'App\Events\MessageCreated' => [
 					'App\Listeners\SendNewMessageNotification',
 				],
+				'App\Events\CallCreated' => [
+					'App\Listeners\SendNewCallNotification',
+				],
     ];
 
     /**
