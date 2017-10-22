@@ -23,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
 				],
 				'App\Events\CallCreated' => [
 					'App\Listeners\SendNewCallNotification',
+					'App\Listeners\SetCallMembersPermissions',
 				],
     ];
 
