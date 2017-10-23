@@ -1,6 +1,15 @@
 <template>
-	<div>
-		<label>Título: </label><input type="text" v-model="title"><br>
+	<div class="col-md-4">
+		<div :class="'form-group' +  (errors.title ? ' has-error' : '')">
+			<label for="titie" class="control-label">
+				Título:
+			</label>
+			<input type="text" name="title" class="form-control" v-model="title">
+
+			<span class="help-block" v-if="errors.title">
+				{{ errors.title }}
+			</span>
+		</div>
 		<label>Membros:</label><br>
 		<ul>
 			<li>{{ user.name }}</li>
@@ -30,6 +39,7 @@ export default {
 			members: [{name: this.user.name, email: this.user.email}],
 			title: '',
 			request : false,
+			errors: {},
 		}
 	},
 	methods: {
@@ -67,11 +77,17 @@ export default {
 			});
 
 
+			var self = this;
 			this.request.fail(function (response, textStatus, errorThrown) {
 				console.error(
             "The following error occurred: "+
             textStatus, errorThrown
         );
+
+				self.request = false;
+
+				self.errors = response.responseJSON.errors;
+				console.log(response);
 			});
 
 		}
