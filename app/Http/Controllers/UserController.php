@@ -36,11 +36,20 @@ class UserController extends Controller {
 	}
 
 	public function update(Request $request) {
+		$validateData = $request->validate([
+			'name' => 'required|string|max:255',
+			'color' => [
+				'required',
+				'string',
+				'regex:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/',
+			],
+			'password' => 'required|string|min:6|confirmed',
+		]);
+
 		$user = User::find($request->segment(2));
 
 		$user->name = $request->name;
 		$user->color = $request->color;
-		$user->email = $request->email;
 		$user->cel = $request->cel;
 		$user->description = $request->description;
 

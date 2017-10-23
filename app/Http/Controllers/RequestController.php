@@ -49,6 +49,12 @@ class RequestController extends Controller
 	public function store(Request $request) {
 		$this->authorize('create', \App\Request::class);
 
+		$validateData = $request->validate([
+			'event' => 'required|string|max:100',
+			'period' => 'required|numeric|min:0|max:2',
+			'description' => 'required|string|max:500',
+		]);
+
 		$nrequest = new \App\Request;
 
 		$nrequest->auditorium_id = $request->auditorium_id;
