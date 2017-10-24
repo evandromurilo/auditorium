@@ -10,10 +10,10 @@
             <label class="col-md-2 control-label">Título da Chamada: </label>
             <div class="col-md-9">
               <input type="text" class="form-control" v-model="title">
+              <span class="help-block" v-if="errors.title">
+                  {{ errors.title }}
+                </span>
             </div>
-            <span class="help-block" v-if="errors.title">
-								{{ errors.title }}
-							</span>
           </div>
         </div>
       </div>
