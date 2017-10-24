@@ -48255,6 +48255,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['unread'],
@@ -48302,10 +48304,18 @@ var render = function() {
                 staticClass: "fa fa-commenting icon-msg",
                 attrs: { "aria-hidden": "true" }
               }),
-              _vm._v(_vm._s(_vm.unread.data.n_message) + "\r\n\t\t\t\t ")
+              _vm._v(
+                "\r\n\t\t\t\t\t " +
+                  _vm._s(_vm.unread.data.n_message) +
+                  "\r\n\t\t\t\t "
+              )
             ])
           : _vm.unread.type == "App\\Notifications\\RequestResolved"
             ? _c("span", [
+                _c("i", {
+                  staticClass: "fa fa-bell icon-notification",
+                  attrs: { "aria-hidden": "true" }
+                }),
                 _vm._v(
                   "\r\n\t\t\t\t\t " +
                     _vm._s(_vm.unread.data.n_message) +
