@@ -48540,6 +48540,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'users'],
@@ -48562,7 +48580,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     insert: function insert(user) {
-      this.members.push({ name: user.name, email: user.email });
+      this.members.push({
+        name: user.name,
+        email: user.email
+      });
     },
 
     remove: function remove(user) {
@@ -48665,91 +48686,105 @@ var render = function() {
                     ])
                   : _vm._e()
               ]
-            ),
-            _vm._v(" "),
-            _c("label", [_vm._v("Membros:")]),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "col-md-4" }, [
-                _c(
-                  "ul",
-                  [
-                    _c("li", [_vm._v(_vm._s(_vm.user.name))]),
-                    _vm._v(" "),
-                    _vm._l(_vm.users, function(u) {
-                      return _c("span", [
-                        _vm.added(u.email)
-                          ? _c("span", [
-                              u.email != _vm.user.email
-                                ? _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        on: {
-                                          click: function($event) {
-                                            _vm.remove(u)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          _vm._s(u.name) +
-                                            "\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t "
-                                        ),
-                                        _c("i", {
-                                          staticClass: "fa fa-minus-square",
-                                          attrs: { "aria-hidden": "true" }
-                                        })
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                          : _c("span", [
-                              u.email != _vm.user.email
-                                ? _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        on: {
-                                          click: function($event) {
-                                            _vm.insert(u)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          _vm._s(u.name) +
-                                            "\r\n    \t\t\t\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                        _c("i", {
-                                          staticClass: "fa fa-plus-square",
-                                          attrs: { "aria-hidden": "true" }
-                                        })
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e()
-                            ])
-                      ])
-                    })
-                  ],
-                  2
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-1" }, [
-              _c(
-                "button",
-                { staticClass: "btn btn-primary", on: { click: _vm.send } },
-                [_vm._v("Criar chamada")]
-              )
-            ])
+            )
           ])
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12 col-lg-12" }, [
+          _c("div", {}, [_c("span", [_vm._v(_vm._s(_vm.user.name))])])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("label", [_vm._v("Membros:")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "ul",
+          _vm._l(_vm.users, function(u) {
+            return _c("span", [
+              u.email != _vm.user.email
+                ? _c("div", { staticClass: "col-md-3" }, [
+                    _vm.added(u.email)
+                      ? _c("span", [
+                          u.email != _vm.user.email
+                            ? _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "circle-creat",
+                                    style: { color: u.color },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.remove(u)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\r\n                            " +
+                                        _vm._s(u.name) +
+                                        "\r\n                             "
+                                    ),
+                                    _c("i", {
+                                      staticClass:
+                                        "fa fa-minus-square icon-mais",
+                                      attrs: { "aria-hidden": "true" }
+                                    })
+                                  ]
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      : _c("span", [
+                          u.email != _vm.user.email
+                            ? _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "circle-creat",
+                                    style: { color: u.color },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.insert(u)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\r\n                            " +
+                                        _vm._s(u.name) +
+                                        "\r\n                              "
+                                    ),
+                                    _c("i", {
+                                      staticClass:
+                                        "fa fa-plus-square icon-menos",
+                                      attrs: { "aria-hidden": "true" }
+                                    })
+                                  ]
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                  ])
+                : _vm._e()
+            ])
+          })
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", on: { click: _vm.send } },
+        [_vm._v("Criar chamada")]
+      )
     ])
   ])
 }

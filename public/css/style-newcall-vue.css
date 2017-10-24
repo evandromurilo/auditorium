@@ -1,5 +1,32 @@
-body{
+body {
   margin: 0;
   padding: 0;
   background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style: none
+}
+
+.circle-creat {
+  border: 2px solid;
+  border-radius: 20px 20px 20px 20px;
+  padding: 5px 10px 5px 10px;
+}
+
+.col-md-3 {
+  margin-top: 30px;
+}
+
+.icon-mais, .icon-menos {
+  padding-left: 7px;
 }

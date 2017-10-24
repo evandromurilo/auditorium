@@ -15,43 +15,61 @@
 								{{ errors.title }}
 							</span>
           </div>
-
-          <!--menbros-->
-          <label>Membros:</label><br>
-          <div class="container">
-            <div class="col-md-4">
-                <ul>
-                  <li>{{ user.name }}</li>
-                  <span v-for="u in users">
-                    <span v-if="added(u.email)">
-											<li v-if="u.email != user.email">
-												<a v-on:click="remove(u)">{{ u.name }}
-													 <i class="fa fa-minus-square" aria-hidden="true"></i>
-												 </a>
-											</li>
-                    </span>
-                    <span v-else>
-                      <li v-if="u.email != user.email">
-                        <a v-on:click="insert(u)">{{ u.name }}
-    												<i class="fa fa-plus-square" aria-hidden="true"></i>
-    											</a>
-                      </li>
-                    </span>
-										</span>
-                </ul>
-            </div>
-          </div>
-
-          <!-- button cria chamada-->
-          <div class="col-md-1">
-            <button class="btn btn-primary" v-on:click="send">Criar chamada</button>
-          </div>
         </div>
-
       </div>
     </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="">
+              <span>{{ user.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--menbros-->
+
+    <div class="container">
+      <label>Membros:</label>
+      <div class="row">
+        <ul>
+          <span v-for="u in users">
+                    <div class="col-md-3" v-if="u.email != user.email">
+                      <span v-if="added(u.email)">
+                        <li v-if="u.email != user.email">
+                          <a class="circle-creat" v-bind:style="{ color: u.color }"  v-on:click="remove(u)">
+                            {{ u.name }}
+                             <i class="fa fa-minus-square icon-mais" aria-hidden="true"></i>
+                           </a>
+                        </li>
+                      </span>
+          <span v-else>
+                        <li v-if="u.email != user.email">
+                          <a class="circle-creat" v-bind:style="{ color: u.color }" v-on:click="insert(u)">
+                            {{ u.name }}
+                              <i class="fa fa-plus-square icon-menos" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                      </span>
+                    </div>
+        </span>
+      </ul>
+    </div>
+  </div>
+
+  <!-- button cria chamada-->
+  <div class="col-md-">
+    <button class="btn btn-primary" v-on:click="send">Criar chamada</button>
   </div>
 </div>
+
+
+
+
+
 </template>
 
 <script>
@@ -75,7 +93,10 @@ export default {
     },
 
     insert: function(user) {
-      this.members.push({name: user.name, email: user.email});
+      this.members.push({
+        name: user.name,
+        email: user.email
+      });
     },
 
     remove: function(user) {
