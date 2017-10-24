@@ -1,5 +1,5 @@
 <template>
-		 <a :href="unread.data.n_url">
+		 <a v-on:click="markAsRead" href="#">
 			 <div class="text-justify notification"
 				 style="height: 45px;">
 
@@ -7,6 +7,9 @@
 					 {{ unread.data.n_message }}
 				 </span>
 				 <span v-else-if="unread.type == 'App\\Notifications\\RequestResolved'">
+					 {{ unread.data.n_message }}
+				 </span>
+				 <span v-else>
 					 {{ unread.data.n_message }}
 				 </span>
 
@@ -23,6 +26,17 @@ export default {
 	props:['unread'],
 	data() {
 		return {
+		}
+	},
+	methods: {
+		markAsRead: function() {
+			var request = $.get("/notifications/"+this.unread.id+"?read=true");
+
+			self = this;
+
+			request.always(function () {
+				window.location.replace(self.unread.data.n_url);
+			});
 		}
 	},
 	mounted() {

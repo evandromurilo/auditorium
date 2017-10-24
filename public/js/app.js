@@ -48250,11 +48250,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['unread'],
 	data: function data() {
 		return {};
+	},
+
+	methods: {
+		markAsRead: function markAsRead() {
+			var request = $.get("/notifications/" + this.unread.id + "?read=true");
+
+			self = this;
+
+			request.always(function () {
+				window.location.replace(self.unread.data.n_url);
+			});
+		}
 	},
 	mounted: function mounted() {}
 });
@@ -48267,7 +48282,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { attrs: { href: _vm.unread.data.n_url } }, [
+  return _c("a", { attrs: { href: "#" }, on: { click: _vm.markAsRead } }, [
     _c(
       "div",
       {
@@ -48287,7 +48302,11 @@ var render = function() {
                   "\n\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t\t "
                 )
               ])
-            : _vm._e(),
+            : _c("span", [
+                _vm._v(
+                  "\n\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t\t "
+                )
+              ]),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
@@ -48399,7 +48418,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, "\nbody {\r\n  margin: 0;\r\n  padding: 0;\n}\n.well-perfil {\r\n  width: 120px;\r\n  height: 120px;\r\n  border-radius: 100%;\n}\n.well-chat {\r\n  margin-top: 70px;\r\n  height: 400px;\r\n  overflow: auto;\n}\n.well-assunto {\n}\n", ""]);
+exports.push([module.i, "\nbody {\r\n  margin: 0;\r\n  padding: 0;\n}\n.well-perfil {\r\n  width: 120px;\r\n  height: 120px;\r\n  border-radius: 100%;\n}\n.well-chat {\r\n  margin-top: 70px;\r\n  height: 400px;\r\n  overflow: auto;\n}\n.well-assunto {\n}\r\n", ""]);
 
 // exports
 
@@ -48465,85 +48484,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user'],
-  data: function data() {
-    return {
-      post_url: "/calls?from=create_call",
-      csrf_token: $('meta[name=csrf-token]').attr('content'),
-      members: [this.user],
-      email: '',
-      title: '',
-      request: false
-    };
-  },
+	props: ['user', 'users'],
+	data: function data() {
+		return {
+			post_url: "/calls?from=create_call",
+			csrf_token: $('meta[name=csrf-token]').attr('content'),
+			members: [{ name: this.user.name, email: this.user.email }],
+			title: '',
+			request: false
+		};
+	},
 
-  methods: {
-    insert: function insert() {
-      //$.get("/users/json?email="+this.email);
-      self = this;
+	methods: {
+		added: function added(email) {
+			return this.members.some(function (el) {
+				return el.email == email;
+			});
+		},
 
-      var user = {
-        email: self.email
-      };
+		insert: function insert(n, m) {
+			this.members.push({ name: n, email: m });
+		},
 
-      this.members.push(user);
-      this.email = '';
-    },
+		remove: function remove(member) {
+			this.members.splice(this.members.indexOf(member));
+		},
 
-    send: function send() {
-      if (this.request) {
-        return;
-      }
+		send: function send() {
+			if (this.request) {
+				return;
+			}
 
-      var inputs = {
-        _token: this.csrf_token,
-        title: this.title,
-        members: this.members,
-        user_id: this.user.id
-      };
+			var inputs = {
+				_token: this.csrf_token,
+				title: this.title,
+				members: this.members,
+				user_id: this.user.id
+			};
 
-      this.request = $.post(this.post_url, inputs);
+			this.request = $.post(this.post_url, inputs);
 
-      this.request.done(function (response, textStatus, jqXHR) {
-        console.log('Call criada!');
-        window.location.replace(response);
-      });
+			this.request.done(function (response, textStatus, jqXHR) {
+				console.log('Call criada!');
+				window.location.replace(response);
+			});
 
-      this.request.fail(function (response, textStatus, errorThrown) {
-        console.error("The following error occurred: " + textStatus, errorThrown);
-      });
-    }
-  },
-  mounted: function mounted() {
-    console.log('NewCall: Component mounted.');
-  }
+			this.request.fail(function (response, textStatus, errorThrown) {
+				console.error("The following error occurred: " + textStatus, errorThrown);
+			});
+		}
+	},
+	mounted: function mounted() {
+		console.log('NewCall: Component mounted.');
+	}
 });
 
 /***/ }),
@@ -48554,98 +48549,87 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "form-horizontal" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { staticClass: "col-md-2 control-label" }, [
-                _vm._v("Título: ")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-9" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.title,
-                      expression: "title"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.title },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.title = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { staticClass: "col-md-2 control-label" }, [
-                _vm._v("Email")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.email,
-                      expression: "email"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", size: "30", maxlength: "30" },
-                  domProps: { value: _vm.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.email = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-1" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-success", on: { click: _vm.insert } },
-                  [_vm._v("Add")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-1" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", on: { click: _vm.send } },
-                  [_vm._v("Criar chamada")]
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "ul",
+  return _c(
+    "div",
+    [
+      _c("label", [_vm._v("Título: ")]),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.title,
+            expression: "title"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.title },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.title = $event.target.value
+          }
+        }
+      }),
+      _c("br"),
+      _vm._v(" "),
+      _c("label", [_vm._v("Membros:")]),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "ul",
+        [
+          _c("li", [_vm._v(_vm._s(_vm.user.name))]),
+          _vm._v(" "),
           _vm._l(_vm.members, function(member) {
-            return _c("li", [_c("p", [_vm._v(_vm._s(member.email))])])
+            return _c("span", [
+              member.email != _vm.user.email
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.remove(member)
+                          }
+                        }
+                      },
+                      [_vm._v("-" + _vm._s(member.name))]
+                    )
+                  ])
+                : _vm._e()
+            ])
           })
-        )
-      ])
-    ])
-  ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.users, function(user) {
+        return _c("ul", [
+          !_vm.added(user.email)
+            ? _c("li", [
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.insert(user.name, user.email)
+                      }
+                    }
+                  },
+                  [_vm._v("+" + _vm._s(user.name))]
+                )
+              ])
+            : _vm._e()
+        ])
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.send } }, [_vm._v("Criar chamada")])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -48766,14 +48750,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_id', 'call', 'messages', 'members', 'calls'],
+  props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
   data: function data() {
     return {
       post_url: "/messages",
       csrf_token: $('meta[name=csrf-token]').attr('content'),
-      members_lookup: {},
+      users_lookup: {},
       n_messages: [],
       body: ''
       //calls: this.r_calls.reverse(),
@@ -48781,6 +48767,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    exit: function exit() {
+      var request = $.get("/calls/" + this.call.id + "/exit");
+
+      request.done(function () {
+        window.location.replace("/calls");
+      });
+    },
+
     send: function send() {
       var inputs = {
         _token: this.csrf_token,
@@ -48793,7 +48787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var message = {
         body: this.body,
-        author: this.members_lookup[this.user_id]
+        author: this.users_lookup[this.user_id]
       };
 
       this.n_messages.push(message);
@@ -48815,12 +48809,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     var self = this;
 
-    for (var i = 0, len = this.members.length; i < len; i++) {
-      this.members_lookup[this.members[i].id] = this.members[i];
+    for (var i = 0, len = this.users.length; i < len; i++) {
+      this.users_lookup[this.users[i].id] = this.users[i];
     }
 
     for (var i = 0, len = this.messages.length; i < len; i++) {
-      this.messages[i].author = this.members_lookup[this.messages[i].user_id];
+      this.messages[i].author = this.users_lookup[this.messages[i].user_id];
       this.n_messages.push(this.messages[i]);
     }
 
@@ -48829,7 +48823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('Calls: New message!');
 
         var message = e.message;
-        message.author = _this.members_lookup[message.user_id];
+        message.author = _this.users_lookup[message.user_id];
         _this.n_messages.push(message);
 
         $.get('/notifications/newmessage/' + _this.call.id + '?markasread');
@@ -48976,7 +48970,11 @@ var render = function() {
           )
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    !_vm.call.user_to_user
+      ? _c("a", { on: { click: _vm.exit } }, [_vm._v("Sair")])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

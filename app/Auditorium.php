@@ -75,4 +75,14 @@ class Status {
 			$this->night = 1;
 		}
 	}
+
+	public function codeToString($code) {
+		if ($code == 0) {
+			return "pendente";
+		} else if ($code == 2) {
+			return "indisponível";
+		} else if ($code == 1) {
+			return "disponível";
+		}
+	}
 }

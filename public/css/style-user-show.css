@@ -59,3 +59,7 @@ p, h2{
   font-size: 3em;
   font-family: 'Amatic SC', cursive;
 }
+
+#chat-button {
+	cursor: pointer;
+}

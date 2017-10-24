@@ -13,6 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'App\Events\RequestCreated' => [
+					'App\Listeners\SendNewRequestNotification',
+        ],
         'App\Events\RequestStatusChanged' => [
 					'App\Listeners\SendStatusChangeNotification',
         ],
@@ -20,6 +23,10 @@ class EventServiceProvider extends ServiceProvider
 				],
 				'App\Events\MessageCreated' => [
 					'App\Listeners\SendNewMessageNotification',
+				],
+				'App\Events\CallCreated' => [
+					'App\Listeners\SendNewCallNotification',
+					'App\Listeners\SetCallMembersPermissions',
 				],
     ];
 

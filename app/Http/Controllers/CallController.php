@@ -20,7 +20,7 @@ class CallController extends Controller {
 	}
 
 	public function create() {
-		return view('call.create');
+		return view('call.create')->with('users', User::all());
 	}
 
 	public function show(Request $request) {
@@ -28,51 +28,69 @@ class CallController extends Controller {
 
 		$this->authorize('see', $call);
 
-		foreach (Auth::user()->unreadNotifications as $notification) {
-			if ($notification->type == "App\Notifications\NewMessage" &&
-				$notification->data['call_id']	== $call->id) {
-				$notification->markAsRead();
-			}
-		}
+		/* foreach (Auth::user()->unreadNotifications as $notification) { */
+		/* 	if (($notification->type == "App\Notifications\NewMessage" */
+		/* 		|| $notification->type == "App\Notifications\NewCall")	&& */
+		/* 		$notification->data['call_id']	== $call->id) { */
+		/* 		$notification->markAsRead(); */
+		/* 	} */
+		/* } */
 
 		return view('call.show')->with('call', $call);
 	}
 
 	public function createCall(Request $request) {
-			if (sizeof($request->members) == 2) {
-				$user_id = User::where('email', $request->members[1]["email"])->first()->id;
-				$call = $this->createOneToOneCall($user_id);
-			}
-			else {
-				$call = new Call;
-				$call->title = $request->title;
-				$call->save();
+			/* if (sizeof($request->members) == 2) { */
+			/* 	$user_id = User::where('email', $request->members[1]['email'])->first()->id; */
+			/* 	$call = $this->createOneToOneCall($user_id); */
+			/* } */
+			/* else { */
 
-				foreach ($request->members as $member) {
-					$user = User::where('email', $member["email"])->first();
-					$call->members()->attach($user->id);
-				}
-			}
+		$call = new Call;
+		$call->title = $request->title;
+		$call->save();
 
-			return $call;
+		foreach ($request->members as $member) {
+			$user = User::where('email', $member['email'])->first();
+			$call->members()->attach($user->id);
+		}
+
+		event(new \App\Events\CallCreated($call, Auth::user()));
+
+		return $call;
 	}
 
 	public function createOneToOneCall($user_id) {
 		$call_user = DB::table('call_user as first')
 			->join('call_user as second', 'first.call_id', '=', 'second.call_id')
+			->join('calls', 'first.call_id', '=', 'calls.id')
+			->where('calls.user_to_user', '=', true)
 			->where('first.user_id', '=', $user_id)
 			->where('second.user_id', '=', Auth::id())
 			->first();
 
-		if ($call_user) {
-			$call = Call::find($call_user->call_id);
-		} else {
+		/* $found_call = false; */
+
+		/* foreach ($call_user_list as $call_user) { */
+		/* 	if (count(Call::find($call_user->call_id)->members) == 2) { */
+		/* 		$call = Call::find($call_user->call_id); */
+		/* 		$found_call = true; */
+		/* 		break; */
+		/* 	} */
+		/* } */
+
+		if (!$call_user) {
 			$call = new Call;
 			$call->title = User::find($user_id)->name.' e '.Auth::user()->name;
+			$call->user_to_user = true;
 			$call->save();
 
 			$call->members()->attach($user_id);
 			$call->members()->attach(Auth::id());
+
+			event(new \App\Events\CallCreated($call, Auth::user()));
+		} else {
+			$call = Call::find($call_user->call_id);
 		}
 
 		return $call;
@@ -85,14 +103,15 @@ class CallController extends Controller {
 			$call = $this->createOneToOneCall($request->user_id);
 		}
 
-		foreach ($call->members as $member) {
-			$member->allow('see', $call);
-		}
-
 		if ($request->from == "create_call") {
 			return route('calls.show', $call->id);
 		} else {
 			return redirect()->route('calls.show', $call->id);
 		}
+	}
+
+	public function getOut(Request $request) {
+		$call = Call::find($request->segment(2));
+		$call->members()->detach(Auth::id());
 	}
 }

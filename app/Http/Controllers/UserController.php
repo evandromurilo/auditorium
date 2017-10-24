@@ -11,9 +11,15 @@ class UserController extends Controller {
 		$this->middleware('auth');
 	}
 
+	public function index(Request $request) {
+		return view('user.index')->with('users', User::all());
+	}
+
 	public function show(Request $request) {
 		$user = User::find($request->segment(2));
-		$requests = \App\Request::where('user_id', $user->id)->get();
+		$requests = \App\Request::where('user_id', $user->id)
+			->orderBy('date', 'desc')
+			->paginate(10);
 
 		return view('user.show')->with(['user' => $user,
 			'requests' => $requests]);

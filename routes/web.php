@@ -16,9 +16,9 @@ Route::get('/home', 'AuditoriumController@index')->name('home');
 
 Auth::routes();
 
-
 Route::resource('requests', 'RequestController');
 Route::resource('calls', 'CallController');
+Route::get('/calls/{call}/exit', 'CallController@getOut')->name('calls.exit');
 Route::resource('messages', 'MessageController');
 /* Route::get('requests', 'RequestController@index')->name('requests.index'); */
 /* Route::get('requests/create', 'RequestController@create')->name('requests.create'); */
@@ -31,9 +31,11 @@ Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 Route::put('/users/{user}', 'UserController@update')->name('users.update');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
+Route::get('/users', 'UserController@index')->name('users.index');
 
 Route::get('/notifications', 'NotificationController@unreadNotifications')->name('notifications');
 Route::get('/notifications/newmessage/{id}', 'NotificationController@markNewMessageAsRead');
+Route::get('/notifications/{id}', 'NotificationController@markAsRead');
 
 /* Route::put('/messages', 'MessageController@store')->name('messages.store'); */
 /* Route::put('/calls', 'CallController@store')->name('calls.store'); */

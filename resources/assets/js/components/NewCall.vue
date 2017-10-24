@@ -1,100 +1,76 @@
 <template>
-<div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-horizontal">
-
-          <div class="form-group">
-            <label class="col-md-2 control-label">Título: </label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" v-model="title">
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <label class="col-md-2 control-label">Email</label>
-            <div class="col-md-4">
-              <input type="text" size="30" class="form-control" maxlength="30" v-model="email">
-            </div>
-
-
-            <div class="col-md-1">
-              <button class="btn btn-success" v-on:click="insert">Add</button>
-            </div>
-
-            <div class="col-md-1">
-              <button class="btn btn-primary" v-on:click="send">Criar chamada</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <ul>
-        <li v-for="member in members">
-          <p>{{ member.email }}</p>
-        </li>
-      </ul>
-
-
-    </div>
-  </div>
-
-</div>
+	<div>
+		<label>Título: </label><input type="text" v-model="title"><br>
+		<label>Membros:</label><br>
+		<ul>
+			<li>{{ user.name }}</li>
+			<span v-for="member in members">
+				<li v-if="member.email != user.email">
+					<a v-on:click="remove(member)">-{{ member.name }}</a>
+				</li>
+			</span>
+		</ul>
+		<ul v-for="user in users">
+			<li v-if="!added(user.email)">
+				<a
+					v-on:click="insert(user.name, user.email)">+{{ user.name }}</a>
+			</li>
+		</ul>
+		<button v-on:click="send">Criar chamada</button>
+	</div>
 </template>
 
 <script>
 export default {
-  props: ['user'],
-  data() {
-    return {
-      post_url: "/calls?from=create_call",
-      csrf_token: $('meta[name=csrf-token]').attr('content'),
-      members: [this.user],
-      email: '',
-      title: '',
-      request: false,
-    }
-  },
-  methods: {
-    insert: function() {
-      //$.get("/users/json?email="+this.email);
-      self = this;
+	props:['user', 'users'],
+	data() {
+		return {
+			post_url: "/calls?from=create_call",
+			csrf_token: $('meta[name=csrf-token]').attr('content'),
+			members: [{name: this.user.name, email: this.user.email}],
+			title: '',
+			request : false,
+		}
+	},
+	methods: {
+		added: function(email) {
+			return this.members.some(function(el) {
+				return el.email == email;
+			});
+		},
 
-      var user = {
-        email: self.email
-      };
+		insert: function(n, m) {
+			this.members.push({name: n, email: m});
+		},
 
-      this.members.push(user);
-      this.email = '';
-    },
+		remove: function(member) {
+			this.members.splice(this.members.indexOf(member));
+		},
 
-    send: function() {
-      if (this.request) {
-        return;
-      }
+		send: function() {
+			if (this.request) {
+				return;
+			}
 
-      var inputs = {
-        _token: this.csrf_token,
-        title: this.title,
-        members: this.members,
-        user_id: this.user.id,
-      }
+			var inputs = {
+				_token: this.csrf_token,
+				title: this.title,
+				members: this.members,
+				user_id: this.user.id,
+			}
 
-      this.request = $.post(this.post_url, inputs);
+			this.request = $.post(this.post_url, inputs);
 
-      this.request.done(function(response, textStatus, jqXHR) {
-        console.log('Call criada!');
-        window.location.replace(response);
-      });
+			this.request.done(function (response, textStatus, jqXHR) {
+				console.log('Call criada!');
+				window.location.replace(response);
+			});
 
 
-      this.request.fail(function(response, textStatus, errorThrown) {
-        console.error(
-          "The following error occurred: " +
-          textStatus, errorThrown
+			this.request.fail(function (response, textStatus, errorThrown) {
+				console.error(
+            "The following error occurred: "+
+            textStatus, errorThrown
         );
       });
 

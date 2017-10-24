@@ -34,40 +34,26 @@
 				@foreach ($requests as $request)
 					<div class="col-md-4">
 						<div class="well">
-							<h2 class="text-center"> {{ $request->auditorium->name }} </h2>
+							<h2 class="text-center">
+								<a href="{{ route('requests.show', $request->id) }}">
+									{{ $request->auditorium->name }}
+								</a>
+							</h2>
 							<p><strong>Data:</strong> {{ $request->dateC->format('d/m/Y') }}</p>
 							<p><strong>Período:</strong> {{ $request->periodF }}</p>
-							<p class="text-capitalize"><strong>Solicitado por:</strong> {{ $request->user->name }}</p>
-
-							<form method="POST" action="{{ route('requests.update', ['id' => $request->id,
-							'filter' => $filter]) }}">
-								{{ csrf_field() }}
-								<input name="_method" type="hidden" value="PUT">
-
-								<label>Status:</label><br>
-
-								<label class="pendente">
-									<input type="radio" name="status" value="0"
-										{{ $request->status == 0? 'checked' : '' }}>Pendente
-								</label>
-
-									<label class="indisponivel">
-										<input type="radio" name="status" value="1"
-											{{ $request->status == 1? 'checked' : '' }}>Rejeitado
-								</label>
-
-									<label class="disponivel">
-										<input type="radio"  name="status" value="2"
-											{{ $request->status == 2? 'checked' : '' }}>Aceito
-									</label><br />
-
-									<div class="btn-confirma">
-										<input type="submit" class="btn btn-primary" value="Confirma">
-									</div>
-							</form>
+							<p class="text-capitalize"><strong>Solicitado por:</strong> 
+								<a href="{{ route('users.show', $request->user_id) }}">
+									{{ $request->user->name }}
+								</a>
+							</p>
+							<?php $post_route = route('requests.update', ['id' => $request->id,
+							'filter' => $filter, 'from' => 'index']) ?>
+							<label>Status:</label><br>
+							@include('partials.request.request_status_update')
 						</div>
 					</div>
 				@endforeach
 			</div>
+			{{ $requests->appends(['filter' => $filter])->links() }}
 		</div>
 @endsection
