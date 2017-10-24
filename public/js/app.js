@@ -48493,6 +48493,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user', 'users'],
@@ -48565,105 +48580,125 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-md-4" },
-    [
-      _c(
-        "div",
-        { class: "form-group" + (_vm.errors.title ? " has-error" : "") },
-        [
+  return _c("div", [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
           _c(
-            "label",
-            { staticClass: "control-label", attrs: { for: "titie" } },
-            [_vm._v("\n\t\t\tTítulo:\n\t\t")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.title,
-                expression: "title"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text", name: "title" },
-            domProps: { value: _vm.title },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.title = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _vm.errors.title
-            ? _c("span", { staticClass: "help-block" }, [
-                _vm._v("\n\t\t\t" + _vm._s(_vm.errors.title) + "\n\t\t")
-              ])
-            : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
-      _c("label", [_vm._v("Membros:")]),
-      _c("br"),
-      _vm._v(" "),
-      _c(
-        "ul",
-        [
-          _c("li", [_vm._v(_vm._s(_vm.user.name))]),
-          _vm._v(" "),
-          _vm._l(_vm.members, function(member) {
-            return _c("span", [
-              member.email != _vm.user.email
-                ? _c("li", [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function($event) {
-                            _vm.remove(member)
-                          }
+            "div",
+            { staticClass: "form-horizontal" },
+            [
+              _c(
+                "div",
+                {
+                  class: "form-group" + (_vm.errors.title ? " has-error" : "")
+                },
+                [
+                  _c("label", { staticClass: "col-md-2 control-label" }, [
+                    _vm._v("Título: ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-9" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.title,
+                          expression: "title"
                         }
-                      },
-                      [_vm._v("-" + _vm._s(member.name))]
-                    )
-                  ])
-                : _vm._e()
-            ])
-          })
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.users, function(user) {
-        return _c("ul", [
-          !_vm.added(user.email)
-            ? _c("li", [
-                _c(
-                  "a",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.insert(user.name, user.email)
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.title },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.title = $event.target.value
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("+" + _vm._s(user.name))]
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm.errors.title
+                    ? _c("span", { staticClass: "help-block" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t" +
+                            _vm._s(_vm.errors.title) +
+                            "\n\t\t\t\t\t\t"
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              ),
+              _vm._v(" "),
+              _c("label", [_vm._v("Membros:")]),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "ul",
+                [
+                  _c("li", [_vm._v(_vm._s(_vm.user.name))]),
+                  _vm._v(" "),
+                  _vm._l(_vm.members, function(member) {
+                    return _c("span", [
+                      member.email != _vm.user.email
+                        ? _c("li", [
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    _vm.remove(member)
+                                  }
+                                }
+                              },
+                              [_vm._v("-" + _vm._s(member.name))]
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.users, function(user) {
+                return _c("ul", [
+                  !_vm.added(user.email)
+                    ? _c("li", [
+                        _c(
+                          "a",
+                          {
+                            on: {
+                              click: function($event) {
+                                _vm.insert(user.name, user.email)
+                              }
+                            }
+                          },
+                          [_vm._v("+" + _vm._s(user.name))]
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-1" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", on: { click: _vm.send } },
+                  [_vm._v("Criar chamada")]
                 )
               ])
-            : _vm._e()
+            ],
+            2
+          )
         ])
-      }),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.send } }, [_vm._v("Criar chamada")])
-    ],
-    2
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
