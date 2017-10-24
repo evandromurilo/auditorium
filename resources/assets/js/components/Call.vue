@@ -35,7 +35,7 @@
         </div>
       </div>
       <!--Assuntos do chat
-      Parei Aqui
+      
     -->
       <div class="col-md-3">
         <div class="well well-assunto">
