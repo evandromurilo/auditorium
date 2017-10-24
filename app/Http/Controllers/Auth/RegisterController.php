@@ -57,7 +57,14 @@ class RegisterController extends Controller
 							'regex:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/',
 						],
             'password' => 'required|string|min:6|confirmed',
-        ]);
+					], [
+						'name.required' => 'O campo nome é obrigatório.',
+						'email.required' => 'O campo email é obrigatório.',
+						'name.max' => 'O campo nome deve ter até 255 caracteres.',
+						'color.required' => 'O campo cor é obrigatório.',
+						'color.regex' => 'Formato inválido no campo cor.',
+						'password.required' => 'O campo senha é obrigatório.',
+					]);
     }
 
     /**
