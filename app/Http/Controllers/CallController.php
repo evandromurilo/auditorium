@@ -28,23 +28,13 @@ class CallController extends Controller {
 
 		$this->authorize('see', $call);
 
-		/* foreach (Auth::user()->unreadNotifications as $notification) { */
-		/* 	if (($notification->type == "App\Notifications\NewMessage" */
-		/* 		|| $notification->type == "App\Notifications\NewCall")	&& */
-		/* 		$notification->data['call_id']	== $call->id) { */
-		/* 		$notification->markAsRead(); */
-		/* 	} */
-		/* } */
-
 		return view('call.show')->with('call', $call);
 	}
 
 	public function createCall(Request $request) {
-			/* if (sizeof($request->members) == 2) { */
-			/* 	$user_id = User::where('email', $request->members[1]['email'])->first()->id; */
-			/* 	$call = $this->createOneToOneCall($user_id); */
-			/* } */
-			/* else { */
+		$validateData = $request->validate([
+			'title' => 'required|max:40',
+		]);
 
 		$call = new Call;
 		$call->title = $request->title;
@@ -69,16 +59,6 @@ class CallController extends Controller {
 			->where('second.user_id', '=', Auth::id())
 			->first();
 
-		/* $found_call = false; */
-
-		/* foreach ($call_user_list as $call_user) { */
-		/* 	if (count(Call::find($call_user->call_id)->members) == 2) { */
-		/* 		$call = Call::find($call_user->call_id); */
-		/* 		$found_call = true; */
-		/* 		break; */
-		/* 	} */
-		/* } */
-
 		if (!$call_user) {
 			$call = new Call;
 			$call->title = User::find($user_id)->name.' e '.Auth::user()->name;
@@ -99,13 +79,9 @@ class CallController extends Controller {
 	public function store(Request $request) {
 		if ($request->from == "create_call") {
 			$call = $this->createCall($request);
-		} else {
-			$call = $this->createOneToOneCall($request->user_id);
-		}
-
-		if ($request->from == "create_call") {
 			return route('calls.show', $call->id);
 		} else {
+			$call = $this->createOneToOneCall($request->user_id);
 			return redirect()->route('calls.show', $call->id);
 		}
 	}

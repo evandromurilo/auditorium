@@ -3,7 +3,6 @@
 @section('title', 'Novo Pedido')
 
 @section('content')
-
 	<link rel="stylesheet" href="{{ asset('css/style-request-create.css')}}">
 
 	<div class="container">
@@ -20,18 +19,39 @@
 							<input type="hidden" name="date" value="{{ $date->toDateString() }}">
 							<input type="hidden" name="auditorium_id" value="{{ $aud->id }}">
 
-							<div class="form-group space-top">
+							<div class="form-group{{ $errors->has('event') ? ' has-error' : '' }} space-top">
 								<label class="col-md-2 control-label">Evento </label>
 								<div class="col-md-9">
-									<input type="text" name="event" class="form-control" autocomplete="off">
+									<input
+										type="text"
+										name="event"
+										class="form-control"
+										autocomplete="off"
+										value="{{ old('event') }}">
 								</div>
+
+								@if ($errors->has('event'))
+									<span class="help-block">
+										<strong>{{ $errors->first('event') }}</strong>
+									</span>
+								@endif
 							</div>
 
-							<div class="form-group">
+							<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 								<label class="col-md-2 control-label">Descrição </label>
 								<div class="col-md-9">
-									<input type="text" name="description" class="form-control" autocomplete="off">
+									<input type="text"
+										name="description"
+										class="form-control"
+										autocomplete="off"
+										value="{{ old('description') }}">
 								</div>
+
+								@if ($errors->has('description'))
+									<span class="help-block">
+										<strong>{{ $errors->first('description') }}</strong>
+									</span>
+								@endif
 							</div>
 
 							<div class="form-group">

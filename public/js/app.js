@@ -48484,6 +48484,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user', 'users'],
@@ -48493,7 +48502,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			csrf_token: $('meta[name=csrf-token]').attr('content'),
 			members: [{ name: this.user.name, email: this.user.email }],
 			title: '',
-			request: false
+			request: false,
+			errors: {}
 		};
 	},
 
@@ -48531,8 +48541,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				window.location.replace(response);
 			});
 
+			var self = this;
 			this.request.fail(function (response, textStatus, errorThrown) {
 				console.error("The following error occurred: " + textStatus, errorThrown);
+
+				self.request = false;
+
+				self.errors = response.responseJSON.errors;
+				console.log(response);
 			});
 		}
 	},
@@ -48551,29 +48567,47 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "col-md-4" },
     [
-      _c("label", [_vm._v("Título: ")]),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.title,
-            expression: "title"
-          }
-        ],
-        attrs: { type: "text" },
-        domProps: { value: _vm.title },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c(
+        "div",
+        { class: "form-group" + (_vm.errors.title ? " has-error" : "") },
+        [
+          _c(
+            "label",
+            { staticClass: "control-label", attrs: { for: "titie" } },
+            [_vm._v("\n\t\t\tTítulo:\n\t\t")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.title,
+                expression: "title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "title" },
+            domProps: { value: _vm.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.title = $event.target.value
+              }
             }
-            _vm.title = $event.target.value
-          }
-        }
-      }),
-      _c("br"),
+          }),
+          _vm._v(" "),
+          _vm.errors.title
+            ? _c("span", { staticClass: "help-block" }, [
+                _vm._v("\n\t\t\t" + _vm._s(_vm.errors.title) + "\n\t\t")
+              ])
+            : _vm._e()
+        ]
+      ),
       _vm._v(" "),
       _c("label", [_vm._v("Membros:")]),
       _c("br"),
