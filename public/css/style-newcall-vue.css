@@ -27,6 +27,25 @@ li {
   margin-top: 30px;
 }
 
+
 .icon-mais, .icon-menos {
   padding-left: 7px;
+}
+
+.btn-chamada{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-membros{
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+.name-user{
+
+  font-size: 15px;
+
 }

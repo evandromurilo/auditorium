@@ -23,17 +23,18 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-lg-12">
-          <div class="">
-              <span>{{ user.name }}</span>
+                <span class="names-user">Usuário: {{ user.name }}
+                    <i class="fa fa-circle-o" v-bind:style="{ color: user.color }" aria-hidden="true"></i>
+                </span>
           </div>
         </div>
       </div>
-    </div>
+
 
     <!--menbros-->
 
     <div class="container">
-      <label>Membros:</label>
+      <label class="title-membros">Membros</label>
       <div class="row">
         <ul>
           <span v-for="u in users">
@@ -60,10 +61,16 @@
     </div>
   </div>
 
-  <!-- button cria chamada-->
-  <div class="col-md-">
-    <button class="btn btn-primary" v-on:click="send">Criar chamada</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 btn-chamada">
+          <button class="btn btn-primary" v-on:click="send">Criar chamada</button>
+      </div>
+    </div>
+
   </div>
+
+
 </div>
 
 
