@@ -48253,25 +48253,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['unread'],
-	data: function data() {
-		return {};
-	},
+  props: ['unread'],
+  data: function data() {
+    return {};
+  },
 
-	methods: {
-		markAsRead: function markAsRead() {
-			var request = $.get("/notifications/" + this.unread.id + "?read=true");
+  methods: {
+    markAsRead: function markAsRead() {
+      var request = $.get("/notifications/" + this.unread.id + "?read=true");
 
-			self = this;
+      self = this;
 
-			request.always(function () {
-				window.location.replace(self.unread.data.n_url);
-			});
-		}
-	},
-	mounted: function mounted() {}
+      request.always(function () {
+        window.location.replace(self.unread.data.n_url);
+      });
+    }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -48283,6 +48285,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("a", { attrs: { href: "#" }, on: { click: _vm.markAsRead } }, [
+    _c("link", {
+      attrs: { rel: "stylesheet", href: "/css/style-notification-item-vue.css" }
+    }),
+    _vm._v(" "),
     _c(
       "div",
       {
@@ -48292,19 +48298,25 @@ var render = function() {
       [
         _vm.unread.type == "App\\Notifications\\NewMessage"
           ? _c("span", [
-              _vm._v(
-                "\n\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t\t "
-              )
+              _c("i", {
+                staticClass: "fa fa-commenting icon-msg",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _vm._v(_vm._s(_vm.unread.data.n_message) + "\r\n\t\t\t\t ")
             ])
           : _vm.unread.type == "App\\Notifications\\RequestResolved"
             ? _c("span", [
                 _vm._v(
-                  "\n\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t\t "
+                  "\r\n\t\t\t\t\t " +
+                    _vm._s(_vm.unread.data.n_message) +
+                    "\r\n\t\t\t\t "
                 )
               ])
             : _c("span", [
                 _vm._v(
-                  "\n\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t\t "
+                  "\r\n\t\t\t\t\t " +
+                    _vm._s(_vm.unread.data.n_message) +
+                    "\r\n\t\t\t\t "
                 )
               ]),
         _vm._v(" "),
@@ -48315,7 +48327,7 @@ var render = function() {
             staticClass: "fa fa-clock-o",
             attrs: { "aria-hidden": "true" }
           }),
-          _vm._v(" " + _vm._s(_vm.unread.created_at) + "\n\t ")
+          _vm._v(" " + _vm._s(_vm.unread.created_at) + "\r\n\t\t\t ")
         ])
       ]
     )
@@ -48418,7 +48430,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, "\nbody {\r\n  margin: 0;\r\n  padding: 0;\n}\n.well-perfil {\r\n  width: 120px;\r\n  height: 120px;\r\n  border-radius: 100%;\n}\n.well-chat {\r\n  margin-top: 70px;\r\n  height: 400px;\r\n  overflow: auto;\n}\n.well-assunto {\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n  margin: 0;\r\n  padding: 0;\n}\n.well-perfil {\r\n  width: 120px;\r\n  height: 120px;\r\n  border-radius: 100%;\n}\n.well-chat {\r\n  margin-top: 70px;\r\n  height: 400px;\r\n  overflow: auto;\n}\n.well-assunto {\n}\n", ""]);
 
 // exports
 
@@ -48508,68 +48520,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['user', 'users'],
-	data: function data() {
-		return {
-			post_url: "/calls?from=create_call",
-			csrf_token: $('meta[name=csrf-token]').attr('content'),
-			members: [{ name: this.user.name, email: this.user.email }],
-			title: '',
-			request: false,
-			errors: {}
-		};
-	},
+  props: ['user', 'users'],
+  data: function data() {
+    return {
+      post_url: "/calls?from=create_call",
+      csrf_token: $('meta[name=csrf-token]').attr('content'),
+      members: [this.user],
+      title: '',
+      request: false,
+      errors: {}
+    };
+  },
 
-	methods: {
-		added: function added(email) {
-			return this.members.some(function (el) {
-				return el.email == email;
-			});
-		},
+  methods: {
+    added: function added(email) {
+      return this.members.some(function (el) {
+        return el.email == email;
+      });
+    },
 
-		insert: function insert(n, m) {
-			this.members.push({ name: n, email: m });
-		},
+    insert: function insert(user) {
+      this.members.push({ name: user.name, email: user.email });
+    },
 
-		remove: function remove(member) {
-			this.members.splice(this.members.indexOf(member));
-		},
+    remove: function remove(user) {
+      this.members = this.members.filter(function (item) {
+        return item.email !== user.email;
+      });
+    },
 
-		send: function send() {
-			if (this.request) {
-				return;
-			}
+    send: function send() {
+      if (this.request) {
+        return;
+      }
 
-			var inputs = {
-				_token: this.csrf_token,
-				title: this.title,
-				members: this.members,
-				user_id: this.user.id
-			};
+      var inputs = {
+        _token: this.csrf_token,
+        title: this.title,
+        members: this.members,
+        user_id: this.user.id
+      };
 
-			this.request = $.post(this.post_url, inputs);
+      this.request = $.post(this.post_url, inputs);
 
-			this.request.done(function (response, textStatus, jqXHR) {
-				console.log('Call criada!');
-				window.location.replace(response);
-			});
+      this.request.done(function (response, textStatus, jqXHR) {
+        console.log('Call criada!');
+        window.location.replace(response);
+      });
 
-			var self = this;
-			this.request.fail(function (response, textStatus, errorThrown) {
-				console.error("The following error occurred: " + textStatus, errorThrown);
+      var self = this;
+      this.request.fail(function (response, textStatus, errorThrown) {
+        console.error("The following error occurred: " + textStatus, errorThrown);
 
-				self.request = false;
+        self.request = false;
 
-				self.errors = response.responseJSON.errors;
-				console.log(response);
-			});
-		}
-	},
-	mounted: function mounted() {
-		console.log('NewCall: Component mounted.');
-	}
+        self.errors = response.responseJSON.errors;
+        console.log(response);
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log('NewCall: Component mounted.');
+  }
 });
 
 /***/ }),
@@ -48581,120 +48605,139 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("link", {
+      attrs: { rel: "stylesheet", href: "/css/style-newcall-vue.css" }
+    }),
+    _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            { staticClass: "form-horizontal" },
-            [
-              _c(
-                "div",
-                {
-                  class: "form-group" + (_vm.errors.title ? " has-error" : "")
-                },
-                [
-                  _c("label", { staticClass: "col-md-2 control-label" }, [
-                    _vm._v("Título: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-9" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.title,
-                          expression: "title"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.title },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.title = $event.target.value
-                        }
+          _c("div", { staticClass: "form-horizontal" }, [
+            _c(
+              "div",
+              { class: "form-group" + (_vm.errors.title ? " has-error" : "") },
+              [
+                _c("label", { staticClass: "col-md-2 control-label" }, [
+                  _vm._v("Título da Chamada: ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-9" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.title,
+                        expression: "title"
                       }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _vm.errors.title
-                    ? _c("span", { staticClass: "help-block" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t" +
-                            _vm._s(_vm.errors.title) +
-                            "\n\t\t\t\t\t\t"
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              ),
-              _vm._v(" "),
-              _c("label", [_vm._v("Membros:")]),
-              _c("br"),
-              _vm._v(" "),
-              _c(
-                "ul",
-                [
-                  _c("li", [_vm._v(_vm._s(_vm.user.name))]),
-                  _vm._v(" "),
-                  _vm._l(_vm.members, function(member) {
-                    return _c("span", [
-                      member.email != _vm.user.email
-                        ? _c("li", [
-                            _c(
-                              "a",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    _vm.remove(member)
-                                  }
-                                }
-                              },
-                              [_vm._v("-" + _vm._s(member.name))]
-                            )
-                          ])
-                        : _vm._e()
-                    ])
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.title },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.title = $event.target.value
+                      }
+                    }
                   })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.users, function(user) {
-                return _c("ul", [
-                  !_vm.added(user.email)
-                    ? _c("li", [
-                        _c(
-                          "a",
-                          {
-                            on: {
-                              click: function($event) {
-                                _vm.insert(user.name, user.email)
-                              }
-                            }
-                          },
-                          [_vm._v("+" + _vm._s(user.name))]
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-1" }, [
+                ]),
+                _vm._v(" "),
+                _vm.errors.title
+                  ? _c("span", { staticClass: "help-block" }, [
+                      _vm._v(
+                        "\r\n\t\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.errors.title) +
+                          "\r\n\t\t\t\t\t\t\t"
+                      )
+                    ])
+                  : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
+            _c("label", [_vm._v("Membros:")]),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "container" }, [
+              _c("div", { staticClass: "col-md-4" }, [
                 _c(
-                  "button",
-                  { staticClass: "btn btn-primary", on: { click: _vm.send } },
-                  [_vm._v("Criar chamada")]
+                  "ul",
+                  [
+                    _c("li", [_vm._v(_vm._s(_vm.user.name))]),
+                    _vm._v(" "),
+                    _vm._l(_vm.users, function(u) {
+                      return _c("span", [
+                        _vm.added(u.email)
+                          ? _c("span", [
+                              u.email != _vm.user.email
+                                ? _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        on: {
+                                          click: function($event) {
+                                            _vm.remove(u)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(u.name) +
+                                            "\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t "
+                                        ),
+                                        _c("i", {
+                                          staticClass: "fa fa-minus-square",
+                                          attrs: { "aria-hidden": "true" }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          : _c("span", [
+                              u.email != _vm.user.email
+                                ? _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        on: {
+                                          click: function($event) {
+                                            _vm.insert(u)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(u.name) +
+                                            "\r\n    \t\t\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                        _c("i", {
+                                          staticClass: "fa fa-plus-square",
+                                          attrs: { "aria-hidden": "true" }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                      ])
+                    })
+                  ],
+                  2
                 )
               ])
-            ],
-            2
-          )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-1" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", on: { click: _vm.send } },
+                [_vm._v("Criar chamada")]
+              )
+            ])
+          ])
         ])
       ])
     ])
