@@ -53,6 +53,11 @@ class RequestController extends Controller
 			'event' => 'required|string|max:100',
 			'period' => 'required|numeric|min:0|max:2',
 			'description' => 'required|string|max:500',
+		], [
+			'event.required' => 'O campo evento é obrigatório.',
+			'event.max' => 'O campo evento deve ter até 100 caracteres.',
+			'description.required' => 'O campo descrição é obrigatório.',
+			'description.max' => 'O campo descrição deve ter até 500 caracteres.'
 		]);
 
 		$nrequest = new \App\Request;
