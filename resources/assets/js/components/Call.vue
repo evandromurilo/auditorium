@@ -23,7 +23,7 @@
           </div>
           <div class="row">
             <div class="col-md-12 col-lg-12">
-              <div class="input-group">
+              <div class="input-group fixed-bottom input-fixo">
                 <input type="hidden" name="_token" :value="csrf_token">
                 <input type="text" class="form-control" v-model="body">
                 <span class="input-group-btn">
@@ -35,7 +35,7 @@
         </div>
       </div>
       <!--Assuntos do chat
-      
+
     -->
       <div class="col-md-3">
         <div class="well well-assunto">

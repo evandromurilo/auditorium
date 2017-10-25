@@ -49018,50 +49018,54 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-12 col-lg-12" }, [
-                _c("div", { staticClass: "input-group" }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.csrf_token }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.body,
-                        expression: "body"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.body },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                _c(
+                  "div",
+                  { staticClass: "input-group fixed-bottom input-fixo" },
+                  [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrf_token }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.body,
+                          expression: "body"
                         }
-                        _vm.body = $event.target.value
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.body },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.body = $event.target.value
+                        }
                       }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "input-group-btn" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        on: { click: _vm.send }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fa fa-paper-plane",
-                          attrs: { "aria-hidden": "true" }
-                        })
-                      ]
-                    )
-                  ])
-                ])
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "input-group-btn" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: { click: _vm.send }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-paper-plane",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
+                  ]
+                )
               ])
             ])
           ])
@@ -49207,7 +49211,9 @@ var render = function() {
       attrs: { rel: "stylesheet", href: "/css/style-callmember-vue.css" }
     }),
     _vm._v(" "),
-    _c("h5", { staticClass: "text-left" }, [_vm._v(_vm._s(_vm.member.name))]),
+    _c("h5", { staticClass: "text-left text-capitalize" }, [
+      _vm._v(_vm._s(_vm.member.name))
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -49217,9 +49223,11 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "letra-perfil-member" }, [
-          _c("span", { attrs: { id: "letra" } }, [
-            _vm._v(_vm._s(_vm.member.name[0]))
-          ])
+          _c(
+            "span",
+            { staticClass: "text-capitalize", attrs: { id: "letra" } },
+            [_vm._v(_vm._s(_vm.member.name[0]))]
+          )
         ])
       ]
     )

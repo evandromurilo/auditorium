@@ -2,10 +2,10 @@
 <div>
   <link rel="stylesheet" href="/css/style-callmember-vue.css">
 
-  <h5 class="text-left">{{ member.name }}</h5>
+  <h5 class="text-left text-capitalize">{{ member.name }}</h5>
   <div class="well well-perfil" v-bind:style="{ backgroundColor: member.color }">
     <div class="letra-perfil-member">
-      <span id="letra">{{ member.name[0] }}</span>
+      <span id="letra" class="text-capitalize">{{ member.name[0] }}</span>
     </div>
   </div>
 </div>
