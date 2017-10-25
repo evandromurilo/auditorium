@@ -1,0 +1,16 @@
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  font-family: 'Roboto Slab', serif;
+
+}
+.position{
+  margin-top: 200PX;
+}
+.text{
+  font-size: 2em;
+}
+.text-erro{
+  font-size: 4em;
+}
