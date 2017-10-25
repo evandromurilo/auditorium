@@ -3,6 +3,8 @@
 @section('title', 'Perfil de ' . $user->name)
 
 @section('content')
+
+<!-- a espera preload <div id="preload" class="preload"> carregando ...</div>-->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-lg-4">
@@ -147,10 +149,14 @@
 	<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
 	<script type="text/javascript" src="{{ asset('js/jquery-user-show.js') }}"></script>
+
+	<!--preload <link rel="stylesheet" href="{{-- asset('css/style-preload.css')--}}"> -->
+
 
 	<script type="text/javascript">
 	function effectFadeIn(classname) {
@@ -179,5 +185,15 @@
         $(".modal:visible").each(alignModal);
     });
 });
+/*preload
+$(document).ready(function () {
+  $("#preload").show();
+  $(window).on('load', function () {
+
+      // Quando a página estiver totalmente carregada, remove o id
+      $('#preload').fadeOut('slow');
+  });
+});
+*/
 </script>
 @endsection

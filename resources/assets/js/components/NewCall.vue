@@ -1,5 +1,6 @@
 <template>
 <div>
+  <div id="preload"></div>
   <link rel="stylesheet" href="/css/style-newcall-vue.css">
   <div class="container">
     <div class="row">
@@ -18,26 +19,26 @@
         </div>
       </div>
     </div>
-    </div>
+  </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-12">
-                <span class="names-user">Usuário: {{ user.name }}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <span class="names-user">Usuário: {{ user.name }}
                     <i class="fa fa-circle-o" v-bind:style="{ color: user.color }" aria-hidden="true"></i>
                 </span>
-          </div>
-        </div>
       </div>
+    </div>
+  </div>
 
 
-    <!--menbros-->
+  <!--menbros-->
 
-    <div class="container">
-      <label class="title-membros">Membros</label>
-      <div class="row">
-        <ul>
-          <span v-for="u in users">
+  <div class="container">
+    <label class="title-membros">Membros</label>
+    <div class="row">
+      <ul>
+        <span v-for="u in users">
                     <div class="col-md-3" v-if="u.email != user.email">
                       <span v-if="added(u.email)">
                         <li v-if="u.email != user.email">
@@ -47,7 +48,7 @@
                            </a>
                         </li>
                       </span>
-          <span v-else>
+        <span v-else>
                         <li v-if="u.email != user.email">
                           <a class="circle-creat" v-bind:style="{ color: u.color }" v-on:click="insert(u)">
                             {{ u.name }}
@@ -55,28 +56,22 @@
                             </a>
                         </li>
                       </span>
-                    </div>
-        </span>
-      </ul>
+    </div>
+    </span>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 btn-chamada">
+      <button class="btn btn-primary" v-on:click="send">Criar chamada</button>
     </div>
   </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-lg-12 btn-chamada">
-          <button class="btn btn-primary" v-on:click="send">Criar chamada</button>
-      </div>
-    </div>
-
-  </div>
-
 
 </div>
 
-
-
-
-
+</div>
 </template>
 
 <script>
@@ -149,27 +144,5 @@ export default {
     console.log('NewCall: Component mounted.');
   }
 }
+
 </script>
-
-<!-- CSS por aqui ate ver o que fazer-->
-<style >
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.well-perfil {
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-}
-
-.well-chat {
-  margin-top: 70px;
-  height: 400px;
-  overflow: auto;
-
-}
-
-.well-assunto {}
-</style>
