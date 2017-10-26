@@ -41,10 +41,9 @@
         <div class="well well-assunto">
           <h3 class="text-center user-assunto">Assuntos</h3>
 					<div v-for="call in calls">
-              <div id="teste" class="description-assunto">
+              <div id="teste" class="well description-assunto">
                 <a class="text-justify text-assunto" :href="'/calls/'+call.id">{{ call.title}}</a>
               </div>
-
 					</div>
         </div>
       </div>

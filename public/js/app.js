@@ -48883,7 +48883,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
@@ -49085,7 +49084,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "description-assunto",
+                      staticClass: "well description-assunto",
                       attrs: { id: "teste" }
                     },
                     [
