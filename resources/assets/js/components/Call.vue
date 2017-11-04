@@ -46,6 +46,9 @@
               </div>
 
 					</div>
+					<a href="/calls/create">
+						Nova Chamada
+					</a>
         </div>
       </div>
     </div>
