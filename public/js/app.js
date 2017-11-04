@@ -47333,6 +47333,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['unread'],
@@ -47381,9 +47390,7 @@ var render = function() {
                 attrs: { "aria-hidden": "true" }
               }),
               _vm._v(
-                "\n\t\t\t\t\t " +
-                  _vm._s(_vm.unread.data.n_message) +
-                  "\n\t\t\t\t "
+                "\n\t\t\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t "
               )
             ])
           : _vm.unread.type == "App\\Notifications\\RequestResolved"
@@ -47393,18 +47400,44 @@ var render = function() {
                   attrs: { "aria-hidden": "true" }
                 }),
                 _vm._v(
-                  "\n\t\t\t\t\t " +
-                    _vm._s(_vm.unread.data.n_message) +
-                    "\n\t\t\t\t "
+                  "\n\t\t\t\t\t " + _vm._s(_vm.unread.data.n_message) + "\n\t "
                 )
               ])
-            : _c("span", [
-                _vm._v(
-                  "\n\t\t\t\t\t " +
-                    _vm._s(_vm.unread.data.n_message) +
-                    "\n\t\t\t\t "
-                )
-              ]),
+            : _vm.unread.type == "App\\Notifications\\NewCall"
+              ? _c("span", [
+                  _c("i", {
+                    staticClass: "fa fa-commenting icon-msg",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    "\n\t\t\t\t\t " +
+                      _vm._s(_vm.unread.data.n_message) +
+                      "\n\t "
+                  )
+                ])
+              : _vm.unread.type == "App\\Notifications\\NewRequest"
+                ? _c("span", [
+                    _c("i", {
+                      staticClass: "fa fa-bell icon-notification",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(
+                      "\n\t\t\t\t\t " +
+                        _vm._s(_vm.unread.data.n_message) +
+                        "\n\t "
+                    )
+                  ])
+                : _c("span", [
+                    _c("i", {
+                      staticClass: "fa fa-bell icon-notification",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(
+                      "\n\t\t\t\t\t " +
+                        _vm._s(_vm.unread.data.n_message) +
+                        "\n\t "
+                    )
+                  ]),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
