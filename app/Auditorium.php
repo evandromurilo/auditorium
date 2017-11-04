@@ -9,6 +9,12 @@ class Auditorium extends Model {
 	public function statusOn(Carbon $date) {
 		return new Status($this->id, $date);
 	}
+
+	public function freeOn(Carbon $date, $period) {
+		if ($period == 0) return $this->statusOn($date)->morning == 1;
+		else if ($period == 1) return $this->statusOn($date)->afternoon == 1;
+		else return $this->statusOn($date)->night == 1;
+	}
 }
 
 class Status {

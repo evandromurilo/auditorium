@@ -54,7 +54,7 @@
 								@endif
 							</div>
 
-							<div class="form-group">
+							<div class="form-group{{ $errors->has('period') ? ' has-error' : '' }}">
 								<label class="col-md-2 control-label">Período:</label>
 								<div class="col-md-5">
 									<select name="period" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,6 +63,12 @@
 										<option value="2" {{ $period == 2? 'selected':'' }}>Noite</option>
 									</select></br>
 								</div>
+
+								@if ($errors->has('period'))
+									<span class="help-block">
+										<strong>{{ $errors->first('period') }}</strong>
+									</span>
+								@endif
 							</div>
 
 							<div class="form-group">
