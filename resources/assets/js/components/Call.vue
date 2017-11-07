@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-	<a v-if="!call.user_to_user"
+	<a v-if="!call.user_to_user && call.id != 1"
 		v-on:click="exit">Sair</a>
 </div>
 </template>
@@ -75,7 +75,7 @@ export default {
 			var request = $.get("/calls/"+this.call.id+"/exit");
 
 			request.done(function () {
-				window.location.replace("/calls");
+				window.location.replace("/calls/1");
 			});
 		},
 

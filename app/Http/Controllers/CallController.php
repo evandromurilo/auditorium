@@ -91,6 +91,7 @@ class CallController extends Controller {
 
 	public function getOut(Request $request) {
 		$call = Call::find($request->segment(2));
+		Auth::user()->disallow('see', $call);
 		$call->members()->detach(Auth::id());
 	}
 }
