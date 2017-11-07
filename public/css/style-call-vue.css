@@ -8,8 +8,7 @@ body {
 /*pessoas relacionadas*/
 
 .user-relacionado {
-  margin-top: 0;
-  margin-bottom: 20px;
+  
 }
 
 .well-perfil {
@@ -20,6 +19,7 @@ body {
 
 .well-pessoa {
   margin-top: 25px;
+  background-color: #fff;
 }
 
 /*chat*/
@@ -40,11 +40,11 @@ body {
   margin-top: 25px;
 	height: 430px;
 	overflow: auto;
+  background-color: #fff;
 }
 
 .user-assunto {
-  margin-top: 0;
-  margin-bottom: 20px;
+  font-size: 14px;
 
 }
 
@@ -54,7 +54,7 @@ body {
 
 }
 .text-assunto:hover{
-  background-color: pink;
+
 }
 
 #teste{

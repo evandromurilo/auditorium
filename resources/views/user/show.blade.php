@@ -3,8 +3,18 @@
 @section('title', 'Perfil de ' . $user->name)
 
 @section('content')
+<!--
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#preload").show();
+	$(window).on('load', function () {
 
-<!-- a espera preload <div id="preload" class="preload"> carregando ...</div>-->
+			// Quando a página estiver totalmente carregada, remove o id
+			$('#preload').fadeOut('slow');
+	});
+});
+</script>
+<div id="preload" class="preload"></div>-->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-lg-4">
@@ -158,7 +168,7 @@
 	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
 	<script type="text/javascript" src="{{ asset('js/jquery-user-show.js') }}"></script>
 
-	<!--preload <link rel="stylesheet" href="{{-- asset('css/style-preload.css')--}}"> -->
+	<link rel="stylesheet" href="{{ asset('css/style-preload.css')}}">
 
 
 	<script type="text/javascript">
@@ -188,15 +198,8 @@
         $(".modal:visible").each(alignModal);
     });
 });
-/*preload
-$(document).ready(function () {
-  $("#preload").show();
-  $(window).on('load', function () {
 
-      // Quando a página estiver totalmente carregada, remove o id
-      $('#preload').fadeOut('slow');
-  });
-});
-*/
+
+
 </script>
 @endsection

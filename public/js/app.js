@@ -48635,7 +48635,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
@@ -48837,7 +48836,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "description-assunto",
+                      staticClass: "well description-assunto",
                       attrs: { id: "teste" }
                     },
                     [
@@ -48855,7 +48854,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("a", { attrs: { href: "/calls/create" } }, [
-                _vm._v("\n\t\t\t\t\t\tNova Chamada\n\t\t\t\t\t")
+                _vm._v("\r\n\t\t\t\t\t\tNova Chamada\r\n\t\t\t\t\t")
               ])
             ],
             2
