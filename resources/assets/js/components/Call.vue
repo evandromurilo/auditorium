@@ -45,6 +45,9 @@
                 <a class="text-justify text-assunto" :href="'/calls/'+call.id">{{ call.title}}</a>
               </div>
 					</div>
+					<a href="/calls/create">
+						Nova Chamada
+					</a>
         </div>
       </div>
     </div>

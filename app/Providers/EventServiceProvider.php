@@ -28,6 +28,10 @@ class EventServiceProvider extends ServiceProvider
 					'App\Listeners\SendNewCallNotification',
 					'App\Listeners\SetCallMembersPermissions',
 				],
+				'App\Events\UserRegistered' => [
+					'App\Listeners\SetNewUserRole',
+					'App\Listeners\AssignNewUserToChat'
+				],
     ];
 
     /**

@@ -8,14 +8,23 @@
     <span v-if="unread.type == 'App\\Notifications\\NewMessage'">
 					 <i class="fa fa-commenting icon-msg" aria-hidden="true"></i>
 					 {{ unread.data.n_message }}
-				 </span>
+	 </span>
     <span v-else-if="unread.type == 'App\\Notifications\\RequestResolved'">
 					<i class="fa fa-bell icon-notification" aria-hidden="true"></i>
 					 {{ unread.data.n_message }}
-				 </span>
-    <span v-else>
+	 </span>
+    <span v-else-if="unread.type == 'App\\Notifications\\NewCall'">
+					 <i class="fa fa-commenting icon-msg" aria-hidden="true"></i>
 					 {{ unread.data.n_message }}
-				 </span>
+	 </span>
+    <span v-else-if="unread.type == 'App\\Notifications\\NewRequest'">
+					<i class="fa fa-bell icon-notification" aria-hidden="true"></i>
+					 {{ unread.data.n_message }}
+	 </span>
+    <span v-else>
+					<i class="fa fa-bell icon-notification" aria-hidden="true"></i>
+					 {{ unread.data.n_message }}
+	 </span>
 
     <br>
     <span class="date-hora">

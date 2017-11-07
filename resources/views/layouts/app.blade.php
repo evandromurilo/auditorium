@@ -82,7 +82,7 @@
 																		<li><a href="{{ route('users.show', Auth::id()) }}">
 																				Perfil
 																			</a></li>
-																		<li><a href="{{ route('calls.index') }}">
+																		<li><a href="{{ route('calls.show', 1) }}">
 																				Chamadas
 																			</a></li>
                                 </ul>

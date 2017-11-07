@@ -84,7 +84,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-				$user->assign('coord');
+				event(new \App\Events\UserRegistered($user));
 
 				return $user;
     }

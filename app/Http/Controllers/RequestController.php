@@ -60,6 +60,12 @@ class RequestController extends Controller
 			'description.max' => 'O campo descrição deve ter até 500 caracteres.'
 		]);
 
+		$audit = \App\Auditorium::find($request->auditorium_id);
+		if (!$audit->freeOn(new Carbon($request->date), $request->period)) {
+			return redirect()->back()->withInput($request->input())
+				->withErrors(['period' => 'Auditório indisponível!']);
+		}
+
 		$nrequest = new \App\Request;
 
 		$nrequest->auditorium_id = $request->auditorium_id;
