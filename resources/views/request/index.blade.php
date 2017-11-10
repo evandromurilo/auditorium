@@ -4,9 +4,6 @@
 
 @section('content')
 
-	<link rel="stylesheet" href="{{ asset('css/style-auditorium-index.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/style-request-index.css') }}">
-
 	<div class="container">
 		<div class="row">
 			<h1>Pedidos</h1>
@@ -32,23 +29,34 @@
 	<div class="container">
 		<div class="row">
 				@foreach ($requests as $request)
-					<div class="col-md-4">
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 						<div class="well">
 							<h2 class="text-center">
-								<a href="{{ route('requests.show', $request->id) }}">
+								<a class="title-pedidos" href="{{ route('requests.show', $request->id) }}">
 									{{ $request->auditorium->name }}
 								</a>
 							</h2>
-							<p><strong>Data:</strong> {{ $request->dateC->format('d/m/Y') }}</p>
-							<p><strong>Período:</strong> {{ $request->periodF }}</p>
-							<p class="text-capitalize"><strong>Solicitado por:</strong> 
-								<a href="{{ route('users.show', $request->user_id) }}">
-									{{ $request->user->name }}
-								</a>
-							</p>
+							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Data:</span>
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+								 {{ $request->dateC->format('d/m/Y') }}</p>
+							</div>
+
+							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Período:</span>
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+								{{ $request->periodF }}</p>
+							</div>
+
+							 <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Responsavel:</span>
+							 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+								 <a href="{{ route('users.show', $request->user_id) }}">
+ 									{{ $request->user->name }}
+ 								</a>
+ 							</div></br>
+
+
 							<?php $post_route = route('requests.update', ['id' => $request->id,
 							'filter' => $filter, 'from' => 'index']) ?>
-							<label>Status:</label><br>
+							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Status:</span>
 							@include('partials.request.request_status_update')
 						</div>
 					</div>
@@ -56,4 +64,11 @@
 			</div>
 			{{ $requests->appends(['filter' => $filter])->links() }}
 		</div>
+@endsection
+
+@section('sources')
+
+	<link rel="stylesheet" href="{{ asset('css/style-auditorium-index.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style-request-index.css') }}">
+
 @endsection

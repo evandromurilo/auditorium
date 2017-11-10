@@ -2,7 +2,7 @@
 	{{ csrf_field() }}
 	<input name="_method" type="hidden" value="PUT">
 
-
+	
 	<label class="pendente">
 		<input type="radio" name="status" value="0"
 			{{ $request->status == 0? 'checked' : '' }}>Pendente

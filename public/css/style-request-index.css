@@ -11,4 +11,35 @@ body{
 }
 .well{
   border: 2px solid #d3e0e9;
+  background-color: #fff;
+}
+.title-pedidos:hover{
+  text-decoration: none
+}
+
+/*Small*/
+
+@media screen and (max-width: 767px) {
+
+
+}
+
+/*Tablet*/
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+
+}
+
+/*Computer*/
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+
+}
+
+/* > Computer*/
+
+@media screen and (min-width: 1200px) {
+
+
 }
