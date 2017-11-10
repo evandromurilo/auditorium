@@ -12,7 +12,7 @@
 							'previous' => 'true']) }}"><i class="fa fa-chevron-left arrow-left"
 								aria-hidden="true"></i></a>
 
-						<input type="text" id="date" name="date" class="text-center input-date" autocomplete="off" value="{{ $date->format('d/m/Y') }}"><br />
+						<input type="text" id="date" name="date" class="text-center input-date" autocomplete="off" value="{{ $date->format('d/m/Y') }}">
 
 						<a href="{{ route('auditoria.index', ['date' => $date->format('d/m/Y'),
 							'next' => 'true']) }}"><i class="fa fa-chevron-right arrow-right"
@@ -46,18 +46,18 @@
 						<h2 class="text-center">{{ $aud->name }}</h2>
 							<div class="row">
 
-								<span class="col-md-4 control-label">Manhã:</span>
-								<div class="col-md-8">
+								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Manhã:</span>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 									@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0])
 								</div>
 
-								<span class="col-md-4 control-label">Tarde:</span>
-								<div class="col-md-8">
+								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Tarde:</span>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 									@include('partials.status', ['code' => $statusOn->afternoon, 'period_code' => 1])
 								</div>
 
-								<span class="col-md-4 control-label">Noite:</span>
-								<div class="col-md-8">
+								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Noite:</span>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 									@include('partials.status', ['code' => $statusOn->night, 'period_code' => 2])
 								</div>
 							</div>
@@ -67,7 +67,7 @@
 						@if ($aud->accessible)
 
 							<!--icons acessibilidade-->
-							<div class="col-md-12">
+							<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
 								<p>
 										<i class="fa fa-wheelchair style-icons" aria-hidden="true"
 											data-toggle="tooltip" data-placement="bottom" title="Cadeirante"></i>
