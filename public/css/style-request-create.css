@@ -1,8 +1,18 @@
 body{
   margin: 0;
   padding: 0;
+  background-color: #ffffff;
 }
 
 .space-top{
   margin-top: 30px;
+}
+
+.date-top{
+  float:right;
+  border: 1px solid #777777;
+  background-color: #777777;
+  padding: 0 7px 0 7px;
+  border-radius: 10%;
+  color: #ffffff;
 }

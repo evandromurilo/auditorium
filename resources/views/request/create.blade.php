@@ -7,13 +7,14 @@
 
 	<div class="container">
 		<div class="row">
-			<h1>Agendar {{ $aud->name }}</h1>
-			<p>Data: {{ $date->format('d/m/Y') }}</p>
+			<h1 class="text-center">Agendar {{ $aud->name }}</h1>			
 		</div>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Descrição do Agendamento</div>
+					<div class="panel-heading">Descrição do Agendamento
+						 <span class="date-top">Data: {{ $date->format('d/m/Y') }} </span>
+					</div>
 						<form method="POST" class="form-horizontal" action="{{ route('requests.store') }}">
 							{{ csrf_field() }}
 							<input type="hidden" name="date" value="{{ $date->toDateString() }}">
