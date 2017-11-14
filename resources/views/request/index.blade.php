@@ -53,10 +53,8 @@
  								</a>
  							</div></br>
 
-
-							<?php $post_route = route('requests.update', ['id' => $request->id,
-							'filter' => $filter, 'from' => 'index']) ?>
-							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Status:</span>
+							<?php $route_args = ["id" => $request->id, "from" => "index",
+								"filter" => $filter] ?>
 							@include('partials.request.request_status_update')
 						</div>
 					</div>

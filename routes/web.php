@@ -37,6 +37,10 @@ Route::get('/notifications', 'NotificationController@unreadNotifications')->name
 Route::get('/notifications/newmessage/{id}', 'NotificationController@markNewMessageAsRead');
 Route::get('/notifications/{id}', 'NotificationController@markAsRead');
 
+Route::get('/requests/{id}/accept', 'RequestController@accept')->name('requests.accept');
+Route::get('/requests/{id}/negate', 'RequestController@negate')->name('requests.negate');
+Route::get('/requests/{id}/pending', 'RequestController@pending')->name('requests.pending');
+
 /* Route::put('/messages', 'MessageController@store')->name('messages.store'); */
 /* Route::put('/calls', 'CallController@store')->name('calls.store'); */
 /* Route::get('/calls/{call}', 'CallController@show')->name('calls.show'); */

@@ -18,11 +18,9 @@
 						<a href="{{ route('users.show', $request->user_id) }}">
 							{{ $request->user->name }}
 						</a></p>
-						<label>Status:</label>
 
 						@can('resolve', \App\Request::class)
-							<?php $post_route = route('requests.update', ['id' => $request->id,
-								'from' => 'show']) ?>
+							<?php $route_args = ["id" => $request->id, "from" => "show"] ?>
 							@include('partials.request.request_status_update')
 						@else
 							@if ($request->status == 0)

@@ -1,24 +1,19 @@
-<form method="POST" action="{{ $post_route }}">
-	{{ csrf_field() }}
-	<input name="_method" type="hidden" value="PUT">
+@if ($request->status == 0)
+	<a href="{{ route('requests.accept', $route_args) }}"
+		class="btn btn-success">Aceitar</a>
 
-	
-	<label class="pendente">
-		<input type="radio" name="status" value="0"
-			{{ $request->status == 0? 'checked' : '' }}>Pendente
-	</label>
+	<a href="{{ route('requests.negate', $route_args) }}"
+		class="btn btn-danger">Rejeitar</a>
+@elseif ($request->status == 1)
+	<a href="{{ route('requests.accept', $route_args) }}"
+		class="btn btn-success">Aceitar</a>
 
-		<label class="indisponivel">
-			<input type="radio" name="status" value="1"
-				{{ $request->status == 1? 'checked' : '' }}>Rejeitado
-	</label>
+	<a href="{{ route('requests.pending', $route_args) }}"
+		 class="btn btn-warning">Pendurar</a>
+@elseif ($request->status == 2) 
+	<a href="{{ route('requests.pending', $route_args) }}"
+		class="btn btn-warning">Pendurar</a>
 
-		<label class="disponivel">
-			<input type="radio"  name="status" value="2"
-				{{ $request->status == 2? 'checked' : '' }}>Aceito
-		</label><br />
-
-		<div class="btn-confirma">
-			<input type="submit" class="btn btn-primary" value="Confirma">
-		</div>
-</form>
+	<a href="{{ route('requests.negate', $route_args) }}"
+		class="btn btn-danger">Rejeitar</a>
+@endif

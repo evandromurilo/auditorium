@@ -110,6 +110,40 @@ class RequestController extends Controller
 		}
 	}
 
+	public function accept(Request $request) {
+		$this->authorize('resolve', \App\Request::class);
+		return $this->changeStatus($request, 2);
+	}
+
+	public function negate(Request $request) {
+		$this->authorize('resolve', \App\Request::class);
+		return $this->changeStatus($request, 1);
+	}
+
+	public function pending(Request $request) {
+		$this->authorize('resolve', \App\Request::class);
+		return $this->changeStatus($request, 0);
+	}
+
+	public function changeStatus(Request $request, int $status) {
+		$nrequest = \App\Request::find($request->segment(2));
+
+		$nrequest->status = $status;
+		$nrequest->save();
+
+		event(new \App\Events\RequestStatusChanged($nrequest));
+
+		if ($request->from == 'index') {
+			return redirect()->route('requests.index', ['filter' => $request->filter]);
+		}
+		else if ($request->from == 'show') {
+			return redirect()->route('requests.show', $nrequest->id);
+		}
+		else {
+			return redirect()->route('requests.index');
+		}
+	}
+
 	public function show(Request $request) {
 		$nrequest = \App\Request::find($request->segment(2));
 
