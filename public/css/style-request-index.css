@@ -10,11 +10,25 @@ body{
   justify-content: center;
 }
 .well{
-  border: 2px solid #d3e0e9;
+  border: 1px solid #d3e0e9;
   background-color: #fff;
+
 }
 .title-pedidos:hover{
-  text-decoration: none
+  text-decoration: none;
+  color: #000;
+}
+
+
+.responsavel:hover{
+  text-decoration: none;
+  color: #000;
+}
+.responsavel{
+
+}
+.well, .responsavel, .title-pedidos{
+  color: #000;
 }
 
 /*Small*/

@@ -50,6 +50,7 @@
 							 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 								 <a class="responsavel" href="{{ route('users.show', $request->user_id) }}">
  									{{ $request->user->name }}
+									<i class="fa fa-user" aria-hidden="true"></i>
  								</a>
  							</div></br>
 
