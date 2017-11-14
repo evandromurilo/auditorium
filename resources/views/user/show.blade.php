@@ -3,18 +3,7 @@
 @section('title', 'Perfil de ' . $user->name)
 
 @section('content')
-<!--
-<script type="text/javascript">
-$(document).ready(function () {
-	$("#preload").show();
-	$(window).on('load', function () {
 
-			// Quando a página estiver totalmente carregada, remove o id
-			$('#preload').fadeOut('slow');
-	});
-});
-</script>
-<div id="preload" class="preload"></div>-->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-lg-4">
@@ -86,8 +75,8 @@ $(document).ready(function () {
 									<td>{{ $request->dateC->format('d/m/Y') }}</td>
 
 									@if ($request->status == 0)
-										<td><span class="pendente">Pendente</span></td>
 										</td></td>
+										<td><span class="pendente">Pendente</span></td>
 									@elseif ($request->status == 1)
 										<td><span class="indisponivel">Rejeitado</span></td>
 									@else
