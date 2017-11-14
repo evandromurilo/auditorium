@@ -1,19 +1,42 @@
+<link rel="stylesheet" href="{{ asset('css/style-request-status-update.css')}}">
 @if ($request->status == 0)
-	<a href="{{ route('requests.accept', $route_args) }}"
-		class="btn btn-success">Aceitar</a>
+	<div class="col-xs-12 col-sm-12 col-md-12 center-block">
+		<button  class="btn btn-aceita">
+			<a style="color: #fff; text-decoration: none;" href="{{ route('requests.accept', $route_args) }}">
+			Aceitar</a>
+		</button>
 
-	<a href="{{ route('requests.negate', $route_args) }}"
-		class="btn btn-danger">Rejeitar</a>
+		<button  class="btn btn-rejeitado">
+			<a style="color: #fff; text-decoration: none;"  href="{{ route('requests.negate', $route_args) }}">
+			Rejeitar</a>
+		</button>
+	</div>
 @elseif ($request->status == 1)
-	<a href="{{ route('requests.accept', $route_args) }}"
-		class="btn btn-success">Aceitar</a>
 
-	<a href="{{ route('requests.pending', $route_args) }}"
-		 class="btn btn-warning">Pendurar</a>
-@elseif ($request->status == 2) 
-	<a href="{{ route('requests.pending', $route_args) }}"
-		class="btn btn-warning">Pendurar</a>
+	<div class="col-xs-12 col-sm-12 col-md-12 center-block">
+		<button class="btn btn-aceita">
+			<a style="color: #fff; text-decoration: none;" href="{{ route('requests.accept', $route_args) }}">
+				Aceitar</a>
+		</button>
 
-	<a href="{{ route('requests.negate', $route_args) }}"
-		class="btn btn-danger">Rejeitar</a>
+		<button class="btn btn-pendurado">
+			<a style="color: #fff; text-decoration: none;" href="{{ route('requests.pending', $route_args) }}">
+				Pendurar</a>
+		 </button>
+	 </div>
+
+@elseif ($request->status == 2)
+
+	<div class="col-xs-12 col-sm-12 col-md-12 center-block">
+		<button class="btn btn-pendurado">
+			<a style="color: #fff; text-decoration: none;" href="{{ route('requests.pending', $route_args) }}">
+				Pendurar</a>
+		 </button>
+
+		 <button  class="btn btn-rejeitado">
+	 		<a style="color: #fff; text-decoration: none;" href="{{ route('requests.negate', $route_args) }}">
+	 			Rejeitar</a>
+	 	</button>
+	</div>
+
 @endif

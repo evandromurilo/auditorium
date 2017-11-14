@@ -8,9 +8,11 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<div class="well" style="height: auto">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">pedido</div>
+
+
 						<h1 class="text-center">{{ $request->event }}<br> ({{ $request->dateC->format('d/m/Y') }})</h2>
 						<label>Local:</label><p> {{ $request->auditorium->name }}</p>
 						<label>Descrição:</label><p> {{ $request->description }}</p>
@@ -31,10 +33,11 @@
 								<span class="disponivel" style="background-color: green;">Aceito</span>
 							@endif
 						@endcan
-						</p>
+
 					</div>
 				</div>
-				<div class="col-md-4"></div>
 			</div>
+
 		</div>
+
 @endsection

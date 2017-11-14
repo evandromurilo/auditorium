@@ -29,7 +29,7 @@
 	<div class="container">
 		<div class="row">
 				@foreach ($requests as $request)
-					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 						<div class="well">
 							<h2 class="text-center title-auditorio">
 								<a class="title-pedidos" href="{{ route('requests.show', $request->id) }}">
