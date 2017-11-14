@@ -60,9 +60,14 @@
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 									@include('partials.status', ['code' => $statusOn->night, 'period_code' => 2])
 								</div>
+
+								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Capacidade: </span>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+									{{ $aud->capacity }} pessoas.
+								</div>
 							</div>
 
-					<label>Capacidade: </label><p>{{ $aud->capacity }} pessoas.</p>
+
 
 						@if ($aud->accessible)
 

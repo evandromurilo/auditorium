@@ -9,12 +9,17 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <!-- font Awesome -->
-    <script src="https://use.fontawesome.com/2487cfdf7c.js"></script>
+
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	  <link rel="stylesheet" href="{{ asset('css/style-norificaton-request-resolver.css') }}">
+
+    <!-- font Awesome -->
+	  <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
+	  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+
 
 </head>
 <body>
@@ -100,5 +105,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+
 </body>
 </html>

@@ -31,7 +31,7 @@
 				@foreach ($requests as $request)
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 						<div class="well">
-							<h2 class="text-center">
+							<h2 class="text-center title-auditorio">
 								<a class="title-pedidos" href="{{ route('requests.show', $request->id) }}">
 									{{ $request->auditorium->name }}
 								</a>
@@ -48,8 +48,9 @@
 
 							 <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Responsavel:</span>
 							 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-								 <a href="{{ route('users.show', $request->user_id) }}">
+								 <a class="responsavel" href="{{ route('users.show', $request->user_id) }}">
  									{{ $request->user->name }}
+									<i class="fa fa-user" aria-hidden="true"></i>
  								</a>
  							</div></br>
 
