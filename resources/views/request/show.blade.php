@@ -5,15 +5,17 @@
 @section('content')
 	<link rel="stylesheet" href="{{ asset('css/style-request-show.css')}}">
 	<link rel="stylesheet" href="{{ asset('css/style-auditorium-index.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style-request-status-update-show.css')}}">
+
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">pedido</div>
-
-
-						<h1 class="text-center">{{ $request->event }}<br> ({{ $request->dateC->format('d/m/Y') }})</h2>
+						<div class="panel-heading text-left">Pedido
+							<span style="float:right;">{{ $request->auditorium->name }}</span>
+						</div>
+						<h2 class="text-center">{{ $request->event }}<br> ({{ $request->dateC->format('d/m/Y') }})</h2>
 						<label>Local:</label><p> {{ $request->auditorium->name }}</p>
 						<label>Descrição:</label><p> {{ $request->description }}</p>
 						<label>Organizador:</label><p>
@@ -37,7 +39,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 @endsection
