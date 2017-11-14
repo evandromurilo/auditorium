@@ -1,8 +1,13 @@
 @if ($code == 1)
-	<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
-	'id' => $aud->id, 'period' => $period_code]) }}>
-	<p class="disponivel">Disponível <i class="fa fa-plus-square" aria-hidden="true"></i></p>
-	</a><br>
+	@if ($date->gte(\Carbon\Carbon::today()))
+		<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
+		'id' => $aud->id, 'period' => $period_code]) }}>
+		<p class="disponivel">Disponível <i class="fa fa-plus-square" aria-hidden="true"></i></p>
+		</a><br>
+	@else
+		<p class="disponivel">Disponível</p>
+		<br>
+	@endif
 @elseif ($code == 0)
 	<p class="pendente">Pendente <i class="fa fa-clock-o" aria-hidden="true"></i></p><br>
 @elseif ($code == 2)

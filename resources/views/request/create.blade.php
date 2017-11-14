@@ -20,6 +20,14 @@
 							<input type="hidden" name="date" value="{{ $date->toDateString() }}">
 							<input type="hidden" name="auditorium_id" value="{{ $aud->id }}">
 
+							@if ($errors->has('date'))
+								<div class="text-center has-error">
+									<span class="text-center has-error help-block">
+										<strong>{{ $errors->first('date') }}</strong>
+									</span>
+								</div>
+							@endif
+
 							<div class="form-group{{ $errors->has('event') ? ' has-error' : '' }} space-top">
 								<label class="col-md-2 control-label">Evento </label>
 								<div class="col-md-9">
