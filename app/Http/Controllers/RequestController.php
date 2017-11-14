@@ -144,6 +144,11 @@ class RequestController extends Controller
 		}
 	}
 
+	public function modal(Request $request) {
+		$nrequest = \App\Request::find($request->segment(2));
+		return view('partials.request.request_modal')->with('request', $nrequest);
+	}
+
 	public function show(Request $request) {
 		$nrequest = \App\Request::find($request->segment(2));
 
