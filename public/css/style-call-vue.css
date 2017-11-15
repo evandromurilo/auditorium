@@ -12,15 +12,15 @@ body {
 }
 
 .well-perfil {
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
+
 }
 
 .well-pessoa {
-  margin-top: 25px;
+
   background-color: #fff;
 }
+
+
 
 /*chat*/
 
@@ -64,4 +64,53 @@ margin-top: 15px;
 .well-pessoa{
   height: 500px;
   overflow: auto;
+}
+
+
+/*Small*/
+
+@media screen and (max-width: 767px) {
+
+}
+
+/*Tablet*/
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+
+}
+
+/*Computer*/
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  /*pessoas relacionadas*/
+  .well-perfil {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+  }
+
+  .well-pessoa {
+
+    background-color: #fff;
+  }
+}
+
+/* > Computer*/
+
+@media screen and (min-width: 1200px) {
+  /*pessoas relacionadas*/
+  .well-perfil {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+
+    margin-left: 10px;
+  }
+
+  .well-pessoa {
+
+    background-color: #fff;
+  }
+}
 }

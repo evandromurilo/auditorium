@@ -48898,6 +48898,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['member'],
@@ -48919,28 +48928,37 @@ var render = function() {
       attrs: { rel: "stylesheet", href: "/css/style-callmember-vue.css" }
     }),
     _vm._v(" "),
-    _c("a", { attrs: { href: "/users/" + _vm.member.id } }, [
-      _c("h5", { staticClass: "text-left text-capitalize" }, [
-        _vm._v(_vm._s(_vm.member.name))
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "well well-perfil",
-        style: { backgroundColor: _vm.member.color }
-      },
-      [
-        _c("div", { staticClass: "letra-perfil-member" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-3" }, [
           _c(
-            "span",
-            { staticClass: "text-capitalize", attrs: { id: "letra" } },
-            [_vm._v(_vm._s(_vm.member.name[0]))]
+            "a",
+            {
+              staticStyle: { float: "right" },
+              attrs: { href: "/users/" + _vm.member.id }
+            },
+            [_c("span", {}, [_vm._v(_vm._s(_vm.member.name))])]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "well-perfil",
+              style: { backgroundColor: _vm.member.color }
+            },
+            [
+              _c("div", { staticClass: "letra-perfil-member" }, [
+                _c(
+                  "span",
+                  { staticClass: "text-capitalize", attrs: { id: "letra" } },
+                  [_vm._v(_vm._s(_vm.member.name[0]))]
+                )
+              ])
+            ]
           )
         ])
-      ]
-    )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
