@@ -10,7 +10,7 @@
 			<h1 class="text-center">Agendar {{ $aud->name }}</h1>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-10">
 				<div class="panel panel-default">
 					<div class="panel-heading">Descrição do Agendamento
 						 <span class="date-top">Data: {{ $date->format('d/m/Y') }} </span>
@@ -29,7 +29,7 @@
 							@endif
 
 							<div class="form-group{{ $errors->has('event') ? ' has-error' : '' }} space-top">
-								<label class="col-md-2 control-label">Evento </label>
+								<label class="col-md-2 control-label">Evento</label>
 								<div class="col-md-9">
 									<input
 										type="text"
@@ -37,15 +37,14 @@
 										class="form-control"
 										autocomplete="off"
 										value="{{ old('event') }}">
-								</div>
+
 
 								@if ($errors->has('event'))
-									<span class="row">
-										<div class="col-md-12 col-lg-12">
-											<strong class="alert-danger">{{ $errors->first('event') }}</strong>
-										</div>
+									<span class="help-block">
+											<strong>{{ $errors->first('event') }}</strong>
 									</span>
 								@endif
+								</div>
 							</div>
 
 							<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
