@@ -42,7 +42,7 @@
 								@if ($errors->has('event'))
 									<span class="row">
 										<div class="col-md-12 col-lg-12">
-											<strong class="alert-danger text-center">{{ $errors->first('event') }}</strong>
+											<strong class="alert-danger">{{ $errors->first('event') }}</strong>
 										</div>
 									</span>
 								@endif
