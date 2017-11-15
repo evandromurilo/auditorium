@@ -13,15 +13,11 @@ body{
   color: #fff;
   font-size: 1em;
 }
-h5{
-  margin-bottom: 3px;
-  font-size: 12px;
 
-}
 .nome-member, .nome-member:hover{
   text-decoration: none;
   color: #000;
 }
 .nome-member{
-
+  font-size: 15px;
 }
