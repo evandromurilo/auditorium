@@ -48907,6 +48907,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['member'],
@@ -48929,33 +48936,37 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-3" }, [
-          _c(
-            "a",
-            {
-              staticStyle: { float: "right" },
-              attrs: { href: "/users/" + _vm.member.id }
-            },
-            [_c("span", {}, [_vm._v(_vm._s(_vm.member.name))])]
-          ),
+      _c("div", {}, [
+        _c("div", { staticClass: "media" }, [
+          _c("div", { staticClass: "media-left" }, [
+            _c(
+              "div",
+              {
+                staticClass: "media-object well-perfil",
+                style: { backgroundColor: _vm.member.color }
+              },
+              [
+                _c("div", { staticClass: "letra-perfil-member" }, [
+                  _c(
+                    "span",
+                    { staticClass: "text-capitalize", attrs: { id: "letra" } },
+                    [_vm._v(_vm._s(_vm.member.name[0]))]
+                  )
+                ])
+              ]
+            )
+          ]),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "well-perfil",
-              style: { backgroundColor: _vm.member.color }
-            },
-            [
-              _c("div", { staticClass: "letra-perfil-member" }, [
-                _c(
-                  "span",
-                  { staticClass: "text-capitalize", attrs: { id: "letra" } },
-                  [_vm._v(_vm._s(_vm.member.name[0]))]
-                )
-              ])
-            ]
-          )
+          _c("div", { staticClass: "media-body" }, [
+            _c(
+              "a",
+              {
+                staticClass: "media-heading nome-member",
+                attrs: { href: "/users/" + _vm.member.id }
+              },
+              [_c("span", {}, [_vm._v(_vm._s(_vm.member.name))])]
+            )
+          ])
         ])
       ])
     ])
