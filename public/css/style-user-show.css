@@ -6,6 +6,7 @@ body{
 p, h2{
   font-family: 'Roboto', sans-serif;
 }
+
 .btn{
   width: 150px;
   margin-bottom: 10px;
@@ -17,7 +18,7 @@ p, h2{
   justify-content: center;
   width: 150px;
   height: 150px;
-  margin-top: 5px;
+  
 }
 .well-historico{
   margin-top: 20px;
@@ -46,6 +47,7 @@ p, h2{
 .letra-perfil{
   color: #fff;
   font-size: 12em;
+
 }
 .chat{
   border-radius: 5%;
