@@ -42,13 +42,8 @@ export default {
   },
   methods: {
     markAsRead: function() {
-      var request = $.get("/notifications/" + this.unread.id + "?read=true");
-
-      self = this;
-
-      request.always(function() {
-        window.location.replace(self.unread.data.n_url);
-      });
+      $.get("/notifications/" + this.unread.id + "?read=true");
+			window.location.replace(self.unread.data.n_url);
     }
   },
   mounted() {}
