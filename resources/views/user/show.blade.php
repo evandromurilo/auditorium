@@ -71,20 +71,20 @@
 
 							@foreach ($requests as $request)
 								<tr>
-									<td>{{ $request->auditorium->name }}</td>
-									<td>{{ $request->dateC->format('d/m/Y') }}</td>
+									<td style="vertical-align:middle;">{{ $request->auditorium->name }}</td>
+									<td style="vertical-align:middle;">{{ $request->dateC->format('d/m/Y') }}</td>
 
 									@if ($request->status == 0)
 										</td></td>
-										<td><span class="pendente">Pendente</span></td>
+										<td align="center" style="vertical-align:middle;"><span class="pendente">Pendente</span></td>
 									@elseif ($request->status == 1)
-										<td><span class="indisponivel">Rejeitado</span></td>
+										<td align="center" style="vertical-align:middle;"><span class="indisponivel">Rejeitado</span></td>
 									@else
-										<td><span class="disponivel">Aceito</span></td>
+										<td align="center" style="vertical-align:middle;"><span class="disponivel">Aceito</span></td>
 									@endif
 
-									<td>
-										<button type="button"
+									<td align="center">
+										<button style="margin: auto;" type="button"
 									 		class="btn btn-primary btn-xs"
 											data-toggle="modal"
 											href="{{ route('requests.modal', $request->id) }}"
