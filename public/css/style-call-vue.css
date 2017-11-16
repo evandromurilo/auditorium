@@ -7,17 +7,12 @@ body {
 
 /*pessoas relacionadas*/
 
-.user-relacionado {
-
-}
-
-.well-perfil {
-
-}
-
 .well-pessoa {
-
+  margin-top: 25px;
   background-color: #fff;
+}
+.user-relacionado{
+  margin: 10px 0px 10px 0px;
 }
 
 
@@ -40,12 +35,13 @@ body {
   margin-top: 25px;
 	height: 500px;
 	overflow: auto;
+  overflow-x: hidden;
   background-color: #fff;
 }
 
 .user-assunto {
-  font-size: 14px;
-
+  margin: 10px 0px 10px 0px;
+  font-size: 25px;
 }
 
 .text-assunto:link, .text-assunto{
@@ -53,9 +49,7 @@ body {
 	color: #636b6f;
 
 }
-.text-assunto:hover{
 
-}
 
 #teste{
 margin-top: 15px;
@@ -96,6 +90,12 @@ margin-top: 15px;
 
     background-color: #fff;
   }
+
+  .btn-chamada{
+    background-color: green;
+    color: #fff;
+    
+  }
 }
 
 /* > Computer*/
@@ -110,7 +110,11 @@ margin-top: 15px;
   }
 
   .well-pessoa {
-
     background-color: #fff;
+  }
+  .btn-chamada{
+    background-color: green;
+    color: #fff;
+
   }
 }

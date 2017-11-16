@@ -48585,6 +48585,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
@@ -48786,7 +48787,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "well description-assunto",
+                      staticClass: "description-assunto",
                       attrs: { id: "teste" }
                     },
                     [
@@ -48803,9 +48804,7 @@ var render = function() {
                 ])
               }),
               _vm._v(" "),
-              _c("a", { attrs: { href: "/calls/create" } }, [
-                _vm._v("\r\n\t\t\t\t\t\tNova Chamada\r\n\t\t\t\t\t")
-              ])
+              _vm._m(0)
             ],
             2
           )
@@ -48818,7 +48817,24 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-chamada", attrs: { href: "/calls/create" } },
+      [
+        _vm._v("\r\n\t\t\t\t\t\tNova Chamada\r\n            "),
+        _c("i", {
+          staticClass: "fa fa-plus-square",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
