@@ -47166,6 +47166,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user_id'],
@@ -47175,7 +47178,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 
-	methods: {},
+	methods: {
+		markAllAsRead: function markAllAsRead() {
+			$.get("/notifications/clear");
+		}
+	},
 	mounted: function mounted() {
 		console.log('Notifications: Component mounted.');
 
@@ -47238,7 +47245,13 @@ var render = function() {
         _vm._l(_vm.unreadNotifications, function(unread) {
           return _c("notification-item", { attrs: { unread: unread } })
         })
-      )
+      ),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "#" }, on: { click: _vm.markAllAsRead } }, [
+          _vm._v("Limpar Notificações")
+        ])
+      ])
     ])
   ])
 }

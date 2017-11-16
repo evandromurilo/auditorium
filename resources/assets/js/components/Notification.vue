@@ -8,6 +8,9 @@
 			<li class="erro">
 				<notification-item v-for="unread in unreadNotifications" :unread="unread"></notification-item>
 			</li>
+			<li>
+				<a v-on:click="markAllAsRead" href="#">Limpar Notificações</a>
+			</li>
 		</ul>
 	</li>
 </template>
@@ -21,6 +24,9 @@ export default {
 		}
 	},
 	methods: {
+		markAllAsRead: function() {
+			$.get("/notifications/clear");
+		}
 	},
 	mounted() {
 		console.log('Notifications: Component mounted.');

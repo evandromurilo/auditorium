@@ -33,6 +33,8 @@ Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::get('/users', 'UserController@index')->name('users.index');
 
+Route::get('/notifications/clear', 'NotificationController@markAllAsRead')
+	->name('notifications.markAllAsRead');
 Route::get('/notifications', 'NotificationController@unreadNotifications')->name('notifications');
 Route::get('/notifications/newmessage/{id}', 'NotificationController@markNewMessageAsRead');
 Route::get('/notifications/{id}', 'NotificationController@markAsRead');
