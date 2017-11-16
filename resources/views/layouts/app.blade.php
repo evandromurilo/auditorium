@@ -75,6 +75,7 @@
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
+                                            <i class="fa fa-sign-in icon" aria-hidden="true"></i>
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -82,13 +83,15 @@
                                         </form>
                                     </li>
 																		@can('resolve', App\Request::class)
-																			<li><a href="{{ route('requests.index') }}">Pedidos</a></li>
+																			<li><a href="{{ route('requests.index') }}">Pedidos <i class="fa fa-list icon" aria-hidden="true"></i></a></li>
 																		@endcan
 																		<li><a href="{{ route('users.show', Auth::id()) }}">
 																				Perfil
+                                         <i class="fa fa-user-o icon" aria-hidden="true"></i>
 																			</a></li>
 																		<li><a href="{{ route('calls.show', 1) }}">
 																				Chamadas
+                                         <i class="fa fa-comments-o icon" aria-hidden="true"></i>
 																			</a></li>
                                 </ul>
                             </li>
