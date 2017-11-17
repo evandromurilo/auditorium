@@ -47986,7 +47986,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     markAsRead: function markAsRead() {
       $.get("/notifications/" + this.unread.id + "?read=true");
-      window.location.replace(self.unread.data.n_url);
+      window.location.replace(this.unread.data.n_url);
     }
   },
   mounted: function mounted() {}

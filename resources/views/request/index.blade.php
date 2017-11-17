@@ -56,7 +56,7 @@
 
 							<?php $route_args = ["id" => $request->id, "from" => "index",
 								"filter" => $filter] ?>
-							@include('partials.request.request_status_update')
+							@include('partials.request.request_status_update_index')
 						</div>
 					</div>
 				@endforeach
