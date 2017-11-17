@@ -64,6 +64,7 @@
 								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Capacidade: </span>
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 									{{ $aud->capacity }} pessoas.
+								<i class="fa fa-male" aria-hidden="true"></i>
 								</div>
 							</div>
 

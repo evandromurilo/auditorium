@@ -21,7 +21,9 @@
 							<div class="form-group">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Data:</label>
 								<div class="col-sm-10 col-md-10 col-lg-10">
-									<p class="form-control-static"> ({{ $request->dateC->format('d/m/Y') }})</p>
+									<p class="form-control-static"> ({{ $request->dateC->format('d/m/Y') }})
+										<i class="fa fa-calendar" aria-hidden="true"></i>
+									</p>
 								</div>
 							</div>
 
@@ -43,8 +45,9 @@
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Organizador:</label>
 								<div class="col-sm-10 col-md-10 col-lg-10">
 									<p class="form-control-static">
-										 <a href="{{ route('users.show', $request->user_id) }}">
+										 <a class="organizador" href="{{ route('users.show', $request->user_id) }}">
 										{{ $request->user->name }}
+										<i class="fa fa-user-o" aria-hidden="true"></i>
 									</a></p>
 								</div>
 							</div>

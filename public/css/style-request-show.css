@@ -4,7 +4,7 @@ body {
 background-color: #fff;
 }
 
-label, p, span{
+label, p, span, .organizador{
   color: #000;
     font-family: 'Roboto', sans-serif;
 }
@@ -18,7 +18,10 @@ label, p, span{
   padding-top: 10px;
   color: #000;
 }
-
+.organizador:hover{
+  text-decoration: none;
+  color: #000;
+}
 .well {
   margin-top: 80px;
   border: 2px solid #d3e0e9;

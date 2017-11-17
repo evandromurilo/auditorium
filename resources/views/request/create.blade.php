@@ -10,7 +10,7 @@
 			<h1 class="text-center">Agendar {{ $aud->name }}</h1>
 		</div>
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-sm-12 col-md-12 col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">Descrição do Agendamento
 						 <span class="date-top">Data: {{ $date->format('d/m/Y') }} </span>
@@ -29,8 +29,8 @@
 							@endif
 
 							<div class="form-group{{ $errors->has('event') ? ' has-error' : '' }} space-top">
-								<label class="col-md-2 control-label">Evento</label>
-								<div class="col-md-9">
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Eventos</label>
+								<div class="col-sm-9 col-md-9 col-lg-9">
 									<input
 										type="text"
 										name="event"
@@ -48,37 +48,38 @@
 							</div>
 
 							<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-								<label class="col-md-2 control-label">Descrição </label>
-								<div class="col-md-9">
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Descrição </label>
+								<div class="col-sm-9 col-md-9 col-lg-9">
 									<input type="text"
 										name="description"
 										class="form-control"
 										autocomplete="off"
 										value="{{ old('description') }}">
-								</div>
+
 
 								@if ($errors->has('description'))
 									<span class="help-block">
 										<strong>{{ $errors->first('description') }}</strong>
 									</span>
 								@endif
+								</div>
 							</div>
 
 							<div class="form-group{{ $errors->has('period') ? ' has-error' : '' }}">
-								<label class="col-md-2 control-label">Período:</label>
-								<div class="col-md-5">
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Período:</label>
+								<div class="col-sm-5 col-md-5 col-lg-5">
 									<select name="period" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<option value="0" {{ $period == 0? 'selected':'' }}>Manhã</option>
 										<option value="1" {{ $period == 1? 'selected':'' }}>Tarde</option>
 										<option value="2" {{ $period == 2? 'selected':'' }}>Noite</option>
-									</select></br>
-								</div>
+									</select>						
 
 								@if ($errors->has('period'))
 									<span class="help-block">
 										<strong>{{ $errors->first('period') }}</strong>
 									</span>
 								@endif
+								</div>
 							</div>
 
 							<div class="form-group">
