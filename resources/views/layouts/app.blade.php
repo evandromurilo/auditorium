@@ -20,6 +20,11 @@
 	  <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
 	  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 
+    <style media="screen">
+      .icon{
+        float: right;
+      }
+    </style>
 
 </head>
 <body>
@@ -62,7 +67,7 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Criar Conta</a></li>
                         @else
-													<notification :user_id="{{ Auth::id() }}"></notification>
+													<notification  :user_id="{{ Auth::id() }}"></notification>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
