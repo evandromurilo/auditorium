@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/style-request-status-update.css')}}">
+<link rel="stylesheet" href="{{ asset('css/style-request-status-update-index.css')}}">
 @if ($request->status == 0)
 
 	<div class="col-xs-12 col-sm-12 col-md-12 center-block">
@@ -9,7 +9,7 @@
 			Rejeitar
 			</a>
 	</div>
-	
+
 @elseif ($request->status == 1)
 
 	<div class="col-xs-12 col-sm-12 col-md-12 center-block">

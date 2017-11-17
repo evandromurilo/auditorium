@@ -4,6 +4,20 @@ body {
 background-color: #fff;
 }
 
+label, p, span{
+  color: #000;
+    font-family: 'Roboto', sans-serif;
+}
+.btn-pedidos{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.title-event{
+  padding-top: 10px;
+  color: #000;
+}
 
 .well {
   margin-top: 80px;
