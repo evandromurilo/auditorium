@@ -116,7 +116,12 @@ class RequestController extends Controller
 	}
 
 	public function negate(Request $request) {
-		$this->authorize('resolve', \App\Request::class);
+		$nrequest = \App\Request::find($request->segment(2));
+
+		if (Auth::id() != $nrequest->user_id) {
+			$this->authorize('resolve', \App\Request::class);
+		}
+
 		return $this->changeStatus($request, 1);
 	}
 
