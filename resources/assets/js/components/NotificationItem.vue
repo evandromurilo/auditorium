@@ -43,7 +43,7 @@ export default {
   methods: {
     markAsRead: function() {
       $.get("/notifications/" + this.unread.id + "?read=true");
-			window.location.replace(self.unread.data.n_url);
+			window.location.replace(this.unread.data.n_url);
     }
   },
   mounted() {}
