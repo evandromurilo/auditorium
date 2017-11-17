@@ -25,7 +25,7 @@
 
 						@can('resolve', \App\Request::class)
 							<?php $route_args = ["id" => $request->id, "from" => "show"] ?>
-							@include('partials.request.request_status_update')
+							@include('partials.request.request_status_update_show')
 						@else
 							@if ($request->status == 0)
 								<span class="pendente" style="background-color: #FF8C00;">Pendente</span>
