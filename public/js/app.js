@@ -47790,6 +47790,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user_id'],
@@ -47839,6 +47841,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("li", { staticClass: "dropdown" }, [
+    _c("link", {
+      attrs: { rel: "stylesheet", href: "css/style-notification.css" }
+    }),
+    _vm._v(" "),
     _c(
       "a",
       {
@@ -47869,9 +47875,15 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("li", [
-        _c("a", { attrs: { href: "#" }, on: { click: _vm.markAllAsRead } }, [
-          _vm._v("Limpar Notificações")
-        ])
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-limpa",
+            attrs: { href: "#" },
+            on: { click: _vm.markAllAsRead }
+          },
+          [_vm._v("Limpar Notificações")]
+        )
       ])
     ])
   ])
