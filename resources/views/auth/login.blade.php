@@ -67,3 +67,7 @@
     </div>
 </div>
 @endsection
+
+@section('sources')
+  <link rel="stylesheet" href="{{ asset('css/style-login-register.css')}}">
+@endsection

@@ -131,4 +131,5 @@
 	<script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-script-register.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('css/style-register.css')}}">
+	<link rel="stylesheet" href="{{ asset('css/style-login-register.css')}}">
 @endsection
