@@ -48765,7 +48765,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text" },
+                      attrs: { type: "text", autofocus: "" },
                       domProps: { value: _vm.body },
                       on: {
                         input: function($event) {

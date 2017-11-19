@@ -26,7 +26,7 @@
               <div class="input-group fixed-bottom input-fixo">
                 <input type="hidden" name="_token" :value="csrf_token">
 
-                <input type="text" class="form-control" v-model="body">
+                <input type="text" class="form-control" autofocus v-model="body">
                 <span class="input-group-btn">
 										<button v-on:click="send" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
 									</span>

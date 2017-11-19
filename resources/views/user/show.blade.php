@@ -39,7 +39,7 @@
 					<input type="hidden" name="user_id" value="{{ $user->id }}">
 					<input type="hidden" name="title" value="{{ $user->name }}">
 					@if ($user->id != Auth::id())
-					<p id="chat-button" class="chat" onclick="$('#call-form').submit()">
+					<p id="chat-button" class="chat" data-toggle="tooltip" title="Chamar '{{ $user->name }}' para conversa!" onclick="$('#call-form').submit()">
 						Chat
 						<i class="fa fa-comments-o" aria-hidden="true"></i>
 					</p>
