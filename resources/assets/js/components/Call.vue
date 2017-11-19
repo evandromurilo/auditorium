@@ -30,7 +30,7 @@
                 <span class="input-group-btn">
 										<button v-on:click="send" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
 									</span>
-                  
+
               </div>
             </div>
           </div>
@@ -43,20 +43,24 @@
         <div class="well well-assunto">
           <h3 class="text-center user-assunto">Assuntos</h3>
 					<div v-for="call in calls">
-              <div id="teste" class="description-assunto">
-                <a class="text-justify text-assunto" :href="'/calls/'+call.id">{{ call.title}}</a>
+              <div style="margin: auto;" id="teste" class="description-assunto">
+                <a class="text-justify text-assunto" :href="'/calls/'+call.id"><p id="uni">{{ call.title}}</p></a>
+                <a class="trash-assunto" v-if="!call.user_to_user && call.id != 1"
+              		v-on:click="exit">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
               </div>
 					</div>
-					<a class="btn btn-chamada" href="/calls/create">
+					<!--<a class="btn btn-chamada" href="/calls/create">
 						Nova Chamada
             <i class="fa fa-plus-square" aria-hidden="true"></i>
-					</a>
+					</a>-->
         </div>
       </div>
     </div>
   </div>
-	<a v-if="!call.user_to_user && call.id != 1"
-		v-on:click="exit">Sair</a>
+	<!--<a class="btn btn-danger"  v-if="!call.user_to_user && call.id != 1"
+		v-on:click="exit">Sair</a>-->
 </div>
 </template>
 

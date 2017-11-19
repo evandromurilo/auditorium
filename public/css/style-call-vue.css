@@ -11,11 +11,10 @@ body {
   margin-top: 25px;
   background-color: #fff;
 }
-.user-relacionado{
+
+.user-relacionado {
   margin: 10px 0px 10px 0px;
 }
-
-
 
 /*chat*/
 
@@ -31,10 +30,11 @@ body {
 }
 
 /*assunto*/
+
 .well-assunto {
   margin-top: 25px;
-	height: 500px;
-	overflow: auto;
+  height: 500px;
+  overflow: auto;
   overflow-x: hidden;
   background-color: #fff;
 }
@@ -44,36 +44,44 @@ body {
   font-size: 25px;
 }
 
-.text-assunto:link, .text-assunto{
-	text-decoration: none;
-	color: #636b6f;
-
+.text-assunto:link, .text-assunto, .text-assunto:hover {
+  text-decoration: none;
+  color: #000;
 }
 
-
-#teste{
-margin-top: 15px;
-
+#uni {
+  white-space: nowrap;
+  width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.well-pessoa{
+
+.trash-assunto {
+  float: right;
+  color: #000;
+}
+
+.trash-assunto:hover {
+  color: red;
+}
+
+#teste {
+  margin-top: 15px;
+}
+
+.well-pessoa {
   height: 500px;
   overflow: auto;
   overflow-x: hidden;
 }
 
-
 /*Small*/
 
-@media screen and (max-width: 767px) {
-
-}
+@media screen and (max-width: 767px) {}
 
 /*Tablet*/
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
-
-
-}
+@media screen and (min-width: 768px) and (max-width: 991px) {}
 
 /*Computer*/
 
@@ -85,16 +93,12 @@ margin-top: 15px;
     height: 40px;
     margin-bottom: 12px;
   }
-
   .well-pessoa {
-
     background-color: #fff;
   }
-
-  .btn-chamada{
+  .btn-chamada {
     background-color: green;
     color: #fff;
-    
   }
 }
 
@@ -108,13 +112,11 @@ margin-top: 15px;
     height: 40px;
     margin-bottom: 12px;
   }
-
   .well-pessoa {
     background-color: #fff;
   }
-  .btn-chamada{
+  .btn-chamada {
     background-color: green;
     color: #fff;
-
   }
 }

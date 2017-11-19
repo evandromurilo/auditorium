@@ -48608,6 +48608,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
@@ -48810,6 +48814,7 @@ var render = function() {
                     "div",
                     {
                       staticClass: "description-assunto",
+                      staticStyle: { margin: "auto" },
                       attrs: { id: "teste" }
                     },
                     [
@@ -48819,44 +48824,41 @@ var render = function() {
                           staticClass: "text-justify text-assunto",
                           attrs: { href: "/calls/" + call.id }
                         },
-                        [_vm._v(_vm._s(call.title))]
-                      )
+                        [
+                          _c("p", { attrs: { id: "uni" } }, [
+                            _vm._v(_vm._s(call.title))
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      !call.user_to_user && call.id != 1
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "trash-assunto",
+                              on: { click: _vm.exit }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-trash-o",
+                                attrs: { "aria-hidden": "true" }
+                              })
+                            ]
+                          )
+                        : _vm._e()
                     ]
                   )
                 ])
-              }),
-              _vm._v(" "),
-              _vm._m(0)
+              })
             ],
             2
           )
         ])
       ])
-    ]),
-    _vm._v(" "),
-    !_vm.call.user_to_user && _vm.call.id != 1
-      ? _c("a", { on: { click: _vm.exit } }, [_vm._v("Sair")])
-      : _vm._e()
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "btn btn-chamada", attrs: { href: "/calls/create" } },
-      [
-        _vm._v("\r\n\t\t\t\t\t\tNova Chamada\r\n            "),
-        _c("i", {
-          staticClass: "fa fa-plus-square",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -22,7 +22,7 @@
 					<div class="btn-position day"><span id="weekday"></span></div>
 
 					<div class="btn-position">
-						<input type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
+						<input style="color: #fff;" type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
 					</div>
 				</form>
 			</div>

@@ -76,6 +76,7 @@
 								<label class="col-md-4 control-label">Posição:</label>
 
 								<div class="col-md-6">
+								
 									@if (Auth::user()->isAn('admin'))
 										<select name="role"style="background-color: #fff;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<option value="admin" {{ $user->isAn('admin')? 'selected':'' }}>
@@ -117,4 +118,5 @@
 	<script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-script-register.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('css/style-register.css')}}">
+	<link rel="stylesheet" href="{{ asset('css/style-user-edit.css')}}">
 @endsection
