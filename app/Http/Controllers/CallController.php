@@ -33,10 +33,10 @@ class CallController extends Controller {
 
 	public function createCall(Request $request) {
 		$validateData = $request->validate([
-			'title' => 'required|max:40',
+			'title' => 'required|max:35',
 		], [
 			'title.required' => 'O campo título é obrigatório.',
-			'title.max' => 'O campo título deve ter até 40 caracteres'
+			'title.max' => 'O campo título deve ter até 35 caracteres'
 		]);
 
 		$call = new Call;
