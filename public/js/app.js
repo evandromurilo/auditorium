@@ -48004,11 +48004,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    exit: function exit() {
-      var request = $.get("/calls/" + this.call.id + "/exit");
+    exit: function exit(id) {
+      var request = $.get("/calls/" + id + "/exit");
+      var self = this;
 
       request.done(function () {
-        window.location.replace("/calls/1");
+        if (self.call.id == id) {
+          window.location.replace("/calls/1");
+        } else {
+          window.location.reload(true);
+        }
       });
     },
 
@@ -48202,31 +48207,29 @@ var render = function() {
                           attrs: { href: "/calls/" + call.id }
                         },
                         [
-                          _c("p", { attrs: { id: "uni" } }, [
+                          _c("span", { staticClass: "uni" }, [
                             _vm._v(_vm._s(call.title))
                           ])
                         ]
                       ),
                       _vm._v(" "),
                       !call.user_to_user && call.id != 1
-                        ? _c(
-                            "a",
-                            {
-                              staticClass: "trash-assunto",
-                              on: { click: _vm.exit }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "fa fa-trash-o",
-                                attrs: { "aria-hidden": "true" }
-                              })
-                            ]
-                          )
+                        ? _c("i", {
+                            staticClass: "trash-assunto fa fa-trash-o",
+                            attrs: { "aria-hidden": "true" },
+                            on: {
+                              click: function($event) {
+                                _vm.exit(call.id)
+                              }
+                            }
+                          })
                         : _vm._e()
                     ]
                   )
                 ])
-              })
+              }),
+              _vm._v(" "),
+              _vm._m(0)
             ],
             2
           )
@@ -48235,7 +48238,24 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-chamada", attrs: { href: "/calls/create" } },
+      [
+        _vm._v("\n\t\t\t\t\t\tNova Chamada\n            "),
+        _c("i", {
+          staticClass: "fa fa-plus-square",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
