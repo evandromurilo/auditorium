@@ -42,8 +42,10 @@ export default {
   },
   methods: {
     markAsRead: function() {
-      $.get("/notifications/" + this.unread.id + "?read=true");
-			window.location.replace(this.unread.data.n_url);
+			var self = this;
+			$.get("/notifications/" + this.unread.id + "?read=true", function() {
+				window.location.replace(self.unread.data.n_url);
+			});
     }
   },
   mounted() {}
