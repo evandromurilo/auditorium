@@ -47614,6 +47614,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'users'],
@@ -47769,6 +47777,16 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("label", { staticClass: "title-membros" }, [_vm._v("Membros")]),
+      _vm._v(" "),
+      _vm.errors.members
+        ? _c("div", { staticClass: "form-group has-error" }, [
+            _c("span", { staticClass: "help-block" }, [
+              _vm._v(
+                "\n\t\t\t\t\t\t" + _vm._s(_vm.errors.members) + "\n\t\t\t\t\t"
+              )
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c(

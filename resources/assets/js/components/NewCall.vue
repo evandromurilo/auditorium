@@ -22,6 +22,7 @@
   </div>
 
   <div class="container">
+
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <span class="names-user">Usuário: {{ user.name }}
@@ -36,6 +37,13 @@
 
   <div class="container">
     <label class="title-membros">Membros</label>
+
+		<div v-if="errors.members" class="form-group has-error">
+				<span class="help-block">
+						{{ errors.members }}
+					</span>
+		</div>
+
     <div class="row">
       <ul>
         <span v-for="u in users">
