@@ -49004,7 +49004,11 @@ var render = function() {
                 staticClass: "media-heading nome-member",
                 attrs: { href: "/users/" + _vm.member.id }
               },
-              [_c("span", {}, [_vm._v(_vm._s(_vm.member.name))])]
+              [
+                _c("p", { staticClass: "nome-user-relacionada" }, [
+                  _vm._v(_vm._s(_vm.member.name))
+                ])
+              ]
             )
           ])
         ])

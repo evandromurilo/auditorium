@@ -18,7 +18,7 @@
 
             <div class="media-body">
               <a class="media-heading nome-member" :href="'/users/' + member.id">
-                <span class="">{{ member.name }}</span>
+                <p class="nome-user-relacionada">{{ member.name }}</p>
               </a>
             </div>
 
