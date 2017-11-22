@@ -162,8 +162,17 @@ export default {
 					self.messages[i].author = self.users_lookup[self.messages[i].user_id];
 				}
 			});
-
 		},
+
+		loadMessage: function(id) {
+			self = this;
+
+			$.getJSON("/messages/"+id, function(data) {
+				var message = data;
+				message.author = self.users_lookup[message.user_id];
+				self.messages.push(message);
+			});
+		}
 
   },
   mounted() {
@@ -181,12 +190,10 @@ export default {
 
     Echo.private(`App.Call.${1}`)
       .listen('MessageCreated', (e) => {
-        if (e.message.user_id != this.user_id) {
+        if (e.user_id != this.user_id) {
           console.log('Calls: New message!');
 
-          var message = e.message;
-          message.author = this.users_lookup[message.user_id];
-          this.messages.push(message);
+					self.loadMessage(e.message_id);
 
           $.get('/notifications/newmessage/' + this.call.id + '?markasread');
         }

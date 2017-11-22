@@ -35,12 +35,12 @@ class NewMessage extends Notification
 		public function toArray($notifiable) {
 			return [
 				'message_id' => $this->message->id,
+				'user_id' => $this->message->user->id,
 				'user_name' => $this->message->user->name,
 				'call_title' => $this->message->call->title,
 				'call_id' => $this->message->call_id,
 				'n_message' => "Você recebeu uma nova mensagem de ".$this->message->user->name.".",
 			  'n_url' => route('calls.show', ['id' => $this->message->call_id, 'from' => 'notification']),
-			  'message' => $this->message,
 			];
 		}
 

@@ -28,19 +28,21 @@ class SendNewMessageNotification
      */
     public function handle(MessageCreated $event)
     {
-			foreach ($event->message->call->members as $member) {
-				if ($member->id != $event->message->user_id) {
+			$message = \App\Message::find($event->message_id);
+
+			foreach ($message->call->members as $member) {
+				if ($member->id != $message->user_id) {
 					$send = true;
 					foreach ($member->unreadNotifications as $notification) {
 						if ($notification->type == "App\Notifications\NewMessage" &&
-							$notification->data['call_id'] == $event->message->call_id) {
+							$notification->data['call_id'] == $message->call_id) {
 							$send = false;
 							break;
 						}
 					}
 				
 					if ($send) {
-					 	$member->notify(new NewMessage($event->message));
+					 	$member->notify(new NewMessage($message));
 					}
 				}
 			}

@@ -30,4 +30,13 @@ class MessageController extends Controller {
 
 		return redirect()->route('calls.show', $message->call_id);
 	}
+
+	public function show(Request $request) {
+		$message = Message::find($request->segment(2));
+		$call = Call::find($message->call_id);
+
+		$this->authorize('see', $call);
+
+		return $message;
+	}
 }

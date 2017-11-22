@@ -48009,127 +48009,135 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_id', 'users'],
-  data: function data() {
-    return {
-      post_url: "/messages",
-      csrf_token: $('meta[name=csrf-token]').attr('content'),
-      users_lookup: {},
-      n_messages: [],
-      body: '',
-      calls: [],
-      members: [],
-      messages: [],
-      call: {}
-    };
-  },
+	props: ['user_id', 'users'],
+	data: function data() {
+		return {
+			post_url: "/messages",
+			csrf_token: $('meta[name=csrf-token]').attr('content'),
+			users_lookup: {},
+			n_messages: [],
+			body: '',
+			calls: [],
+			members: [],
+			messages: [],
+			call: {}
+		};
+	},
 
-  methods: {
-    exit: function exit(id) {
-      var request = $.get("/calls/" + id + "/exit");
-      var self = this;
+	methods: {
+		exit: function exit(id) {
+			var request = $.get("/calls/" + id + "/exit");
+			var self = this;
 
-      request.done(function () {
-        if (self.call.id == id) {
-          self.refreshCall(1);
-        } else {
-          self.refreshCalls();
-        }
-      });
-    },
+			request.done(function () {
+				if (self.call.id == id) {
+					self.refreshCall(1);
+				} else {
+					self.refreshCalls();
+				}
+			});
+		},
 
-    send: function send() {
-      var inputs = {
-        _token: this.csrf_token,
-        body: this.body,
-        call_id: this.call.id,
-        user_id: this.user_id
-      };
+		send: function send() {
+			var inputs = {
+				_token: this.csrf_token,
+				body: this.body,
+				call_id: this.call.id,
+				user_id: this.user_id
+			};
 
-      var request = $.post(this.post_url, inputs);
+			var request = $.post(this.post_url, inputs);
 
-      var message = {
-        body: this.body,
-        author: this.users_lookup[this.user_id]
-      };
+			var message = {
+				body: this.body,
+				author: this.users_lookup[this.user_id]
+			};
 
-      this.messages.push(message);
-      this.body = '';
+			this.messages.push(message);
+			this.body = '';
 
-      request.done(function (response, textStatus, jqXHR) {
-        console.log('Mensagem enviada!');
-      });
+			request.done(function (response, textStatus, jqXHR) {
+				console.log('Mensagem enviada!');
+			});
 
-      request.fail(function (response, textStatus, errorThrown) {
-        console.error("The following error occurred: " + textStatus, errorThrown);
-      });
-    },
+			request.fail(function (response, textStatus, errorThrown) {
+				console.error("The following error occurred: " + textStatus, errorThrown);
+			});
+		},
 
-    refreshCall: function refreshCall(id) {
-      self = this;
+		refreshCall: function refreshCall(id) {
+			self = this;
 
-      $.getJSON("/calls/" + id, function (data) {
-        self.call = data;
-        self.refreshMembers();
-        self.refreshMessages();
-      });
-    },
+			$.getJSON("/calls/" + id, function (data) {
+				self.call = data;
+				self.refreshMembers();
+				self.refreshMessages();
+			});
+		},
 
-    refreshCalls: function refreshCalls() {
-      self = this;
+		refreshCalls: function refreshCalls() {
+			self = this;
 
-      $.getJSON("/users/" + this.user_id + "/calls", function (data) {
-        self.calls = data;
-      });
-    },
+			$.getJSON("/users/" + this.user_id + "/calls", function (data) {
+				self.calls = data;
+			});
+		},
 
-    refreshMembers: function refreshMembers() {
-      self = this;
+		refreshMembers: function refreshMembers() {
+			self = this;
 
-      $.getJSON("/calls/" + this.call.id + "/members", function (data) {
-        self.members = data;
-      });
-    },
+			$.getJSON("/calls/" + this.call.id + "/members", function (data) {
+				self.members = data;
+			});
+		},
 
-    refreshMessages: function refreshMessages() {
-      self = this;
+		refreshMessages: function refreshMessages() {
+			self = this;
 
-      $.getJSON("/calls/" + this.call.id + "/messages", function (data) {
-        self.messages = data;
+			$.getJSON("/calls/" + this.call.id + "/messages", function (data) {
+				self.messages = data;
 
-        for (var i = 0, len = self.messages.length; i < len; i++) {
-          self.messages[i].author = self.users_lookup[self.messages[i].user_id];
-        }
-      });
-    }
+				for (var i = 0, len = self.messages.length; i < len; i++) {
+					self.messages[i].author = self.users_lookup[self.messages[i].user_id];
+				}
+			});
+		},
 
-  },
-  mounted: function mounted() {
-    var _this = this;
+		loadMessage: function loadMessage(id) {
+			self = this;
 
-    console.log('Calls: Component mounted.');
+			$.getJSON("/messages/" + id, function (data) {
+				var message = data;
+				message.author = self.users_lookup[message.user_id];
+				self.messages.push(message);
+			});
+		}
 
-    this.refreshCalls();
-    this.refreshCall(1);
+	},
+	mounted: function mounted() {
+		var _this = this;
 
-    var self = this;
+		console.log('Calls: Component mounted.');
 
-    for (var i = 0, len = this.users.length; i < len; i++) {
-      this.users_lookup[this.users[i].id] = this.users[i];
-    }
+		this.refreshCalls();
+		this.refreshCall(1);
 
-    Echo.private('App.Call.' + 1).listen('MessageCreated', function (e) {
-      if (e.message.user_id != _this.user_id) {
-        console.log('Calls: New message!');
+		var self = this;
 
-        var message = e.message;
-        message.author = _this.users_lookup[message.user_id];
-        _this.messages.push(message);
+		for (var i = 0, len = this.users.length; i < len; i++) {
+			this.users_lookup[this.users[i].id] = this.users[i];
+		}
 
-        $.get('/notifications/newmessage/' + _this.call.id + '?markasread');
-      }
-    });
-  }
+		Echo.private('App.Call.' + 1).listen('MessageCreated', function (e) {
+			if (e.user_id != _this.user_id) {
+				console.log('Calls: New message!');
+
+				self.loadMessage(e.message_id);
+
+				$.get('/notifications/newmessage/' + _this.call.id + '?markasread');
+			}
+		});
+	}
 });
 
 /***/ }),
