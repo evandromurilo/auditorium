@@ -48069,7 +48069,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			self = this;
 
 			$.getJSON("/calls/" + id, function (data) {
-				window.history.pushState({}, "Call", "/calls?id=" + id);
+				window.history.replaceState({}, "Call", "/calls?id=" + id);
 				self.call = data;
 				self.refreshMembers();
 				self.refreshMessages();
