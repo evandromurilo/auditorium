@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  props: ['user_id', 'users'],
+  props: ['user_id', 'users', 'first_call_id'],
   data() {
     return {
       post_url: "/messages",
@@ -129,6 +129,7 @@ export default {
 			self = this;
 
 			$.getJSON("/calls/"+id, function (data) {
+				window.history.pushState({}, "Call", "/calls?id="+id);
 				self.call = data;
 				self.refreshMembers();
 				self.refreshMessages();
@@ -179,7 +180,7 @@ export default {
     console.log('Calls: Component mounted.');
 
 		this.refreshCalls();
-		this.refreshCall(1);
+		this.refreshCall(this.first_call_id);
 
     var self = this;
 

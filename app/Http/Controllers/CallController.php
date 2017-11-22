@@ -16,7 +16,12 @@ class CallController extends Controller {
 	}
 
 	public function index(Request $request) {
-		return view('call.show');
+		if ($request->has("id")) {
+			return view('call.show')->with("first_call_id", $request->id);
+		}
+		else {
+			return view('call.show')->with("first_call_id", 1);
+		}
 	}
 
 	public function create() {

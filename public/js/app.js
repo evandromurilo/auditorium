@@ -48009,7 +48009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['user_id', 'users'],
+	props: ['user_id', 'users', 'first_call_id'],
 	data: function data() {
 		return {
 			post_url: "/messages",
@@ -48069,6 +48069,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			self = this;
 
 			$.getJSON("/calls/" + id, function (data) {
+				window.history.pushState({}, "Call", "/calls?id=" + id);
 				self.call = data;
 				self.refreshMembers();
 				self.refreshMessages();
@@ -48120,7 +48121,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		console.log('Calls: Component mounted.');
 
 		this.refreshCalls();
-		this.refreshCall(1);
+		this.refreshCall(this.first_call_id);
 
 		var self = this;
 
