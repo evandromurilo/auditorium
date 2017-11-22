@@ -48634,6 +48634,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
@@ -48890,17 +48893,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "btn btn-chamada", attrs: { href: "/calls/create" } },
-      [
-        _vm._v("\r\n\t\t\t\t\t\tNova Chamada\r\n            "),
-        _c("i", {
-          staticClass: "fa fa-plus-square",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
-    )
+    return _c("div", {}, [
+      _c(
+        "a",
+        { staticClass: "btn btn-chamada", attrs: { href: "/calls/create" } },
+        [
+          _vm._v("\r\n  \t\t\t\t\t\tNova Chamada\r\n              "),
+          _c("i", {
+            staticClass: "fa fa-plus-square",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
