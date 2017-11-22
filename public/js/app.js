@@ -48009,15 +48009,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
+  props: ['user_id', 'call', 'messages', 'members', 'users'],
   data: function data() {
     return {
       post_url: "/messages",
       csrf_token: $('meta[name=csrf-token]').attr('content'),
       users_lookup: {},
       n_messages: [],
-      body: ''
-      //calls: this.r_calls.reverse(),
+      body: '',
+      calls: []
     };
   },
 
@@ -48030,7 +48030,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (self.call.id == id) {
           window.location.replace("/calls/1");
         } else {
-          window.location.reload(true);
+          self.refreshCalls();
         }
       });
     },
@@ -48060,7 +48060,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       request.fail(function (response, textStatus, errorThrown) {
         console.error("The following error occurred: " + textStatus, errorThrown);
       });
+    },
+
+    refreshCalls: function refreshCalls() {
+      self = this;
+
+      $.getJSON("/users/" + this.user_id + "/calls", function (data) {
+        self.calls = data;
+      });
     }
+
   },
   mounted: function mounted() {
     var _this = this;
@@ -48089,6 +48098,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         $.get('/notifications/newmessage/' + _this.call.id + '?markasread');
       }
     });
+
+    this.refreshCalls();
   }
 });
 

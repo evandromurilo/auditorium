@@ -32,6 +32,7 @@ Route::put('/users/{user}', 'UserController@update')->name('users.update');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::get('/users', 'UserController@index')->name('users.index');
+Route::get('/users/{user}/calls', 'UserController@calls')->name('users.calls');
 
 Route::get('/notifications/clear', 'NotificationController@markAllAsRead')
 	->name('notifications.markAllAsRead');

@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
+  props: ['user_id', 'call', 'messages', 'members', 'users'],
   data() {
     return {
       post_url: "/messages",
@@ -74,7 +74,7 @@ export default {
       users_lookup: {},
       n_messages: [],
       body: '',
-			//calls: this.r_calls.reverse(),
+			calls: [],
     }
   },
   methods: {
@@ -87,7 +87,7 @@ export default {
 					window.location.replace("/calls/1");
 				}
 				else {
-					window.location.reload(true);
+					self.refreshCalls();
 				}
 			});
 		},
@@ -121,7 +121,16 @@ export default {
           textStatus, errorThrown
         );
       });
-    }
+    },
+
+		refreshCalls: function() {
+			self = this;
+
+			$.getJSON("/users/"+this.user_id+"/calls", function (data) {
+				self.calls = data;
+			});
+		}
+
   },
   mounted() {
     console.log('Calls: Component mounted.');
@@ -149,6 +158,9 @@ export default {
           $.get('/notifications/newmessage/' + this.call.id + '?markasread');
         }
       });
+
+		this.refreshCalls();
   }
+
 }
 </script>

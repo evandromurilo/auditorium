@@ -7,6 +7,5 @@
 		:messages="{{ $call->messages }}"
 		:user_id="{{ Auth::id() }}"
 		:members="{{ $call->members }}"
-		:users="{{ \App\User::all() }}"
-		:calls="{{ Auth::user()->calls->reverse() }}"></call>
+		:users="{{ \App\User::all() }}"></call>
 @endsection
