@@ -69,4 +69,15 @@ class UserController extends Controller {
 
 		return redirect()->route('users.show', $user->id);
 	}
+
+	public function calls(Request $request) {
+		$user_id = $request->segment(2);
+
+		if (Auth::user()->isAn('admin') || Auth::id() == $user_id) {
+			return Auth::user()->calls;
+		}
+		else {
+			abort(403);
+		}
+	}
 }

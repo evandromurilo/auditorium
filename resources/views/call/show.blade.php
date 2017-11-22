@@ -3,10 +3,7 @@
 @section('title', '{{ $call->title }}')
 
 @section('content')
-	<call :call="{{ $call }}"
-		:messages="{{ $call->messages }}"
-		:user_id="{{ Auth::id() }}"
-		:members="{{ $call->members }}"
+	<call :user_id="{{ Auth::id() }}"
 		:users="{{ \App\User::all() }}"
-		:calls="{{ Auth::user()->calls->reverse() }}"></call>
+		:first_call_id="{{ $first_call_id }}"></call>
 @endsection

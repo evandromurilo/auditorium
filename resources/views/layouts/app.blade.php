@@ -94,7 +94,7 @@
 																				Perfil
                                          <i class="fa fa-user-o icon" aria-hidden="true"></i>
 																			</a></li>
-																		<li><a href="{{ route('calls.show', 1) }}">
+																		<li><a href="{{ route('calls.index') }}">
 																				Chamadas
                                          <i class="fa fa-comments-o icon" aria-hidden="true"></i>
 																			</a></li>

@@ -48639,87 +48639,136 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
-  data: function data() {
-    return {
-      post_url: "/messages",
-      csrf_token: $('meta[name=csrf-token]').attr('content'),
-      users_lookup: {},
-      n_messages: [],
-      body: ''
-      //calls: this.r_calls.reverse(),
-    };
-  },
+	props: ['user_id', 'users', 'first_call_id'],
+	data: function data() {
+		return {
+			post_url: "/messages",
+			csrf_token: $('meta[name=csrf-token]').attr('content'),
+			users_lookup: {},
+			n_messages: [],
+			body: '',
+			calls: [],
+			members: [],
+			messages: [],
+			call: {}
+		};
+	},
 
-  methods: {
-    exit: function exit(id) {
-      var request = $.get("/calls/" + id + "/exit");
-      var self = this;
+	methods: {
+		exit: function exit(id) {
+			var request = $.get("/calls/" + id + "/exit");
+			var self = this;
 
-      request.done(function () {
-        if (self.call.id == id) {
-          window.location.replace("/calls/1");
-        } else {
-          window.location.reload(true);
-        }
-      });
-    },
+			request.done(function () {
+				if (self.call.id == id) {
+					self.refreshCall(1);
+				} else {
+					self.refreshCalls();
+				}
+			});
+		},
 
-    send: function send() {
-      var inputs = {
-        _token: this.csrf_token,
-        body: this.body,
-        call_id: this.call.id,
-        user_id: this.user_id
-      };
+		send: function send() {
+			var inputs = {
+				_token: this.csrf_token,
+				body: this.body,
+				call_id: this.call.id,
+				user_id: this.user_id
+			};
 
-      var request = $.post(this.post_url, inputs);
+			var request = $.post(this.post_url, inputs);
 
-      var message = {
-        body: this.body,
-        author: this.users_lookup[this.user_id]
-      };
+			var message = {
+				body: this.body,
+				author: this.users_lookup[this.user_id]
+			};
 
-      this.n_messages.push(message);
-      this.body = '';
+			this.messages.push(message);
+			this.body = '';
 
-      request.done(function (response, textStatus, jqXHR) {
-        console.log('Mensagem enviada!');
-      });
+			request.done(function (response, textStatus, jqXHR) {
+				console.log('Mensagem enviada!');
+			});
 
-      request.fail(function (response, textStatus, errorThrown) {
-        console.error("The following error occurred: " + textStatus, errorThrown);
-      });
-    }
-  },
-  mounted: function mounted() {
-    var _this = this;
+			request.fail(function (response, textStatus, errorThrown) {
+				console.error("The following error occurred: " + textStatus, errorThrown);
+			});
+		},
 
-    console.log('Calls: Component mounted.');
+		refreshCall: function refreshCall(id) {
+			self = this;
 
-    var self = this;
+			$.getJSON("/calls/" + id, function (data) {
+				window.history.replaceState({}, "Call", "/calls?id=" + id);
+				self.call = data;
+				self.refreshMembers();
+				self.refreshMessages();
+			});
+		},
 
-    for (var i = 0, len = this.users.length; i < len; i++) {
-      this.users_lookup[this.users[i].id] = this.users[i];
-    }
+		refreshCalls: function refreshCalls() {
+			self = this;
 
-    for (var i = 0, len = this.messages.length; i < len; i++) {
-      this.messages[i].author = this.users_lookup[this.messages[i].user_id];
-      this.n_messages.push(this.messages[i]);
-    }
+			$.getJSON("/users/" + this.user_id + "/calls", function (data) {
+				self.calls = data;
+			});
+		},
 
-    Echo.private('App.Call.' + this.call.id).listen('MessageCreated', function (e) {
-      if (e.message.user_id != _this.user_id) {
-        console.log('Calls: New message!');
+		refreshMembers: function refreshMembers() {
+			self = this;
 
-        var message = e.message;
-        message.author = _this.users_lookup[message.user_id];
-        _this.n_messages.push(message);
+			$.getJSON("/calls/" + this.call.id + "/members", function (data) {
+				self.members = data;
+			});
+		},
 
-        $.get('/notifications/newmessage/' + _this.call.id + '?markasread');
-      }
-    });
-  }
+		refreshMessages: function refreshMessages() {
+			self = this;
+
+			$.getJSON("/calls/" + this.call.id + "/messages", function (data) {
+				self.messages = data;
+
+				for (var i = 0, len = self.messages.length; i < len; i++) {
+					self.messages[i].author = self.users_lookup[self.messages[i].user_id];
+				}
+			});
+		},
+
+		loadMessage: function loadMessage(id) {
+			self = this;
+
+			$.getJSON("/messages/" + id, function (data) {
+				var message = data;
+				message.author = self.users_lookup[message.user_id];
+				self.messages.push(message);
+			});
+		}
+
+	},
+	mounted: function mounted() {
+		var _this = this;
+
+		console.log('Calls: Component mounted.');
+
+		this.refreshCalls();
+		this.refreshCall(this.first_call_id);
+
+		var self = this;
+
+		for (var i = 0, len = this.users.length; i < len; i++) {
+			this.users_lookup[this.users[i].id] = this.users[i];
+		}
+
+		Echo.private('App.Call.' + 1).listen('MessageCreated', function (e) {
+			if (e.user_id != _this.user_id) {
+				console.log('Calls: New message!');
+
+				self.loadMessage(e.message_id);
+
+				$.get('/notifications/newmessage/' + _this.call.id + '?markasread');
+			}
+		});
+	}
 });
 
 /***/ }),
@@ -48767,7 +48816,7 @@ var render = function() {
             _c(
               "div",
               { staticClass: "messages" },
-              _vm._l(_vm.n_messages, function(message) {
+              _vm._l(_vm.messages, function(message) {
                 return _c("call-message", {
                   attrs: { user_id: _vm.user_id, message: message }
                 })
@@ -48854,7 +48903,12 @@ var render = function() {
                         "a",
                         {
                           staticClass: "text-justify text-assunto",
-                          attrs: { href: "/calls/" + call.id }
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function($event) {
+                              _vm.refreshCall(call.id)
+                            }
+                          }
                         },
                         [
                           _c("span", { staticClass: "uni" }, [

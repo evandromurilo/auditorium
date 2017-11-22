@@ -19,7 +19,7 @@
         <h2 class="text-justify altura-title"> {{ call.title }}</h2>
         <div class="well well-chat">
           <div class="messages">
-            <call-message v-for="message in n_messages" :user_id="user_id" :message="message"></call-message>
+            <call-message v-for="message in messages" :user_id="user_id" :message="message"></call-message>
           </div>
           <div class="row">
             <div class="col-md-12 col-lg-12">
@@ -44,7 +44,7 @@
           <h3 class="text-center user-assunto">Assuntos</h3>
 					<div v-for="call in calls">
               <div style="margin: auto;" id="teste" class="description-assunto">
-                <a class="text-justify text-assunto" :href="'/calls/'+call.id"><span class="uni">{{ call.title}}</span></a>
+                <a style="cursor: pointer;" class="text-justify text-assunto" v-on:click="refreshCall(call.id)"><span class="uni">{{ call.title}}</span></a>
                   <i class="trash-assunto fa fa-trash-o"
 										aria-hidden="true"
 										v-if="!call.user_to_user && call.id != 1"
@@ -69,7 +69,7 @@
 
 <script>
 export default {
-  props: ['user_id', 'call', 'messages', 'members', 'users', 'calls'],
+  props: ['user_id', 'users', 'first_call_id'],
   data() {
     return {
       post_url: "/messages",
@@ -77,7 +77,10 @@ export default {
       users_lookup: {},
       n_messages: [],
       body: '',
-			//calls: this.r_calls.reverse(),
+			calls: [],
+			members: [],
+			messages: [],
+			call: {},
     }
   },
   methods: {
@@ -87,10 +90,10 @@ export default {
 
 			request.done(function () {
 				if (self.call.id == id) {
-					window.location.replace("/calls/1");
+					self.refreshCall(1);
 				}
 				else {
-					window.location.reload(true);
+					self.refreshCalls();
 				}
 			});
 		},
@@ -110,13 +113,12 @@ export default {
         author: this.users_lookup[this.user_id],
       }
 
-      this.n_messages.push(message);
+      this.messages.push(message);
       this.body = '';
 
       request.done(function(response, textStatus, jqXHR) {
         console.log('Mensagem enviada!');
       });
-
 
       request.fail(function(response, textStatus, errorThrown) {
         console.error(
@@ -124,10 +126,64 @@ export default {
           textStatus, errorThrown
         );
       });
-    }
+    },
+
+		refreshCall: function(id) {
+			self = this;
+
+			$.getJSON("/calls/"+id, function (data) {
+				window.history.replaceState({}, "Call", "/calls?id="+id);
+				self.call = data;
+				self.refreshMembers();
+				self.refreshMessages();
+			});
+
+		},
+
+		refreshCalls: function() {
+			self = this;
+
+			$.getJSON("/users/"+this.user_id+"/calls", function (data) {
+				self.calls = data;
+			});
+		},
+
+		refreshMembers: function() {
+			self = this;
+
+			$.getJSON("/calls/"+this.call.id+"/members", function (data) {
+				self.members = data;
+			});
+		},
+
+		refreshMessages: function() {
+			self = this;
+
+			$.getJSON("/calls/"+this.call.id+"/messages", function(data) {
+				self.messages = data;
+
+				for (var i = 0, len = self.messages.length; i < len; i++) {
+					self.messages[i].author = self.users_lookup[self.messages[i].user_id];
+				}
+			});
+		},
+
+		loadMessage: function(id) {
+			self = this;
+
+			$.getJSON("/messages/"+id, function(data) {
+				var message = data;
+				message.author = self.users_lookup[message.user_id];
+				self.messages.push(message);
+			});
+		}
+
   },
   mounted() {
     console.log('Calls: Component mounted.');
+
+		this.refreshCalls();
+		this.refreshCall(this.first_call_id);
 
     var self = this;
 
@@ -135,23 +191,18 @@ export default {
       this.users_lookup[this.users[i].id] = this.users[i];
     }
 
-    for (var i = 0, len = this.messages.length; i < len; i++) {
-      this.messages[i].author = this.users_lookup[this.messages[i].user_id];
-      this.n_messages.push(this.messages[i]);
-    }
 
-    Echo.private(`App.Call.${this.call.id}`)
+    Echo.private(`App.Call.${1}`)
       .listen('MessageCreated', (e) => {
-        if (e.message.user_id != this.user_id) {
+        if (e.user_id != this.user_id) {
           console.log('Calls: New message!');
 
-          var message = e.message;
-          message.author = this.users_lookup[message.user_id];
-          this.n_messages.push(message);
+					self.loadMessage(e.message_id);
 
           $.get('/notifications/newmessage/' + this.call.id + '?markasread');
         }
       });
   }
+
 }
 </script>
