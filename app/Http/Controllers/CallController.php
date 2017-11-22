@@ -16,7 +16,7 @@ class CallController extends Controller {
 	}
 
 	public function index(Request $request) {
-		return view('call.index')->with('calls', Auth::user()->calls->reverse());
+		return view('call.show');
 	}
 
 	public function create() {
@@ -28,7 +28,7 @@ class CallController extends Controller {
 
 		$this->authorize('see', $call);
 
-		return view('call.show')->with('call', $call);
+		return $call;
 	}
 
 	public function createCall(Request $request) {
@@ -96,5 +96,19 @@ class CallController extends Controller {
 		$call = Call::find($request->segment(2));
 		Auth::user()->disallow('see', $call);
 		$call->members()->detach(Auth::id());
+	}
+
+	public function members(Request $request) {
+		$call = Call::find($request->segment(2));
+		$this->authorize('see', $call);
+
+		return $call->members;
+	}
+
+	public function messages(Request $request) {
+		$call = Call::find($request->segment(2));
+		$this->authorize('see', $call);
+
+		return $call->messages;
 	}
 }

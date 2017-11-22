@@ -48009,7 +48009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user_id', 'call', 'messages', 'members', 'users'],
+  props: ['user_id', 'users'],
   data: function data() {
     return {
       post_url: "/messages",
@@ -48017,7 +48017,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       users_lookup: {},
       n_messages: [],
       body: '',
-      calls: []
+      calls: [],
+      members: [],
+      messages: [],
+      call: {}
     };
   },
 
@@ -48028,7 +48031,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       request.done(function () {
         if (self.call.id == id) {
-          window.location.replace("/calls/1");
+          self.refreshCall(1);
         } else {
           self.refreshCalls();
         }
@@ -48050,7 +48053,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         author: this.users_lookup[this.user_id]
       };
 
-      this.n_messages.push(message);
+      this.messages.push(message);
       this.body = '';
 
       request.done(function (response, textStatus, jqXHR) {
@@ -48062,11 +48065,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
 
+    refreshCall: function refreshCall(id) {
+      self = this;
+
+      $.getJSON("/calls/" + id, function (data) {
+        self.call = data;
+        self.refreshMembers();
+        self.refreshMessages();
+      });
+    },
+
     refreshCalls: function refreshCalls() {
       self = this;
 
       $.getJSON("/users/" + this.user_id + "/calls", function (data) {
         self.calls = data;
+      });
+    },
+
+    refreshMembers: function refreshMembers() {
+      self = this;
+
+      $.getJSON("/calls/" + this.call.id + "/members", function (data) {
+        self.members = data;
+      });
+    },
+
+    refreshMessages: function refreshMessages() {
+      self = this;
+
+      $.getJSON("/calls/" + this.call.id + "/messages", function (data) {
+        self.messages = data;
+
+        for (var i = 0, len = self.messages.length; i < len; i++) {
+          self.messages[i].author = self.users_lookup[self.messages[i].user_id];
+        }
       });
     }
 
@@ -48076,30 +48109,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     console.log('Calls: Component mounted.');
 
+    this.refreshCalls();
+    this.refreshCall(1);
+
     var self = this;
 
     for (var i = 0, len = this.users.length; i < len; i++) {
       this.users_lookup[this.users[i].id] = this.users[i];
     }
 
-    for (var i = 0, len = this.messages.length; i < len; i++) {
-      this.messages[i].author = this.users_lookup[this.messages[i].user_id];
-      this.n_messages.push(this.messages[i]);
-    }
-
-    Echo.private('App.Call.' + this.call.id).listen('MessageCreated', function (e) {
+    Echo.private('App.Call.' + 1).listen('MessageCreated', function (e) {
       if (e.message.user_id != _this.user_id) {
         console.log('Calls: New message!');
 
         var message = e.message;
         message.author = _this.users_lookup[message.user_id];
-        _this.n_messages.push(message);
+        _this.messages.push(message);
 
         $.get('/notifications/newmessage/' + _this.call.id + '?markasread');
       }
     });
-
-    this.refreshCalls();
   }
 });
 
@@ -48148,7 +48177,7 @@ var render = function() {
             _c(
               "div",
               { staticClass: "messages" },
-              _vm._l(_vm.n_messages, function(message) {
+              _vm._l(_vm.messages, function(message) {
                 return _c("call-message", {
                   attrs: { user_id: _vm.user_id, message: message }
                 })
@@ -48233,7 +48262,12 @@ var render = function() {
                         "a",
                         {
                           staticClass: "text-justify text-assunto",
-                          attrs: { href: "/calls/" + call.id }
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function($event) {
+                              _vm.refreshCall(call.id)
+                            }
+                          }
                         },
                         [
                           _c("span", { staticClass: "uni" }, [
