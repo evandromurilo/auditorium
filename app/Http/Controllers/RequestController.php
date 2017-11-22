@@ -59,12 +59,12 @@ class RequestController extends Controller
 		$this->authorize('create', \App\Request::class);
 
 		$validateData = $request->validate([
-			'event' => 'required|string|max:100',
+			'event' => 'required|string|max:50',
 			'period' => 'required|numeric|min:0|max:2',
 			'description' => 'required|string|max:500',
 		], [
 			'event.required' => 'O campo evento é obrigatório.',
-			'event.max' => 'O campo evento deve ter até 100 caracteres.',
+			'event.max' => 'O campo evento deve ter até 50 caracteres.',
 			'description.required' => 'O campo descrição é obrigatório.',
 			'description.max' => 'O campo descrição deve ter até 500 caracteres.'
 		]);
@@ -88,7 +88,7 @@ class RequestController extends Controller
 		$nrequest->save();
 
 		event(new \App\Events\RequestCreated($nrequest));
-		
+
 		$date = (new Carbon($request->date))->format('d/m/Y');
 		return redirect()->route('auditoria.index', ['date' => $date]);
 	}

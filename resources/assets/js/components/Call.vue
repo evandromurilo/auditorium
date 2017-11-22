@@ -23,14 +23,14 @@
           </div>
           <div class="row">
             <div class="col-md-12 col-lg-12">
-              <div class="input-group fixed-bottom input-fixo">
+              <div class="">
                 <input type="hidden" name="_token" :value="csrf_token">
-
-                <input type="text" class="form-control" autofocus v-model="body">
-                <span class="input-group-btn">
-										<button v-on:click="send" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-									</span>
-
+                <div class="row input-group fixed-botton input-chat">
+                  <input type="text" class="form-control" autofocus v-model="body">
+                  <span class="input-group-btn">
+  										<button v-on:click="send" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+  									</span>
+                  </div>
               </div>
             </div>
           </div>
@@ -51,10 +51,13 @@
 										v-on:click="exit(call.id)"></i>
               </div>
 					</div>
-					<a class="btn btn-chamada" href="/calls/create">
-						Nova Chamada
-            <i class="fa fa-plus-square" aria-hidden="true"></i>
-					</a>
+          <div class="">
+            <a class="btn btn-chamada" href="/calls/create">
+  						Nova Chamada
+              <i class="fa fa-plus-square" aria-hidden="true"></i>
+  					</a>
+          </div>
+
         </div>
       </div>
     </div>

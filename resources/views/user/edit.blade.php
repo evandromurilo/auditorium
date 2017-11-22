@@ -72,12 +72,12 @@
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="col-md-4 control-label">Posição:</label>
 
-								<div class="col-md-6">
-								
+
 									@if (Auth::user()->isAn('admin'))
+										<div class="form-group">
+											<label class="col-md-4 control-label">Posição:</label>
+											<div class="col-md-6">
 										<select name="role"style="background-color: #fff;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<option value="admin" {{ $user->isAn('admin')? 'selected':'' }}>
 												Administrador (a)
@@ -89,9 +89,10 @@
 												Coordenador (a)
 											</option>
 										</select>
-									@endif
+									</div>
 								</div>
-							</div>
+									@endif
+
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">

@@ -36,9 +36,15 @@
 									{{ $request->auditorium->name }}
 								</a>
 							</h2>
+							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Evento:</span>
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+								<span>{{ $request->event }}</span>
+							</div>
+
 							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Data:</span>
 							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 								 {{ $request->dateC->format('d/m/Y') }}</p>
+								 <i class="fa fa-calendar" aria-hidden="true"></i>
 							</div>
 
 							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Período:</span>

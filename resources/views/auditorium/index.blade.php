@@ -12,7 +12,13 @@
 							'previous' => 'true']) }}"><i class="fa fa-chevron-left arrow-left"
 								aria-hidden="true"></i></a>
 
-						<input type="text" id="date" name="date" class="text-center input-date" autocomplete="off" value="{{ $date->format('d/m/Y') }}">
+						<input
+						 type="text"
+						 id="date"
+						 name="date"
+						 class="text-center input-date"
+						 autocomplete="off"
+						 value="{{ $date->format('d/m/Y') }}">
 
 						<a href="{{ route('auditoria.index', ['date' => $date->format('d/m/Y'),
 							'next' => 'true']) }}"><i class="fa fa-chevron-right arrow-right"
@@ -22,7 +28,11 @@
 					<div class="btn-position day"><span id="weekday"></span></div>
 
 					<div class="btn-position">
-						<input style="color: #fff;" type="submit" class="btn btn-primary position-submit" value="Solicitar Auditório">
+						<input
+						style="color: #fff;"
+						type="submit"
+						class="btn btn-primary position-submit"
+						value="Buscar Auditório">
 					</div>
 				</form>
 			</div>
@@ -64,7 +74,7 @@
 								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Capacidade: </span>
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 									{{ $aud->capacity }} pessoas.
-								<i class="fa fa-male" aria-hidden="true"></i>
+
 								</div>
 							</div>
 

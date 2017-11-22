@@ -12,8 +12,12 @@ body{
 .well{
   border: 1px solid #d3e0e9;
   background-color: #fff;
-
-}
+}/*
+.event{
+  width: 170px;
+  overflow: hidden;
+  text-overflow: clip;
+}*/
 .title-pedidos:hover{
   text-decoration: none;
   color: #000;

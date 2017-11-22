@@ -16,7 +16,7 @@
 .b-aceita, .b-rejeitado, .b-pendurado{
   margin-top: 15px;
   margin-right: 25px;
-  margin-bottom: 10px;
+
 }
 .btn-aceita:hover, .btn-rejeitado:hover, .btn-pendurado{
   color: #fff;
