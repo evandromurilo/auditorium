@@ -90,10 +90,10 @@ class CallController extends Controller {
 	public function store(Request $request) {
 		if ($request->from == "create_call") {
 			$call = $this->createCall($request);
-			return route('calls.show', $call->id);
+			return route('calls.index', ["id" => $call->id]);
 		} else {
 			$call = $this->createOneToOneCall($request->user_id);
-			return redirect()->route('calls.show', $call->id);
+			return redirect()->route('calls.index', ["id" => $call->id]);
 		}
 	}
 
@@ -114,6 +114,10 @@ class CallController extends Controller {
 		$call = Call::find($request->segment(2));
 		$this->authorize('see', $call);
 
+		if ($request->has("page")) {
+			$messages = $call->messages->reverse()->forPage($request->page, 11);
+			return $messages;
+		}
 		return $call->messages;
 	}
 }

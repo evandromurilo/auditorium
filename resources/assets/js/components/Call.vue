@@ -17,7 +17,7 @@
       <!-- well do chat center-->
       <div class="col-md-6">
         <h2 class="text-justify altura-title"> {{ call.title }}</h2>
-        <div class="well well-chat">
+        <div class="well well-chat" id="chat-messages-container" v-on:scroll="scrollFunction">
           <div class="messages">
             <call-message v-for="message in messages" :user_id="user_id" :message="message"></call-message>
           </div>
@@ -81,6 +81,7 @@ export default {
 			members: [],
 			messages: [],
 			call: {},
+			page: 1,
     }
   },
   methods: {
@@ -135,9 +136,10 @@ export default {
 				window.history.replaceState({}, "Call", "/calls?id="+id);
 				self.call = data;
 				self.refreshMembers();
+
+				self.messages = [];
 				self.refreshMessages();
 			});
-
 		},
 
 		refreshCalls: function() {
@@ -158,13 +160,35 @@ export default {
 
 		refreshMessages: function() {
 			self = this;
+			self.messages = [];
+			self.page = 1;
 
-			$.getJSON("/calls/"+this.call.id+"/messages", function(data) {
-				self.messages = data;
+			$.getJSON("/calls/"+this.call.id+"/messages?page="+this.page, function(data) {
+				Object.keys(data).forEach(function(key, index) {
+					var message = data[key];
+					message.author = self.users_lookup[message.user_id];
+					self.messages.push(message);
+				});
 
-				for (var i = 0, len = self.messages.length; i < len; i++) {
-					self.messages[i].author = self.users_lookup[self.messages[i].user_id];
-				}
+				setTimeout(function() {
+					var d = $("#chat-messages-container");
+					d.scrollTop(d.prop("scrollHeight"));
+				}, 100);
+			});
+		},
+
+		loadMoreMessages: function() {
+			self = this;
+
+			$.getJSON("/calls/"+this.call.id+"/messages?page="+this.page, function(data) {
+				var nmessages = [];
+				Object.keys(data).forEach(function(key, index) {
+					var message = data[key];
+					message.author = self.users_lookup[message.user_id];
+					nmessages.push(message);
+				});
+
+				self.messages = nmessages.concat(self.messages);
 			});
 		},
 
@@ -176,7 +200,16 @@ export default {
 				message.author = self.users_lookup[message.user_id];
 				self.messages.push(message);
 			});
-		}
+		},
+
+		scrollFunction: function() {
+			var d = $("#chat-messages-container");
+
+			if (d.scrollTop() == 0) {
+				this.page += 1;
+				this.loadMoreMessages();
+			}
+		},
 
   },
   mounted() {
@@ -191,7 +224,6 @@ export default {
       this.users_lookup[this.users[i].id] = this.users[i];
     }
 
-
     Echo.private(`App.Call.${1}`)
       .listen('MessageCreated', (e) => {
         if (e.user_id != this.user_id) {
@@ -203,6 +235,5 @@ export default {
         }
       });
   }
-
 }
 </script>

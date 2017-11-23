@@ -48639,136 +48639,170 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-		props: ['user_id', 'users', 'first_call_id'],
-		data: function data() {
-				return {
-						post_url: "/messages",
-						csrf_token: $('meta[name=csrf-token]').attr('content'),
-						users_lookup: {},
-						n_messages: [],
-						body: '',
-						calls: [],
-						members: [],
-						messages: [],
-						call: {}
-				};
+	props: ['user_id', 'users', 'first_call_id'],
+	data: function data() {
+		return {
+			post_url: "/messages",
+			csrf_token: $('meta[name=csrf-token]').attr('content'),
+			users_lookup: {},
+			n_messages: [],
+			body: '',
+			calls: [],
+			members: [],
+			messages: [],
+			call: {},
+			page: 1
+		};
+	},
+
+	methods: {
+		exit: function exit(id) {
+			var request = $.get("/calls/" + id + "/exit");
+			var self = this;
+
+			request.done(function () {
+				if (self.call.id == id) {
+					self.refreshCall(1);
+				} else {
+					self.refreshCalls();
+				}
+			});
 		},
 
-		methods: {
-				exit: function exit(id) {
-						var request = $.get("/calls/" + id + "/exit");
-						var self = this;
+		send: function send() {
+			var inputs = {
+				_token: this.csrf_token,
+				body: this.body,
+				call_id: this.call.id,
+				user_id: this.user_id
+			};
 
-						request.done(function () {
-								if (self.call.id == id) {
-										self.refreshCall(1);
-								} else {
-										self.refreshCalls();
-								}
-						});
-				},
+			var request = $.post(this.post_url, inputs);
 
-				send: function send() {
-						var inputs = {
-								_token: this.csrf_token,
-								body: this.body,
-								call_id: this.call.id,
-								user_id: this.user_id
-						};
+			var message = {
+				body: this.body,
+				author: this.users_lookup[this.user_id]
+			};
 
-						var request = $.post(this.post_url, inputs);
+			this.messages.push(message);
+			this.body = '';
 
-						var message = {
-								body: this.body,
-								author: this.users_lookup[this.user_id]
-						};
+			request.done(function (response, textStatus, jqXHR) {
+				console.log('Mensagem enviada!');
+			});
 
-						this.messages.push(message);
-						this.body = '';
-
-						request.done(function (response, textStatus, jqXHR) {
-								console.log('Mensagem enviada!');
-						});
-
-						request.fail(function (response, textStatus, errorThrown) {
-								console.error("The following error occurred: " + textStatus, errorThrown);
-						});
-				},
-
-				refreshCall: function refreshCall(id) {
-						self = this;
-
-						$.getJSON("/calls/" + id, function (data) {
-								window.history.replaceState({}, "Call", "/calls?id=" + id);
-								self.call = data;
-								self.refreshMembers();
-								self.refreshMessages();
-						});
-				},
-
-				refreshCalls: function refreshCalls() {
-						self = this;
-
-						$.getJSON("/users/" + this.user_id + "/calls", function (data) {
-								self.calls = data;
-						});
-				},
-
-				refreshMembers: function refreshMembers() {
-						self = this;
-
-						$.getJSON("/calls/" + this.call.id + "/members", function (data) {
-								self.members = data;
-						});
-				},
-
-				refreshMessages: function refreshMessages() {
-						self = this;
-
-						$.getJSON("/calls/" + this.call.id + "/messages", function (data) {
-								self.messages = data;
-
-								for (var i = 0, len = self.messages.length; i < len; i++) {
-										self.messages[i].author = self.users_lookup[self.messages[i].user_id];
-								}
-						});
-				},
-
-				loadMessage: function loadMessage(id) {
-						self = this;
-
-						$.getJSON("/messages/" + id, function (data) {
-								var message = data;
-								message.author = self.users_lookup[message.user_id];
-								self.messages.push(message);
-						});
-				}
-
+			request.fail(function (response, textStatus, errorThrown) {
+				console.error("The following error occurred: " + textStatus, errorThrown);
+			});
 		},
-		mounted: function mounted() {
-				var _this = this;
 
-				console.log('Calls: Component mounted.');
+		refreshCall: function refreshCall(id) {
+			self = this;
 
-				this.refreshCalls();
-				this.refreshCall(this.first_call_id);
+			$.getJSON("/calls/" + id, function (data) {
+				window.history.replaceState({}, "Call", "/calls?id=" + id);
+				self.call = data;
+				self.refreshMembers();
 
-				var self = this;
+				self.messages = [];
+				self.refreshMessages();
+			});
+		},
 
-				for (var i = 0, len = this.users.length; i < len; i++) {
-						this.users_lookup[this.users[i].id] = this.users[i];
-				}
+		refreshCalls: function refreshCalls() {
+			self = this;
 
-				Echo.private('App.Call.' + 1).listen('MessageCreated', function (e) {
-						if (e.user_id != _this.user_id) {
-								console.log('Calls: New message!');
+			$.getJSON("/users/" + this.user_id + "/calls", function (data) {
+				self.calls = data;
+			});
+		},
 
-								self.loadMessage(e.message_id);
+		refreshMembers: function refreshMembers() {
+			self = this;
 
-								$.get('/notifications/newmessage/' + _this.call.id + '?markasread');
-						}
+			$.getJSON("/calls/" + this.call.id + "/members", function (data) {
+				self.members = data;
+			});
+		},
+
+		refreshMessages: function refreshMessages() {
+			self = this;
+			self.messages = [];
+			self.page = 1;
+
+			$.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
+				Object.keys(data).forEach(function (key, index) {
+					var message = data[key];
+					message.author = self.users_lookup[message.user_id];
+					self.messages.push(message);
 				});
+
+				setTimeout(function () {
+					var d = $("#chat-messages-container");
+					d.scrollTop(d.prop("scrollHeight"));
+				}, 100);
+			});
+		},
+
+		loadMoreMessages: function loadMoreMessages() {
+			self = this;
+
+			$.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
+				var nmessages = [];
+				Object.keys(data).forEach(function (key, index) {
+					var message = data[key];
+					message.author = self.users_lookup[message.user_id];
+					nmessages.push(message);
+				});
+
+				self.messages = nmessages.concat(self.messages);
+			});
+		},
+
+		loadMessage: function loadMessage(id) {
+			self = this;
+
+			$.getJSON("/messages/" + id, function (data) {
+				var message = data;
+				message.author = self.users_lookup[message.user_id];
+				self.messages.push(message);
+			});
+		},
+
+		scrollFunction: function scrollFunction() {
+			var d = $("#chat-messages-container");
+
+			if (d.scrollTop() == 0) {
+				this.page += 1;
+				this.loadMoreMessages();
+			}
 		}
+
+	},
+	mounted: function mounted() {
+		var _this = this;
+
+		console.log('Calls: Component mounted.');
+
+		this.refreshCalls();
+		this.refreshCall(this.first_call_id);
+
+		var self = this;
+
+		for (var i = 0, len = this.users.length; i < len; i++) {
+			this.users_lookup[this.users[i].id] = this.users[i];
+		}
+
+		Echo.private('App.Call.' + 1).listen('MessageCreated', function (e) {
+			if (e.user_id != _this.user_id) {
+				console.log('Calls: New message!');
+
+				self.loadMessage(e.message_id);
+
+				$.get('/notifications/newmessage/' + _this.call.id + '?markasread');
+			}
+		});
+	}
 });
 
 /***/ }),
@@ -48812,72 +48846,82 @@ var render = function() {
             _vm._v(" " + _vm._s(_vm.call.title))
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "well well-chat" }, [
-            _c(
-              "div",
-              { staticClass: "messages" },
-              _vm._l(_vm.messages, function(message) {
-                return _c("call-message", {
-                  attrs: { user_id: _vm.user_id, message: message }
+          _c(
+            "div",
+            {
+              staticClass: "well well-chat",
+              attrs: { id: "chat-messages-container" },
+              on: { scroll: _vm.scrollFunction }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "messages" },
+                _vm._l(_vm.messages, function(message) {
+                  return _c("call-message", {
+                    attrs: { user_id: _vm.user_id, message: message }
+                  })
                 })
-              })
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12 col-lg-12" }, [
-                _c("div", {}, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.csrf_token }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "row input-group fixed-botton input-chat" },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.body,
-                            expression: "body"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", autofocus: "" },
-                        domProps: { value: _vm.body },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12 col-lg-12" }, [
+                  _c("div", {}, [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrf_token }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "row input-group fixed-botton input-chat"
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.body,
+                              expression: "body"
                             }
-                            _vm.body = $event.target.value
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", autofocus: "" },
+                          domProps: { value: _vm.body },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.body = $event.target.value
+                            }
                           }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "input-group-btn" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            on: { click: _vm.send }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-paper-plane",
-                              attrs: { "aria-hidden": "true" }
-                            })
-                          ]
-                        )
-                      ])
-                    ]
-                  )
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "input-group-btn" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: { click: _vm.send }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-paper-plane",
+                                attrs: { "aria-hidden": "true" }
+                              })
+                            ]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
                 ])
               ])
-            ])
-          ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-3" }, [
