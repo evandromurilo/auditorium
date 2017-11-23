@@ -3,6 +3,13 @@ body{
   padding: 0;
   background-color: #fff;
 }
+
+.pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn-confirma{
   margin-top: 7px;
   display: flex;
@@ -18,7 +25,7 @@ body{
 
 }
 .user-responsavel{
-   white-space: nowrap; 
+   white-space: nowrap;
   width: 100px;
   overflow: hidden;
   text-overflow:ellipsis;
@@ -27,8 +34,6 @@ body{
   text-decoration: none;
   color: #000;
 }
-
-
 .responsavel:hover{
   text-decoration: none;
   color: #000;
