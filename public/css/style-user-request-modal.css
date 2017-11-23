@@ -1,0 +1,11 @@
+.title-historico{
+  color: #000;
+  margin-top: 5px;
+  font-size: 20px;
+}
+.title-historico:hover{
+  text-decoration: none;
+}
+.control-label, .descr-info{
+  color: #000;
+}

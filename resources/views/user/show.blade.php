@@ -76,11 +76,26 @@
 
 									@if ($request->status == 0)
 										</td></td>
-										<td align="center" style="vertical-align:middle;"><span class="pendente">Pendente</span></td>
+										<td align="center" style="vertical-align:middle;">
+											<span class="pendente">
+												Pendente
+												<i class="fa fa-clock-o" aria-hidden="true"></i>
+											</span>
+										</td>
 									@elseif ($request->status == 1)
-										<td align="center" style="vertical-align:middle;"><span class="indisponivel">Rejeitado</span></td>
+										<td align="center" style="vertical-align:middle;">
+											<span class="indisponivel">
+												Rejeitado
+												<i class="fa fa-times" aria-hidden="true"></i>
+											</span>
+										</td>
 									@else
-										<td align="center" style="vertical-align:middle;"><span class="disponivel">Aceito</span></td>
+										<td align="center" style="vertical-align:middle;">
+											<span class="disponivel">
+												Aceito
+												 <i class="fa fa-check-square" aria-hidden="true"></i>
+											 </span>
+										 </td>
 									@endif
 
 									<td align="center">
@@ -126,9 +141,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="{{ asset('css/style-user-show.css')}}">
+	<link rel="stylesheet" href="{{ asset('css/style-user-request-modal.css')}}">
 	<script type="text/javascript" src="{{ asset('js/jquery-user-show.js') }}"></script>
 
-	<link rel="stylesheet" href="{{ asset('css/style-preload.css')}}">
+
 
 	<script>
 		$('body').on('click', '[data-toggle="modal"]', function(){
