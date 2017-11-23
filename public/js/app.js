@@ -48020,7 +48020,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			calls: [],
 			members: [],
 			messages: [],
-			call: {}
+			call: {},
+			page: 1
 		};
 	},
 
@@ -48072,6 +48073,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				window.history.replaceState({}, "Call", "/calls?id=" + id);
 				self.call = data;
 				self.refreshMembers();
+
+				self.messages = [];
 				self.refreshMessages();
 			});
 		},
@@ -48094,13 +48097,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		refreshMessages: function refreshMessages() {
 			self = this;
+			self.messages = [];
+			self.page = 1;
 
-			$.getJSON("/calls/" + this.call.id + "/messages", function (data) {
-				self.messages = data;
+			$.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
+				Object.keys(data).forEach(function (key, index) {
+					var message = data[key];
+					message.author = self.users_lookup[message.user_id];
+					self.messages.push(message);
+				});
 
-				for (var i = 0, len = self.messages.length; i < len; i++) {
-					self.messages[i].author = self.users_lookup[self.messages[i].user_id];
-				}
+				setTimeout(function () {
+					var d = $("#chat-messages-container");
+					d.scrollTop(d.prop("scrollHeight"));
+				}, 100);
+			});
+		},
+
+		loadMoreMessages: function loadMoreMessages() {
+			self = this;
+
+			$.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
+				var nmessages = [];
+				Object.keys(data).forEach(function (key, index) {
+					var message = data[key];
+					message.author = self.users_lookup[message.user_id];
+					nmessages.push(message);
+				});
+
+				self.messages = nmessages.concat(self.messages);
 			});
 		},
 
@@ -48112,6 +48137,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				message.author = self.users_lookup[message.user_id];
 				self.messages.push(message);
 			});
+		},
+
+		scrollFunction: function scrollFunction() {
+			var d = $("#chat-messages-container");
+
+			if (d.scrollTop() == 0) {
+				this.page += 1;
+				this.loadMoreMessages();
+			}
 		}
 
 	},
@@ -48182,70 +48216,78 @@ var render = function() {
             _vm._v(" " + _vm._s(_vm.call.title))
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "well well-chat" }, [
-            _c(
-              "div",
-              { staticClass: "messages" },
-              _vm._l(_vm.messages, function(message) {
-                return _c("call-message", {
-                  attrs: { user_id: _vm.user_id, message: message }
+          _c(
+            "div",
+            {
+              staticClass: "well well-chat",
+              attrs: { id: "chat-messages-container" },
+              on: { scroll: _vm.scrollFunction }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "messages" },
+                _vm._l(_vm.messages, function(message) {
+                  return _c("call-message", {
+                    attrs: { user_id: _vm.user_id, message: message }
+                  })
                 })
-              })
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12 col-lg-12" }, [
-                _c(
-                  "div",
-                  { staticClass: "input-group fixed-bottom input-fixo" },
-                  [
-                    _c("input", {
-                      attrs: { type: "hidden", name: "_token" },
-                      domProps: { value: _vm.csrf_token }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.body,
-                          expression: "body"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", autofocus: "" },
-                      domProps: { value: _vm.body },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12 col-lg-12" }, [
+                  _c(
+                    "div",
+                    { staticClass: "input-group fixed-bottom input-fixo" },
+                    [
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: _vm.csrf_token }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.body,
+                            expression: "body"
                           }
-                          _vm.body = $event.target.value
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", autofocus: "" },
+                        domProps: { value: _vm.body },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.body = $event.target.value
+                          }
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "input-group-btn" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          on: { click: _vm.send }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fa fa-paper-plane",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ]
-                      )
-                    ])
-                  ]
-                )
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "input-group-btn" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            on: { click: _vm.send }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-paper-plane",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ])
               ])
-            ])
-          ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-3" }, [

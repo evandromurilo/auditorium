@@ -37,7 +37,7 @@ class NewCall extends Notification
 				'call_id' => $this->call->id,
 				'call_title' => $this->call->title,
 				'n_message' => "Você foi inserido em uma nova chamada.",
-			  'n_url' => route('calls.show', ['id' => $this->call->id, 'from' => 'notification']),
+			  'n_url' => route('calls.index', ['id' => $this->call->id, 'from' => 'notification']),
 				'call' => $this->call,
 			];
 		}

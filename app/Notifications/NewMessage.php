@@ -40,7 +40,7 @@ class NewMessage extends Notification
 				'call_title' => $this->message->call->title,
 				'call_id' => $this->message->call_id,
 				'n_message' => "Você recebeu uma nova mensagem de ".$this->message->user->name.".",
-			  'n_url' => route('calls.show', ['id' => $this->message->call_id, 'from' => 'notification']),
+			  'n_url' => route('calls.index', ['id' => $this->message->call_id, 'from' => 'notification']),
 			];
 		}
 
