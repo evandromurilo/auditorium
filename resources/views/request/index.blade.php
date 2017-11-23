@@ -36,29 +36,29 @@
 									{{ $request->auditorium->name }}
 								</a>
 							</h2>
-							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Evento:</span>
-							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Evento:</span>
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ls">
 								<span>{{ $request->event }}</span>
 							</div>
 
-							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Data:</span>
-							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-								 {{ $request->dateC->format('d/m/Y') }}</p>
+							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Data:</span>
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ls">
+								 {{ $request->dateC->format('d/m/Y') }}
 								 <i class="fa fa-calendar" aria-hidden="true"></i>
 							</div>
 
-							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Período:</span>
-							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-								{{ $request->periodF }}</p>
+							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Período:</span>
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ls">
+								{{ $request->periodF }}
 							</div>
 
-							 <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Responsavel:</span>
-							 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+							 <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Responsavel:</span>
+							 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ls">
 								 <a class="responsavel" href="{{ route('users.show', $request->user_id) }}">
  									{{ $request->user->name }}
 									<i class="fa fa-user" aria-hidden="true"></i>
  								</a>
- 							</div></br>
+ 							</div>
 
 							<?php $route_args = ["id" => $request->id, "from" => "index",
 								"filter" => $filter] ?>

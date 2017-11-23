@@ -9,9 +9,13 @@ body{
   align-items: center;
   justify-content: center;
 }
+.ls{
+  margin-bottom: 7px;
+}
 .well{
   border: 1px solid #d3e0e9;
   background-color: #fff;
+
 }/*
 .event{
   width: 170px;
