@@ -48639,9 +48639,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user_id', 'users', 'first_call_id'],
@@ -48945,28 +48942,27 @@ var render = function() {
                 _vm._v("Assuntos")
               ]),
               _vm._v(" "),
-              _c("div", {}, [
-                _c(
-                  "a",
-                  {
-                    directives: [
-                      {
-                        name: "b-tooltip",
-                        rawName: "v-b-tooltip.hover",
-                        modifiers: { hover: true }
-                      }
-                    ],
-                    staticClass: "btn btn-chamada",
-                    attrs: { href: "/calls/create", title: "I'm a tooltip!" }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-plus-square",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ]),
+              _c(
+                "a",
+                {
+                  directives: [
+                    {
+                      name: "b-tooltip",
+                      rawName: "v-b-tooltip.hover",
+                      modifiers: { hover: true }
+                    }
+                  ],
+                  staticClass: "btn btn-chamada",
+                  attrs: { href: "/calls/create" }
+                },
+                [
+                  _vm._v("\r\n            Nova Chamada\r\n            "),
+                  _c("i", {
+                    staticClass: "fa fa-comments-o",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ]
+              ),
               _vm._v(" "),
               _vm._l(_vm.calls, function(call) {
                 return _c("div", [
@@ -49107,14 +49103,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['member'],
@@ -49137,41 +49125,39 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
-      _c("div", {}, [
-        _c("div", { staticClass: "media" }, [
-          _c("div", { staticClass: "media-left" }, [
-            _c(
-              "div",
-              {
-                staticClass: "media-object well-perfil",
-                style: { backgroundColor: _vm.member.color }
-              },
-              [
-                _c("div", { staticClass: "letra-perfil-member" }, [
-                  _c(
-                    "span",
-                    { staticClass: "text-capitalize", attrs: { id: "letra" } },
-                    [_vm._v(_vm._s(_vm.member.name[0]))]
-                  )
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "media-body" }, [
-            _c(
-              "a",
-              {
-                staticClass: "media-heading nome-member",
-                attrs: { href: "/users/" + _vm.member.id }
-              },
-              [
-                _c("p", { staticClass: "nome-user-relacionada" }, [
-                  _vm._v(_vm._s(_vm.member.name))
-                ])
-              ]
-            )
-          ])
+      _c("div", { staticClass: "media" }, [
+        _c("div", { staticClass: "media-left" }, [
+          _c(
+            "div",
+            {
+              staticClass: "media-object well-perfil",
+              style: { backgroundColor: _vm.member.color }
+            },
+            [
+              _c("div", { staticClass: "letra-perfil-member" }, [
+                _c(
+                  "span",
+                  { staticClass: "text-capitalize", attrs: { id: "letra" } },
+                  [_vm._v(_vm._s(_vm.member.name[0]))]
+                )
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "media-body" }, [
+          _c(
+            "a",
+            {
+              staticClass: "media-heading nome-member",
+              attrs: { href: "/users/" + _vm.member.id }
+            },
+            [
+              _c("p", { staticClass: "nome-user-relacionada" }, [
+                _vm._v(_vm._s(_vm.member.name))
+              ])
+            ]
+          )
         ])
       ])
     ])
@@ -49274,7 +49260,7 @@ exports = module.exports = __webpack_require__(62)(undefined);
 
 
 // module
-exports.push([module.i, "\nbody{\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\t  font-family: 'Roboto', sans-serif;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  font-family: 'Roboto', sans-serif;\n}\n", ""]);
 
 // exports
 
@@ -49637,13 +49623,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['message', 'user_id'],
-	mounted: function mounted() {
-		console.log("Message: mounted");
-	}
+  props: ['message', 'user_id'],
+  mounted: function mounted() {
+    console.log("Message: mounted");
+  }
 });
 
 /***/ }),
@@ -49665,13 +49650,13 @@ var render = function() {
             _c("strong", { style: { color: _vm.message.author.color } }, [
               _vm._v("Você:")
             ]),
-            _vm._v(" " + _vm._s(_vm.message.body) + "\n\t\t\t")
+            _vm._v(" " + _vm._s(_vm.message.body) + "\r\n    ")
           ])
         : _c("p", { staticClass: "msg-secundario" }, [
             _c("strong", { style: { color: _vm.message.author.color } }, [
               _vm._v(_vm._s(_vm.message.author.name) + ":")
             ]),
-            _vm._v(" " + _vm._s(_vm.message.body) + "\n\t\t\t")
+            _vm._v(" " + _vm._s(_vm.message.body) + "\r\n    ")
           ])
     ]),
     _vm._v(" "),

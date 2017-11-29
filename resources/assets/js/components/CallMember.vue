@@ -2,10 +2,7 @@
 <div>
     <link rel="stylesheet" href="/css/style-callmember-vue.css">
     <div class="container">
-      <div class="">
         <div class="media">
-
-
           <div class="media-left">
             <div class="media-object well-perfil"
                  v-bind:style="{ backgroundColor: member.color }">
@@ -15,18 +12,13 @@
             </div>
           </div>
 
-
             <div class="media-body">
               <a class="media-heading nome-member" :href="'/users/' + member.id">
                 <p class="nome-user-relacionada">{{ member.name }}</p>
               </a>
             </div>
-
-        </div>
       </div>
     </div>
-
-
 </div>
 </template>
 

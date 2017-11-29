@@ -42,11 +42,12 @@
       <div class="col-xs-12 col-sm-12 col-md-3">
         <div class="well well-assunto">
           <h3 class="text-center user-assunto">Assuntos</h3>
-          <div class="">
-            <a class="btn btn-chamada" href="/calls/create" v-b-tooltip.hover title="I'm a tooltip!">
-              <i class="fa fa-plus-square" aria-hidden="true"></i>
+
+            <a class="btn btn-chamada" href="/calls/create" v-b-tooltip.hover>
+            Nova Chamada
+            <i class="fa fa-comments-o" aria-hidden="true"></i>
             </a>
-          </div>
+
 					<div v-for="call in calls">
               <div style="margin: auto;" id="teste" class="description-assunto">
                 <a style="cursor: pointer;" class="text-justify text-assunto" v-on:click="refreshCall(call.id)"><span class="uni">{{ call.title}}</span></a>
@@ -56,14 +57,10 @@
 										v-on:click="exit(call.id)"></i>
               </div>
 					</div>
-
-
         </div>
       </div>
     </div>
   </div>
-	<!--<a class="btn btn-danger"  v-if="!call.user_to_user && call.id != 1"
-		v-on:click="exit">Sair</a>-->
 </div>
 </template>
 
