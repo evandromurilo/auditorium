@@ -10,8 +10,11 @@
 			<li class="erro">
 				<notification-item v-for="unread in unreadNotifications" :unread="unread"></notification-item>
 			</li>
-			<li>
+			<li v-if="unreadNotifications.length > 0">
 				<a class="btn btn-limpa" v-on:click="markAllAsRead" href="#">Limpar Notificações</a>
+			</li>
+			<li v-else>
+				<span>Sem notificações.</span>
 			</li>
 		</ul>
 	</li>
@@ -22,7 +25,7 @@ export default {
 	props:['user_id'],
 	data() {
 		return {
-			unreadNotifications:''
+			unreadNotifications:[],
 		}
 	},
 	methods: {

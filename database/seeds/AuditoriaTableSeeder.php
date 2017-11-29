@@ -37,7 +37,7 @@ class AuditoriaTableSeeder extends Seeder
 				'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'name' => 'Mini Auditório B',
 				'capacity' => 100,
-				'accessible' => false,
+				'accessible' => true,
 				'obs' => NULL,
 				'location' => 'Prédio B',
 			]);

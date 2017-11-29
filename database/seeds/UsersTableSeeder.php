@@ -70,8 +70,7 @@ class UsersTableSeeder extends Seeder
 			$call = \App\Call::find(1);
 
 			foreach (\App\User::all() as $user) {
-				$call->members()->attach($user->id);
-				$user->allow('see', $call);
+				event(new \App\Events\UserRegistered($user));
 			}
     }
 }

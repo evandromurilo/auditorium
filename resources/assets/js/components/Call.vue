@@ -181,6 +181,9 @@ export default {
 			self = this;
 
 			$.getJSON("/calls/"+this.call.id+"/messages?page="+this.page, function(data) {
+				var d = $("#chat-messages-container");
+				var old_height = d.prop("scrollHeight");
+
 				var nmessages = [];
 				Object.keys(data).forEach(function(key, index) {
 					var message = data[key];
@@ -189,6 +192,11 @@ export default {
 				});
 
 				self.messages = nmessages.concat(self.messages);
+
+				setTimeout(function() {
+					d.scrollTop(d.prop("scrollHeight")-old_height);
+				}, 20);
+
 			});
 		},
 

@@ -5,24 +5,22 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<h1 class="text-left">Usuários</h1>
+			<h1 class="text-left title-user">Usuários</h1>
 		</div>
 	</div>
 	<div class="container">
 		<div class="row">
 				@foreach ($users as $user)
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-						<div class="well" style="border: 1px solid {{ $user->color }};">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 caixa-size">
 							<a class="user" href="{{ route('users.show', $user->id) }}">
 								{{ $user->name }}
+								  <i style="color: {{ $user->color }}" class="fa fa-circle-o" aria-hidden="true"></i>
 							</a>
 
 							<div class="row">
-								<label class="col-md-4 control-label">Cargo: </label>
-								<span class="col-md-8">{{ $user->description}}</span>
+								<label class="col-md-2 control-label">Cargo: </label>
+								<span class="col-md-10">{{ $user->description}}</span>
 							</div>
-
-						</div>
 					</div>
 				@endforeach
 		</div>

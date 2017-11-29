@@ -47792,12 +47792,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['user_id'],
 	data: function data() {
 		return {
-			unreadNotifications: ''
+			unreadNotifications: []
 		};
 	},
 
@@ -47874,17 +47877,19 @@ var render = function() {
         })
       ),
       _vm._v(" "),
-      _c("li", [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-limpa",
-            attrs: { href: "#" },
-            on: { click: _vm.markAllAsRead }
-          },
-          [_vm._v("Limpar Notificações")]
-        )
-      ])
+      _vm.unreadNotifications.length > 0
+        ? _c("li", [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-limpa",
+                attrs: { href: "#" },
+                on: { click: _vm.markAllAsRead }
+              },
+              [_vm._v("Limpar Notificações")]
+            )
+          ])
+        : _c("li", [_c("span", [_vm._v("Sem notificações.")])])
     ])
   ])
 }
@@ -48748,6 +48753,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			self = this;
 
 			$.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
+				var d = $("#chat-messages-container");
+				var old_height = d.prop("scrollHeight");
+
 				var nmessages = [];
 				Object.keys(data).forEach(function (key, index) {
 					var message = data[key];
@@ -48756,6 +48764,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				});
 
 				self.messages = nmessages.concat(self.messages);
+
+				setTimeout(function () {
+					d.scrollTop(d.prop("scrollHeight") - old_height);
+				}, 20);
 			});
 		},
 
