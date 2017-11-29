@@ -48933,6 +48933,29 @@ var render = function() {
                 _vm._v("Assuntos")
               ]),
               _vm._v(" "),
+              _c("div", {}, [
+                _c(
+                  "a",
+                  {
+                    directives: [
+                      {
+                        name: "b-tooltip",
+                        rawName: "v-b-tooltip.hover",
+                        modifiers: { hover: true }
+                      }
+                    ],
+                    staticClass: "btn btn-chamada",
+                    attrs: { href: "/calls/create", title: "I'm a tooltip!" }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-plus-square",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
               _vm._l(_vm.calls, function(call) {
                 return _c("div", [
                   _c(
@@ -48975,9 +48998,7 @@ var render = function() {
                     ]
                   )
                 ])
-              }),
-              _vm._v(" "),
-              _vm._m(0)
+              })
             ],
             2
           )
@@ -48986,26 +49007,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c(
-        "a",
-        { staticClass: "btn btn-chamada", attrs: { href: "/calls/create" } },
-        [
-          _vm._v("\r\n  \t\t\t\t\t\tNova Chamada\r\n              "),
-          _c("i", {
-            staticClass: "fa fa-plus-square",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
