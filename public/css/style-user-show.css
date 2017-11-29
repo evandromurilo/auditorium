@@ -7,7 +7,12 @@ body{
 p, h2{
   font-family: 'Roboto', sans-serif;
 }
-
+p, .historico{
+  color: #000;
+}
+.user-top{
+  color: #000;
+}
 .btn{
   width: 150px;
   margin-bottom: 10px;

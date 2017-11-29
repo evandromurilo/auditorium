@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-lg-4">
-				<h1>{{ $user->name }}</h1>
+				<h2 class="text-justify user-top">{{ $user->name }}</h2>
 
 
 					<div class="well" style="background-color:{{ $user->color }};">
@@ -49,7 +49,7 @@
 
 			<div class="col-md-8 col-lg-8">
 
-					<h2 class="text-center">Histórico de Agendamentos</h2>
+					<h2 class="text-center historico">Histórico de Agendamentos</h2>
 					@if ($requests->isEmpty())
 						<div  id="texto" class="nenhum-historico text-center">
 							<span>Nenhum agendamento feito.</span>

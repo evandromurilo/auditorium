@@ -47889,7 +47889,11 @@ var render = function() {
               [_vm._v("Limpar Notificações")]
             )
           ])
-        : _c("li", [_c("span", [_vm._v("Sem notificações.")])])
+        : _c("li", [
+            _c("span", { staticClass: "sem-notification" }, [
+              _vm._v("Sem notificações.")
+            ])
+          ])
     ])
   ])
 }

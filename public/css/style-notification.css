@@ -1,3 +1,10 @@
 .btn{
   color: #000;
 }
+
+.sem-notification{
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

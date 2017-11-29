@@ -95,9 +95,18 @@ bottom: 0px;
   .well-pessoa {
     background-color: #fff;
   }
-  .btn-chamada {
+  .btn-chamada, .btn-chamada:hover, .btn-chamada:link {
     background-color: green;
     color: #fff;
+  }
+  .btn-chamada{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .fa-comments-o{
+    padding-left: 5px;
   }
 }
 
@@ -113,9 +122,18 @@ bottom: 0px;
   .well-pessoa {
     background-color: #fff;
   }
-  .btn-chamada {
+  .btn-chamada, .btn-chamada:hover, .btn-chamada:link {
     background-color: green;
     color: #fff;
+  }
+  .btn-chamada{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .fa-comments-o{
+    padding-left: 5px;
   }
 }
 
@@ -132,9 +150,18 @@ bottom: 0px;
   .well-pessoa {
     background-color: #fff;
   }
-  .btn-chamada {
+  .btn-chamada, .btn-chamada:hover, .btn-chamada:link {
     background-color: green;
     color: #fff;
+  }
+  .btn-chamada{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .fa-comments-o{
+    padding-left: 5px;
   }
 }
 

@@ -14,7 +14,7 @@
 				<a class="btn btn-limpa" v-on:click="markAllAsRead" href="#">Limpar Notificações</a>
 			</li>
 			<li v-else>
-				<span>Sem notificações.</span>
+				<span class="sem-notification">Sem notificações.</span>
 			</li>
 		</ul>
 	</li>
