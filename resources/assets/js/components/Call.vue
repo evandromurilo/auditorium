@@ -5,7 +5,7 @@
     <div class="row">
 
       <!-- User Perfil -->
-      <div class="col-md-3">
+      <div class="col-xs-12 col-sm-12 col-md-3">
         <div class="well well-pessoa">
           <h3 class="text-center user-relacionado">Pessoas Relacionadas</h3>
           <div v-for="member in members">
@@ -15,7 +15,7 @@
       </div>
 
       <!-- well do chat center-->
-      <div class="col-md-6">
+      <div class="col-xs-12 col-sm-12 col-md-6">
         <h2 class="text-justify altura-title"> {{ call.title }}</h2>
         <div class="well well-chat" id="chat-messages-container" v-on:scroll="scrollFunction">
           <div class="messages">
@@ -39,7 +39,7 @@
       <!--Assuntos do chat
 
     -->
-      <div class="col-md-3">
+      <div class="col-xs-12 col-sm-12 col-md-3">
         <div class="well well-assunto">
           <h3 class="text-center user-assunto">Assuntos</h3>
           <div class="">

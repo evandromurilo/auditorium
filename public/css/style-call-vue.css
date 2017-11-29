@@ -82,11 +82,39 @@ bottom: 0px;
 
 /*Small*/
 
-@media screen and (max-width: 767px) {}
+@media screen and (max-width: 767px) {
+  .well-perfil {
+    border-radius: 7%;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+  }
+  .well-pessoa {
+    background-color: #fff;
+  }
+  .btn-chamada {
+    background-color: green;
+    color: #fff;
+  }
+}
 
 /*Tablet*/
 
-@media screen and (min-width: 768px) and (max-width: 991px) {}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .well-perfil {
+    border-radius: 7%;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+  }
+  .well-pessoa {
+    background-color: #fff;
+  }
+  .btn-chamada {
+    background-color: green;
+    color: #fff;
+  }
+}
 
 /*Computer*/
 

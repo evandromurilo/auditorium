@@ -27,3 +27,12 @@ body{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@media screen and (max-width: 767px){
+  .nome-user-relacionada{
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

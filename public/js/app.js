@@ -48832,7 +48832,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "col-xs-12 col-sm-12 col-md-3" }, [
           _c(
             "div",
             { staticClass: "well well-pessoa" },
@@ -48853,7 +48853,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "col-xs-12 col-sm-12 col-md-6" }, [
           _c("h2", { staticClass: "text-justify altura-title" }, [
             _vm._v(" " + _vm._s(_vm.call.title))
           ]),
@@ -48936,7 +48936,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "col-xs-12 col-sm-12 col-md-3" }, [
           _c(
             "div",
             { staticClass: "well well-assunto" },
