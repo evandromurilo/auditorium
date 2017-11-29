@@ -6,7 +6,7 @@
 
 	<div class="container">
 		<div class="row">
-			<h1>Pedidos</h1>
+			<h1 class="text-center title-pedido">Pedidos</h1>
 			<nav class="navbar navbar-default sub-menu" role="navigation">
 					<div class="collapse navbar-collapse" id="navbar">
 		          <ul class="nav navbar-nav">
@@ -57,7 +57,7 @@
 								 <a class="responsavel" href="{{ route('users.show', $request->user_id) }}">
 
 										{{ $request->user->name }}
-									
+
 
  								</a>
  							</div>

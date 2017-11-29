@@ -9,7 +9,9 @@ body{
   align-items: center;
   justify-content: center;
 }
-
+.title-pedido{
+  color: #000;
+}
 .btn-confirma{
   margin-top: 7px;
   display: flex;

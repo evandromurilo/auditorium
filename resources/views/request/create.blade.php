@@ -7,7 +7,7 @@
 
 	<div class="container">
 		<div class="row">
-			<h1 class="text-center">Agendar {{ $aud->name }}</h1>
+			<h1 class="text-center title-agenda">Agendar {{ $aud->name }}</h1>
 		</div>
 		<div class="row">
 			<div class="col-sm-12 col-md-12 col-lg-12">
@@ -72,7 +72,7 @@
 										<option value="0" {{ $period == 0? 'selected':'' }}>Manhã</option>
 										<option value="1" {{ $period == 1? 'selected':'' }}>Tarde</option>
 										<option value="2" {{ $period == 2? 'selected':'' }}>Noite</option>
-									</select>						
+									</select>
 
 								@if ($errors->has('period'))
 									<span class="help-block">
