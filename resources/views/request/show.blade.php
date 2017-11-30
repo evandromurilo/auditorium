@@ -61,13 +61,13 @@
 						@else
 							@if (Auth::id() == $request->user_id and $request->status != 1)
 								<?php $route_args = ["id" => $request->id, "from" => "show"] ?>
-								<a href="{{ route('requests.negate', $route_args) }}">
+								<a class="btn btn-cancelar" href="{{ route('requests.negate', $route_args) }}">
 									Cancelar
 								</a>
 							@endif
 						</div>
 
-
+						<!--btn btn-cancelar style show.css-->
 							@if ($request->status == 0)
 								<span class="pendente" style="background-color: #FF8C00;">Pendente</span>
 							@elseif ($request->status == 1)

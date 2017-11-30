@@ -26,11 +26,17 @@ label, p, span, .organizador{
   margin-top: 80px;
   border: 2px solid #d3e0e9;
 }
-
 .text-center {
   margin-top: 0;
 }
-
+.btn-cancelar{
+  background-color: red;
+  color: #fff;
+}
+.btn-cancelar:hover{
+  text-decoration: none;
+  color: #fff;
+}
 .status{
   margin-bottom: 5px;
 }

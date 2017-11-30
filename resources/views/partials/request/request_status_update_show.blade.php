@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/style-request-status-update-show.css')}}">
 @if ($request->status == 0)
 
-	<div>
+	<div class="col-xs-12 col-sm-12 col-md-12 center-block">
 			<a class="btn btn-aceita b-aceita" style="color: #fff; text-decoration: none;" href="{{ route('requests.accept', $route_args) }}">
 			Aceitar
 			</a>
@@ -12,7 +12,7 @@
 
 @elseif ($request->status == 1)
 
-	<div>
+	<div class="col-xs-12 col-sm-12 col-md-12 center-block">
 			<a class="btn btn-aceita b-aceita" style="color: #fff; text-decoration: none;" href="{{ route('requests.accept', $route_args) }}">
 				Aceitar
 			</a>
@@ -23,7 +23,7 @@
 
 @elseif ($request->status == 2)
 
-	<div>
+	<div class="col-xs-12 col-sm-12 col-md-12 center-block">
 			<a class="btn btn-pendurado b-pendurado" style="color: #fff; text-decoration: none;" href="{{ route('requests.pending', $route_args) }}">
 				Pendurar
 			</a>
