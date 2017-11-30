@@ -119,6 +119,11 @@ export default {
       this.messages.push(message);
       this.body = '';
 
+			setTimeout(function() {
+				var d = $("#chat-messages-container");
+				d.scrollTop(d.prop("scrollHeight"));
+			}, 100);
+
       request.done(function(response, textStatus, jqXHR) {
         console.log('Mensagem enviada!');
       });
