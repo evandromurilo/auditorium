@@ -15,6 +15,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	  <link rel="stylesheet" href="{{ asset('css/style-norificaton-request-resolver.css') }}">
+	  <link rel="stylesheet" href="{{ asset('css/style-footer.css') }}">
 
     <!-- font Awesome -->
 	  <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
@@ -111,6 +112,9 @@
         </nav>
 
         @yield('content')
+        <div id="footer" @yield('footer')>
+          <img src="img/ulbra-70x70.png" alt="logo-ulbra">
+        </div>
     </div>
 
 		@yield('sources')
