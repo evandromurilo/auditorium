@@ -7,7 +7,9 @@ body{
 label, span, .title-agenda, .panel-heading{
   color: #000;
 }
-
+.btn-primary{
+  color: #fff;
+}
 .space-top{
   margin-top: 30px;
 }
