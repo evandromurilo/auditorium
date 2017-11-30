@@ -8,11 +8,11 @@
         <div class="form-horizontal">
           <!-- input da chamada -->
           <div :class="'form-group' +  (errors.title ? ' has-error' : '')">
-            <label class="col-md-2 control-label">Título da Chamada: </label>
+            <label class="col-md-2 control-label title-chamada">Título da Chamada: </label>
             <div class="col-md-9">
               <input type="text" class="form-control" v-model="title">
               <span class="help-block" v-if="errors.title">
-                  {{ errors.title }}
+                  <strong>{{ errors.title }}</strong>
                 </span>
             </div>
           </div>
@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-12 col-lg-12">
-        <span class="names-user">Usuário: {{ user.name }}
+        <span class="name-user">Usuário: {{ user.name }}
                     <i class="fa fa-circle-o" v-bind:style="{ color: user.color }" aria-hidden="true"></i>
                 </span>
       </div>
@@ -38,11 +38,11 @@
   <div class="container">
     <label class="title-membros">Membros</label>
 
-		<div v-if="errors.members" class="form-group has-error">
-				<span class="help-block">
-						{{ errors.members }}
+    <div v-if="errors.members" class="form-group has-error">
+      <span class="help-block">
+						<strong> {{ errors.members }} </strong>
 					</span>
-		</div>
+    </div>
 
     <div class="row">
       <ul>
@@ -73,7 +73,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-lg-12 btn-chamada">
-      <button class="btn btn-primary" v-on:click="send">Criar chamada</button>
+      <button class="btn btn-primary cha-chat" v-on:click="send">Criar chamada</button>
     </div>
   </div>
 
@@ -152,5 +152,4 @@ export default {
     console.log('NewCall: Component mounted.');
   }
 }
-
 </script>

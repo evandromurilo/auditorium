@@ -67,7 +67,8 @@
 							@endif
 						</div>
 
-						<!--btn btn-cancelar style show.css-->
+						<!--move essa parte para cima-->
+
 							@if ($request->status == 0)
 								<span class="pendente" style="background-color: #FF8C00;">Pendente</span>
 							@elseif ($request->status == 1)
@@ -75,6 +76,7 @@
 							@elseif ($request->status == 2)
 								<span class="disponivel" style="background-color: green;">Aceito</span>
 							@endif
+
 						@endcan
 
 					</div>

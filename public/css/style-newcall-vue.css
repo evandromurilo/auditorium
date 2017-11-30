@@ -16,7 +16,12 @@ a:hover {
 li {
   list-style: none
 }
-
+.cha-chat{
+  color: #fff;
+}
+.title-chamada{
+  color: #000;
+}
 .circle-creat {
   border: 2px solid;
   border-radius: 20px 20px 20px 20px;
@@ -42,10 +47,10 @@ li {
 .title-membros{
   margin-top: 30px;
   font-size: 20px;
+  color: #000;
 }
 
 .name-user{
-
   font-size: 15px;
-
+  color: #000;
 }
