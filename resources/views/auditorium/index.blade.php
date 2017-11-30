@@ -100,9 +100,7 @@
 			@endforeach
 		</div>
 	</div>
-	<footer class="footer">
-
-	</footer>
+	
 
 @endsection
 

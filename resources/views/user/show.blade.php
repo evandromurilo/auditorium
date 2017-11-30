@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-lg-4">
-				<h2 class="text-justify user-top">{{ $user->name }}</h2>
+				<h2 class="user-top">{{ $user->name }}</h2>
 
 
 					<div class="well" style="background-color:{{ $user->color }};">
@@ -144,7 +144,7 @@
 	<link rel="stylesheet" href="{{ asset('css/style-user-request-modal.css')}}">
 	<script type="text/javascript" src="{{ asset('js/jquery-user-show.js') }}"></script>
 
-
+@endsection
 
 	<script>
 		$('body').on('click', '[data-toggle="modal"]', function(){
@@ -183,4 +183,3 @@
 
 
 </script>
-@endsection

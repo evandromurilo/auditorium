@@ -58,7 +58,8 @@
 
           <div v-for="call in calls">
             <div style="margin: auto;" id="teste" class="description-assunto">
-              <a style="cursor: pointer;" class="text-justify text-assunto" v-on:click="refreshCall(call.id)"><span class="uni">{{ call.title}}</span></a>
+              <a style="cursor: pointer;" class="text-justify text-assunto" v-on:click="refreshCall(call.id)">
+                <span class="uni">{{ call.title}}</span></a>
               <i class="trash-assunto fa fa-trash-o" aria-hidden="true" v-if="!call.user_to_user && call.id != 1" v-on:click="exit(call.id)"></i>
             </div>
           </div>
