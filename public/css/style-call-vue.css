@@ -24,16 +24,18 @@ body {
   font-size: 25px;
   color: #000;
 }
-.input-chat{
 
-bottom: 0px;
-  }
 .well-chat {
   margin-top: 30px;
   height: 400px;
   overflow: auto;
   background-color: #DCDCDC;
 }
+.fixed-botton{
+  position:static;
+
+}
+
 
 /*assunto*/
 

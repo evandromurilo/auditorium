@@ -26,15 +26,18 @@
               <div class="">
                 <input type="hidden" name="_token" :value="csrf_token">
                 <div class="row input-group fixed-botton input-chat">
-                  <input type="text" class="form-control" autofocus v-model="body">
-                  <span class="input-group-btn">
-  										<button v-on:click="send" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-  									</span>
-                  </div>
+                      <input type="text" class="form-control" autofocus v-model="body">
+                      <span class="input-group-btn">
+      										<button v-on:click="send" class="btn btn-primary">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                          </button>
+      									</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
       <!--Assuntos do chat
 
