@@ -48283,6 +48283,15 @@ var render = function() {
                           attrs: { type: "text", autofocus: "" },
                           domProps: { value: _vm.body },
                           on: {
+                            keyup: function($event) {
+                              if (
+                                !("button" in $event) &&
+                                _vm._k($event.keyCode, "enter", 13)
+                              ) {
+                                return null
+                              }
+                              _vm.send($event)
+                            },
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
