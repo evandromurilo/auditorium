@@ -48646,179 +48646,187 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['user_id', 'users', 'first_call_id'],
-	data: function data() {
-		return {
-			post_url: "/messages",
-			csrf_token: $('meta[name=csrf-token]').attr('content'),
-			users_lookup: {},
-			n_messages: [],
-			body: '',
-			calls: [],
-			members: [],
-			messages: [],
-			call: {},
-			page: 1
-		};
-	},
+  props: ['user_id', 'users', 'first_call_id'],
+  data: function data() {
+    return {
+      post_url: "/messages",
+      csrf_token: $('meta[name=csrf-token]').attr('content'),
+      users_lookup: {},
+      n_messages: [],
+      body: '',
+      calls: [],
+      members: [],
+      messages: [],
+      call: {},
+      page: 1
+    };
+  },
 
-	methods: {
-		exit: function exit(id) {
-			var request = $.get("/calls/" + id + "/exit");
-			var self = this;
+  methods: {
+    exit: function exit(id) {
+      var request = $.get("/calls/" + id + "/exit");
+      var self = this;
 
-			request.done(function () {
-				if (self.call.id == id) {
-					self.refreshCall(1);
-				} else {
-					self.refreshCalls();
-				}
-			});
-		},
+      request.done(function () {
+        if (self.call.id == id) {
+          self.refreshCall(1);
+        } else {
+          self.refreshCalls();
+        }
+      });
+    },
 
-		send: function send() {
-			var inputs = {
-				_token: this.csrf_token,
-				body: this.body,
-				call_id: this.call.id,
-				user_id: this.user_id
-			};
+    send: function send() {
+      var inputs = {
+        _token: this.csrf_token,
+        body: this.body,
+        call_id: this.call.id,
+        user_id: this.user_id
+      };
 
-			var request = $.post(this.post_url, inputs);
+      var request = $.post(this.post_url, inputs);
 
-			var message = {
-				body: this.body,
-				author: this.users_lookup[this.user_id]
-			};
+      var message = {
+        body: this.body,
+        author: this.users_lookup[this.user_id]
+      };
 
-			this.messages.push(message);
-			this.body = '';
+      this.messages.push(message);
+      this.body = '';
 
-			request.done(function (response, textStatus, jqXHR) {
-				console.log('Mensagem enviada!');
-			});
+      request.done(function (response, textStatus, jqXHR) {
+        console.log('Mensagem enviada!');
+      });
 
-			request.fail(function (response, textStatus, errorThrown) {
-				console.error("The following error occurred: " + textStatus, errorThrown);
-			});
-		},
+      request.fail(function (response, textStatus, errorThrown) {
+        console.error("The following error occurred: " + textStatus, errorThrown);
+      });
+    },
 
-		refreshCall: function refreshCall(id) {
-			self = this;
+    refreshCall: function refreshCall(id) {
+      self = this;
 
-			$.getJSON("/calls/" + id, function (data) {
-				window.history.replaceState({}, "Call", "/calls?id=" + id);
-				self.call = data;
-				self.refreshMembers();
+      Echo.leave('App.Call.' + this.call.id);
 
-				self.messages = [];
-				self.refreshMessages();
-			});
-		},
+      $.getJSON("/calls/" + id, function (data) {
+        window.history.replaceState({}, "Call", "/calls?id=" + id);
+        self.call = data;
+        self.refreshMembers();
 
-		refreshCalls: function refreshCalls() {
-			self = this;
+        self.messages = [];
+        self.refreshMessages();
 
-			$.getJSON("/users/" + this.user_id + "/calls", function (data) {
-				self.calls = data;
-			});
-		},
+        self.listenOnEcho();
+      });
+    },
 
-		refreshMembers: function refreshMembers() {
-			self = this;
+    refreshCalls: function refreshCalls() {
+      self = this;
 
-			$.getJSON("/calls/" + this.call.id + "/members", function (data) {
-				self.members = data;
-			});
-		},
+      $.getJSON("/users/" + this.user_id + "/calls", function (data) {
+        self.calls = data;
+      });
+    },
 
-		refreshMessages: function refreshMessages() {
-			self = this;
-			self.messages = [];
-			self.page = 1;
+    refreshMembers: function refreshMembers() {
+      self = this;
 
-			$.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
-				Object.keys(data).forEach(function (key, index) {
-					var message = data[key];
-					message.author = self.users_lookup[message.user_id];
-					self.messages.push(message);
-				});
+      $.getJSON("/calls/" + this.call.id + "/members", function (data) {
+        self.members = data;
+      });
+    },
 
-				setTimeout(function () {
-					var d = $("#chat-messages-container");
-					d.scrollTop(d.prop("scrollHeight"));
-				}, 100);
-			});
-		},
+    refreshMessages: function refreshMessages() {
+      self = this;
+      self.messages = [];
+      self.page = 1;
 
-		loadMoreMessages: function loadMoreMessages() {
-			self = this;
+      $.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
+        Object.keys(data).forEach(function (key, index) {
+          var message = data[key];
+          message.author = self.users_lookup[message.user_id];
+          self.messages.push(message);
+        });
 
-			$.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
-				var d = $("#chat-messages-container");
-				var old_height = d.prop("scrollHeight");
+        setTimeout(function () {
+          var d = $("#chat-messages-container");
+          d.scrollTop(d.prop("scrollHeight"));
+        }, 100);
+      });
+    },
 
-				var nmessages = [];
-				Object.keys(data).forEach(function (key, index) {
-					var message = data[key];
-					message.author = self.users_lookup[message.user_id];
-					nmessages.push(message);
-				});
+    loadMoreMessages: function loadMoreMessages() {
+      self = this;
 
-				self.messages = nmessages.concat(self.messages);
+      $.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function (data) {
+        var d = $("#chat-messages-container");
+        var old_height = d.prop("scrollHeight");
 
-				setTimeout(function () {
-					d.scrollTop(d.prop("scrollHeight") - old_height);
-				}, 20);
-			});
-		},
+        var nmessages = [];
+        Object.keys(data).forEach(function (key, index) {
+          var message = data[key];
+          message.author = self.users_lookup[message.user_id];
+          nmessages.push(message);
+        });
 
-		loadMessage: function loadMessage(id) {
-			self = this;
+        self.messages = nmessages.concat(self.messages);
 
-			$.getJSON("/messages/" + id, function (data) {
-				var message = data;
-				message.author = self.users_lookup[message.user_id];
-				self.messages.push(message);
-			});
-		},
+        setTimeout(function () {
+          d.scrollTop(d.prop("scrollHeight") - old_height);
+        }, 20);
+      });
+    },
 
-		scrollFunction: function scrollFunction() {
-			var d = $("#chat-messages-container");
+    loadMessage: function loadMessage(id) {
+      self = this;
 
-			if (d.scrollTop() == 0) {
-				this.page += 1;
-				this.loadMoreMessages();
-			}
-		}
+      $.getJSON("/messages/" + id, function (data) {
+        var message = data;
+        message.author = self.users_lookup[message.user_id];
+        self.messages.push(message);
+      });
+    },
 
-	},
-	mounted: function mounted() {
-		var _this = this;
+    scrollFunction: function scrollFunction() {
+      var d = $("#chat-messages-container");
 
-		console.log('Calls: Component mounted.');
+      if (d.scrollTop() == 0) {
+        this.page += 1;
+        this.loadMoreMessages();
+      }
+    },
 
-		this.refreshCalls();
-		this.refreshCall(this.first_call_id);
+    listenOnEcho: function listenOnEcho() {
+      var _this = this;
 
-		var self = this;
+      console.log("Listening on App.call.${this.call.id}");
+      Echo.private('App.Call.' + this.call.id).listen('MessageCreated', function (e) {
+        if (e.user_id != _this.user_id) {
+          console.log('Calls: New message!');
 
-		for (var i = 0, len = this.users.length; i < len; i++) {
-			this.users_lookup[this.users[i].id] = this.users[i];
-		}
+          self.loadMessage(e.message_id);
 
-		Echo.private('App.Call.' + 1).listen('MessageCreated', function (e) {
-			if (e.user_id != _this.user_id) {
-				console.log('Calls: New message!');
+          $.get('/notifications/newmessage/' + _this.call.id + '?markasread');
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log('Calls: Component mounted.');
 
-				self.loadMessage(e.message_id);
+    this.refreshCalls();
+    this.refreshCall(this.first_call_id);
 
-				$.get('/notifications/newmessage/' + _this.call.id + '?markasread');
-			}
-		});
-	}
+    var self = this;
+
+    for (var i = 0, len = this.users.length; i < len; i++) {
+      this.users_lookup[this.users[i].id] = this.users[i];
+    }
+  }
 });
 
 /***/ }),
@@ -48886,58 +48894,69 @@ var render = function() {
                     _c("input", {
                       attrs: { type: "hidden", name: "_token" },
                       domProps: { value: _vm.csrf_token }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "row input-group fixed-botton input-chat"
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.body,
-                              expression: "body"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", autofocus: "" },
-                          domProps: { value: _vm.body },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.body = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "input-group-btn" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              on: { click: _vm.send }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "fa fa-paper-plane",
-                                attrs: { "aria-hidden": "true" }
-                              })
-                            ]
-                          )
-                        ])
-                      ]
-                    )
+                    })
                   ])
                 ])
               ])
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "well well-input" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12 col-lg-12" }, [
+                _c("div", { staticClass: "painel-footer" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.body,
+                          expression: "body"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", autofocus: "" },
+                      domProps: { value: _vm.body },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k($event.keyCode, "enter", 13, $event.key)
+                          ) {
+                            return null
+                          }
+                          _vm.send($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.body = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "input-group-btn" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: { click: _vm.send }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-paper-plane",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-xs-12 col-sm-12 col-md-3" }, [
@@ -48949,27 +48968,7 @@ var render = function() {
                 _vm._v("Assuntos")
               ]),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  directives: [
-                    {
-                      name: "b-tooltip",
-                      rawName: "v-b-tooltip.hover",
-                      modifiers: { hover: true }
-                    }
-                  ],
-                  staticClass: "btn btn-chamada",
-                  attrs: { href: "/calls/create" }
-                },
-                [
-                  _vm._v("\r\n            Nova Chamada\r\n            "),
-                  _c("i", {
-                    staticClass: "fa fa-comments-o",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ]
-              ),
+              _vm._m(0),
               _vm._v(" "),
               _vm._l(_vm.calls, function(call) {
                 return _c("div", [
@@ -49022,7 +49021,24 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-chamada", attrs: { href: "/calls/create" } },
+      [
+        _vm._v("\r\n            Nova Chamada\r\n            "),
+        _c("i", {
+          staticClass: "fa fa-comments-o",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

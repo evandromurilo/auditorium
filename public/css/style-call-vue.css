@@ -25,17 +25,23 @@ body {
   color: #000;
 }
 
+
 .well-chat {
   margin-top: 30px;
   height: 400px;
   overflow: auto;
+  overflow-x: hidden;
   background-color: #DCDCDC;
 }
-.fixed-botton{
-  position:static;
 
+.well-input{
+  margin-top: -20px;
+  height: 45px;
+  background-color: #DCDCDC;
 }
-
+.input-group{
+margin-top: -18px;
+}
 
 /*assunto*/
 

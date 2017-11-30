@@ -25,19 +25,24 @@
             <div class="col-md-12 col-lg-12">
               <div class="">
                 <input type="hidden" name="_token" :value="csrf_token">
-                <div class="row input-group fixed-botton input-chat">
-                      <input type="text" class="form-control" autofocus v-model="body">
-                      <span class="input-group-btn">
-      										<button v-on:click="send" class="btn btn-primary">
-                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                          </button>
-      									</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="well well-input">
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <div class="painel-footer">
+                <div class="input-group">
+                  <input type="text" class="form-control" autofocus v-model="body" v-on:keyup.enter="send">
+                  <span class="input-group-btn">
+                        <button v-on:click="send" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
       <!--Assuntos do chat
 
@@ -46,20 +51,17 @@
         <div class="well well-assunto">
           <h3 class="text-center user-assunto">Assuntos</h3>
 
-            <a class="btn btn-chamada" href="/calls/create" v-b-tooltip.hover>
+          <a class="btn btn-chamada" href="/calls/create">
             Nova Chamada
             <i class="fa fa-comments-o" aria-hidden="true"></i>
             </a>
 
-					<div v-for="call in calls">
-              <div style="margin: auto;" id="teste" class="description-assunto">
-                <a style="cursor: pointer;" class="text-justify text-assunto" v-on:click="refreshCall(call.id)"><span class="uni">{{ call.title}}</span></a>
-                  <i class="trash-assunto fa fa-trash-o"
-										aria-hidden="true"
-										v-if="!call.user_to_user && call.id != 1"
-										v-on:click="exit(call.id)"></i>
-              </div>
-					</div>
+          <div v-for="call in calls">
+            <div style="margin: auto;" id="teste" class="description-assunto">
+              <a style="cursor: pointer;" class="text-justify text-assunto" v-on:click="refreshCall(call.id)"><span class="uni">{{ call.title}}</span></a>
+              <i class="trash-assunto fa fa-trash-o" aria-hidden="true" v-if="!call.user_to_user && call.id != 1" v-on:click="exit(call.id)"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -77,27 +79,26 @@ export default {
       users_lookup: {},
       n_messages: [],
       body: '',
-			calls: [],
-			members: [],
-			messages: [],
-			call: {},
-			page: 1,
+      calls: [],
+      members: [],
+      messages: [],
+      call: {},
+      page: 1,
     }
   },
   methods: {
-		exit: function(id) {
-			var request = $.get("/calls/"+id+"/exit");
-			var self = this;
+    exit: function(id) {
+      var request = $.get("/calls/" + id + "/exit");
+      var self = this;
 
-			request.done(function () {
-				if (self.call.id == id) {
-					self.refreshCall(1);
-				}
-				else {
-					self.refreshCalls();
-				}
-			});
-		},
+      request.done(function() {
+        if (self.call.id == id) {
+          self.refreshCall(1);
+        } else {
+          self.refreshCalls();
+        }
+      });
+    },
 
     send: function() {
       var inputs = {
@@ -129,119 +130,125 @@ export default {
       });
     },
 
-		refreshCall: function(id) {
-			self = this;
+    refreshCall: function(id) {
+      self = this;
 
-			$.getJSON("/calls/"+id, function (data) {
-				window.history.replaceState({}, "Call", "/calls?id="+id);
-				self.call = data;
-				self.refreshMembers();
+      Echo.leave(`App.Call.${this.call.id}`);
 
-				self.messages = [];
-				self.refreshMessages();
-			});
-		},
+      $.getJSON("/calls/" + id, function(data) {
+        window.history.replaceState({}, "Call", "/calls?id=" + id);
+        self.call = data;
+        self.refreshMembers();
 
-		refreshCalls: function() {
-			self = this;
+        self.messages = [];
+        self.refreshMessages();
 
-			$.getJSON("/users/"+this.user_id+"/calls", function (data) {
-				self.calls = data;
-			});
-		},
+        self.listenOnEcho();
+      });
+    },
 
-		refreshMembers: function() {
-			self = this;
+    refreshCalls: function() {
+      self = this;
 
-			$.getJSON("/calls/"+this.call.id+"/members", function (data) {
-				self.members = data;
-			});
-		},
+      $.getJSON("/users/" + this.user_id + "/calls", function(data) {
+        self.calls = data;
+      });
+    },
 
-		refreshMessages: function() {
-			self = this;
-			self.messages = [];
-			self.page = 1;
+    refreshMembers: function() {
+      self = this;
 
-			$.getJSON("/calls/"+this.call.id+"/messages?page="+this.page, function(data) {
-				Object.keys(data).forEach(function(key, index) {
-					var message = data[key];
-					message.author = self.users_lookup[message.user_id];
-					self.messages.push(message);
-				});
+      $.getJSON("/calls/" + this.call.id + "/members", function(data) {
+        self.members = data;
+      });
+    },
 
-				setTimeout(function() {
-					var d = $("#chat-messages-container");
-					d.scrollTop(d.prop("scrollHeight"));
-				}, 100);
-			});
-		},
+    refreshMessages: function() {
+      self = this;
+      self.messages = [];
+      self.page = 1;
 
-		loadMoreMessages: function() {
-			self = this;
+      $.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function(data) {
+        Object.keys(data).forEach(function(key, index) {
+          var message = data[key];
+          message.author = self.users_lookup[message.user_id];
+          self.messages.push(message);
+        });
 
-			$.getJSON("/calls/"+this.call.id+"/messages?page="+this.page, function(data) {
-				var d = $("#chat-messages-container");
-				var old_height = d.prop("scrollHeight");
+        setTimeout(function() {
+          var d = $("#chat-messages-container");
+          d.scrollTop(d.prop("scrollHeight"));
+        }, 100);
+      });
+    },
 
-				var nmessages = [];
-				Object.keys(data).forEach(function(key, index) {
-					var message = data[key];
-					message.author = self.users_lookup[message.user_id];
-					nmessages.push(message);
-				});
+    loadMoreMessages: function() {
+      self = this;
 
-				self.messages = nmessages.concat(self.messages);
+      $.getJSON("/calls/" + this.call.id + "/messages?page=" + this.page, function(data) {
+        var d = $("#chat-messages-container");
+        var old_height = d.prop("scrollHeight");
 
-				setTimeout(function() {
-					d.scrollTop(d.prop("scrollHeight")-old_height);
-				}, 20);
+        var nmessages = [];
+        Object.keys(data).forEach(function(key, index) {
+          var message = data[key];
+          message.author = self.users_lookup[message.user_id];
+          nmessages.push(message);
+        });
 
-			});
-		},
+        self.messages = nmessages.concat(self.messages);
 
-		loadMessage: function(id) {
-			self = this;
+        setTimeout(function() {
+          d.scrollTop(d.prop("scrollHeight") - old_height);
+        }, 20);
 
-			$.getJSON("/messages/"+id, function(data) {
-				var message = data;
-				message.author = self.users_lookup[message.user_id];
-				self.messages.push(message);
-			});
-		},
+      });
+    },
 
-		scrollFunction: function() {
-			var d = $("#chat-messages-container");
+    loadMessage: function(id) {
+      self = this;
 
-			if (d.scrollTop() == 0) {
-				this.page += 1;
-				this.loadMoreMessages();
-			}
-		},
+      $.getJSON("/messages/" + id, function(data) {
+        var message = data;
+        message.author = self.users_lookup[message.user_id];
+        self.messages.push(message);
+      });
+    },
 
+    scrollFunction: function() {
+      var d = $("#chat-messages-container");
+
+      if (d.scrollTop() == 0) {
+        this.page += 1;
+        this.loadMoreMessages();
+      }
+    },
+
+    listenOnEcho: function() {
+      console.log("Listening on App.call.${this.call.id}");
+      Echo.private(`App.Call.${this.call.id}`)
+        .listen('MessageCreated', (e) => {
+          if (e.user_id != this.user_id) {
+            console.log('Calls: New message!');
+
+            self.loadMessage(e.message_id);
+
+            $.get('/notifications/newmessage/' + this.call.id + '?markasread');
+          }
+        });
+    }
   },
   mounted() {
     console.log('Calls: Component mounted.');
 
-		this.refreshCalls();
-		this.refreshCall(this.first_call_id);
+    this.refreshCalls();
+    this.refreshCall(this.first_call_id);
 
     var self = this;
 
     for (var i = 0, len = this.users.length; i < len; i++) {
       this.users_lookup[this.users[i].id] = this.users[i];
     }
-
-    Echo.private(`App.Call.${1}`)
-      .listen('MessageCreated', (e) => {
-        if (e.user_id != this.user_id) {
-          console.log('Calls: New message!');
-
-					self.loadMessage(e.message_id);
-
-          $.get('/notifications/newmessage/' + this.call.id + '?markasread');
-        }
-      });
   }
 }
 </script>
