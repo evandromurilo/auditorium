@@ -47224,7 +47224,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("li", { staticClass: "dropdown" }, [
     _c("link", {
-      attrs: { rel: "stylesheet", href: "css/style-notification.css" }
+      attrs: { rel: "stylesheet", href: "/css/style-notification.css" }
     }),
     _vm._v(" "),
     _c(

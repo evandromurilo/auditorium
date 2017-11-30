@@ -1,7 +1,7 @@
 <template>
 
 	<li class="dropdown">
-		<link rel="stylesheet" href="css/style-notification.css">
+		<link rel="stylesheet" href="/css/style-notification.css">
 		<a href="#" id="notification-menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 			Notificações <span class="badge">{{ unreadNotifications.length }}</span>
 		</a>

@@ -113,7 +113,7 @@
 
         @yield('content')
         <div id="footer" @yield('footer')>
-          <img src="img/ulbra-70x70.png" alt="logo-ulbra">
+          <img src="{{ asset('img/ulbra-70x70.png') }}" alt="logo-ulbra">
         </div>
     </div>
 
