@@ -43,7 +43,7 @@
         <div class="well well-assunto">
           <h3 class="text-center user-assunto">Assuntos</h3>
 
-            <a class="btn btn-chamada" href="/calls/create" v-b-tooltip.hover>
+            <a class="btn btn-chamada" href="/calls/create">
             Nova Chamada
             <i class="fa fa-comments-o" aria-hidden="true"></i>
             </a>
@@ -129,6 +129,8 @@ export default {
 		refreshCall: function(id) {
 			self = this;
 
+			Echo.leave(`App.Call.${this.call.id}`);
+
 			$.getJSON("/calls/"+id, function (data) {
 				window.history.replaceState({}, "Call", "/calls?id="+id);
 				self.call = data;
@@ -136,6 +138,8 @@ export default {
 
 				self.messages = [];
 				self.refreshMessages();
+
+				self.listenOnEcho();
 			});
 		},
 
@@ -216,6 +220,19 @@ export default {
 			}
 		},
 
+		listenOnEcho: function() {
+			console.log("Listening on App.call.${this.call.id}");
+			Echo.private(`App.Call.${this.call.id}`)
+				.listen('MessageCreated', (e) => {
+					if (e.user_id != this.user_id) {
+						console.log('Calls: New message!');
+
+						self.loadMessage(e.message_id);
+
+						$.get('/notifications/newmessage/' + this.call.id + '?markasread');
+					}
+				});
+		}
   },
   mounted() {
     console.log('Calls: Component mounted.');
@@ -228,17 +245,6 @@ export default {
     for (var i = 0, len = this.users.length; i < len; i++) {
       this.users_lookup[this.users[i].id] = this.users[i];
     }
-
-    Echo.private(`App.Call.${1}`)
-      .listen('MessageCreated', (e) => {
-        if (e.user_id != this.user_id) {
-          console.log('Calls: New message!');
-
-					self.loadMessage(e.message_id);
-
-          $.get('/notifications/newmessage/' + this.call.id + '?markasread');
-        }
-      });
   }
 }
 </script>
