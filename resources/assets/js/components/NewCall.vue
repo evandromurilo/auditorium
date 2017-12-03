@@ -12,7 +12,7 @@
             <div class="col-md-9">
               <input type="text" class="form-control" v-model="title">
               <span class="help-block" v-if="errors.title">
-                  <strong>{{ errors.title }}</strong>
+                  <strong>{{ errors.title[0] }}</strong>
                 </span>
             </div>
           </div>
@@ -40,7 +40,7 @@
 
     <div v-if="errors.members" class="form-group has-error">
       <span class="help-block">
-						<strong> {{ errors.members }} </strong>
+						<strong> {{ errors.members[0] }} </strong>
 					</span>
     </div>
 
