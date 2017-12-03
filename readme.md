@@ -6,7 +6,7 @@ Fanpage (tecnologias utilizadas): http://fanpage-auditorium.herokuapp.com/
 
 Demo: http://auditorium.evandromurilo.com/
 
-Documentação: http://auditorium.readthedocs.io/pt/latest/
+Documentação: http://auditorium.readthedocs.io/pt/latest/index.html
 
 # Imagens
 
@@ -20,14 +20,14 @@ Documentação: http://auditorium.readthedocs.io/pt/latest/
 ![Página de chat](https://i.imgur.com/B04EuTV.png)
 
 # Desenvolvedores
-## Evandro Murilo (back-end):
+## Evandro Murilo (back-end)
 https://evandromurilo.com/
 
 https://github.com/evandromurilo/
 
 evandromurilob@hotmail.com
 
-## Valdeir Cesconeto (front-end):
+## Valdeir Cesconeto (front-end)
 https://valdeircesconeto.blogspot.com/
 
 https://github.com/valdeircesconeto
