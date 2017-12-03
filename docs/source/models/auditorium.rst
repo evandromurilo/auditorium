@@ -16,7 +16,7 @@ capacity ``INTEGER``
 accessible ``BOOLEAN``
   Se o auditório preenche os requisitos de acessibilidade.
 
-local ``VARCHAR(100)``
+location ``VARCHAR(100)``
   Localização do auditório.
 
 obs ``TEXT``

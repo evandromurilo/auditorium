@@ -37,8 +37,8 @@
         <link rel="search" title="Buscar" href="../search.html"/>
     <link rel="top" title="documentação auditorium 0.0.1" href="../index.html"/>
         <link rel="up" title="Events" href="../events.html"/>
-        <link rel="next" title="Listeners" href="../listeners.html"/>
-        <link rel="prev" title="RequestStatusChanged" href="requeststatuschanged.html"/> 
+        <link rel="next" title="RequestCreated" href="requestcreated.html"/>
+        <link rel="prev" title="CallCreated" href="callcreated.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -101,14 +101,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../helpers.html">Helpers</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../events.html">Events</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="requeststatuschanged.html">RequestStatusChanged</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callcreated.html">CallCreated</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">NotificationRead</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#atributos">Atributos</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="requestcreated.html">RequestCreated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="requeststatuschanged.html">RequestStatusChanged</a></li>
+<li class="toctree-l2"><a class="reference internal" href="userregistered.html">UserRegistered</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../listeners.html">Listeners</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notifications.html">Notifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../outros.html">Outros</a></li>
 </ul>
 
             
@@ -177,7 +182,7 @@
   <div class="section" id="notificationread">
 <h1>NotificationRead<a class="headerlink" href="#notificationread" title="Link permanente para este título">¶</a></h1>
 <p><code class="docutils literal"><span class="pre">NotificationRead</span></code> é um evento disparado quando uma notificação é lida. É enviado
-via <em>broadcast</em> no canal <code class="docutils literal"><span class="pre">App.User.{userId}</span></code>.</p>
+via <em>broadcasting</em> no canal <code class="docutils literal"><span class="pre">App.User.{userId}</span></code>.</p>
 <div class="section" id="atributos">
 <h2>Atributos<a class="headerlink" href="#atributos" title="Link permanente para este título">¶</a></h2>
 <dl class="docutils">
@@ -197,10 +202,10 @@ via <em>broadcast</em> no canal <code class="docutils literal"><span class="pre"
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../listeners.html" class="btn btn-neutral float-right" title="Listeners" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="requestcreated.html" class="btn btn-neutral float-right" title="RequestCreated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="requeststatuschanged.html" class="btn btn-neutral" title="RequestStatusChanged" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="callcreated.html" class="btn btn-neutral" title="CallCreated" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

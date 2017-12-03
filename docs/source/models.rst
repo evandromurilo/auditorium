@@ -8,3 +8,5 @@ Models
    models/auditorium
    models/request
    models/user
+   models/call
+   models/message

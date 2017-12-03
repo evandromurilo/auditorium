@@ -30,3 +30,9 @@ Views
 
 show
   Perfil do usuário.
+
+index
+  Lista de usuários.
+
+edit
+  Página de edição do usuário.

@@ -6,3 +6,6 @@ Notifications
    :caption: Notifications:
 
    notifications/requestresolved
+   notifications/newcall
+   notifications/newmessage
+   notifications/newrequest

@@ -64,3 +64,6 @@ index
 
   rejected
     São exibidas somente as ``Requests`` que foram negadas.
+
+show
+  View que mostra os detalhes de uma ``Request`` em específico.
