@@ -2,7 +2,7 @@ NotificationRead
 ================
 
 ``NotificationRead`` é um evento disparado quando uma notificação é lida. É enviado
-via *broadcast* no canal ``App.User.{userId}``.
+via *broadcasting* no canal ``App.User.{userId}``.
 
 Atributos
 ---------

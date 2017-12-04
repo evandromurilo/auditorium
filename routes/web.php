@@ -18,16 +18,12 @@ Auth::routes();
 
 Route::resource('requests', 'RequestController');
 Route::resource('calls', 'CallController');
+Route::resource('messages', 'MessageController');
+
 Route::get('/calls/{call}/exit', 'CallController@getOut')->name('calls.exit');
 Route::get('/calls/{call}/members', 'CallController@members')->name('calls.members');
 Route::get('/calls/{call}/messages', 'CallController@messages')->name('calls.messages');
-Route::resource('messages', 'MessageController');
-/* Route::get('requests', 'RequestController@index')->name('requests.index'); */
-/* Route::get('requests/create', 'RequestController@create')->name('requests.create'); */
-/* Route::post('requests', 'RequestController@store')->name('requests.store'); */
-/* Route::put('requests/{request}', 'RequestController@update')->name('requests.update'); */
 
-/* Route::get('/events', 'EventController@index')->name('events.index'); */
 Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 
 Route::put('/users/{user}', 'UserController@update')->name('users.update');
@@ -46,10 +42,5 @@ Route::get('/requests/{id}/modal', 'RequestController@modal')->name('requests.mo
 Route::get('/requests/{id}/accept', 'RequestController@accept')->name('requests.accept');
 Route::get('/requests/{id}/negate', 'RequestController@negate')->name('requests.negate');
 Route::get('/requests/{id}/pending', 'RequestController@pending')->name('requests.pending');
-
-/* Route::put('/messages', 'MessageController@store')->name('messages.store'); */
-/* Route::put('/calls', 'CallController@store')->name('calls.store'); */
-/* Route::get('/calls/{call}', 'CallController@show')->name('calls.show'); */
-/* Route::get('/calls/create', 'CallController@create')->name('calls.create'); */
 
 Route::get('/roles/setup', 'RoleController@setup');

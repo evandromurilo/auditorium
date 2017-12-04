@@ -6,3 +6,4 @@ Outros
    :caption: Outros:
 
    outros/sistemadenotificações
+   outros/sistemadechamadas

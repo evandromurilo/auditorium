@@ -37,6 +37,7 @@
         <link rel="search" title="Buscar" href="../search.html"/>
     <link rel="top" title="documentação auditorium 0.0.1" href="../index.html"/>
         <link rel="up" title="Notifications" href="../notifications.html"/>
+        <link rel="next" title="NewCall" href="newcall.html"/>
         <link rel="prev" title="Notifications" href="../notifications.html"/> 
 
   
@@ -101,12 +102,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../events.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../listeners.html">Listeners</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../notifications.html">Notifications</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">RequestResolved</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#atributos-via-broadcast">Atributos via Broadcast</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RequestResolved</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newcall.html">NewCall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newmessage.html">NewMessage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newrequest.html">NewRequest</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../outros.html">Outros</a></li>
 </ul>
 
             
@@ -176,18 +178,8 @@
 <h1>RequestResolved<a class="headerlink" href="#requestresolved" title="Link permanente para este título">¶</a></h1>
 <p><code class="docutils literal"><span class="pre">RequestResolved</span></code> é uma notificação enviada quando o status
 de uma <code class="docutils literal"><span class="pre">Request</span></code> é modificado. É armazenada no banco de
-dados e enviada via <em>broadcast</em> no canal <code class="docutils literal"><span class="pre">App.User.{userId}</span></code>.</p>
-<div class="section" id="atributos-via-broadcast">
-<h2>Atributos via Broadcast<a class="headerlink" href="#atributos-via-broadcast" title="Link permanente para este título">¶</a></h2>
-<dl class="docutils">
-<dt>created_at <code class="docutils literal"><span class="pre">String</span></code></dt>
-<dd>Data e hora da criação da notificação.</dd>
-<dt>data.request_id <code class="docutils literal"><span class="pre">Int</span></code></dt>
-<dd>ID da <code class="docutils literal"><span class="pre">Request</span></code> que teve o status modificado.</dd>
-<dt>data.auditorium_name <code class="docutils literal"><span class="pre">String</span></code></dt>
-<dd>Nome do <code class="docutils literal"><span class="pre">Auditorium</span></code> requisitado na <code class="docutils literal"><span class="pre">Request</span></code>.</dd>
-</dl>
-</div>
+dados e enviada via <em>broadcasting</em> no canal <code class="docutils literal"><span class="pre">App.User.{userId}</span></code>,
+para o usuário dono da <code class="docutils literal"><span class="pre">Request</span></code>.</p>
 </div>
 
 
@@ -199,6 +191,8 @@ dados e enviada via <em>broadcast</em> no canal <code class="docutils literal"><
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="newcall.html" class="btn btn-neutral float-right" title="NewCall" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../notifications.html" class="btn btn-neutral" title="Notifications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
