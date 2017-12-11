@@ -8,7 +8,7 @@
         <div class="form-horizontal">
           <!-- input da chamada -->
           <div :class="'form-group' +  (errors.title ? ' has-error' : '')">
-            <label class="col-md-2 control-label title-chamada">Título da Chamada: </label>
+            <label class="col-md-2 control-label title-chamada">Título da Chamada</label>
             <div class="col-md-9">
               <input type="text" class="form-control" v-model="title">
               <span class="help-block" v-if="errors.title">

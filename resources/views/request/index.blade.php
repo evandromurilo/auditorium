@@ -52,7 +52,7 @@
 								{{ $request->periodF }}
 							</div>
 
-							 <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Responsavel:</span>
+							 <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Responsável:</span>
 							 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ls">
 								 <a class="responsavel" href="{{ route('users.show', $request->user_id) }}">
 
