@@ -25,7 +25,7 @@ class AuditoriaTableSeeder extends Seeder
 			DB::table('auditoria')->insert([
 				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-				'name' => 'Mini Auditório A',
+				'name' => 'Miniauditório A',
 				'capacity' => 80,
 				'accessible' => true,
 				'obs' => NULL,
@@ -35,7 +35,7 @@ class AuditoriaTableSeeder extends Seeder
 			DB::table('auditoria')->insert([
 				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-				'name' => 'Mini Auditório B',
+				'name' => 'Miniauditório B',
 				'capacity' => 100,
 				'accessible' => true,
 				'obs' => NULL,
@@ -45,7 +45,7 @@ class AuditoriaTableSeeder extends Seeder
 			DB::table('auditoria')->insert([
 				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-				'name' => 'Mini Auditório C1',
+				'name' => 'Miniauditório C1',
 				'capacity' => 120,
 				'accessible' => false,
 				'obs' => NULL,
@@ -55,7 +55,7 @@ class AuditoriaTableSeeder extends Seeder
 			DB::table('auditoria')->insert([
 				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-				'name' => 'Mini Auditório C2',
+				'name' => 'Miniauditório C2',
 				'capacity' => 120,
 				'accessible' => false,
 				'obs' => NULL,

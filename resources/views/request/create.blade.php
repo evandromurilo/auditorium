@@ -29,7 +29,7 @@
 							@endif
 
 							<div class="form-group{{ $errors->has('event') ? ' has-error' : '' }} space-top">
-								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Eventos</label>
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Evento</label>
 								<div class="col-sm-9 col-md-9 col-lg-9">
 									<input
 										type="text"
@@ -48,7 +48,7 @@
 							</div>
 
 							<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Descrição </label>
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Descrição</label>
 								<div class="col-sm-9 col-md-9 col-lg-9">
 									<input type="text"
 										name="description"
@@ -66,7 +66,7 @@
 							</div>
 
 							<div class="form-group{{ $errors->has('period') ? ' has-error' : '' }}">
-								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Período:</label>
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Período</label>
 								<div class="col-sm-5 col-md-5 col-lg-5">
 									<select name="period" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<option value="0" {{ $period == 0? 'selected':'' }}>Manhã</option>
