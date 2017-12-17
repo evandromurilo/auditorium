@@ -112,9 +112,6 @@
         </nav>
 
         @yield('content')
-        <div id="footer" @yield('footer')>
-          <img src="{{ asset('img/ulbra-70x70.png') }}" alt="logo-ulbra">
-        </div>
     </div>
 
 		@yield('sources')

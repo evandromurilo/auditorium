@@ -68,14 +68,15 @@
 						</div>
 
 						<!--move essa parte para cima-->
-
+						<!-- parte do status comentado para arrumar depois-->
+						<!--
 							@if ($request->status == 0)
 								<span class="pendente" style="background-color: #FF8C00;">Pendente</span>
 							@elseif ($request->status == 1)
 								<span class="indisponivel" style="background-color: red;">Rejeitado</span>
 							@elseif ($request->status == 2)
 								<span class="disponivel" style="background-color: green;">Aceito</span>
-							@endif
+							@endif-->
 
 						@endcan
 

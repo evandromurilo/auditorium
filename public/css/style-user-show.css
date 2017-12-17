@@ -19,12 +19,11 @@ p, .historico{
 }
 
 .well{
+  width: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150px;
-  height: 150px;
-
 }
 .well-historico{
   margin-top: 20px;
