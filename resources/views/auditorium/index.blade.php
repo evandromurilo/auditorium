@@ -100,7 +100,31 @@
 			@endforeach
 		</div>
 	</div>
-	
+
+	<footer class="container-fluid">
+					<div class="container">
+							<div class="row">
+									<div class="col-md-4 col-lg-4 text-center evandro-footer">
+											<strong>Dev</strong>Back-end: <a href="https://github.com/evandromurilo" targe="_brank">Evandro Murilo</a>
+											<div class="icon-footer">
+													 <i class="fa fa-github" aria-hidden="true"></i>
+											</div>
+									</div>
+
+									<div class="col-md-4 col-lg-4 logo-footer">
+											<img src="../img/logo.png" alt="ulbra"></img>
+									</div>
+
+									<div class="col-md-4 col-lg-4 text-center valdeir-footer">
+											<strong>Dev</strong>Front-end: <a href="https://github.com/valdeircesconeto" targe="_brank">Valdeir Cesconeto</a>
+											<div class="icon-footer">
+													 <i class="fa fa-github" aria-hidden="true"></i>
+											</div>
+									</div>
+							</div>
+					</div>
+			</footer>
+
 
 @endsection
 

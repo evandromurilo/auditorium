@@ -48351,7 +48351,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "col-md-2 control-label title-chamada" },
-                  [_vm._v("Título da Chamada: ")]
+                  [_vm._v("Título da Chamada")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-9" }, [

@@ -1,5 +1,39 @@
-#footer{
-  position: fixed;
-    bottom:0;
-    right: 0;
+body{
+    margin:0;
+    padding:0;
+
+}
+
+footer {
+position:relative;
+bottom:0px;
+left:0px;
+width: 100%;
+height: auto;
+border-top: 1px solid #d3e0e9;
+background-color: #fff;
+margin-top: 10px;
+color: #777;
+}
+
+.logo-footer{
+    display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.evandro-footer, .valdeir-footer{
+    margin-top: 20px;
+}
+.icon-footer{
+    font-size: 20px;
+}
+strong{
+    font-size:20px;
+    padding-right: 10px;
+}
+a:link{
+    text-decoration: none;
 }
