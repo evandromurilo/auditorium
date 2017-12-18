@@ -23,8 +23,9 @@
 
     <style media="screen">
       .icon{
-        float: right;
+
       }
+
     </style>
 
 </head>
