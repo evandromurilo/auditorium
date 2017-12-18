@@ -2,7 +2,7 @@
 	@if ($date->gte(\Carbon\Carbon::today()))
 		<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),
 		'id' => $aud->id, 'period' => $period_code]) }}>
-		<p class="disponivel">Disponível <i class="fa fa-plus-square" aria-hidden="true"></i></p>
+		<p class="disponivel livre">Disponível <i class="fa fa-plus-square" aria-hidden="true"></i></p>
 		</a><br>
 	@else
 		<p class="disponivel">Disponível</p>
@@ -33,5 +33,3 @@
 			</p>
 		</a><br>
 @endif
-
-

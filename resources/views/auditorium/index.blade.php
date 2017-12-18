@@ -62,48 +62,52 @@
 						</div>
 					<div class="well">
 						<h2 class="text-center">{{ $aud->name }}</h2>
-							<div class="row">
+							<div class="">
 
-								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Manhã:</span>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0])
+								<div class="row">
+									<span class="col-xs-4 col-sm-4 col-md-2 col-lg-2 control-label">Manhã:</span>
+									<div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+										@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0])
+									</div>
+									<div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+										@include('partials.status', ['code' => $statusOn->morning2, 'period_code' => 1])
+									</div>
 								</div>
 
-								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Manhã 2:</span>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->morning2, 'period_code' => 1])
+
+								<div class="row">
+									<span class="col-xs-4 col-sm-4 col-md-2 col-lg-2 control-label">Tarde:</span>
+									<div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+										@include('partials.status', ['code' => $statusOn->afternoon, 'period_code' => 2])
+									</div>
+									<div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+										@include('partials.status', ['code' => $statusOn->afternoon2, 'period_code' => 3])
+									</div>
 								</div>
 
-								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Tarde:</span>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->afternoon, 'period_code' => 2])
+								<div class="row">
+									<span class="col-xs-4 col-sm-4 col-md-2 col-lg-2 control-label">Noite:</span>
+									<div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+										@include('partials.status', ['code' => $statusOn->night, 'period_code' => 5])
+									</div>
+									<div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
+										@include('partials.status', ['code' => $statusOn->night2, 'period_code' => 6])
+									</div>
 								</div>
 
-								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Tarde 2:</span>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->afternoon2, 'period_code' => 3])
+								<div class="row">
+									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Intermediário:</span>
+									<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+										@include('partials.status', ['code' => $statusOn->intermediary, 'period_code' => 4])
+									</div>
+								</div>
+								<div class="row">
+									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Capacidade:</span>
+									<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+										{{ $aud->capacity }} pessoas.
+									</div>
 								</div>
 
-								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Intermediário:</span>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->intermediary, 'period_code' => 4])
-								</div>
-
-								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Noite:</span>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->night, 'period_code' => 5])
-								</div>
-
-								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Noite 2:</span>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->night2, 'period_code' => 6])
-								</div>
-
-								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Capacidade: </span>
-								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									{{ $aud->capacity }} pessoas.
-
-								</div>
 							</div>
 
 
