@@ -32,7 +32,7 @@ class RequestResolved extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'broadcast'];
+        return ['database', 'broadcast', 'mail'];
     }
 
 		public function toArray($notifiable) {
@@ -49,5 +49,15 @@ class RequestResolved extends Notification
 				'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
 				'data' => $this->toArray($notifiable),
 			]);
+		}
+
+		public function toMail($notifiable) {
+			$url = route('requests.show', ['id' => $this->request->id, 'from' => 'notification']);
+
+			return (new MailMessage)
+				->greeting('Olá!')
+				->line('Um de seus pedidos mudou de status.')
+				->action('Ver pedido', $url)
+				->line('Obrigado por utilizar nosso sistema!');
 		}
 }

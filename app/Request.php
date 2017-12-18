@@ -20,8 +20,12 @@ class Request extends Model {
 
 	public function getPeriodFAttribute() {
 		if ($this->period == 0) return "manhã";
-		else if ($this->period == 1) return "tarde";
-		else return "noite";
+		else if ($this->period == 1) return "manhã 2";
+		else if ($this->period == 2) return "tarde";
+		else if ($this->period == 3) return "tarde 2";
+		else if ($this->period == 4) return "intermediário";
+		else if ($this->period == 5) return "noite";
+		else return "noite 2";
 	}
 
 	public function getStatusFAttribute() {

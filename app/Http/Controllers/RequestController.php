@@ -60,7 +60,7 @@ class RequestController extends Controller
 
 		$validateData = $request->validate([
 			'event' => 'required|string|max:50',
-			'period' => 'required|numeric|min:0|max:2',
+			'period' => 'required|numeric|min:0|max:6',
 			'description' => 'required|string|max:500',
 		], [
 			'event.required' => 'O campo evento é obrigatório.',

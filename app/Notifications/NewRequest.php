@@ -29,7 +29,7 @@ class NewRequest extends Notification
      * @return array
      */
     public function via($notifiable) {
-        return ['database', 'broadcast'];
+        return ['database', 'broadcast', 'mail'];
     }
 
 		public function toArray($notifiable) {
@@ -45,5 +45,15 @@ class NewRequest extends Notification
 				'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
 				'data' => $this->toArray($notifiable),
 			]);
+		}
+
+		public function toMail($notifiable) {
+			$url = route('requests.show', ['id' => $this->request->id, 'from' => 'notification']);
+
+			return (new MailMessage)
+				->greeting('Olá!')
+				->line('Um usuário requisitou o '.$this->request->auditorium->name.'.')
+				->action('Ver pedido', $url)
+				->line('Obrigado por utilizar nosso sistema!');
 		}
 }

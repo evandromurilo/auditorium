@@ -27,8 +27,6 @@ class SendStatusChangeNotification
      */
     public function handle(RequestStatusChanged $event)
     {
-        \Log::info('notification', ['request' => $event->request]);
-
 				$send = true;
 
 				foreach ($event->request->user->unreadNotifications as $notification) {

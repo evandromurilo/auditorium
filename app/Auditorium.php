@@ -18,16 +18,26 @@ class Auditorium extends Model {
 }
 
 class Status {
+  var $auditorium_id;
+
 	var $requests;
 	var $morning_requests;
+	var $morning2_requests;
 	var $afternoon_requests;
+	var $afternoon2_requests;
+	var $intermediary_requests;
 	var $night_requests;
+	var $night2_requests;
 
 	var $morning;
+	var $morning2;
 	var $afternoon;
+	var $afternoon2;
+	var $intermediary;
 	var $night;
 
 	function __construct($auditorium_id, Carbon $date) {
+    $this->auditorium_id = $auditorium_id;
 		$this->date = $date;
 
 		$this->requests = Request::where('auditorium_id', $auditorium_id)->
@@ -36,50 +46,32 @@ class Status {
 		$this->morning_requests = Request::where('auditorium_id', $auditorium_id)->
 			where('date', $date->toDateString())->where('period', 0);
 
-		$this->afternoon_requests = Request::where('auditorium_id', $auditorium_id)->
+		$this->morning2_requests = Request::where('auditorium_id', $auditorium_id)->
 			where('date', $date->toDateString())->where('period', 1);
 
-		$this->night_requests = Request::where('auditorium_id', $auditorium_id)->
+		$this->afternoon_requests = Request::where('auditorium_id', $auditorium_id)->
 			where('date', $date->toDateString())->where('period', 2);
 
-		// set morning status
-		if (Request::where('auditorium_id', $auditorium_id)->
-			where('date', $date->toDateString())->where('period', 0)->
-			where('status', 2)->count() > 0) {
-			$this->morning = 2;
-		} else if (Request::where('auditorium_id', $auditorium_id)->
-			where('date', $date->toDateString())->where('period', 0)->
-			where('status', 0)->count() > 0) {
-			$this->morning = 0;
-		} else {
-			$this->morning = 1;
-		}
+		$this->afternoon2_requests = Request::where('auditorium_id', $auditorium_id)->
+			where('date', $date->toDateString())->where('period', 3);
 
-		// set afternoon status
-		if (Request::where('auditorium_id', $auditorium_id)->
-			where('date', $date->toDateString())->where('period', 1)->
-			where('status', 2)->count() > 0) {
-			$this->afternoon = 2;
-		} else if (Request::where('auditorium_id', $auditorium_id)->
-			where('date', $date->toDateString())->where('period', 1)->
-			where('status', 0)->count() > 0) {
-			$this->afternoon = 0;
-		} else {
-			$this->afternoon = 1;
-		}
-		
-		// set night status
-		if (Request::where('auditorium_id', $auditorium_id)->
-			where('date', $date->toDateString())->where('period', 2)->
-			where('status', 2)->count() > 0) {
-			$this->night = 2;
-		} else if (Request::where('auditorium_id', $auditorium_id)->
-			where('date', $date->toDateString())->where('period', 2)->
-			where('status', 0)->count() > 0) {
-			$this->night = 0;
-		} else {
-			$this->night = 1;
-		}
+		$this->intermediary_requests = Request::where('auditorium_id', $auditorium_id)->
+			where('date', $date->toDateString())->where('period', 4);
+
+		$this->night_requests = Request::where('auditorium_id', $auditorium_id)->
+			where('date', $date->toDateString())->where('period', 5);
+
+		$this->night2_requests = Request::where('auditorium_id', $auditorium_id)->
+			where('date', $date->toDateString())->where('period', 6);
+
+		// set statuses
+    $this->morning = $this->getStatus(0);
+    $this->morning2 = $this->getStatus(1);
+    $this->afternoon = $this->getStatus(2);
+    $this->afternoon2 = $this->getStatus(3);
+    $this->intermediary = $this->getStatus(4);
+    $this->night = $this->getStatus(5);
+    $this->night2 = $this->getStatus(6);
 	}
 
 	public function codeToString($code) {
@@ -91,4 +83,18 @@ class Status {
 			return "disponível";
 		}
 	}
+
+  public function getStatus($period) {
+		if (Request::where('auditorium_id', $this->auditorium_id)->
+			where('date', $this->date->toDateString())->where('period', $period)->
+			where('status', 2)->count() > 0) {
+			return 2;
+		} else if (Request::where('auditorium_id', $this->auditorium_id)->
+			where('date', $this->date->toDateString())->where('period', $period)->
+			where('status', 0)->count() > 0) {
+      return 0;
+		} else {
+      return 1;
+		}
+  }
 }

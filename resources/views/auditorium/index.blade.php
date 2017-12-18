@@ -47,9 +47,17 @@
 						<div class="progress">
 							@include('partials.progress_bar', ['code' => $statusOn->morning,
 								'period' => 'Manhã'])
+							@include('partials.progress_bar', ['code' => $statusOn->morning2,
+								'period' => 'Manhã'])
 							@include('partials.progress_bar', ['code' => $statusOn->afternoon,
 								'period' => 'Tarde'])
+							@include('partials.progress_bar', ['code' => $statusOn->afternoon2,
+								'period' => 'Tarde'])
+							@include('partials.progress_bar', ['code' => $statusOn->intermediary,
+								'period' => 'Inter.'])
 							@include('partials.progress_bar', ['code' => $statusOn->night,
+								'period' => 'Noite'])
+							@include('partials.progress_bar', ['code' => $statusOn->night2,
 								'period' => 'Noite'])
 						</div>
 					<div class="well">
@@ -61,14 +69,34 @@
 									@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0])
 								</div>
 
+								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Manhã 2:</span>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+									@include('partials.status', ['code' => $statusOn->morning2, 'period_code' => 1])
+								</div>
+
 								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Tarde:</span>
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->afternoon, 'period_code' => 1])
+									@include('partials.status', ['code' => $statusOn->afternoon, 'period_code' => 2])
+								</div>
+
+								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Tarde 2:</span>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+									@include('partials.status', ['code' => $statusOn->afternoon2, 'period_code' => 3])
+								</div>
+
+								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Intermediário:</span>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+									@include('partials.status', ['code' => $statusOn->intermediary, 'period_code' => 4])
 								</div>
 
 								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Noite:</span>
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									@include('partials.status', ['code' => $statusOn->night, 'period_code' => 2])
+									@include('partials.status', ['code' => $statusOn->night, 'period_code' => 5])
+								</div>
+
+								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Noite 2:</span>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+									@include('partials.status', ['code' => $statusOn->night2, 'period_code' => 6])
 								</div>
 
 								<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Capacidade: </span>
