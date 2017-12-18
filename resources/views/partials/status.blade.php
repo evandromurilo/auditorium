@@ -13,10 +13,18 @@
 @elseif ($code == 2)
 	@if ($period_code == 0)
 		<?php $first = $statusOn->morning_requests->first() ?>
-	@elseif ($period_code == 1)
-		<?php $first = $statusOn->afternoon_requests->first() ?>
+  @elseif ($period_code == 1)
+		<?php $first = $statusOn->morning2_requests->first() ?>
 	@elseif ($period_code == 2)
+		<?php $first = $statusOn->afternoon_requests->first() ?>
+	@elseif ($period_code == 3)
+		<?php $first = $statusOn->afternoon2_requests->first() ?>
+	@elseif ($period_code == 4)
+		<?php $first = $statusOn->intermediary_requests->first() ?>
+	@elseif ($period_code == 5)
 		<?php $first = $statusOn->night_requests->first() ?>
+	@elseif ($period_code == 6)
+		<?php $first = $statusOn->night2_requests->first() ?>
 	@endif
 		<a href={{ route('requests.show', $first->id) }}>
 			<p class="indisponivel" data-toggle="tooltip" data-placement="top"
