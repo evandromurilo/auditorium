@@ -1,3 +1,4 @@
+<link rel="stylesheet" href=" {{asset('../css/style-status-index.css')}}">
 @if ($code == 1)
 	@if ($date->gte(\Carbon\Carbon::today()))
 		<a href={{ route('requests.create', ['date' => $date->format('d/m/Y'),

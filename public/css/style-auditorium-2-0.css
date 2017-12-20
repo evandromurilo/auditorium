@@ -1,0 +1,47 @@
+/*well principal*/
+.fa-caret-down{
+  padding: 0;
+  color: black;
+  font-size: 20px;
+}
+.icone-down{
+  margin-top: -5px;
+}
+.well-principal{
+  height: 50px;
+  margin-bottom: 3px;
+}
+.aud-name{
+  padding: 0;
+  color: black;
+  margin-top: -8px;
+  font-size: 20px;
+}
+
+.progress{
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.status-periodo{
+  margin-bottom: 25px;
+  color: black;
+}
+
+
+/*end well pricipal*/
+
+/*well secundario*/
+.collapse{
+
+}
+.status-color{
+  height: 20px;
+  width: 1px;
+  margin-left: 0;
+  background-color: green;
+}
+
+.status-color{
+  
+}

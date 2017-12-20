@@ -38,7 +38,177 @@
 			</div>
 		</div>
 	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
+		<div class="container">
+			<div class="row">
+				@foreach ($auditoria as $aud)
+					<?php $statusOn = $aud->statusOn($date); ?>
+				<div class="col-md-4 col-lg-4">
+					<div class="well well-principal">
+						<div class="row">
+							<span class="col-md-10 col-lg-10 text-center aud-name"> {{ $aud->name}} </span>
+							<a class="col-md-2 col-lg-2 icone-down" role="button" data-toggle="collapse"
+							 href="#collapse{{ $aud->id }}" aria-expanded="false" aria-controls="collapseExample">
+							 <i class="fa fa-caret-down" aria-hidden="true"></i>
+							 </a>
+						</div>
+					</div>
+					<div class="progress">
+						@include('partials.progress_bar', ['code' => $statusOn->morning,
+							'period' => 'Manhã'])
+						@include('partials.progress_bar', ['code' => $statusOn->morning2,
+							'period' => 'Manhã'])
+						@include('partials.progress_bar', ['code' => $statusOn->afternoon,
+							'period' => 'Tarde'])
+						@include('partials.progress_bar', ['code' => $statusOn->afternoon2,
+							'period' => 'Tarde'])
+						@include('partials.progress_bar', ['code' => $statusOn->intermediary,
+							'period' => 'Inter.'])
+						@include('partials.progress_bar', ['code' => $statusOn->night,
+							'period' => 'Noite'])
+						@include('partials.progress_bar', ['code' => $statusOn->night2,
+							'period' => 'Noite'])
+					</div>
+
+					<div class="row status-periodo">
+						<div class="col-md-3 col-lg-3">
+							<p class="text-center">Manhã</p>
+						</div>
+						<div class="col-md-6 col-lg-6">
+							<p class="text-center">Tarde</p>
+						</div>
+						<div class="col-md-3 col-lg-3">
+							<p class="text-center">Noite</p>
+						</div>
+					</div>
+
+					<div class="collapse" id="collapse{{$aud->id}}">
+  					<div class="well">
+
+							<div class="row">
+								<div class="col-md-2 col-lg-2 control-label status-color">
+
+								</div>
+								<div class="col-md-6 col-lg-6 control-label">
+									<p>07:00 às 9:30</p>
+								</div>
+								<div class="col-md-4 col-lg-4 control-label ">
+									<p>Evento</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2 col-lg-2 control-label status-color">
+
+								</div>
+								<div class="col-md-6 col-lg-6 control-label">
+									<p>09:30 às 12:00</p>
+								</div>
+								<div class="col-md-4 col-lg-4 control-label ">
+									<p>Evento</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2 col-lg-2 control-label status-color">
+
+								</div>
+								<div class="col-md-6 col-lg-6 control-label">
+									<p>13:00 às 15:30</p>
+								</div>
+								<div class="col-md-4 col-lg-4 control-label ">
+									<p>Evento</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2 col-lg-2 control-label status-color">
+
+								</div>
+								<div class="col-md-6 col-lg-6 control-label">
+									<p>15:30 às 17:30</p>
+								</div>
+								<div class="col-md-4 col-lg-4 control-label ">
+									<p>Evento</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2 col-lg-2 control-label status-color">
+
+								</div>
+								<div class="col-md-6 col-lg-6 control-label">
+									<p>17:30 às 19:00</p>
+								</div>
+								<div class="col-md-4 col-lg-4 control-label ">
+									<p>Evento</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2 col-lg-2 control-label status-color">
+
+								</div>
+								<div class="col-md-6 col-lg-6 control-label">
+									<p>19:00 às 20:30</p>
+								</div>
+								<div class="col-md-4 col-lg-4 control-label ">
+									<p>Evento</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2 col-lg-2 control-label status-color">
+
+								</div>
+								<div class="col-md-6 col-lg-6 control-label">
+									<p>20:30 às 22:00</p>
+								</div>
+								<div class="col-md-4 col-lg-4 control-label ">
+									<p>Evento</p>
+								</div>
+							</div>
+
+								<div class="row">
+									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Capacidade:</span>
+									<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+										{{ $aud->capacity }} pessoas.
+									</div>
+								</div>
+
+								@if ($aud->accessible)
+
+
+									<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
+										<p>
+												<i class="fa fa-wheelchair style-icons" aria-hidden="true"
+													data-toggle="tooltip" data-placement="bottom" title="Cadeirante"></i>
+												<i class="fa fa-blind style-icons" aria-hidden="true"
+													data-toggle="tooltip" data-placement="bottom" title="Deficiente Visual"></i>
+												<i class="fa fa-universal-access style-icons" aria-hidden="true"
+												data-toggle="tooltip" data-placement="bottom" title="Acesso Universal"></i>
+										</p>
+									</div>
+								@endif
+
+
+  					</div>
+					</div>
+				</div>
+
+			@endforeach
+			</div>
+		</div>
+
+
+
+
+
+	<!-- antigo -->
+<!--
 	<div class="container">
 		<div class="row">
 			@foreach ($auditoria as $aud)
@@ -67,7 +237,7 @@
 								<div class="row">
 									<span class="col-xs-4 col-sm-4 col-md-2 col-lg-2 control-label">Manhã:</span>
 									<div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
-										@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0])
+										@include('partials.status', ['code' => $statusOn->morning, 'period_code' => 0, 'period' => 'Manhâ 1'])
 									</div>
 									<div class="col-xs-8 col-sm-8 col-md-5 col-lg-5">
 										@include('partials.status', ['code' => $statusOn->morning2, 'period_code' => 1])
@@ -84,6 +254,12 @@
 										@include('partials.status', ['code' => $statusOn->afternoon2, 'period_code' => 3])
 									</div>
 								</div>
+								<div class="row">
+									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Intermediário:</span>
+									<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+										@include('partials.status', ['code' => $statusOn->intermediary, 'period_code' => 4])
+									</div>
+								</div>
 
 								<div class="row">
 									<span class="col-xs-4 col-sm-4 col-md-2 col-lg-2 control-label">Noite:</span>
@@ -95,12 +271,6 @@
 									</div>
 								</div>
 
-								<div class="row">
-									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Intermediário:</span>
-									<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
-										@include('partials.status', ['code' => $statusOn->intermediary, 'period_code' => 4])
-									</div>
-								</div>
 								<div class="row">
 									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Capacidade:</span>
 									<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
@@ -114,7 +284,7 @@
 
 						@if ($aud->accessible)
 
-							<!--icons acessibilidade-->
+
 							<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
 								<p>
 										<i class="fa fa-wheelchair style-icons" aria-hidden="true"
@@ -132,7 +302,7 @@
 			@endforeach
 		</div>
 	</div>
-
+-->
 	<footer class="container-fluid">
 					<div class="container">
 							<div class="row">
@@ -162,6 +332,7 @@
 
 @section('sources')
 	<link rel="stylesheet" href="{{ asset('css/style-auditorium-index.css')}}">
+	<link rel="stylesheet" href="{{ asset('css/style-auditorium-2-0.css')}}">
 
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
