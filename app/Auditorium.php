@@ -97,4 +97,14 @@ class Status {
       return 1;
 		}
   }
+
+  public function getFirstRequest($period) {
+    if ($period == 0) return $this->morning_requests->first();
+    else if ($period == 1) return $this->morning2_requests->first();
+    else if ($period == 2) return $this->afternoon_requests->first();
+    else if ($period == 3) return $this->afternoon2_requests->first();
+    else if ($period == 4) return $this->intermediary_requests->first();
+    else if ($period == 5) return $this->night_requests->first();
+    else return $this->night2_requests->first();
+  }
 }

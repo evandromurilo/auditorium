@@ -88,89 +88,20 @@
 					<div class="collapse" id="collapse{{$aud->id}}">
   					<div class="well">
 
-							<div class="row">
-								<div class="col-md-2 col-lg-2 control-label status-color">
-
-								</div>
-								<div class="col-md-6 col-lg-6 control-label">
-									<p>07:00 às 9:30</p>
-								</div>
-								<div class="col-md-4 col-lg-4 control-label ">
-									<p>Evento</p>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-2 col-lg-2 control-label status-color">
-
-								</div>
-								<div class="col-md-6 col-lg-6 control-label">
-									<p>09:30 às 12:00</p>
-								</div>
-								<div class="col-md-4 col-lg-4 control-label ">
-									<p>Evento</p>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-2 col-lg-2 control-label status-color">
-
-								</div>
-								<div class="col-md-6 col-lg-6 control-label">
-									<p>13:00 às 15:30</p>
-								</div>
-								<div class="col-md-4 col-lg-4 control-label ">
-									<p>Evento</p>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-2 col-lg-2 control-label status-color">
-
-								</div>
-								<div class="col-md-6 col-lg-6 control-label">
-									<p>15:30 às 17:30</p>
-								</div>
-								<div class="col-md-4 col-lg-4 control-label ">
-									<p>Evento</p>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-2 col-lg-2 control-label status-color">
-
-								</div>
-								<div class="col-md-6 col-lg-6 control-label">
-									<p>17:30 às 19:00</p>
-								</div>
-								<div class="col-md-4 col-lg-4 control-label ">
-									<p>Evento</p>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-2 col-lg-2 control-label status-color">
-
-								</div>
-								<div class="col-md-6 col-lg-6 control-label">
-									<p>19:00 às 20:30</p>
-								</div>
-								<div class="col-md-4 col-lg-4 control-label ">
-									<p>Evento</p>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-2 col-lg-2 control-label status-color">
-
-								</div>
-								<div class="col-md-6 col-lg-6 control-label">
-									<p>20:30 às 22:00</p>
-								</div>
-								<div class="col-md-4 col-lg-4 control-label ">
-									<p>Evento</p>
-								</div>
-							</div>
+              @include('partials.auditorium.event_row', ['code' => $statusOn->morning,
+                'period_code' => 0])
+              @include('partials.auditorium.event_row', ['code' => $statusOn->morning2,
+                'period_code' => 1])
+              @include('partials.auditorium.event_row', ['code' => $statusOn->afternoon,
+                'period_code' => 2])
+              @include('partials.auditorium.event_row', ['code' => $statusOn->afternoon2,
+                'period_code' => 3])
+              @include('partials.auditorium.event_row', ['code' => $statusOn->intermediary,
+                'period_code' => 4])
+              @include('partials.auditorium.event_row', ['code' => $statusOn->night,
+                'period_code' => 5])
+              @include('partials.auditorium.event_row', ['code' => $statusOn->night2,
+                'period_code' => 6])
 
 								<div class="row">
 									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Capacidade:</span>
