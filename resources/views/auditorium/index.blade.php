@@ -25,7 +25,10 @@
 								aria-hidden="true"></i></a>
 					</div>
 
-					<div class="btn-position day"><span id="weekday"></span></div>
+					<div class="btn-position day">
+						<i class="fa fa-calendar" aria-hidden="true"></i>
+						<span id="weekday"></span>
+					</div>
 
 					<div class="btn-position">
 						<input
@@ -86,7 +89,7 @@
 					</div>
 
 					<div class="collapse" id="collapse{{$aud->id}}">
-  					<div class="well">
+  					<div class="well well-collapse">
 
               @include('partials.auditorium.event_row', ['code' => $statusOn->morning,
                 'period_code' => 0])
@@ -103,7 +106,7 @@
               @include('partials.auditorium.event_row', ['code' => $statusOn->night2,
                 'period_code' => 6])
 
-								<div class="row">
+								<div class="row capacidade">
 									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Capacidade:</span>
 									<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
 										{{ $aud->capacity }} pessoas.
@@ -114,7 +117,7 @@
 
 
 									<div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
-										<p>
+										<p class="accessible">
 												<i class="fa fa-wheelchair style-icons" aria-hidden="true"
 													data-toggle="tooltip" data-placement="bottom" title="Cadeirante"></i>
 												<i class="fa fa-blind style-icons" aria-hidden="true"

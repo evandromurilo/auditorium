@@ -24,7 +24,7 @@
 }
 
 .status-periodo{
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   color: black;
 }
 
@@ -32,30 +32,44 @@
 /*end well pricipal*/
 
 /*well secundario*/
-.collapse{
-
+.well-collapse{
+  height: 345px;
 }
 .status-color-green{
-  height: 20px;
-  width: 1px;
-  margin-left: 0;
-  background-color: green;
+  font-size: 30px;
+  margin-left: -12px;
+  margin-top: 3px;
+  color: green;
 }
-
 .status-color-orange{
-  height: 20px;
-  width: 1px;
-  margin-left: 0;
-  background-color: orange;
+font-size: 30px;
+  margin-left: -12px;
+  margin-top: 3px;
+  color: orange;
 }
-
 .status-color-red{
-  height: 20px;
-  width: 1px;
-  margin-left: 0;
-  background-color: red;
+  font-size: 30px;
+  margin-left: -12px;
+  margin-top: 3px;
+  color: red;
+
+}
+.hour-secundario{
+  padding: 0px;
+}
+.hour-secundario:hover{
+  border: 1px solid black;
+  border-radius: 3%;
+}
+.horas{
+  color: black;
+  position: relative;
+  top: 5px;
+  font-family: 'Lora', serif;
+  font-size: 16px;
 }
 
-.status-color{
-  
+.capacidade{
+  color: black;
+  margin-top: 10px;
 }

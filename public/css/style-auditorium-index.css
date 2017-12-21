@@ -7,6 +7,9 @@ body {
 h2 {
   margin-top: 10px;
 }
+.fa-calendar{
+  margin-right: 5px;
+}
 
 .position-form {
   display: flex;
@@ -20,7 +23,7 @@ h2 {
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  color: #fff;
+  color: #000;
 }
 .position-submit {
   height: 50px;
@@ -97,6 +100,7 @@ h2 {
   .input-date {
     width: 400px;
     height: 50px;
+    color:#000;
     font-size: 35px;
     font-family: 'Libre Baskerville', serif;
   }
@@ -111,6 +115,7 @@ h2 {
   .input-date {
     width: 400px;
     height: 50px;
+    color:#000;
     font-size: 35px;
     font-family: 'Libre Baskerville', serif;
   }
@@ -123,6 +128,7 @@ h2 {
   .input-date {
     width: 400px;
     height: 50px;
+    color:#000;
     font-size: 35px;
     font-family: 'Libre Baskerville', serif;
   }
