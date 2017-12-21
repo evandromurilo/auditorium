@@ -35,11 +35,25 @@
 .collapse{
 
 }
-.status-color{
+.status-color-green{
   height: 20px;
   width: 1px;
   margin-left: 0;
   background-color: green;
+}
+
+.status-color-orange{
+  height: 20px;
+  width: 1px;
+  margin-left: 0;
+  background-color: orange;
+}
+
+.status-color-red{
+  height: 20px;
+  width: 1px;
+  margin-left: 0;
+  background-color: red;
 }
 
 .status-color{

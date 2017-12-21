@@ -28,6 +28,10 @@ class Request extends Model {
 		else return "noite 2";
 	}
 
+  public function getPeriodTimeFAttribute() {
+    return App\Helpers\StatusFormatting::periodTimeF($this->period);
+  }
+
 	public function getStatusFAttribute() {
 		if ($this->status == 0) return "pendente";
 		else if ($this->status == 1) return "rejeitado";
