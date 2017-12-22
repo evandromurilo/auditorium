@@ -20,7 +20,9 @@ class AuditoriumController extends Controller {
 			$date->subDay();
 		}
 
+    $canRequest = \App\Helpers\DateHelper::canRequest($date);
+
 		return view('auditorium.index')->with(['date' => $date,
-			'auditoria' => Auditorium::all()]);
+			'auditoria' => Auditorium::all(), 'canRequest' => $canRequest]);
 	}
 }
