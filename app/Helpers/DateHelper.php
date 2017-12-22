@@ -8,8 +8,11 @@ class DateHelper {
     $now = Carbon::now();
     $tomorrow = Carbon::tomorrow();
 
+    if ($now->dayOfWeek != Carbon::MONDAY) $nextMonday = Carbon::today()->next(Carbon::MONDAY);
+    else $nextMonday = $now;
+
     // cannot request for monday on weekend
-    if (DateHelper::isWeekend($now) && $date->dayOfWeek == Carbon::MONDAY) {
+    if ($now->isWeekend() && $date->isSameDay($nextMonday)) {
       return false;
     }
     // cannot request for today
@@ -17,14 +20,10 @@ class DateHelper {
       return false;
     }
     // cannot request for tomorrow after 12:00
-    else if ($date->day == $tomorrow->day && $now->hour > 12) {
+    else if ($date->isSameDay($tomorrow) && $now->hour > 12) {
       return false;
     }
 
     return true;
-  }
-
-  public static function isWeekend(Carbon $date) {
-    return $date->dayOfWeek == Carbon::SUNDAY && $date->dayOfWeek == Carbon::SATURDAY;
   }
 }
