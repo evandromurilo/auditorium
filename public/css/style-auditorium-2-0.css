@@ -57,9 +57,10 @@ font-size: 30px;
 .hour-secundario{
   padding: 0px;
 }
+
 .hour-secundario:hover{
   border: 1px solid black;
-  border-radius: 3%;
+  box-shadow: 2px 2px 2px black, 2px 2px 2px #ccc;
 }
 .horas{
   color: black;
@@ -68,7 +69,19 @@ font-size: 30px;
   font-family: 'Lora', serif;
   font-size: 16px;
 }
+.indisponivel-pendente-btn{
+  position: relative;
+  top: 6px;
+}
+.disponivel-btn{
+  border: 1px solid transparent;
+  border-radius: 8%;
+  background-color: green;
+  color: #fff;
+  position: relative;
+  top: 6px;
 
+}
 .capacidade{
   color: black;
   margin-top: 10px;

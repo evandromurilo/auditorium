@@ -22,11 +22,11 @@
   <div class="col-md-6 col-lg-6 control-label">
     <p class="horas">{{ App\Helpers\StatusFormatting::periodTimeF($period_code) }}</p>
   </div>
-  <div class="col-md-4 col-lg-4 control-label ">
+  <div class="col-md-4 col-lg-4 control-label">
     @if ($code == 1)
-        <p>Disponível</p>
+        <p class="text-center disponivel-btn">Disponível</p>
     @else
-        <p>{{ $request->event }}</p>
+        <p class="indisponivel-pendente-btn">{{ $request->event }}</p>
     @endif
   </div>
 </div>

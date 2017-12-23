@@ -43,9 +43,6 @@
 			</div>
 		</div>
 	</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 		<div class="container">
 			<div class="row">
@@ -280,6 +277,7 @@
 	<script type="text/javascript" src="{{ asset('js/jquery-scripts.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-script-icons-auditorium-index.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-script-icons-auditorium-index.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-auditorium-2.0.js')}}"></script>
 
 	<script>
 		function updateWeekDay() {
