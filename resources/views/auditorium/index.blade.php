@@ -52,7 +52,7 @@
 					<div class="well well-principal">
 						<div class="row">
 							<span class="col-md-10 col-lg-10 text-center aud-name"> {{ $aud->name}} </span>
-							<a class="col-md-2 col-lg-2 icone-down" role="button" data-toggle="collapse"
+							<a id="down" class="col-md-2 col-lg-2 icone-down" role="button" data-toggle="collapse"
 							 href="#collapse{{ $aud->id }}" aria-expanded="false" aria-controls="collapseExample">
 							 <i class="fa fa-caret-down" aria-hidden="true"></i>
 							 </a>
@@ -277,7 +277,7 @@
 	<script type="text/javascript" src="{{ asset('js/jquery-scripts.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-script-icons-auditorium-index.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-script-icons-auditorium-index.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/jquery-auditorium-2.0.js')}}"></script>
+	<script type="text/javascript" src="{{ asset('js/script-auditorium-2.0.js')}}"></script>
 
 	<script>
 		function updateWeekDay() {

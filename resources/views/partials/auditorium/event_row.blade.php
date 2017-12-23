@@ -19,8 +19,8 @@
   @endif
 
   </div>
-  <div class="col-md-6 col-lg-6 control-label">
-    <p class="horas">{{ App\Helpers\StatusFormatting::periodTimeF($period_code) }}</p>
+  <div  class="col-md-6 col-lg-6 control-label">
+    <p  class="horas">{{ App\Helpers\StatusFormatting::periodTimeF($period_code) }}</p>
   </div>
   <div class="col-md-4 col-lg-4 control-label">
     @if ($code == 1)
