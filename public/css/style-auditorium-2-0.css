@@ -24,10 +24,14 @@
 }
 
 .status-periodo{
-  margin-bottom: 15px;
+  margin-bottom: 0px;
+  padding: 0px;
   color: black;
-}
 
+}
+.espaco{
+  height: 5px;
+}
 
 /*end well pricipal*/
 
@@ -35,6 +39,7 @@
 .well-collapse{
   height: 345px;
 }
+
 .status-color-green{
   font-size: 30px;
   margin-left: -12px;
