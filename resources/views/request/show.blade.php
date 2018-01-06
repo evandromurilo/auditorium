@@ -63,6 +63,11 @@
                 </div>
               @endif
 
+              <p>Requisitos: </p>
+              @foreach ($request->requirements as $item)
+                <p> {{ $item->name }} </p>
+              @endforeach
+
 
 						</form>
 						<div class="btn-pedidos">

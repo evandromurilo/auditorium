@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([AuditoriaTableSeeder::class,
 					CallsTableSeeder::class,
 					UsersTableSeeder::class,
+					DefaultRequirementsTableSeeder::class,
 				]);
     }
 }
