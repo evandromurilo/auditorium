@@ -62,11 +62,13 @@ class RequestController extends Controller
 			'event' => 'required|string|max:50',
 			'period' => 'required|numeric|min:0|max:6',
 			'description' => 'required|string|max:500',
+			'claimant' => 'max:20',
 		], [
 			'event.required' => 'O campo evento é obrigatório.',
 			'event.max' => 'O campo evento deve ter até 50 caracteres.',
 			'description.required' => 'O campo descrição é obrigatório.',
-			'description.max' => 'O campo descrição deve ter até 500 caracteres.'
+			'description.max' => 'O campo descrição deve ter até 500 caracteres.',
+			'claimant.max' => 'O campo requerente deve ter até 20 caracteres.',
 		]);
 
 		$audit = \App\Auditorium::find($request->auditorium_id);
@@ -84,6 +86,10 @@ class RequestController extends Controller
 		$nrequest->event = $request->event;
 		$nrequest->description = $request->description;
 		$nrequest->status = 0;
+
+    if (!empty($request->claimant)) {
+      $nrequest->claimant = $request->claimant;
+    }
 
 		$nrequest->save();
 

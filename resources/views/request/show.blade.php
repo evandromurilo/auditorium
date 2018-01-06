@@ -41,16 +41,27 @@
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Organizador:</label>
-								<div class="col-sm-10 col-md-10 col-lg-10">
-									<p class="form-control-static">
-										 <a class="organizador" href="{{ route('users.show', $request->user_id) }}">
-										{{ $request->user->name }}
-										<i class="fa fa-user-o" aria-hidden="true"></i>
-									</a></p>
-								</div>
-							</div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-md-2 col-lg-2 control-label">Agendado por:</label>
+                  <div class="col-sm-10 col-md-10 col-lg-10">
+                    <p class="form-control-static">
+                       <a class="organizador" href="{{ route('users.show', $request->user_id) }}">
+                      {{ $request->user->name }}
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </a></p>
+                  </div>
+                </div>
+
+              @if (!empty($request->claimant))
+                <div class="form-group">
+                  <label class="col-sm-2 col-md-2 col-lg-2 control-label">Requerente:</label>
+                  <div class="col-sm-10 col-md-10 col-lg-10">
+                    <p class="form-control-static">
+                      {{ $request->claimant }}
+                    </p>
+                  </div>
+                </div>
+              @endif
 
 
 						</form>

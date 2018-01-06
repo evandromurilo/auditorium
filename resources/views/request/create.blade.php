@@ -86,6 +86,24 @@
 								</div>
 							</div>
 
+							<div class="form-group{{ $errors->has('claimant') ? ' has-error' : '' }}">
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Requerente</label>
+								<div class="col-sm-9 col-md-9 col-lg-9">
+									<input type="text"
+										name="claimant"
+										class="form-control"
+										autocomplete="off"
+										value="{{ old('claimant') }}">
+
+
+								@if ($errors->has('claimant'))
+									<span class="help-block">
+										<strong>{{ $errors->first('claimant') }}</strong>
+									</span>
+								@endif
+								</div>
+							</div>
+
 							<div class="form-group">
 								<div class="col-md-8 col-md-offset-4">
 									<input type="submit" class="btn btn-primary" value="Agendar">
