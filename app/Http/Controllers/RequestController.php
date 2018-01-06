@@ -99,11 +99,13 @@ class RequestController extends Controller
 
 		$nrequest->save();
 
-    foreach ($requirements as $name) {
-      $requirement = new \App\Requirement;
-      $requirement->request_id = $nrequest->id;
-      $requirement->name = $name;
-      $requirement->save();
+    if (!empty($requirements)) {
+      foreach ($requirements as $name) {
+        $requirement = new \App\Requirement;
+        $requirement->request_id = $nrequest->id;
+        $requirement->name = $name;
+        $requirement->save();
+      }
     }
 
 		event(new \App\Events\RequestCreated($nrequest));

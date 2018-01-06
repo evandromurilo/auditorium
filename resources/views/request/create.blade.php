@@ -113,6 +113,8 @@
                 @endforeach
               </div>
 
+              <requirements></requirements>
+
 							<div class="form-group">
 								<div class="col-md-8 col-md-offset-4">
 									<input type="submit" class="btn btn-primary" value="Agendar">

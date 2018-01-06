@@ -63,10 +63,16 @@
                 </div>
               @endif
 
-              <p>Requisitos: </p>
-              @foreach ($request->requirements as $item)
-                <p> {{ $item->name }} </p>
-              @endforeach
+              @if (sizeof($request->requirements) > 0)
+                <div class="form-group">
+                  <label class="col-sm-2 col-md-2 col-lg-2 control-label">Requisitos:</label>
+                    <div class="col-sm-10 col-md-10 col-lg-10">
+                      @foreach ($request->requirements as $item)
+                        <p> {{ $item->name }} </p>
+                      @endforeach
+                    </div>
+                </div>
+              @endif
 
 
 						</form>
