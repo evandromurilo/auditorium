@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 
-class NewCall extends Notification
+class NewCall extends Notification implements ShouldQueue
 {
     use Queueable;
 
