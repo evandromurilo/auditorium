@@ -18,6 +18,7 @@ class CreateRequirementsTable extends Migration
           $table->increments('id');
           $table->integer('request_id')->unsigned();
           $table->string('name', 30);
+          $table->boolean('granted')->default(false);
         });
 
         Schema::table('requirements', function (Blueprint $table) {

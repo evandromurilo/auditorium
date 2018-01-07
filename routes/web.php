@@ -44,3 +44,6 @@ Route::get('/requests/{id}/negate', 'RequestController@negate')->name('requests.
 Route::get('/requests/{id}/pending', 'RequestController@pending')->name('requests.pending');
 
 Route::get('/roles/setup', 'RoleController@setup');
+
+Route::put('/requirements/{id}/grant', 'RequirementController@grant')->name('requirements.grant');
+Route::put('/requirements/{id}/ungrant', 'RequirementController@ungrant')->name('requirements.ungrant');
