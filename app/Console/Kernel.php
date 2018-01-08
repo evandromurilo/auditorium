@@ -24,8 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+      // reject old pendent requests
+      $schedule->call(function() {
+        \App\Request::whereDate('date', '<', \Carbon\Carbon::today()->toDateString())->
+          where('status', 0)->update(['status' => 1]);
+      })->daily();
     }
 
     /**

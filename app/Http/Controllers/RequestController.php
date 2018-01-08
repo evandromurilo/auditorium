@@ -42,16 +42,17 @@ class RequestController extends Controller
 		$aud = Auditorium::find($request->id);
 		$date = Carbon::createFromFormat('d/m/Y', $request->date);
 
+    $requirements = DB::table('default_requirements')->get();
+
 		if ($date->lt(Carbon::today())) {
 			$date = Carbon::today();
 
 			return view('request.create', ['aud' => $aud,
 				'date' => $date,
-				'period' => $request->period])
+				'period' => $request->period,
+        'requirements' => $requirements])
 				->withErrors(['date' => 'A data requisitada era no passado!']);
 		}
-
-    $requirements = DB::table('default_requirements')->get();
 
 		return view('request.create', ['aud' => $aud,
 			'date' => $date,
