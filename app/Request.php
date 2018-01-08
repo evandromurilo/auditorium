@@ -14,6 +14,10 @@ class Request extends Model {
 		return $this->belongsTo('App\User');
 	}
 
+  public function requirements() {
+    return $this->hasMany('App\Requirement');
+  }
+
 	public function getDateCAttribute() {
 		return new Carbon($this->date);
 	}

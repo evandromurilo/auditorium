@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Auditorium;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class RequestController extends Controller
 {
@@ -50,9 +51,12 @@ class RequestController extends Controller
 				->withErrors(['date' => 'A data requisitada era no passado!']);
 		}
 
+    $requirements = DB::table('default_requirements')->get();
+
 		return view('request.create', ['aud' => $aud,
 			'date' => $date,
-			'period' => $request->period]);
+      'period' => $request->period,
+      'requirements' => $requirements]);
 	}
 
 	public function store(Request $request) {
@@ -62,11 +66,13 @@ class RequestController extends Controller
 			'event' => 'required|string|max:50',
 			'period' => 'required|numeric|min:0|max:6',
 			'description' => 'required|string|max:500',
+			'claimant' => 'max:20',
 		], [
 			'event.required' => 'O campo evento é obrigatório.',
 			'event.max' => 'O campo evento deve ter até 50 caracteres.',
 			'description.required' => 'O campo descrição é obrigatório.',
-			'description.max' => 'O campo descrição deve ter até 500 caracteres.'
+			'description.max' => 'O campo descrição deve ter até 500 caracteres.',
+			'claimant.max' => 'O campo requerente deve ter até 20 caracteres.',
 		]);
 
 		$audit = \App\Auditorium::find($request->auditorium_id);
@@ -74,6 +80,8 @@ class RequestController extends Controller
 			return redirect()->back()->withInput($request->input())
 				->withErrors(['period' => 'Auditório indisponível!']);
 		}
+
+    $requirements = $request->get('requirement');
 
 		$nrequest = new \App\Request;
 
@@ -85,7 +93,20 @@ class RequestController extends Controller
 		$nrequest->description = $request->description;
 		$nrequest->status = 0;
 
+    if (!empty($request->claimant)) {
+      $nrequest->claimant = $request->claimant;
+    }
+
 		$nrequest->save();
+
+    if (!empty($requirements)) {
+      foreach ($requirements as $name) {
+        $requirement = new \App\Requirement;
+        $requirement->request_id = $nrequest->id;
+        $requirement->name = $name;
+        $requirement->save();
+      }
+    }
 
 		event(new \App\Events\RequestCreated($nrequest));
 
