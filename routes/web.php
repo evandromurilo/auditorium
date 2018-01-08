@@ -45,5 +45,7 @@ Route::get('/requests/{id}/pending', 'RequestController@pending')->name('request
 
 Route::get('/roles/setup', 'RoleController@setup');
 
-Route::put('/requirements/{id}/grant', 'RequirementController@grant')->name('requirements.grant');
-Route::put('/requirements/{id}/ungrant', 'RequirementController@ungrant')->name('requirements.ungrant');
+Route::put('/requirements/{id}/grant', 'RequirementController@grant')->name('requirements.grant')->middleware('auth');
+Route::put('/requirements/{id}/ungrant', 'RequirementController@ungrant')->name('requirements.ungrant')->middleware('auth');
+Route::get('/requirements/{id}/verification', 'RequirementController@showVerification')->name('requirements.showVerification');
+Route::put('/requirements/{id}/verification', 'RequirementController@updateVerification')->name('requirements.updateVerification');

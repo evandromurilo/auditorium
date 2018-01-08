@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Auditorium;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Mail\DeanRequired;
+use Illuminate\Support\Facades\Mail;
 
 class RequestController extends Controller
 {
@@ -106,6 +108,10 @@ class RequestController extends Controller
         $requirement->request_id = $nrequest->id;
         $requirement->name = $name;
         $requirement->save();
+      }
+
+      if (in_array("Reitor", $requirements)) {
+        Mail::to(env('MAIL_DEAN'))->send(new DeanRequired($requirement));
       }
     }
 
