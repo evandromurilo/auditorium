@@ -67,13 +67,29 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-md-2 col-lg-2 control-label">Requisitos:</label>
                     <div class="col-sm-10 col-md-10 col-lg-10">
+                      @can('resolve', \App\Requirement::class)
+                        <?php $maybeDisabled = "" ?>
+                      @else
+                        <?php $maybeDisabled = "disabled" ?>
+                      @endcan
+
                       @foreach ($request->requirements as $item)
-                        <p> {{ $item->name }}
-                        @can('resolve', \App\Requirement::class)
-                          <button class="grant" target="{{$item->id}}">grant</button>
-                          <button class="ungrant" target="{{$item->id}}">ungrant</button>
-                        @endcan
-                        </p>
+                        <div class="form-check">
+                          <input type="checkbox"
+                                 class="form-check-input grant"
+                                 id="grant-{{ $item->id }}"
+                                 target="{{ $item->id }}"
+                                 {{ $maybeDisabled }}
+                                 {{ $item->granted ? "checked" : "" }}>
+
+                            <label class="form-check-label" for="grant-{{ $item->id}}">
+                              {{ $item->name }}
+                            </label>
+                          </input>
+                        </div>
+
+                          {{-- <button class="grant" target="{{$item->id}}">grant</button> --}}
+                          {{-- <button class="ungrant" target="{{$item->id}}">ungrant</button> --}}
                       @endforeach
                     </div>
                 </div>
@@ -117,34 +133,28 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-    $('.grant').on('click', function(e){
-      e.preventDefault();
-      console.debug($(e.target).attr('target'));
-      var id = $(e.target).attr('target');
+    $('.grant').on('change', function(e){
+      //e.preventDefault();
+
+      var target = $(e.target);
+      var id = target.attr('target');
+
+      console.log(target.is(':checked'));
+
+      if (target.is(':checked')) {
+        var action = "grant";
+      } else {
+        var action = "ungrant";
+      }
+
+      console.log(target.is(':checked'));
+
       var data = {};
       data['_token'] = $('input[name=_token]').val();
       data['_method'] = 'PUT';
 
       $.ajax({
-        url: '/requirements/'+id+'/grant',
-        method: 'POST',
-        dataType: 'json',
-        data: data,
-        complete: function(data) {
-          console.debug(data);
-        }
-      });
-    });
-
-    $('.ungrant').on('click', function(e){
-      e.preventDefault();
-      var id = $(e.target).attr('target');
-      var data = {};
-      data['_token'] = $('input[name=_token]').val();
-      data['_method'] = 'PUT';
-
-      $.ajax({
-        url: '/requirements/'+id+'/ungrant',
+        url: '/requirements/'+id+'/'+action,
         method: 'POST',
         dataType: 'json',
         data: data,
