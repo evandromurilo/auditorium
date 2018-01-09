@@ -45,16 +45,21 @@ class RequirementController extends Controller {
 
   public function updateVerification(Request $request) {
 		$requirement = Requirement::findOrFail($request->segment(2));
-    $verification = RequirementVerification::where('hash', $request->hash)->
+    $verification = RequirementVerification::where('requirement_id', $requirement->id)->
+      where('hash', $request->hash)->
       firstOrFail();
 
     if ($request->confirm == 'true') {
       $verification->status = 2;
-    } else {
+      $requirement->granted = true;
+    }
+    else {
       $verification->status = 1;
+      $requirement->granted = false;
     }
 
     $verification->save();
+    $requirement->save();
 
     return response('OK', 200);
   }

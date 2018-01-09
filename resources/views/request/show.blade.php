@@ -87,9 +87,6 @@
                             </label>
                           </input>
                         </div>
-
-                          {{-- <button class="grant" target="{{$item->id}}">grant</button> --}}
-                          {{-- <button class="ungrant" target="{{$item->id}}">ungrant</button> --}}
                       @endforeach
                     </div>
                 </div>
