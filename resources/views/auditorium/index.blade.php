@@ -87,6 +87,10 @@
 						</div>
 					</div>
 
+						<div class="espaco">
+
+						</div>
+
 					<div class="collapse" id="collapse{{$aud->id}}">
   					<div class="well well-collapse">
 
