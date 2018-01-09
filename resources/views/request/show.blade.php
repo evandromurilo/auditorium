@@ -75,12 +75,25 @@
 
                       @foreach ($request->requirements as $item)
                         <div class="form-check">
+                          @if ($item->name == "Reitor" &&
+                            $request->status == 2 &&
+                            (\App\RequirementVerification::where('requirement_id', $item->id))
+                            ->first()
+                            ->status != 0)
+                          <input type="checkbox"
+                                 class="form-check-input grant"
+                                 id="grant-{{ $item->id }}"
+                                 target="{{ $item->id }}"
+                                 disabled
+                                 {{ $item->granted ? "checked" : "" }}>
+                          @else
                           <input type="checkbox"
                                  class="form-check-input grant"
                                  id="grant-{{ $item->id }}"
                                  target="{{ $item->id }}"
                                  {{ $maybeDisabled }}
                                  {{ $item->granted ? "checked" : "" }}>
+                           @endif
 
                             <label class="form-check-label" for="grant-{{ $item->id}}">
                               {{ $item->name }}

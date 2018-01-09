@@ -18,6 +18,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\RequestStatusChanged' => [
 					'App\Listeners\SendStatusChangeNotification',
+					'App\Listeners\SendDeanEmail',
         ],
 				'App\Events\NotificationRead' => [
 				],

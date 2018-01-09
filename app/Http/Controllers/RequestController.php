@@ -108,10 +108,6 @@ class RequestController extends Controller
         $requirement->request_id = $nrequest->id;
         $requirement->name = $name;
         $requirement->save();
-
-        if ($requirement->name == "Reitor") {
-          Mail::to(env('MAIL_DEAN'))->send(new DeanRequired($requirement));
-        }
       }
     }
 
