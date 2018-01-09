@@ -1,9 +1,8 @@
 <h1>Reitor, precisam de ti!</h1>
-<p>Evento: {{ $requirement->request->name }}</p>
-<p>Dia: {{ $requirement->request->date }}</p>
-
-<button href="{{ route('requirements.updateVerification',
-  ['id' => $requirement->id, 'hash' => $verification->hash]) }}">Confirmar presença</button>
+<p>Evento: {{ $requirement->request->event }}</p>
+<p>Data: {{ $requirement->request->dateC->format('d/m/Y') }}</p>
+<p>Horário: {{ $requirement->request->periodTimeF }}</p>
+<p>Local: {{ $requirement->request->auditorium->name }}</p>
 
 <a href="{{ route('requirements.updateVerification',
-  ['id' => $requirement->id, 'hash' => $verification->hash]) }}">Confirmar presença</a>
+  ['id' => $requirement->id, 'hash' => $verification->hash]) }}">Clique aqui para responder</a>

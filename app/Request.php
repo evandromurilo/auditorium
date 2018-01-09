@@ -33,7 +33,7 @@ class Request extends Model {
 	}
 
   public function getPeriodTimeFAttribute() {
-    return App\Helpers\StatusFormatting::periodTimeF($this->period);
+    return \App\Helpers\StatusFormatting::periodTimeF($this->period);
   }
 
 	public function getStatusFAttribute() {

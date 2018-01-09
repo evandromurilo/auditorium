@@ -35,13 +35,27 @@ class RequirementController extends Controller {
 
   public function showVerification(Request $request) {
 		$requirement = Requirement::findOrFail($request->segment(2));
-    $verification = RequirementVerification::where('hash', $request->hash)->
+    $verification = RequirementVerification::where('requirement_id', $requirement->id)->
+      where('hash', $request->hash)->
       firstOrFail();
 
-    return "Ok!";
+    return view('requirement.verification')->with(['verification' => $verification,
+                                                   'requirement' => $requirement]);
   }
 
   public function updateVerification(Request $request) {
-    return "Ok!";
+		$requirement = Requirement::findOrFail($request->segment(2));
+    $verification = RequirementVerification::where('hash', $request->hash)->
+      firstOrFail();
+
+    if ($request->confirm == 'true') {
+      $verification->status = 2;
+    } else {
+      $verification->status = 1;
+    }
+
+    $verification->save();
+
+    return response('OK', 200);
   }
 }
