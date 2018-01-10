@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Novo Pedido')
+@section('title', 'Verificação')
 
 @section('content')
-  <h1>Responder à requisição</h1>
+  <h1 id="verification-title">Responder à requisição</h1>
   <p>Evento: {{ $requirement->request->event }}</p>
   <p>Data: {{ $requirement->request->dateC->format('d/m/Y') }}</p>
   <p>Horário: {{ $requirement->request->periodTimeF }}</p>
@@ -16,6 +16,7 @@
           id="btn-negate">
         Não poderei comparecer
   </button>
+  <div id="response" style="color: green;"></div>
 @endsection
 
 <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
@@ -44,7 +45,12 @@
         dataType: 'json',
         data: data,
         complete: function(data) {
-          console.debug(data);
+          if (target_id == 'btn-confirm') {
+            $('#response').text('Presença confirmada!');
+          }
+          else {
+            $('#response').text('Ausência confirmada.');
+          }
         }
       });
     });

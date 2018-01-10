@@ -17,6 +17,14 @@ class RequirementController extends Controller {
     $this->authorize('resolve', Requirement::class);
 
     $requirement = Requirement::find($request->id);
+
+    if ($requirement->name == "Reitor" &&
+       (RequirementVerification::where('requirement_id', $item->id)) 
+         ->first()
+         ->status != 0) {
+         return response('OK', 200);
+    }
+
     $requirement->granted = true;
     $requirement->save();
 
@@ -27,6 +35,14 @@ class RequirementController extends Controller {
     $this->authorize('resolve', Requirement::class);
 
     $requirement = Requirement::find($request->id);
+
+    if ($requirement->name == "Reitor" &&
+       (RequirementVerification::where('requirement_id', $item->id)) 
+         ->first()
+         ->status != 0) {
+         return response('OK', 200);
+    }
+
     $requirement->granted = false;
     $requirement->save();
 
