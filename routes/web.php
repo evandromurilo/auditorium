@@ -49,3 +49,8 @@ Route::put('/requirements/{id}/grant', 'RequirementController@grant')->name('req
 Route::put('/requirements/{id}/ungrant', 'RequirementController@ungrant')->name('requirements.ungrant')->middleware('auth');
 Route::get('/requirements/{id}/verification', 'RequirementController@showVerification')->name('requirements.showVerification');
 Route::put('/requirements/{id}/verification', 'RequirementController@updateVerification')->name('requirements.updateVerification');
+
+Route::get('/blocked-dates/', 'BlockedDateController@index')->name('blocked-dates.index');
+Route::post('/blocked-dates/', 'BlockedDateController@store')->name('blocked-dates.store');
+Route::delete('/blocked-dates/', 'BlockedDateController@delete')->name('blocked-dates.delete');
+Route::get('/blocked-dates.json/', 'BlockedDateController@all')->name('blocked-dates.all');

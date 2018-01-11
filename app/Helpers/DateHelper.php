@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers;
+use App\BlockedDate;
 use Carbon\Carbon;
 
 class DateHelper {
@@ -20,7 +21,11 @@ class DateHelper {
       return false;
     }
     // cannot request for tomorrow after 12:00
-    else if ($date->isSameDay($tomorrow) && $now->hour > 12) {
+    if ($date->isSameDay($tomorrow) && $now->hour > 12) {
+      return false;
+    }
+    // it is a blocked date
+    if (BlockedDate::whereDate('date', $date->toDateString())->first() != null) {
       return false;
     }
 

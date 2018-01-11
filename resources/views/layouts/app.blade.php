@@ -104,6 +104,13 @@
 																				Chamadas
                                          <i style="padding-top:4px;" class="fa fa-comments-o icon" aria-hidden="true"></i>
 																			</a></li>
+																		@can('manage', App\BlockedDate::class)
+																			<li><a href="{{ route('blocked-dates.index') }}">
+                                        Bloqueio de Datas
+                                         <i style="padding-top:4px;" class="fa fa-calendar icon" aria-hidden="true"></i>
+                                       </a>
+                                     </li>
+																		@endcan
                                 </ul>
                             </li>
                         @endguest

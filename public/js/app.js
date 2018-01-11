@@ -882,7 +882,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(68);
+module.exports = __webpack_require__(71);
 
 
 /***/ }),
@@ -913,6 +913,7 @@ Vue.component('call', __webpack_require__(51));
 Vue.component('call-member', __webpack_require__(54));
 Vue.component('call-message', __webpack_require__(57));
 Vue.component('requirements', __webpack_require__(65));
+Vue.component('blocked-dates', __webpack_require__(68));
 
 var app = new Vue({
   el: '#app'
@@ -49254,6 +49255,221 @@ if (false) {
 
 /***/ }),
 /* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(69)
+/* template */
+var __vue_template__ = __webpack_require__(70)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/BlockedDates.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1f0e9bb8", Component.options)
+  } else {
+    hotAPI.reload("data-v-1f0e9bb8", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dates: [],
+      input: ""
+    };
+  },
+
+  methods: {
+    add: function add() {
+      var data = {};
+      data['_token'] = $('input[name=_token]').val();
+      data['_method'] = 'POST';
+      data['date'] = this.input;
+
+      $.ajax({
+        url: '/blocked-dates/',
+        method: 'POST',
+        dataType: 'json',
+        data: data,
+        complete: function complete(data) {
+          console.debug(data);
+        }
+      });
+
+      this.dates.push({ 'date': this.input });
+      this.input = "";
+    },
+
+    remove: function remove(item) {
+      var data = {};
+      data['_token'] = $('input[name=_token]').val();
+      data['_method'] = 'DELETE';
+      data['date'] = item.date;
+
+      $.ajax({
+        url: '/blocked-dates/',
+        method: 'POST',
+        dataType: 'json',
+        data: data,
+        complete: function complete(data) {
+          console.debug(data);
+        }
+      });
+
+      this.dates.splice(this.dates.indexOf(item), 1);
+    }
+  },
+  mounted: function mounted() {
+    console.log('Blocked Dates: Component mounted.');
+
+    $(document).on("keypress", "#date-input", function (event) {
+      if (event.keyCode == 13) {
+        event.preventDefault();
+      }
+    });
+
+    self = this;
+
+    $.get('/blocked-dates.json/', function (data) {
+      self.dates = data;
+    });
+  }
+});
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "ul",
+      _vm._l(_vm.dates, function(item) {
+        return _c("span", { attrs: { item: item } }, [
+          _c("li", [
+            _vm._v(_vm._s(item.date) + "\n          "),
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    _vm.remove(item)
+                  }
+                }
+              },
+              [_vm._v("x")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "hidden", name: "date[]" },
+            domProps: { value: item.date }
+          })
+        ])
+      })
+    ),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.input,
+          expression: "input"
+        }
+      ],
+      attrs: { type: "text", id: "date-input" },
+      domProps: { value: _vm.input },
+      on: {
+        keyup: function($event) {
+          if (!("button" in $event) && _vm._k($event.keyCode, "enter", 13)) {
+            return null
+          }
+          _vm.add($event)
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.input = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("button", { attrs: { type: "button" }, on: { click: _vm.add } }, [
+      _vm._v("Add")
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1f0e9bb8", module.exports)
+  }
+}
+
+/***/ }),
+/* 71 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

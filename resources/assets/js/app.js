@@ -22,6 +22,7 @@ Vue.component('call', require('./components/Call.vue'));
 Vue.component('call-member', require('./components/CallMember.vue'));
 Vue.component('call-message', require('./components/CallMessage.vue'));
 Vue.component('requirements', require('./components/Requirements.vue'));
+Vue.component('blocked-dates', require('./components/BlockedDates.vue'));
 
 const app = new Vue({
     el: '#app'
