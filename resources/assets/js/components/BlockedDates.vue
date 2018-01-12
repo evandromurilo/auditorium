@@ -2,14 +2,25 @@
 	<div>
 		<ul>
       <span v-for="item in dates" :item="item">
-        <li>{{ item.date }}
+        <li>{{ item.date }} ({{ item.motive }})
           <a href="#" v-on:click="remove(item)">x</a>
         </li>
         <input type="hidden" name="date[]" :value="item.date"></input>
       </span>
 		</ul>
 
-    <input type="text" v-model="input" v-on:keyup.enter="add" id="date-input">
+    <input type="text"
+           v-model="date_input"
+           v-on:keyup.enter="add"
+           id="date-input"
+           placeholder="2018-01-01">
+
+    <input type="text"
+           v-model="motive_input"
+           v-on:keyup.enter="add"
+           id="motive-input"
+           placeholder="Feriado prolongado">
+
     <button type="button" v-on:click="add">Add</button>
 	</div>
 </template>
@@ -19,7 +30,8 @@ export default {
 	data() {
 		return {
 			dates: [],
-      input: "",
+      date_input: "",
+      motive_input: "",
 		}
 	},
 	methods: {
@@ -27,7 +39,8 @@ export default {
       var data = {};
       data['_token'] = $('input[name=_token]').val();
       data['_method'] = 'POST';
-      data['date'] = this.input;
+      data['date'] = this.date_input;
+      data['motive'] = this.motive_input;
 
       $.ajax({
         url: '/blocked-dates/',
@@ -39,8 +52,13 @@ export default {
         }
       });
 
-      this.dates.push({ 'date': this.input });
-      this.input = "";
+      this.dates.push({
+        'date': this.date_input,
+        'motive': this.motive_input
+      });
+
+      this.date_input = "";
+      this.motive_input = "";
     },
 
     remove: function(item) {
@@ -68,6 +86,13 @@ export default {
     $(document).on("keypress", "#date-input", function(event) {
       if (event.keyCode == 13) {
         event.preventDefault();
+      }
+    });
+
+    $(document).on("keypress", "#motive-input", function(event) {
+      if (event.keyCode == 13) {
+        event.preventDefault();
+        $("#date-input").focus();
       }
     });
 

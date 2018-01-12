@@ -30,7 +30,7 @@ class BlockedDateController extends Controller {
 		$blocked_date = new BlockedDate;
 
     $blocked_date->user_id = Auth::id();
-    $blocked_date->motive = "temporary";
+    $blocked_date->motive = $request->motive;
     $blocked_date->date = $request->date;
 
     $blocked_date->save();

@@ -49323,12 +49323,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       dates: [],
-      input: ""
+      date_input: "",
+      motive_input: ""
     };
   },
 
@@ -49337,7 +49349,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var data = {};
       data['_token'] = $('input[name=_token]').val();
       data['_method'] = 'POST';
-      data['date'] = this.input;
+      data['date'] = this.date_input;
+      data['motive'] = this.motive_input;
 
       $.ajax({
         url: '/blocked-dates/',
@@ -49349,8 +49362,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       });
 
-      this.dates.push({ 'date': this.input });
-      this.input = "";
+      this.dates.push({
+        'date': this.date_input,
+        'motive': this.motive_input
+      });
+
+      this.date_input = "";
+      this.motive_input = "";
     },
 
     remove: function remove(item) {
@@ -49381,6 +49399,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     });
 
+    $(document).on("keypress", "#motive-input", function (event) {
+      if (event.keyCode == 13) {
+        event.preventDefault();
+        $("#date-input").focus();
+      }
+    });
+
     self = this;
 
     $.get('/blocked-dates.json/', function (data) {
@@ -49403,7 +49428,9 @@ var render = function() {
       _vm._l(_vm.dates, function(item) {
         return _c("span", { attrs: { item: item } }, [
           _c("li", [
-            _vm._v(_vm._s(item.date) + "\n          "),
+            _vm._v(
+              _vm._s(item.date) + " (" + _vm._s(item.motive) + ")\n          "
+            ),
             _c(
               "a",
               {
@@ -49431,12 +49458,12 @@ var render = function() {
         {
           name: "model",
           rawName: "v-model",
-          value: _vm.input,
-          expression: "input"
+          value: _vm.date_input,
+          expression: "date_input"
         }
       ],
-      attrs: { type: "text", id: "date-input" },
-      domProps: { value: _vm.input },
+      attrs: { type: "text", id: "date-input", placeholder: "2018-01-01" },
+      domProps: { value: _vm.date_input },
       on: {
         keyup: function($event) {
           if (!("button" in $event) && _vm._k($event.keyCode, "enter", 13)) {
@@ -49448,7 +49475,38 @@ var render = function() {
           if ($event.target.composing) {
             return
           }
-          _vm.input = $event.target.value
+          _vm.date_input = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.motive_input,
+          expression: "motive_input"
+        }
+      ],
+      attrs: {
+        type: "text",
+        id: "motive-input",
+        placeholder: "Feriado prolongado"
+      },
+      domProps: { value: _vm.motive_input },
+      on: {
+        keyup: function($event) {
+          if (!("button" in $event) && _vm._k($event.keyCode, "enter", 13)) {
+            return null
+          }
+          _vm.add($event)
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.motive_input = $event.target.value
         }
       }
     }),
