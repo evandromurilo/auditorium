@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\BlockedDate;
+use Carbon\Carbon;
 
 class BlockedDateController extends Controller {
 	public function __construct() {
@@ -22,7 +23,7 @@ class BlockedDateController extends Controller {
 		$this->authorize('manage', BlockedDate::class);
 
 		$validateData = $request->validate([
-			'date' => 'required|date',
+			'date' => 'required|date_format:d/m/Y',
 		], [
 			'date.required' => 'O campo data é obrigatório.',
 		]);
@@ -31,7 +32,8 @@ class BlockedDateController extends Controller {
 
     $blocked_date->user_id = Auth::id();
     $blocked_date->motive = $request->motive;
-    $blocked_date->date = $request->date;
+    $blocked_date->date = Carbon::createFromFormat('d/m/Y', $request->date)
+                            ->toDateString();
 
     $blocked_date->save();
 

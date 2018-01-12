@@ -2,7 +2,8 @@
 	<div>
 		<ul>
       <span v-for="item in dates" :item="item">
-        <li>{{ item.date }} ({{ item.motive }})
+        <li>{{ item.date }}
+          <span v-if="item.motive">({{ item.motive }})</span>
           <a href="#" v-on:click="remove(item)">x</a>
         </li>
         <input type="hidden" name="date[]" :value="item.date"></input>
@@ -13,7 +14,8 @@
            v-model="date_input"
            v-on:keyup.enter="add"
            id="date-input"
-           placeholder="2018-01-01">
+           placeholder="01/01/2018"
+           pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}">
 
     <input type="text"
            v-model="motive_input"
@@ -24,6 +26,7 @@
     <button type="button" v-on:click="add">Add</button>
 	</div>
 </template>
+
 
 <script>
 export default {
@@ -79,6 +82,11 @@ export default {
 
       this.dates.splice(this.dates.indexOf(item), 1);
     },
+
+    dateFormat: function(dateString) {
+			var dateParts = dateString.split('-');
+      return dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
+    },
 	},
 	mounted() {
 		console.log('Blocked Dates: Component mounted.');
@@ -100,6 +108,10 @@ export default {
 
     $.get('/blocked-dates.json/', function(data) {
       self.dates = data;
+
+      self.dates.forEach(function(d) {
+        d.date = self.dateFormat(d.date);
+      });
     });
 	}
 }

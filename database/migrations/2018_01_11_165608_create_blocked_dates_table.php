@@ -18,7 +18,7 @@ class CreateBlockedDatesTable extends Migration
             $table->timestamps();
 
             $table->date('date');
-            $table->string('motive', 80);
+            $table->string('motive', 80)->nullable();
             $table->integer('user_id')->unsigned();
         });
 

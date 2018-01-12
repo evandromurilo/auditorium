@@ -49334,6 +49334,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -49388,6 +49391,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       this.dates.splice(this.dates.indexOf(item), 1);
+    },
+
+    dateFormat: function dateFormat(dateString) {
+      var dateParts = dateString.split('-');
+      return dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
     }
   },
   mounted: function mounted() {
@@ -49410,6 +49418,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     $.get('/blocked-dates.json/', function (data) {
       self.dates = data;
+
+      self.dates.forEach(function (d) {
+        d.date = self.dateFormat(d.date);
+      });
     });
   }
 });
@@ -49428,9 +49440,11 @@ var render = function() {
       _vm._l(_vm.dates, function(item) {
         return _c("span", { attrs: { item: item } }, [
           _c("li", [
-            _vm._v(
-              _vm._s(item.date) + " (" + _vm._s(item.motive) + ")\n          "
-            ),
+            _vm._v(_vm._s(item.date) + "\n          "),
+            item.motive
+              ? _c("span", [_vm._v("(" + _vm._s(item.motive) + ")")])
+              : _vm._e(),
+            _vm._v(" "),
             _c(
               "a",
               {
@@ -49462,7 +49476,12 @@ var render = function() {
           expression: "date_input"
         }
       ],
-      attrs: { type: "text", id: "date-input", placeholder: "2018-01-01" },
+      attrs: {
+        type: "text",
+        id: "date-input",
+        placeholder: "01/01/2018",
+        pattern: "[0-9]{2}/[0-9]{2}/[0-9]{4}"
+      },
       domProps: { value: _vm.date_input },
       on: {
         keyup: function($event) {
