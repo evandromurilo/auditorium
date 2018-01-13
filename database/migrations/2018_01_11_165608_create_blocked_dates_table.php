@@ -19,6 +19,7 @@ class CreateBlockedDatesTable extends Migration
 
             $table->date('date');
             $table->string('motive', 80)->nullable();
+            $table->boolean('block')->default(false);
             $table->integer('user_id')->unsigned();
         });
 

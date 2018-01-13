@@ -49337,13 +49337,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       dates: [],
       date_input: "",
-      motive_input: ""
+      motive_input: "",
+      block_input: true
     };
   },
 
@@ -49354,6 +49358,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       data['_method'] = 'POST';
       data['date'] = this.date_input;
       data['motive'] = this.motive_input;
+      data['block'] = this.block_input ? '1' : '0';
 
       $.ajax({
         url: '/blocked-dates/',
@@ -49529,6 +49534,43 @@ var render = function() {
         }
       }
     }),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.block_input,
+          expression: "block_input"
+        }
+      ],
+      attrs: { type: "checkbox" },
+      domProps: {
+        checked: Array.isArray(_vm.block_input)
+          ? _vm._i(_vm.block_input, null) > -1
+          : _vm.block_input
+      },
+      on: {
+        __c: function($event) {
+          var $$a = _vm.block_input,
+            $$el = $event.target,
+            $$c = $$el.checked ? true : false
+          if (Array.isArray($$a)) {
+            var $$v = null,
+              $$i = _vm._i($$a, $$v)
+            if ($$el.checked) {
+              $$i < 0 && (_vm.block_input = $$a.concat([$$v]))
+            } else {
+              $$i > -1 &&
+                (_vm.block_input = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            }
+          } else {
+            _vm.block_input = $$c
+          }
+        }
+      }
+    }),
+    _vm._v("Bloquear"),
     _vm._v(" "),
     _c("button", { attrs: { type: "button" }, on: { click: _vm.add } }, [
       _vm._v("Add")

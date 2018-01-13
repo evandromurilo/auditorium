@@ -15,13 +15,16 @@
            v-on:keyup.enter="add"
            id="date-input"
            placeholder="01/01/2018"
-           pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}">
+           pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"></input>
 
     <input type="text"
            v-model="motive_input"
            v-on:keyup.enter="add"
            id="motive-input"
-           placeholder="Feriado prolongado">
+           placeholder="Feriado prolongado"></input>
+
+    <input type="checkbox"
+           v-model="block_input">Bloquear</input>
 
     <button type="button" v-on:click="add">Add</button>
 	</div>
@@ -35,6 +38,7 @@ export default {
 			dates: [],
       date_input: "",
       motive_input: "",
+      block_input: true,
 		}
 	},
 	methods: {
@@ -44,6 +48,7 @@ export default {
       data['_method'] = 'POST';
       data['date'] = this.date_input;
       data['motive'] = this.motive_input;
+      data['block'] = this.block_input ? '1' : '0';
 
       $.ajax({
         url: '/blocked-dates/',

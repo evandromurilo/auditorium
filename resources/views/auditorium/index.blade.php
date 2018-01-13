@@ -42,6 +42,12 @@
 				</form>
 			</div>
 		</div>
+
+    @foreach($blockedDates as $blockedDate)
+      @if (!empty($blockedDate))
+        <p style="color: red;">{{ $blockedDate->motive }}</p>
+      @endif
+    @endforeach
 	</div>
 
 		<div class="container">

@@ -24,8 +24,10 @@ class DateHelper {
     if ($date->isSameDay($tomorrow) && $now->hour > 12) {
       return false;
     }
-    // it is a blocked date
-    if (BlockedDate::whereDate('date', $date->toDateString())->first() != null) {
+    // cannot request on a blocked date
+    if (BlockedDate::whereDate('date', $date->toDateString())
+                                ->where('block', true)
+                                ->first() != null) {
       return false;
     }
 

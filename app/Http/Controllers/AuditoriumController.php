@@ -21,8 +21,13 @@ class AuditoriumController extends Controller {
 		}
 
     $canRequest = \App\Helpers\DateHelper::canRequest($date);
+    $blockedDates = \App\BlockedDate::whereDate('date', $date->toDateString())->get();
 
-		return view('auditorium.index')->with(['date' => $date,
-			'auditoria' => Auditorium::all(), 'canRequest' => $canRequest]);
+    return view('auditorium.index')->with([
+      'date' => $date,
+      'auditoria' => Auditorium::all(),
+      'canRequest' => $canRequest,
+      'blockedDates' => $blockedDates,
+    ]);
 	}
 }

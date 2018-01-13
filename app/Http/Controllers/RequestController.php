@@ -46,14 +46,18 @@ class RequestController extends Controller
 
     $requirements = DB::table('default_requirements')->get();
 
-		if ($date->lt(Carbon::today())) {
-			$date = Carbon::today();
+    if (!\App\Helpers\DateHelper::canRequest($date)) {
+      $date = Carbon::today();
+
+      while (!\App\Helpers\DateHelper::canRequest($date)) {
+        $date->addDay();
+      }
 
 			return view('request.create', ['aud' => $aud,
 				'date' => $date,
 				'period' => $request->period,
         'requirements' => $requirements])
-				->withErrors(['date' => 'A data requisitada era no passado!']);
+				->withErrors(['date' => 'A data requisitada estava bloqueada!']);
 		}
 
 		return view('request.create', ['aud' => $aud,
@@ -82,6 +86,12 @@ class RequestController extends Controller
 		if (!$audit->freeOn(new Carbon($request->date), $request->period)) {
 			return redirect()->back()->withInput($request->input())
 				->withErrors(['period' => 'Auditório indisponível!']);
+		}
+
+		$date = new Carbon($request->date);
+    if (!\App\Helpers\DateHelper::canRequest($date)) {
+			return redirect()->back()->withInput($request->input())
+				->withErrors(['date' => 'Data estava bloqueada!']);
 		}
 
     $requirements = $request->get('requirement');

@@ -32,6 +32,7 @@ class BlockedDateController extends Controller {
 
     $blocked_date->user_id = Auth::id();
     $blocked_date->motive = $request->motive;
+    $blocked_date->block = $request->block;
     $blocked_date->date = Carbon::createFromFormat('d/m/Y', $request->date)
                             ->toDateString();
 
