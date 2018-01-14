@@ -7,9 +7,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Requirement;
-use App\RequirementVerification;
 
-class DeanRequired extends Mailable
+class RequirementVerification extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -23,9 +22,11 @@ class DeanRequired extends Mailable
      */
     public function __construct(Requirement $requirement)
     {
+      $this->subject("Confirmação de presença em evento");
+
       $this->requirement = $requirement;
 
-      $this->verification = new RequirementVerification;
+      $this->verification = new \App\RequirementVerification;
       $this->verification->hash = md5(rand(0,1000));
       $this->verification->requirement_id = $requirement->id;
       $this->verification->status = 0;
@@ -39,6 +40,6 @@ class DeanRequired extends Mailable
      */
     public function build()
     {
-      return $this->view('email.dean');
+      return $this->view('email.requirement_verification');
     }
 }

@@ -1,4 +1,4 @@
-<h1>Reitor, precisam de ti!</h1>
+<h1>{{ $requirement->name }}, precisam de ti!</h1>
 <p>Evento: {{ $requirement->request->event }}</p>
 <p>Data: {{ $requirement->request->dateC->format('d/m/Y') }}</p>
 <p>Horário: {{ $requirement->request->periodTimeF }}</p>

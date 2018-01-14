@@ -18,10 +18,7 @@ class RequirementController extends Controller {
 
     $requirement = Requirement::find($request->id);
 
-    if ($requirement->name == "Reitor" &&
-       (RequirementVerification::where('requirement_id', $item->id)) 
-         ->first()
-         ->status != 0) {
+    if ($requirement->isVerified()) {
          return response('OK', 200);
     }
 
@@ -36,10 +33,7 @@ class RequirementController extends Controller {
 
     $requirement = Requirement::find($request->id);
 
-    if ($requirement->name == "Reitor" &&
-       (RequirementVerification::where('requirement_id', $item->id)) 
-         ->first()
-         ->status != 0) {
+    if ($requirement->isVerified()) {
          return response('OK', 200);
     }
 
