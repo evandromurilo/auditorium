@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-			DB::table('users')->insert([
+			$user = User::create([
 				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'name' => 'Aemilia',
@@ -22,8 +23,9 @@ class UsersTableSeeder extends Seeder
 				'cel' => '(69) 9999-9990',
 				'description' => 'A chefe.',
 			]);
+      $user->assign('admin');
 
-			DB::table('users')->insert([
+			$user = User::create([
 				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'name' => 'Iulia',
@@ -33,6 +35,7 @@ class UsersTableSeeder extends Seeder
 				'cel' => '(69) 9999-9991',
 				'description' => 'Filha da chefe.',
 			]);
+      $user->assign('secre');
 
 			DB::table('users')->insert([
 				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

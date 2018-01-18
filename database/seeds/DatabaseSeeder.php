@@ -2,19 +2,19 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
-        $this->call([AuditoriaTableSeeder::class,
-					CallsTableSeeder::class,
-					UsersTableSeeder::class,
-					DefaultRequirementsTableSeeder::class,
-				]);
+    public function run() {
+      $this->call([
+        RolesSeeder::class,
+        AuditoriaTableSeeder::class,
+        CallsTableSeeder::class,
+        UsersTableSeeder::class,
+        DefaultRequirementsTableSeeder::class,
+      ]);
     }
 }
