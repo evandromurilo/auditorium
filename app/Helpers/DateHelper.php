@@ -3,9 +3,14 @@
 namespace App\Helpers;
 use App\BlockedDate;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DateHelper {
   public static function canRequest(Carbon $date) {
+    if (Auth::user()->can('request-always')) {
+      return true;
+    }
+
     $now = Carbon::now();
     $tomorrow = Carbon::tomorrow();
 
