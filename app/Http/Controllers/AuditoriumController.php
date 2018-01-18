@@ -7,6 +7,10 @@ use Carbon\Carbon;
 use \App\Auditorium;
 
 class AuditoriumController extends Controller {
+	public function __construct() {
+		$this->middleware('auth');
+	}
+
 	public function index(Request $request) {
 		if ($request->has('date')) {
 			$date = Carbon::createFromFormat('d/m/Y', $request->date);
