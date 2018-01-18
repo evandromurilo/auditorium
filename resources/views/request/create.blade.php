@@ -106,17 +106,19 @@
 
               <div class="form-group">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Requisitos</label>
-                @foreach ($requirements as $requirement)
-                  <input type="checkbox" name="requirement[]" value="{{ $requirement->name }}">
-                    {{ $requirement->name }}
-                  </input>
-                @endforeach
+								<div class="checkbox-inline">
+									@foreach ($requirements as $requirement)
+										<input type="checkbox" class="check-requisito" name="requirement[]" value="{{ $requirement->name }}">
+										{{ $requirement->name }}
+									</input>
+								@endforeach
+								</div>
               </div>
 
               <requirements></requirements>
 
 							<div class="form-group">
-								<div class="col-md-8 col-md-offset-4">
+								<div class="col-md-2 col-lg-2 col-md-offset-2 col-lg-offset-2">
 									<input type="submit" class="btn btn-primary" value="Agendar">
 								</div>
 							</div>

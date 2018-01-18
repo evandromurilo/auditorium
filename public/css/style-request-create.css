@@ -22,3 +22,9 @@ label, span, .title-agenda, .panel-heading{
   border-radius: 10%;
   color: #ffffff;
 }
+.checkbox-inline{
+  margin-left: 15px;
+}
+.check-requisito{
+  display: inline;  
+}
