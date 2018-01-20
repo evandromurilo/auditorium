@@ -50045,6 +50045,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -50145,150 +50179,220 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "ul",
-      _vm._l(_vm.dates, function(item) {
-        return _c("span", { attrs: { item: item } }, [
-          _c("li", [
-            _vm._v(_vm._s(item.date) + "\n          "),
-            item.motive
-              ? _c("span", [_vm._v("(" + _vm._s(item.motive) + ")")])
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    _vm.remove(item)
-                  }
-                }
-              },
-              [_vm._v("x")]
-            )
-          ]),
-          _vm._v(" "),
+    _c("link", {
+      attrs: { rel: "stylesheet", href: "/css/style-blocked-dates.css" }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "container primary-container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-3" }, [
           _c("input", {
-            attrs: { type: "hidden", name: "date[]" },
-            domProps: { value: item.date }
-          })
-        ])
-      })
-    ),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.date_input,
-          expression: "date_input"
-        }
-      ],
-      attrs: {
-        type: "text",
-        id: "date-input",
-        placeholder: "01/01/2018",
-        pattern: "[0-9]{2}/[0-9]{2}/[0-9]{4}"
-      },
-      domProps: { value: _vm.date_input },
-      on: {
-        keyup: function($event) {
-          if (
-            !("button" in $event) &&
-            _vm._k($event.keyCode, "enter", 13, $event.key)
-          ) {
-            return null
-          }
-          _vm.add($event)
-        },
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.date_input = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.motive_input,
-          expression: "motive_input"
-        }
-      ],
-      attrs: {
-        type: "text",
-        id: "motive-input",
-        placeholder: "Feriado prolongado"
-      },
-      domProps: { value: _vm.motive_input },
-      on: {
-        keyup: function($event) {
-          if (
-            !("button" in $event) &&
-            _vm._k($event.keyCode, "enter", 13, $event.key)
-          ) {
-            return null
-          }
-          _vm.add($event)
-        },
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.motive_input = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.block_input,
-          expression: "block_input"
-        }
-      ],
-      attrs: { type: "checkbox" },
-      domProps: {
-        checked: Array.isArray(_vm.block_input)
-          ? _vm._i(_vm.block_input, null) > -1
-          : _vm.block_input
-      },
-      on: {
-        change: function($event) {
-          var $$a = _vm.block_input,
-            $$el = $event.target,
-            $$c = $$el.checked ? true : false
-          if (Array.isArray($$a)) {
-            var $$v = null,
-              $$i = _vm._i($$a, $$v)
-            if ($$el.checked) {
-              $$i < 0 && (_vm.block_input = $$a.concat([$$v]))
-            } else {
-              $$i > -1 &&
-                (_vm.block_input = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            directives: [
+              {
+                name: "mask",
+                rawName: "v-mask",
+                value: "00/00/0000",
+                expression: "'00/00/0000'"
+              },
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.date_input,
+                expression: "date_input"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "date-input",
+              placeholder: "01/01/2018",
+              pattern: "[0-9]{2}/[0-9]{2}/[0-9]{4}"
+            },
+            domProps: { value: _vm.date_input },
+            on: {
+              keyup: function($event) {
+                if (
+                  !("button" in $event) &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key)
+                ) {
+                  return null
+                }
+                _vm.add($event)
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.date_input = $event.target.value
+              }
             }
-          } else {
-            _vm.block_input = $$c
-          }
-        }
-      }
-    }),
-    _vm._v("Bloquear"),
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-5" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.motive_input,
+                expression: "motive_input"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "motive-input",
+              placeholder: "Feriado prolongado..."
+            },
+            domProps: { value: _vm.motive_input },
+            on: {
+              keyup: function($event) {
+                if (
+                  !("button" in $event) &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key)
+                ) {
+                  return null
+                }
+                _vm.add($event)
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.motive_input = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 check" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.block_input,
+                expression: "block_input"
+              }
+            ],
+            staticClass: "ckeckbox",
+            attrs: { type: "checkbox" },
+            domProps: {
+              checked: Array.isArray(_vm.block_input)
+                ? _vm._i(_vm.block_input, null) > -1
+                : _vm.block_input
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.block_input,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.block_input = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.block_input = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.block_input = $$c
+                }
+              }
+            }
+          }),
+          _vm._v(" Bloquear")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              staticStyle: { color: "#fff" },
+              attrs: { type: "button" },
+              on: { click: _vm.add }
+            },
+            [_vm._v("Adicionar")]
+          )
+        ])
+      ])
+    ]),
     _vm._v(" "),
-    _c("button", { attrs: { type: "button" }, on: { click: _vm.add } }, [
-      _vm._v("Add")
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "ul",
+            _vm._l(_vm.dates, function(item) {
+              return _c("span", { attrs: { item: item } }, [
+                _c("li", [
+                  _c("i", {
+                    staticClass: "fa fa-circle-o",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t" + _vm._s(item.date) + "\n\t\t\t\t\t\t\t"
+                  ),
+                  item.motive
+                    ? _c("span", { staticClass: "descrition" }, [
+                        _vm._v(_vm._s(item.motive))
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          _vm.remove(item)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-trash-o",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "date[]" },
+                  domProps: { value: item.date }
+                })
+              ])
+            })
+          )
+        ])
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h2", { staticClass: "text-center" }, [
+            _vm._v("Histórico de bloqueio")
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
