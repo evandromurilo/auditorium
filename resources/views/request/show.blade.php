@@ -74,24 +74,24 @@
                       @endcan
 
                       @foreach ($request->requirements as $item)
-                        <div class="form-check">
+                        <div class="">
                           @if ($item->isVerified())
                           <input type="checkbox"
-                                 class="form-check-input grant"
+                                 class="checkbox-requisitos"
                                  id="grant-{{ $item->id }}"
                                  target="{{ $item->id }}"
                                  disabled
                                  {{ $item->granted ? "checked" : "" }}>
                           @else
                           <input type="checkbox"
-                                 class="form-check-input grant"
+                                 class=""
                                  id="grant-{{ $item->id }}"
                                  target="{{ $item->id }}"
                                  {{ $maybeDisabled }}
                                  {{ $item->granted ? "checked" : "" }}>
                            @endif
 
-                            <label class="form-check-label" for="grant-{{ $item->id}}">
+                            <label class="" for="grant-{{ $item->id}}">
                               {{ $item->name }}
                             </label>
                           </input>
@@ -115,17 +115,6 @@
               @endif
 						@endcan
             </div>
-
-						<!--move essa parte para cima-->
-						<!-- parte do status comentado para arrumar depois-->
-						<!--
-							@if ($request->status == 0)
-								<span class="pendente" style="background-color: #FF8C00;">Pendente</span>
-							@elseif ($request->status == 1)
-								<span class="indisponivel" style="background-color: red;">Rejeitado</span>
-							@elseif ($request->status == 2)
-								<span class="disponivel" style="background-color: green;">Aceito</span>
-							@endif-->
 
 
 					</div>
