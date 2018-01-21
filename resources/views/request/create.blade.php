@@ -23,7 +23,7 @@
 							@if ($errors->has('date'))
 								<div class="text-center has-error">
 									<span class="text-center has-error help-block">
-										<strong>{{ $errors->first('date') }}</strong>
+										{{ $errors->first('date') }}
 									</span>
 								</div>
 							@endif
@@ -41,7 +41,7 @@
 
 								@if ($errors->has('event'))
 									<span class="help-block">
-											<strong>{{ $errors->first('event') }}</strong>
+											{{ $errors->first('event') }}
 									</span>
 								@endif
 								</div>
@@ -59,7 +59,7 @@
 
 								@if ($errors->has('description'))
 									<span class="help-block">
-										<strong>{{ $errors->first('description') }}</strong>
+										{{ $errors->first('description') }}
 									</span>
 								@endif
 								</div>
@@ -80,7 +80,7 @@
 
 								@if ($errors->has('period'))
 									<span class="help-block">
-										<strong>{{ $errors->first('period') }}</strong>
+										{{ $errors->first('period') }}
 									</span>
 								@endif
 								</div>
@@ -98,7 +98,7 @@
 
 								@if ($errors->has('claimant'))
 									<span class="help-block">
-										<strong>{{ $errors->first('claimant') }}</strong>
+										{{ $errors->first('claimant') }}
 									</span>
 								@endif
 								</div>
