@@ -32,7 +32,8 @@
         <p class="text-center disponivel-btn">Bloqueado</p>
       @endif
     @else
-        <p class="indisponivel-pendente-btn">{{ $request->event }}</p>
+        <p class="indisponivel-pendente-btn" data-toggle="tooltip" data-placement="top" title="{{ $request->event }}">
+          {{ $request->event }}</p>
     @endif
   </div>
 </div>
