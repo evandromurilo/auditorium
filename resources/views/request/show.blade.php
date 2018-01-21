@@ -84,7 +84,7 @@
                                  {{ $item->granted ? "checked" : "" }}>
                           @else
                           <input type="checkbox"
-                                 class=""
+                                 class="checkbox-requisitos"
                                  id="grant-{{ $item->id }}"
                                  target="{{ $item->id }}"
                                  {{ $maybeDisabled }}
@@ -128,7 +128,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-    $('.grant').on('change', function(e){
+    $('.checkbox-requisitos').on('change', function(e){
       //e.preventDefault();
 
       var target = $(e.target);
