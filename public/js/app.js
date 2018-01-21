@@ -49353,6 +49353,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     add: function add() {
+      var new_date = {
+        'date': this.date_input,
+        'motive': this.motive_input,
+        'id': 0
+      };
+
       var data = {};
       data['_token'] = $('input[name=_token]').val();
       data['_method'] = 'POST';
@@ -49366,14 +49372,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         dataType: 'json',
         data: data,
         complete: function complete(data) {
+          new_date.id = data.responseText;
           console.debug(data);
         }
       });
 
-      this.dates.push({
-        'date': this.date_input,
-        'motive': this.motive_input
-      });
+      this.dates.push(new_date);
 
       this.date_input = "";
       this.motive_input = "";
@@ -49383,7 +49387,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var data = {};
       data['_token'] = $('input[name=_token]').val();
       data['_method'] = 'DELETE';
-      data['date'] = item.date;
+      data['date_id'] = item.id;
 
       $.ajax({
         url: '/blocked-dates/',
