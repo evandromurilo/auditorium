@@ -1,32 +1,66 @@
 <template>
 	<div>
-		<ul>
-      <span v-for="item in dates" :item="item">
-        <li>{{ item.date }}
-          <span v-if="item.motive">({{ item.motive }})</span>
-          <a href="#" v-on:click="remove(item)">x</a>
-        </li>
-        <input type="hidden" name="date[]" :value="item.date"></input>
-      </span>
-		</ul>
+		<link rel="stylesheet" href="/css/style-blocked-dates.css">
 
-    <input type="text"
-           v-model="date_input"
-           v-on:keyup.enter="add"
-           id="date-input"
-           placeholder="01/01/2018"
-           pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"></input>
+		<div class="container primary-container">
+			<div class="row">
 
-    <input type="text"
-           v-model="motive_input"
-           v-on:keyup.enter="add"
-           id="motive-input"
-           placeholder="Feriado prolongado"></input>
+				<div class="col-md-3">
+					<input type="text" class="form-control"
+					v-mask = "'00/00/0000'"
+					v-model="date_input"
+					v-on:keyup.enter="add"
+					id="date-input"
+					placeholder="01/01/2018"
+					pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"></input>
+				</div>
 
-    <input type="checkbox"
-           v-model="block_input">Bloquear</input>
+				<div class="col-md-5">
+					<input type="text" class="form-control"
+					v-model="motive_input"
+					v-on:keyup.enter="add"
+					id="motive-input"
+					placeholder="Feriado prolongado..."></input>
+				</div>
 
-    <button type="button" v-on:click="add">Add</button>
+				<div class="col-md-2 check">
+					<input type="checkbox" class="ckeckbox"
+					v-model="block_input"> Bloquear</input>
+				</div>
+
+				<div class="col-md-2">
+					<button style="color:#fff;" class="btn btn-primary" type="button" v-on:click="add">Adicionar</button>
+				</div>
+			</div>
+		</div>
+		<!--end input e container-->
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="text-center">Histórico de bloqueio</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ul>
+						<span v-for="item in dates" :item="item">
+							<li><i class="fa fa-circle-o" aria-hidden="true"></i>
+								{{ item.date }}
+								<span v-if="item.motive" class="descrition">{{ item.motive }}</span>
+								<a href="#" v-on:click="remove(item)">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
+								</a>
+							</li>
+							<input type="hidden" name="date[]" :value="item.date"></input>
+						</span>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -122,6 +156,7 @@ export default {
         d.date = self.dateFormat(d.date);
       });
     });
+
 	}
 }
 </script>

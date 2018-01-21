@@ -40,7 +40,6 @@ label, p, span, .organizador{
 .status{
   margin-bottom: 5px;
 }
-
 .disponivel, .pendente, .indisponivel {
   display: inline-block;
   color: #fff;

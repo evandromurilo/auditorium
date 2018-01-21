@@ -24,6 +24,7 @@ body{
 .well{
   border: 1px solid #d3e0e9;
   background-color: #fff;
+  height: 280px;
 
 }
 .user-responsavel{
@@ -40,9 +41,7 @@ body{
   text-decoration: none;
   color: #000;
 }
-.responsavel{
 
-}
 .well, .responsavel, .title-pedidos{
   color: #000;
 }

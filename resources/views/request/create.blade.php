@@ -23,7 +23,7 @@
 							@if ($errors->has('date'))
 								<div class="text-center has-error">
 									<span class="text-center has-error help-block">
-										<strong>{{ $errors->first('date') }}</strong>
+										{{ $errors->first('date') }}
 									</span>
 								</div>
 							@endif
@@ -41,7 +41,7 @@
 
 								@if ($errors->has('event'))
 									<span class="help-block">
-											<strong>{{ $errors->first('event') }}</strong>
+											{{ $errors->first('event') }}
 									</span>
 								@endif
 								</div>
@@ -59,7 +59,7 @@
 
 								@if ($errors->has('description'))
 									<span class="help-block">
-										<strong>{{ $errors->first('description') }}</strong>
+										{{ $errors->first('description') }}
 									</span>
 								@endif
 								</div>
@@ -80,7 +80,7 @@
 
 								@if ($errors->has('period'))
 									<span class="help-block">
-										<strong>{{ $errors->first('period') }}</strong>
+										{{ $errors->first('period') }}
 									</span>
 								@endif
 								</div>
@@ -98,7 +98,7 @@
 
 								@if ($errors->has('claimant'))
 									<span class="help-block">
-										<strong>{{ $errors->first('claimant') }}</strong>
+										{{ $errors->first('claimant') }}
 									</span>
 								@endif
 								</div>
@@ -106,17 +106,19 @@
 
               <div class="form-group">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Requisitos</label>
-                @foreach ($requirements as $requirement)
-                  <input type="checkbox" name="requirement[]" value="{{ $requirement->name }}">
-                    {{ $requirement->name }}
-                  </input>
-                @endforeach
+								<div class="checkbox-inline">
+									@foreach ($requirements as $requirement)
+										<input type="checkbox" class="check-requisito" name="requirement[]" value="{{ $requirement->name }}">
+										{{ $requirement->name }}
+									</input>
+								@endforeach
+								</div>
               </div>
 
               <requirements></requirements>
 
 							<div class="form-group">
-								<div class="col-md-8 col-md-offset-4">
+								<div class="col-md-2 col-lg-2 col-md-offset-2 col-lg-offset-2">
 									<input type="submit" class="btn btn-primary" value="Agendar">
 								</div>
 							</div>

@@ -45,7 +45,7 @@
 
     @foreach($blockedDates as $blockedDate)
       @if (!empty($blockedDate))
-        <p style="color: red;">{{ $blockedDate->motive }}</p>
+        <p class="text-center text-information"><i class="fa fa-exclamation-triangle"></i> {{ $blockedDate->motive }}</p>
       @endif
     @endforeach
 	</div>

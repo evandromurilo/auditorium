@@ -99,7 +99,7 @@
 									@endif
 
 									<td align="center">
-										<button style="margin: auto;" type="button"
+										<button style="margin: auto; color: #fff;" type="button"
 									 		class="btn btn-primary btn-xs"
 											data-toggle="modal"
 											href="{{ route('requests.modal', $request->id) }}"

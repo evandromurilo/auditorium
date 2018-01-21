@@ -11,6 +11,10 @@
   height: 50px;
   margin-bottom: 3px;
 }
+.text-information{
+  color: red;
+  font-size: 16px;
+}
 .aud-name{
   padding: 0;
   color: black;
@@ -63,10 +67,10 @@ font-size: 30px;
   padding: 0px;
 }
 
-.hour-secundario:hover{
+/*.hour-secundario:hover{
   border: 1px solid black;
   box-shadow: 2px 2px 2px black, 2px 2px 2px #ccc;
-}
+}*/
 .horas{
   color: black;
   position: relative;
@@ -77,6 +81,11 @@ font-size: 30px;
 .indisponivel-pendente-btn{
   position: relative;
   top: 6px;
+  color: #000;
+  white-space: nowrap;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .disponivel-btn{
   border: 1px solid transparent;

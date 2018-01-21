@@ -1,0 +1,14 @@
+li{
+  list-style: none;
+}
+.fa-plus{
+  color: green;
+}
+.list{
+  display: block;
+  border: 1px solid #000;
+
+}
+.delete{
+
+}
