@@ -29,7 +29,8 @@
 	<div class="container">
 		<div class="row">
 				@foreach ($requests as $request)
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"
+               request-id="{{ $request->id }}">
 						<div class="well">
 							<h2 class="text-center title-auditorio">
 								<a class="title-pedidos" href="{{ route('requests.show', $request->id) }}">
@@ -79,3 +80,33 @@
 	<link rel="stylesheet" href="{{ asset('css/style-request-index.css') }}">
 
 @endsection
+
+<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+    $('#justification-modal [name=from]').val('index');
+    $('#justification-modal [name=filter]').val('{{ $filter }}');
+
+    $('.b-pendurado').on('click', function(e){
+      e.preventDefault();
+
+      var target = $(e.target);
+      var request_id = target.closest('[request-id]').attr('request-id');
+
+      $('#justification-modal form').attr('action', '/requests/'+request_id+'/pending');
+      $('#justification-modal').modal('show');
+    });
+
+    $('.b-rejeitado').on('click', function(e){
+      e.preventDefault();
+
+      var target = $(e.target);
+      var request_id = target.closest('[request-id]').attr('request-id');
+
+      $('#justification-modal form').attr('action', '/requests/'+request_id+'/negate');
+      $('#justification-modal').modal('show');
+    });
+  });
+
+</script>

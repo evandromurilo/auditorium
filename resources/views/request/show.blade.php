@@ -63,6 +63,26 @@
                 </div>
               @endif
 
+                <div class="form-group">
+                  <label class="col-sm-2 col-md-2 col-lg-2 control-label">Status:</label>
+                  <div class="col-sm-10 col-md-10 col-lg-10">
+                    <p class="form-control-static">
+                      {{ $request->statusF }}
+                    </a></p>
+                  </div>
+                </div>
+
+              @if (!empty($request->justification))
+                <div class="form-group">
+                  <label class="col-sm-2 col-md-2 col-lg-2 control-label">Justificativa:</label>
+                  <div class="col-sm-10 col-md-10 col-lg-10">
+                    <p class="form-control-static">
+                      {{ $request->justification }}
+                    </p>
+                  </div>
+                </div>
+              @endif
+
               @if (sizeof($request->requirements) > 0)
                 <div class="form-group">
                   <label class="col-sm-2 col-md-2 col-lg-2 control-label">Requisitos:</label>
@@ -102,6 +122,7 @@
               @endif
 						</form>
 
+
             <div class="btn-pedidos">
               @can('resolve', \App\Request::class)
                 <?php $route_args = ["id" => $request->id, "from" => "show"] ?>
@@ -121,6 +142,7 @@
 				</div>
 			</div>
 		</div>
+
 
 @endsection
 
@@ -160,3 +182,27 @@
     });
   });
 </script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+    $('.b-pendurado').on('click', function(e){
+      e.preventDefault();
+
+      var target = $(e.target);
+
+      $('#justification-modal form').attr('action', '{{ route('requests.pending', $request->id) }}');
+      $('#justification-modal').modal('show');
+    });
+
+    $('.b-rejeitado').on('click', function(e){
+      e.preventDefault();
+
+      var target = $(e.target);
+
+      $('#justification-modal form').attr('action', '{{ route('requests.negate', $request->id) }}');
+      $('#justification-modal').modal('show');
+    });
+  });
+
+</script>
+

@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/style-request-status-update-show.css')}}">
+
+@include('partials.request.justification_modal')
+
 @if ($request->status == 0)
 
 	<div class="col-xs-12 col-sm-12 col-md-12 center-block">

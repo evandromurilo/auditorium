@@ -25,6 +25,7 @@ class CreateRequestsTable extends Migration
 						$table->text('description');
 						$table->tinyInteger('status');
             $table->string('claimant', 20)->nullable();
+            $table->string('justification', 300)->nullable();
         });
 
         Schema::table('requests', function (Blueprint $table) {

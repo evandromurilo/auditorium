@@ -149,8 +149,8 @@ class RequestController extends Controller
 		return $this->changeStatus($request, 2);
 	}
 
-	public function negate(Request $request) {
-		$nrequest = \App\Request::find($request->segment(2));
+	public function negate(Request $request, $id) {
+		$nrequest = \App\Request::find($id);
 
 		if (Auth::id() != $nrequest->user_id) {
 			$this->authorize('resolve', \App\Request::class);
@@ -168,6 +168,14 @@ class RequestController extends Controller
 		$nrequest = \App\Request::find($request->segment(2));
 
 		$nrequest->status = $status;
+
+    if ($request->has('justification')) {
+      $nrequest->justification = $request->justification;
+    }
+    else {
+      $nrequest->justification = null;
+    }
+
 		$nrequest->save();
 
 		event(new \App\Events\RequestStatusChanged($nrequest));
