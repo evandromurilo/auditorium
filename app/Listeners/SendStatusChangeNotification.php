@@ -7,7 +7,7 @@ use App\Notifications\RequestResolved;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendStatusChangeNotification
+class SendStatusChangeNotification implements ShouldQueue
 {
     /**
      * Create the event listener.
