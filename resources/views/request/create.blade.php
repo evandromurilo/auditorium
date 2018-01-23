@@ -118,7 +118,7 @@
               <requirements></requirements>
 
 							<div class="form-group">
-								<div class="col-md-2 col-lg-2 col-md-offset-2 col-lg-offset-2">
+								<div class="col-sm-2 col-md-2 col-lg-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 									<input type="submit" class="btn btn-primary" value="Agendar">
 								</div>
 							</div>

@@ -5,10 +5,58 @@ li{
   color: green;
 }
 .list{
-  display: block;
-  border: 1px solid #000;
-
+  display: inline;
+}
+.list-principal{
+  margin: 10px 0 0 155px;
+}
+.delete:hover{
+color: red;
 }
 .delete{
+  font-size: 18px;
+  margin-left: 12px;
+}
+.fa-circle{
+  color: #777;
+  margin-right: 3px;
+}
+
+/*Small*/
+
+@media screen and (max-width: 767px) {
+  .list-principal{
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+
+}
+
+/*Tablet*/
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .list-principal{
+    margin-left: 87px;
+    margin-top: 10px;
+  }
+
+}
+
+/*Computer*/
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .list-principal{
+    margin-left: 124px;
+    margin-top: 10px;
+  }
+}
+
+/* > Computer*/
+
+@media screen and (min-width: 1200px) {
+  .list-principal{
+    margin-left: 155px;
+    margin-top: 10px;
+  }
 
 }

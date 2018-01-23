@@ -1,41 +1,35 @@
 <template>
 <div>
-	<link rel="stylesheet" href="/css/style-requirements.css">
-	<div class="row">
-		<div class="col-sm-8 col-md-8 col-lg-8 col-md-offset-2 col-sm-offeset-2 col-lg-offset-2">
-			<div class="input-group">
-				<input type="text" class="form-control"  v-model="input" v-on:keyup.enter="add" id="requirement-input" placeholder="Digite aqui...">
-				<span class="input-group-btn">
+  <link rel="stylesheet" href="/css/style-requirements.css">
+  <div class="row">
+    <label class="col-sm-2 col-md-2 col-lg-2 control-label">Descrição</label>
+    <div class="col-sm-9 col-md-9 col-lg-9">
+      <div class="input-group">
+        <input type="text" class="form-control" v-model="input" v-on:keyup.enter="add" id="requirement-input" placeholder="Digite aqui...">
+        <span class="input-group-btn">
 					<button class="btn btn-default" type="button" v-on:click="add">
 						<i class="fa fa-plus" aria-hidden="true"></i>
 					</button>
 				</span>
-			</div>
-		</div>
-	</div>
-	<ul>
-		<div class="">
-			<div class="">
-				<div class="">
-
-					<span v-for="item in requirements" :item="item">
+      </div>
+    </div>
+  </div>
+  <ul>
+    <div class="container">
+      <span v-for="item in requirements" :item="item">
 						<div class="row">
-							<div class="col-md-8 col-md-offset-2 list">
-								<li>{{ item }}</li>
-								<a class="delete" href="#" v-on:click="remove(item)">
-									<i class="fa fa-times" aria-hidden="true"></i>
+							<div class="list-principal">
+								<i class="fa fa-circle list" aria-hidden="true"></i>
+								<li class="list">{{ item }}</li>
+								<a class="delete list" href="#" v-on:click="remove(item)">
+									<i class="fa fa-times list" aria-hidden="true"></i>
 								</a>
 							</div>
 						</div>
 						<input type="hidden" name="requirement[]" :value="item"></input>
 					</span>
-
-				</div>
-			</div>
-		</div>
-	</ul>
-  <!--<input type="text" v-model="input" v-on:keyup.enter="add" id="requirement-input">-->
-<!--  <button type="button" v-on:click="add">Add</button>-->
+    </div>
+  </ul>
 </div>
 </template>
 
