@@ -40,8 +40,8 @@ Route::get('/notifications/{id}', 'NotificationController@markAsRead');
 
 Route::get('/requests/{id}/modal', 'RequestController@modal')->name('requests.modal');
 Route::get('/requests/{id}/accept', 'RequestController@accept')->name('requests.accept');
-Route::get('/requests/{id}/negate', 'RequestController@negate')->name('requests.negate');
-Route::get('/requests/{id}/pending', 'RequestController@pending')->name('requests.pending');
+Route::put('/requests/{id}/negate', 'RequestController@negate')->name('requests.negate');
+Route::put('/requests/{id}/pending', 'RequestController@pending')->name('requests.pending');
 
 Route::get('/roles/setup', 'RoleController@setup');
 
