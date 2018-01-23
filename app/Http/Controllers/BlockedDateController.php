@@ -38,13 +38,13 @@ class BlockedDateController extends Controller {
 
     $blocked_date->save();
 
-    return response('OK', 200);
+    return $blocked_date->id;
   }
 
   public function delete(Request $request) {
 		$this->authorize('manage', BlockedDate::class);
 
-    BlockedDate::whereDate('date', $request->date)->delete();
+    BlockedDate::find($request->date_id)->delete();
 
     return response('OK', 200);
   }
