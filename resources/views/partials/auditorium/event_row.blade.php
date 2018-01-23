@@ -2,6 +2,7 @@
   @if ($canRequest)
     <?php $url = route('requests.create', ['date' => $date->format('d/m/Y'),
       'id' => $aud->id, 'period' => $period_code]) ?>
+
   @else
     <?php $url = "#" ?>
   @endif
