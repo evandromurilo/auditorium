@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 use App\RequirementVerification;
 
-class SendRequirementVerificationEmail
+class SendRequirementVerificationEmail implements ShouldQueue
 {
     /**
      * Create the event listener.

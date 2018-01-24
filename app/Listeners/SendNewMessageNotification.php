@@ -8,7 +8,7 @@ use App\Notifications\NewMessage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendNewMessageNotification
+class SendNewMessageNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

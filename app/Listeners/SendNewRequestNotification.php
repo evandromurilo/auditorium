@@ -7,7 +7,7 @@ use App\Notifications\NewRequest;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendNewRequestNotification
+class SendNewRequestNotification implements ShouldQueue
 {
     /**
      * Create the event listener.

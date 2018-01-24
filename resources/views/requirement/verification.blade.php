@@ -35,7 +35,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-    $('.btn').on('click', function(e){
+    $('#btn-confirm, #btn-negate').on('click', function(e){
       e.preventDefault();
 
       var target = $(e.target);
