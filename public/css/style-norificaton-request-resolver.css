@@ -14,3 +14,11 @@ body {
   font-family: 'Yantramanav', sans-serif;
   margin-bottom: 10px;
 }
+
+/*icones do menu*/
+.dis-inline{
+  display: inline;
+}
+.icon{
+  float: right;
+}

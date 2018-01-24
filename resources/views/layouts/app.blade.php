@@ -21,12 +21,6 @@
 	  <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
 	  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 
-    <style media="screen">
-      .icon{
-
-      }
-
-    </style>
 
 </head>
 <body>
@@ -77,7 +71,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li>
+                                    <li class="dis-inline">
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -90,7 +84,7 @@
                                         </form>
                                     </li>
 																		@can('resolve', App\Request::class)
-																			<li><a href="{{ route('requests.index') }}">
+																			<li class="dis-inline"><a href="{{ route('requests.index') }}">
                                         Pedidos
                                          <i style="padding-top:4px;" class="fa fa-list icon" aria-hidden="true"></i>
                                        </a>
@@ -124,6 +118,7 @@
 
 		@yield('sources')
     <!-- Scripts -->
+    <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 

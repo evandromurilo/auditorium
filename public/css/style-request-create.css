@@ -23,8 +23,37 @@ label, span, .title-agenda, .panel-heading{
   color: #ffffff;
 }
 .checkbox-inline{
+color: #000;
+}
+/*Small*/
+
+@media screen and (max-width: 767px) {
+
+
+}
+
+/*Tablet*/
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .checkbox-inline{
+    margin-left: 17px;
+  }
+
+}
+
+/*Computer*/
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .checkbox-inline{
+    margin-left: 16px;
+  }
+}
+
+/* > Computer*/
+
+@media screen and (min-width: 1200px) {
+.checkbox-inline{
   margin-left: 15px;
 }
-.check-requisito{
-  display: inline;
+
 }

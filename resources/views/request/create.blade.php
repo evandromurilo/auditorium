@@ -106,10 +106,10 @@
 
               <div class="form-group">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Requisitos</label>
-								<div class="checkbox-inline">
+								<div class="checkbox-inline col-sm-9 col-md-9 col-lg-9">
 									@foreach ($requirements as $requirement)
-										<input type="checkbox" class="check-requisito" name="requirement[]" value="{{ $requirement->name }}">
-										{{ $requirement->name }}
+										<input type="checkbox" class="" name="requirement[]" value="{{ $requirement->name }}">
+										{{ $requirement->name }}<br>
 									</input>
 								@endforeach
 								</div>
