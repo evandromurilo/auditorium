@@ -10,8 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	  <link rel="stylesheet" href="{{ asset('css/style-norificaton-request-resolver.css') }}">
@@ -20,7 +18,6 @@
     <!-- font Awesome -->
 	  <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
 	  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-
 
 </head>
 <body>
@@ -76,7 +73,7 @@
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
-                                            <i style="padding-top:4px;" class="fa fa-sign-in icon" aria-hidden="true"></i>
+                                            <!--<i style="padding-top:4px;" class="fa fa-sign-in icon" aria-hidden="true"></i>-->
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -86,22 +83,22 @@
 																		@can('resolve', App\Request::class)
 																			<li class="dis-inline"><a href="{{ route('requests.index') }}">
                                         Pedidos
-                                         <i style="padding-top:4px;" class="fa fa-list icon" aria-hidden="true"></i>
+                                         <!--<i style="padding-top:4px;" class="fa fa-list icon" aria-hidden="true"></i>-->
                                        </a>
                                      </li>
 																		@endcan
 																		<li><a href="{{ route('users.show', Auth::id()) }}">
 																				Perfil
-                                         <i style="padding-top:4px;" class="fa fa-user-o icon" aria-hidden="true"></i>
+                                         <!--<i style="padding-top:4px;" class="fa fa-user-o icon" aria-hidden="true"></i>-->
 																			</a></li>
 																		<li><a href="{{ route('calls.index') }}">
 																				Chamadas
-                                         <i style="padding-top:4px;" class="fa fa-comments-o icon" aria-hidden="true"></i>
+                                        <!-- <i style="padding-top:4px;" class="fa fa-comments-o icon" aria-hidden="true"></i>-->
 																			</a></li>
 																		@can('manage', App\BlockedDate::class)
 																			<li><a href="{{ route('blocked-dates.index') }}">
                                         Bloqueio de Datas
-                                         <i style="padding-top:4px;" class="fa fa-calendar icon" aria-hidden="true"></i>
+                                        <!-- <i style="padding-top:4px;" class="fa fa-calendar icon" aria-hidden="true"></i>-->
                                        </a>
                                      </li>
 																		@endcan
