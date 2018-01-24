@@ -28,7 +28,7 @@
 					<div class="btn-position day">
 						<i class="fa fa-calendar" aria-hidden="true"></i>
 						<span id="weekday"></span>
-            <p id="canrequest">{{ $canRequest }}</p>
+            <p id="canrequest">{{ $canRequest }}</p>				
 					</div>
 
 

@@ -3,26 +3,26 @@
 @section('title', 'Verificação')
 
 @section('content')
-  <link rel="stylesheet" href="{{ asset('css/style-requirements-verification.css')}}">
 
-  <div class="container">
-    <div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Confirmação da Presença</div>
+  <div class="">
+    <div class="">
+			<div class="">
+				<div class="">
           <h1 id="verification-title" class="text-center">Responder à requisição</h1>
           <p>Evento: {{ $requirement->request->event }}</p>
           <p>Data: {{ $requirement->request->dateC->format('d/m/Y') }}</p>
           <p>Horário: {{ $requirement->request->periodTimeF }}</p>
           <p>Local: {{ $requirement->request->auditorium->name }}</p>
-          <button class="btn btn-primary btn-lg"
-                  id="btn-confirm">
-                Estarei presente
+          <div class="btn-principal">
+            <button style="color: #fff;" class="btn-primary"
+            id="btn-confirm">
+            Estarei presente
           </button>
-          <button class="btn btn-primary btn-lg"
-                  id="btn-negate">
-                Não poderei comparecer
-          </button>
+          <button style="color: #fff;" class=""
+          id="btn-negate">
+          Não poderei comparecer
+        </button>
+          </div>
           <div id="response" style="color: green;"></div>
         </div>
       </div>

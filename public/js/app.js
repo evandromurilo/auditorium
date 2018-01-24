@@ -49833,9 +49833,7 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("label", { staticClass: "col-sm-2 col-md-2 col-lg-2 control-label" }, [
-        _vm._v("Descrição")
-      ]),
+      _c("label", { staticClass: "col-sm-2 col-md-2 col-lg-2 control-label" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-9 col-md-9 col-lg-9" }, [
         _c("div", { staticClass: "input-group" }, [
