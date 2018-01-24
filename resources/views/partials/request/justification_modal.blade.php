@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button style="color:#fff;" type="button" class="btn btn-default" data-dismiss="modal">Fecha</button>
+          <button style="color:#000;" type="button" class="btn btn-default" data-dismiss="modal">Fecha</button>
           <button style="color:#fff;" type="submit" class="btn btn-primary">Enviar</button>
         </div>
       </form>
