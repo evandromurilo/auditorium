@@ -4,31 +4,57 @@
 
 @section('content')
 
-  <div class="">
-    <div class="">
-			<div class="">
-				<div class="">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+   crossorigin="anonymous">
+   
+  <div class="container">
+    <div class="row">
+			<div class="col-md-12 col-lg-12">
+
           <h1 id="verification-title" class="text-center">Responder à requisição</h1>
-          <p>Evento: {{ $requirement->request->event }}</p>
-          <p>Data: {{ $requirement->request->dateC->format('d/m/Y') }}</p>
-          <p>Horário: {{ $requirement->request->periodTimeF }}</p>
-          <p>Local: {{ $requirement->request->auditorium->name }}</p>
-          <div class="btn-principal">
-            <button style="color: #fff;" class="btn-primary"
+          <div class="form-group">
+            <label class="col-md-2 control-label">Evento:</label>
+            <div class="col-md-10">
+              <p>{{ $requirement->request->event }}</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Data:</label>
+            <div class="col-md-10">
+              <p> {{ $requirement->request->dateC->format('d/m/Y') }}</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Horário:</label>
+            <div class="col-md-10">
+            <p> {{ $requirement->request->periodTimeF }}</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Local:</label>
+            <div class="col-md-10">
+              <p> {{ $requirement->request->auditorium->name }}</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+
+            <button class="btn btn-primary"
             id="btn-confirm">
             Estarei presente
           </button>
-          <button style="color: #fff;" class=""
-          id="btn-negate">
-          Não poderei comparecer
-        </button>
+
+            <button class="btn btn-primary"
+            id="btn-negate">
+            Não poderei comparecer
+          </button>
           </div>
-          <div id="response" style="color: green;"></div>
+        </div>
         </div>
       </div>
     </div>
-  </div>
-
+<div id="response" style="color: green; font-size:20px; display: flex; align-items: center; justify-content: center; margin: 20px 0 0 0;"></div>
 @endsection
 
 <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
