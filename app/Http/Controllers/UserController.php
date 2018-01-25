@@ -35,6 +35,26 @@ class UserController extends Controller {
 		return view('user.edit')->with('user', $user);
 	}
 
+  public function activate(Request $request, $id) {
+			$this->authorize('edit', \App\User::class);
+
+      $user = User::findOrFail($id);
+      $user->active = true;
+      $user->save();
+
+      return route('users.index');
+  }
+
+  public function deactivate(Request $request, $id) {
+			$this->authorize('edit', \App\User::class);
+
+      $user = User::findOrFail($id);
+      $user->active = false;
+      $user->save();
+
+      return route('users.index');
+  }
+
 	public function update(Request $request) {
 		$validateData = $request->validate([
 			'name' => 'required|string|max:255',

@@ -96,9 +96,20 @@
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									<button type="submit" class="btn btn-primary">
-										Atualizar
-									</button>
+                  @if (Auth::user()->isAn('admin'))
+                    @if ($user->active)
+                      <button id="btn-deactivate" type="button" class="btn btn-secondary">
+                        Desativar
+                      </button>
+                    @else
+                      <button id="btn-activate" type="button" class="btn btn-secondary">
+                        Ativar
+                      </button>
+                    @endif
+                  @endif
+                  <button type="submit" class="btn btn-primary">
+                    Atualizar
+                  </button>
 								</div>
 							</div>
 						</form>
@@ -114,10 +125,53 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-script-register.js') }}"></script>
 	<link rel="stylesheet" href="{{ asset('css/style-register.css')}}">
 	<link rel="stylesheet" href="{{ asset('css/style-user-edit.css')}}">
 @endsection
+
+	<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#btn-deactivate').on('click', function (e) {
+        e.preventDefault();
+        
+        var data = {};
+        data['_token'] = $('input[name=_token]').val();
+        data['_method'] = 'PUT';
+
+        $.ajax({                 
+          url: '{{ route('users.deactivate', $user->id) }}',
+          method: 'POST',        
+          data: data,            
+          complete: function(data, textStatus) {
+            console.debug(data); 
+          
+            window.location = data.responseText;
+          }
+        });
+      });
+
+      $('#btn-activate').on('click', function (e) {
+        e.preventDefault();
+        
+        var data = {};
+        data['_token'] = $('input[name=_token]').val();
+        data['_method'] = 'PUT';
+
+        $.ajax({                 
+          url: '{{ route('users.activate', $user->id) }}',
+          method: 'POST',        
+          data: data,            
+          complete: function(data, textStatus) {
+            console.debug(data); 
+          
+            window.location = data.responseText;
+          }
+        });
+      });
+    });
+  </script>
