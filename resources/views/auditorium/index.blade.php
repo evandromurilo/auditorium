@@ -25,8 +25,6 @@
 								aria-hidden="true"></i></a>
 					</div>
 
-          <p> {{ $date->toDateTimeString() }} </p>
-
 					<div class="btn-position day">
 						<i class="fa fa-calendar" aria-hidden="true"></i>
 						<span id="weekday"></span>

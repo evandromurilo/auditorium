@@ -15,7 +15,7 @@ class AuditoriumController extends Controller {
 		if ($request->has('date')) {
 			$date = Carbon::createFromFormat('d/m/Y', $request->date);
 		} else {
-			$date = Carbon::now();
+			$date = Carbon::today();
 		}
 
 		if ($request->has('next')) {
