@@ -68,18 +68,6 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li class="dis-inline">
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                            <!--<i style="padding-top:4px;" class="fa fa-sign-in icon" aria-hidden="true"></i>-->
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
 																		@can('resolve', App\Request::class)
 																			<li class="dis-inline"><a href="{{ route('requests.index') }}">
                                         Pedidos
@@ -102,6 +90,18 @@
                                        </a>
                                      </li>
 																		@endcan
+                                    <li class="dis-inline">
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Sair
+                                            <!--<i style="padding-top:4px;" class="fa fa-sign-in icon" aria-hidden="true"></i>-->
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                         @endguest
