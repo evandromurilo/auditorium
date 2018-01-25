@@ -13,9 +13,17 @@ class DateHelper {
 
     $now = Carbon::now();
     $tomorrow = Carbon::tomorrow();
+    $sixMonthsFromNow = Carbon::now()->addMonths(6);
+
+    $limit = new Carbon(env('REQUEST_DATE_LIMIT', $sixMonthsFromNow->toDateString()));
 
     if ($now->dayOfWeek != Carbon::MONDAY) $nextMonday = Carbon::today()->next(Carbon::MONDAY);
     else $nextMonday = $now;
+
+    // cannot request after set limit
+    if ($date->gt($limit)) {
+      return false;
+    }
 
     // cannot request for monday on weekend
     if ($now->isWeekend() && $date->isSameDay($nextMonday)) {
