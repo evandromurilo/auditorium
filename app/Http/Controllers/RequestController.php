@@ -73,7 +73,7 @@ class RequestController extends Controller
 			'event' => 'required|string|max:50',
 			'period' => 'required|numeric|min:0|max:6',
 			'description' => 'required|string|max:500',
-			'claimant' => 'max:30',
+			'claimant' => 'max:20',
 		], [
 			'event.required' => 'O campo evento é obrigatório.',
 			'event.max' => 'O campo evento deve ter até 50 caracteres.',
