@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use \App\Auditorium;
+use \App\Period;
 
 class AuditoriumController extends Controller {
 	public function __construct() {
@@ -32,6 +33,7 @@ class AuditoriumController extends Controller {
       'auditoria' => Auditorium::all(),
       'canRequest' => $canRequest,
       'blockedDates' => $blockedDates,
+      'periods' => Period::all(),
     ]);
 	}
 }

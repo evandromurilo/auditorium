@@ -18,6 +18,10 @@ class Request extends Model {
     return $this->hasMany('App\Requirement');
   }
 
+  public function periods() {
+    return $this->belongsToMany('\App\Period');
+  }
+
 	public function getDateCAttribute() {
 		return new Carbon($this->date);
 	}

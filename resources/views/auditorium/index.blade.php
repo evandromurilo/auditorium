@@ -53,7 +53,6 @@
 		<div class="container">
 			<div class="row">
 				@foreach ($auditoria as $aud)
-					<?php $statusOn = $aud->statusOn($date); ?>
 				<div class="col-md-4 col-lg-4">
 					<div class="well well-principal">
 						<div class="row">
@@ -65,20 +64,9 @@
 						</div>
 					</div>
 					<div class="progress">
-						@include('partials.progress_bar', ['code' => $statusOn->morning,
-							'period' => 'Manhã'])
-						@include('partials.progress_bar', ['code' => $statusOn->morning2,
-							'period' => 'Manhã'])
-						@include('partials.progress_bar', ['code' => $statusOn->afternoon,
-							'period' => 'Tarde'])
-						@include('partials.progress_bar', ['code' => $statusOn->afternoon2,
-							'period' => 'Tarde'])
-						@include('partials.progress_bar', ['code' => $statusOn->intermediary,
-							'period' => 'Inter.'])
-						@include('partials.progress_bar', ['code' => $statusOn->night,
-							'period' => 'Noite'])
-						@include('partials.progress_bar', ['code' => $statusOn->night2,
-							'period' => 'Noite'])
+            @foreach ($periods as $period)
+              @include('partials.progress_bar')
+            @endforeach
 					</div>
 
 					<div class="row status-periodo">
@@ -100,20 +88,9 @@
 					<div class="collapse" id="collapse{{$aud->id}}">
   					<div class="well well-collapse">
 
-              @include('partials.auditorium.event_row', ['code' => $statusOn->morning,
-                'period_code' => 0])
-              @include('partials.auditorium.event_row', ['code' => $statusOn->morning2,
-                'period_code' => 1])
-              @include('partials.auditorium.event_row', ['code' => $statusOn->afternoon,
-                'period_code' => 2])
-              @include('partials.auditorium.event_row', ['code' => $statusOn->afternoon2,
-                'period_code' => 3])
-              @include('partials.auditorium.event_row', ['code' => $statusOn->intermediary,
-                'period_code' => 4])
-              @include('partials.auditorium.event_row', ['code' => $statusOn->night,
-                'period_code' => 5])
-              @include('partials.auditorium.event_row', ['code' => $statusOn->night2,
-                'period_code' => 6])
+              @foreach ($periods as $period)
+                @include('partials.auditorium.event_row')
+              @endforeach
 
 								<div class="row capacidade">
 									<span class="col-xs-4 col-sm-4 col-md-3 col-lg-3 control-label">Capacidade:</span>

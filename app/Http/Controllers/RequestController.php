@@ -83,7 +83,7 @@ class RequestController extends Controller
 		]);
 
 		$audit = \App\Auditorium::find($request->auditorium_id);
-		if (!$audit->freeOn(new Carbon($request->date), $request->period)) {
+		if (!$audit->freeOn(new Carbon($request->date), \App\Period::findOrFail($request->period))) {
 			return redirect()->back()->withInput($request->input())
 				->withErrors(['period' => 'Auditório indisponível!']);
 		}
@@ -100,7 +100,6 @@ class RequestController extends Controller
 
 		$nrequest->auditorium_id = $request->auditorium_id;
 		$nrequest->user_id = Auth::id();
-		$nrequest->period = $request->period;
 		$nrequest->date = $request->date;
 		$nrequest->event = $request->event;
 		$nrequest->description = $request->description;
@@ -111,6 +110,7 @@ class RequestController extends Controller
     }
 
 		$nrequest->save();
+    $nrequest->periods()->attach($request->period);
 
     if (!empty($requirements)) {
       foreach ($requirements as $name) {
