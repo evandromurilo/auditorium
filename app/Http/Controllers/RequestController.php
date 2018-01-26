@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Mail\DeanRequired;
 use Illuminate\Support\Facades\Mail;
+use App\Period;
 
 class RequestController extends Controller
 {
@@ -45,6 +46,15 @@ class RequestController extends Controller
 		$date = Carbon::createFromFormat('d/m/Y', $request->date);
 
     $requirements = DB::table('default_requirements')->get();
+    $periods = Period::all();
+
+    $view = view('request.create', [
+      'aud' => $aud,
+			'date' => $date,
+      'period' => $request->period,
+      'periods' => $periods,
+      'requirements' => $requirements,
+    ]);
 
     if (!\App\Helpers\DateHelper::canRequest($date)) {
       $date = Carbon::today();
@@ -53,17 +63,11 @@ class RequestController extends Controller
         $date->addDay();
       }
 
-			return view('request.create', ['aud' => $aud,
-				'date' => $date,
-				'period' => $request->period,
-        'requirements' => $requirements])
-				->withErrors(['date' => 'A data requisitada estava bloqueada!']);
+			return $view->withErrors(['date' => 'A data requisitada estava bloqueada!']);
 		}
 
-		return view('request.create', ['aud' => $aud,
-			'date' => $date,
-      'period' => $request->period,
-      'requirements' => $requirements]);
+    return $view;
+
 	}
 
 	public function store(Request $request) {
@@ -71,7 +75,8 @@ class RequestController extends Controller
 
 		$validateData = $request->validate([
 			'event' => 'required|string|max:50',
-			'period' => 'required|numeric|min:0|max:6',
+			'beginning' => 'required|numeric',
+			'end' => 'required|numeric',
 			'description' => 'required|string|max:500',
 			'claimant' => 'max:20',
 		], [
@@ -82,11 +87,25 @@ class RequestController extends Controller
 			'claimant.max' => 'O campo requerente deve ter até 30 caracteres.',
 		]);
 
+    $beginning = Period::findOrFail($request->beginning);
+    $end = Period::findOrFail($request->end);
+
+    if (strtotime($beginning->beginning) > strtotime($end->beginning)) {
+        return redirect()->back()->withInput($request->input())
+          ->withErrors(['period' => 'Ordem inválida!']);
+    }
+
+    $periods = Period::whereTime('beginning', '>=', $beginning->beginning)
+      ->whereTime('end', '<=', $end->end)->get();
+
+
 		$audit = \App\Auditorium::find($request->auditorium_id);
-		if (!$audit->freeOn(new Carbon($request->date), \App\Period::findOrFail($request->period))) {
-			return redirect()->back()->withInput($request->input())
-				->withErrors(['period' => 'Auditório indisponível!']);
-		}
+    foreach ($periods as $period) {
+      if (!$audit->freeOn(new Carbon($request->date), $period)) {
+        return redirect()->back()->withInput($request->input())
+          ->withErrors(['period' => 'Auditório indisponível!']);
+      }
+    }
 
 		$date = new Carbon($request->date);
     if (!\App\Helpers\DateHelper::canRequest($date)) {
@@ -110,7 +129,11 @@ class RequestController extends Controller
     }
 
 		$nrequest->save();
-    $nrequest->periods()->attach($request->period);
+
+
+    foreach ($periods as $period) {
+      $nrequest->periods()->attach($period);
+    }
 
     if (!empty($requirements)) {
       foreach ($requirements as $name) {

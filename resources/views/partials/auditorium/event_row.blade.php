@@ -16,8 +16,6 @@
       ->where('status', '!=', 1)
       ->first();
 
-    $request = \App\Request::first();
-
     $url = route('requests.show', $request->id)
   ?>
 @endif

@@ -31,7 +31,7 @@ class PeriodsTableSeeder extends Seeder
 			DB::table('periods')->insert([
 				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 				'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-				'name' => 'Tarde',
+				'name' => 'Tarde 1',
 				'beginning' => '13:00',
 				'end' => '15:30',
 			]);

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class Auditorium extends Model {
 	public function freeOn(Carbon $date, $period) {
-    return $this->statusOn($date, $period);
+    return $this->statusOn($date, $period) == 1;
 	}
 
   public function requestsOn(Carbon $date) {
@@ -21,6 +21,7 @@ class Auditorium extends Model {
       ->where('period_request.period_id', $period->id)
       ->join('requests', 'requests.id', '=', 'period_request.request_id')
       ->where('requests.date', '=', $date->toDateString())
+      ->where('requests.status', '!=', '1')
       ->join('auditoria', 'auditoria.id', '=', 'requests.auditorium_id')
       ->where('auditoria.id', '=', $this->id)
       ->first();
