@@ -12,10 +12,10 @@ class Period extends Model {
   }
 
   public function getBeginningFAttribute() {
-    return date('h:i', strtotime($this->beginning));
+    return date('H:i', strtotime($this->beginning));
   }
 
   public function getEndFAttribute() {
-    return date('h:i', strtotime($this->end));
+    return date('H:i', strtotime($this->end));
   }
 }

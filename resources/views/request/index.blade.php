@@ -48,9 +48,9 @@
 								 <i class="fa fa-calendar" aria-hidden="true"></i>
 							</div>
 
-							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Período:</span>
+							<span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Horário:</span>
 							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 ls">
-								{{ $request->periodF }}
+                {{ $request->beginning->beginningF }} às {{ $request->end->endF }}
 							</div>
 
 							 <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label ls">Responsável:</span>

@@ -21,11 +21,22 @@
 							<div class="form-group">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Data:</label>
 								<div class="col-sm-10 col-md-10 col-lg-10">
-									<p class="form-control-static"> ({{ $request->dateC->format('d/m/Y') }})
+									<p class="form-control-static">
+                  {{ $request->dateC->format('d/m/Y') }}
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</p>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Horário:</label>
+								<div class="col-sm-10 col-md-10 col-lg-10">
+                  <p class="form-control-static">
+                    {{ $request->beginning->beginningF }} às {{ $request->end->endF }}
+                  </p>
+								</div>
+							</div>
+
 
 							<div class="form-group">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Local:</label>

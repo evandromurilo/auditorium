@@ -27,7 +27,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label">Horário:</label>
             <div class="col-md-10">
-            <p> {{ $requirement->request->periodTimeF }}</p>
+              <p>{{ $request->beginning->beginningF }} às {{ $request->end->endF }}</p>
             </div>
           </div>
           <div class="form-group">

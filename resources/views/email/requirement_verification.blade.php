@@ -47,7 +47,9 @@
 <h1 class="title">{{ $requirement->name }}</h1><p class="title">,precisam da sua presença!</p><br><br><br>
 <p class="style-variavel">Evento: </p><p class="style-information"> {{ $requirement->request->event }}</p><br><br>
 <p class="style-variavel">Data: </p><p class="style-information">{{ $requirement->request->dateC->format('d/m/Y') }}</p><br><br>
-<p class="style-variavel">Horário: </p><p class="style-information">{{ $requirement->request->periodTimeF }}</p><br><br>
+<p class="style-variavel">Horário: </p><p class="style-information">
+{{ $request->beginning->beginningF }} às {{ $request->end->endF }}
+</p><br><br>
 <p class="style-variavel">Local: </p><p class="style-information">{{ $requirement->request->auditorium->name }}</p><br><br><br>
 
 <!--button confirmar-->
