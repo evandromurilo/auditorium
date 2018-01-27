@@ -55,8 +55,9 @@ class RequestResolved extends Notification implements ShouldQueue
 			$url = route('requests.show', ['id' => $this->request->id, 'from' => 'notification']);
 
 			return (new MailMessage)
+        ->subject('Resolução de pedido')
 				->greeting('Olá!')
-				->line('Um de seus pedidos mudou de status.')
+				->line('Um de seus pedidos ('.$this->request->event.') mudou de status.')
 				->action('Ver pedido', $url)
 				->line('Obrigado por utilizar nosso sistema!');
 		}
