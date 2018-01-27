@@ -27,7 +27,7 @@ class SendNewRequestNotification implements ShouldQueue
      */
     public function handle(RequestCreated $event)
     {
-			$users = \App\User::whereIs('secre')->get();
+			$users = \App\User::whereIs('secre')->where('active', true)->get();
 
 			foreach ($users as $user) {
 				$user->notify(new NewRequest($event->request));
