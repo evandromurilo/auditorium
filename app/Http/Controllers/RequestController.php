@@ -201,7 +201,9 @@ class RequestController extends Controller
 
 		$nrequest->save();
 
-		event(new \App\Events\RequestStatusChanged($nrequest));
+    if (Auth::id() != $nrequest->user_id) {
+      event(new \App\Events\RequestStatusChanged($nrequest));
+    }
 
 		if ($request->from == 'index') {
 			return redirect()->route('requests.index', ['filter' => $request->filter]);
