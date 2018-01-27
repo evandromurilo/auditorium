@@ -41,6 +41,7 @@
 					</div>
 				</form>
 			</div>
+      <!-- <button type="button" id="collapse-all">+</button> -->
 		</div>
 
     @foreach($blockedDates as $blockedDate)
@@ -85,7 +86,7 @@
 
 						</div>
 
-					<div class="collapse" id="collapse{{$aud->id}}">
+					<div class="collapse collapse-auditorium" id="collapse{{$aud->id}}">
   					<div class="well well-collapse">
 
               @foreach ($periods as $period)
@@ -185,4 +186,14 @@
 			}
 		});
 	</script>
+  
+  <script>
+    $(document).ready(function() {
+      $("#collapse-all").on('click', function(e) {
+        e.preventDefault();
+
+        $(".collapse-auditorium").collapse('toggle');
+      });
+    });
+  </script>
 @endsection
