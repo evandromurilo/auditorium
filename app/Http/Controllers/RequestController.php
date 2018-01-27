@@ -222,6 +222,12 @@ class RequestController extends Controller
 	public function show(Request $request) {
 		$nrequest = \App\Request::find($request->segment(2));
 
+    if ($request->from == 'mail') {
+      $notification = Auth::user()->notifications()->findOrFail($request->notification);
+			$notification->markAsRead();
+      event(new \App\Events\NotificationRead(Auth::user()));
+    }
+
 		return view('request.show')->with('request', $nrequest);
 	}
 }
