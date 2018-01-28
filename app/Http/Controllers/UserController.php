@@ -63,7 +63,10 @@ class UserController extends Controller {
 				'string',
 				'regex:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/',
 			],
+      'password' => 'nullable|string|min:6|confirmed',
 		], [
+			'password.min' => 'O campo senha deve ter pelo menos 6 caracteres.',
+			'password.confirmed' => 'A confirmação não bate.',
 			'name.required' => 'O campo nome é obrigatório.',
 			'name.max' => 'O campo nome deve ter até 255 caracteres.',
 			'color.required' => 'O campo cor é obrigatório.',
@@ -76,6 +79,10 @@ class UserController extends Controller {
 		$user->color = $request->color;
 		$user->cel = $request->cel;
 		$user->description = $request->description;
+
+    if (!empty($request->password)) {
+      $user->password = bcrypt($request->password);
+    }
 
 		if (Auth::user()->isAn('admin')) {
 			$user->retract('admin');

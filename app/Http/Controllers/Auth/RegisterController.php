@@ -64,6 +64,8 @@ class RegisterController extends Controller
 						'color.required' => 'O campo cor é obrigatório.',
 						'color.regex' => 'Formato inválido no campo cor.',
 						'password.required' => 'O campo senha é obrigatório.',
+            'password.min' => 'O campo senha deve ter pelo menos 6 caracteres.',
+            'password.confirmed' => 'A confirmação não bate.',
 					]);
     }
 
