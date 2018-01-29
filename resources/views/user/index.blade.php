@@ -12,9 +12,9 @@
 		<div class="row">
 				@foreach ($users as $user)
           @if ($user->active or Auth::user()->isAn('admin'))
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 caixa-size">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 caixa-size">
                 <a class="user" href="{{ route('users.show', $user->id) }}">
-                  {{ $user->name }}
+                  {{$user->name }}
                     <i style="color: {{ $user->color }}"
                        class="fa fa-circle-o"
                        aria-hidden="true"></i>
