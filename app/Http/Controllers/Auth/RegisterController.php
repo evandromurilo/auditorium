@@ -7,6 +7,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -38,6 +40,19 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+
+        /* $this->guard()->login($user); */
+
+        /* return $this->registered($request, $user) */
+        /*                 ?: redirect($this->redirectPath()); */
+
+        return redirect($this->redirectPath())->withErrors(['email' => 'Usuário não está ativado.']);
     }
 
     /**
@@ -64,6 +79,8 @@ class RegisterController extends Controller
 						'color.required' => 'O campo cor é obrigatório.',
 						'color.regex' => 'Formato inválido no campo cor.',
 						'password.required' => 'O campo senha é obrigatório.',
+            'password.min' => 'O campo senha deve ter pelo menos 6 caracteres.',
+            'password.confirmed' => 'A confirmação não bate.',
 					]);
     }
 
@@ -82,6 +99,7 @@ class RegisterController extends Controller
             'description' => $data['description'],
             'cel' => $data['cel'],
             'password' => bcrypt($data['password']),
+            'active' => 0,
         ]);
 
 				event(new \App\Events\UserRegistered($user));

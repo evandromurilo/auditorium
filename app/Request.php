@@ -18,6 +18,18 @@ class Request extends Model {
     return $this->hasMany('App\Requirement');
   }
 
+  public function periods() {
+    return $this->belongsToMany('\App\Period');
+  }
+
+  public function getBeginningAttribute() {
+    return $this->periods()->orderBy('beginning')->first();
+  }
+
+  public function getEndAttribute() {
+    return $this->periods()->orderBy('end', 'desc')->first();
+  }
+
 	public function getDateCAttribute() {
 		return new Carbon($this->date);
 	}

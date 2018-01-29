@@ -33,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
 					'App\Listeners\SetNewUserRole',
 					'App\Listeners\AssignNewUserToChat'
 				],
+				'App\Events\RequestCancelled' => [
+          'App\Listeners\SendRequestCancelledNotification',
+				],
     ];
 
     /**

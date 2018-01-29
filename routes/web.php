@@ -27,6 +27,8 @@ Route::get('/calls/{call}/messages', 'CallController@messages')->name('calls.mes
 Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 
 Route::put('/users/{user}', 'UserController@update')->name('users.update');
+Route::put('/users/{user}/deactivate', 'UserController@deactivate')->name('users.deactivate');
+Route::put('/users/{user}/activate', 'UserController@activate')->name('users.activate');
 Route::get('/users/{user}', 'UserController@show')->name('users.show');
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::get('/users', 'UserController@index')->name('users.index');

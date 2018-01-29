@@ -29,7 +29,7 @@ class NewRequest extends Notification implements ShouldQueue
      * @return array
      */
     public function via($notifiable) {
-        return ['database', 'broadcast', 'mail'];
+        return ['database', 'broadcast'];
     }
 
 		public function toArray($notifiable) {

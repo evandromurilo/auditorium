@@ -43,8 +43,10 @@ export default {
   },
   methods: {
     add: function() {
-      this.requirements.push(this.input);
-      this.input = "";
+      if (this.input !== "" && this.input.trim()) {
+        this.requirements.push(this.input);
+        this.input = "";
+      }
     },
 
     remove: function(item) {

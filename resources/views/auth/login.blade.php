@@ -22,6 +22,13 @@
                                         {{ $errors->first('email') }}
                                     </span>
                                 @endif
+
+                                @if ($errors->has('activation'))
+                                    <span class="help-block">
+                                      {{ $errors->first('activation') }}
+                                    </span>
+                                @endif
+
                             </div>
                         </div>
 

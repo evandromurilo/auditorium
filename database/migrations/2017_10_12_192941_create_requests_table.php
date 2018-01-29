@@ -19,7 +19,6 @@ class CreateRequestsTable extends Migration
 
 						$table->integer('auditorium_id')->unsigned();
 						$table->integer('user_id')->unsigned();
-						$table->tinyInteger('period');
 						$table->date('date');
 						$table->string('event', 100);
 						$table->text('description');

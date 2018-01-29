@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Mail\DeanRequired;
 use Illuminate\Support\Facades\Mail;
+use App\Period;
 
 class RequestController extends Controller
 {
@@ -45,6 +46,15 @@ class RequestController extends Controller
 		$date = Carbon::createFromFormat('d/m/Y', $request->date);
 
     $requirements = DB::table('default_requirements')->get();
+    $periods = Period::all();
+
+    $view = view('request.create', [
+      'aud' => $aud,
+			'date' => $date,
+      'period' => $request->period,
+      'periods' => $periods,
+      'requirements' => $requirements,
+    ]);
 
     if (!\App\Helpers\DateHelper::canRequest($date)) {
       $date = Carbon::today();
@@ -53,17 +63,11 @@ class RequestController extends Controller
         $date->addDay();
       }
 
-			return view('request.create', ['aud' => $aud,
-				'date' => $date,
-				'period' => $request->period,
-        'requirements' => $requirements])
-				->withErrors(['date' => 'A data requisitada estava bloqueada!']);
+			return $view->withErrors(['date' => 'A data requisitada estava bloqueada!']);
 		}
 
-		return view('request.create', ['aud' => $aud,
-			'date' => $date,
-      'period' => $request->period,
-      'requirements' => $requirements]);
+    return $view;
+
 	}
 
 	public function store(Request $request) {
@@ -71,9 +75,10 @@ class RequestController extends Controller
 
 		$validateData = $request->validate([
 			'event' => 'required|string|max:50',
-			'period' => 'required|numeric|min:0|max:6',
+			'beginning' => 'required|numeric',
+			'end' => 'required|numeric',
 			'description' => 'required|string|max:500',
-			'claimant' => 'max:30',
+			'claimant' => 'max:20',
 		], [
 			'event.required' => 'O campo evento é obrigatório.',
 			'event.max' => 'O campo evento deve ter até 50 caracteres.',
@@ -82,11 +87,25 @@ class RequestController extends Controller
 			'claimant.max' => 'O campo requerente deve ter até 30 caracteres.',
 		]);
 
+    $beginning = Period::findOrFail($request->beginning);
+    $end = Period::findOrFail($request->end);
+
+    if (strtotime($beginning->beginning) > strtotime($end->beginning)) {
+        return redirect()->back()->withInput($request->input())
+          ->withErrors(['period' => 'Ordem inválida!']);
+    }
+
+    $periods = Period::whereTime('beginning', '>=', $beginning->beginning)
+      ->whereTime('end', '<=', $end->end)->get();
+
+
 		$audit = \App\Auditorium::find($request->auditorium_id);
-		if (!$audit->freeOn(new Carbon($request->date), $request->period)) {
-			return redirect()->back()->withInput($request->input())
-				->withErrors(['period' => 'Auditório indisponível!']);
-		}
+    foreach ($periods as $period) {
+      if (!$audit->freeOn(new Carbon($request->date), $period)) {
+        return redirect()->back()->withInput($request->input())
+          ->withErrors(['period' => 'Auditório indisponível!']);
+      }
+    }
 
 		$date = new Carbon($request->date);
     if (!\App\Helpers\DateHelper::canRequest($date)) {
@@ -100,7 +119,6 @@ class RequestController extends Controller
 
 		$nrequest->auditorium_id = $request->auditorium_id;
 		$nrequest->user_id = Auth::id();
-		$nrequest->period = $request->period;
 		$nrequest->date = $request->date;
 		$nrequest->event = $request->event;
 		$nrequest->description = $request->description;
@@ -111,6 +129,11 @@ class RequestController extends Controller
     }
 
 		$nrequest->save();
+
+
+    foreach ($periods as $period) {
+      $nrequest->periods()->attach($period);
+    }
 
     if (!empty($requirements)) {
       foreach ($requirements as $name) {
@@ -154,7 +177,10 @@ class RequestController extends Controller
 
 		if (Auth::id() != $nrequest->user_id) {
 			$this->authorize('resolve', \App\Request::class);
-		}
+    }
+    else if (!Auth::user()->isA('secre')) {
+      event(new \App\Events\RequestCancelled($nrequest));
+    }
 
 		return $this->changeStatus($request, 1);
 	}
@@ -178,7 +204,9 @@ class RequestController extends Controller
 
 		$nrequest->save();
 
-		event(new \App\Events\RequestStatusChanged($nrequest));
+    if (Auth::id() != $nrequest->user_id) {
+      event(new \App\Events\RequestStatusChanged($nrequest));
+    }
 
 		if ($request->from == 'index') {
 			return redirect()->route('requests.index', ['filter' => $request->filter]);
@@ -198,6 +226,12 @@ class RequestController extends Controller
 
 	public function show(Request $request) {
 		$nrequest = \App\Request::find($request->segment(2));
+
+    if ($request->from == 'mail') {
+      $notification = Auth::user()->notifications()->findOrFail($request->notification);
+			$notification->markAsRead();
+      event(new \App\Events\NotificationRead(Auth::user()));
+    }
 
 		return view('request.show')->with('request', $nrequest);
 	}

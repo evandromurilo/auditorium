@@ -68,14 +68,18 @@
 							<div class="form-group{{ $errors->has('period') ? ' has-error' : '' }}">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Período</label>
 								<div class="col-sm-5 col-md-5 col-lg-5">
-									<select name="period" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<option value="0" {{ $period == 0? 'selected':'' }}>Manhã</option>
-										<option value="1" {{ $period == 1? 'selected':'' }}>Manhã 2</option>
-										<option value="2" {{ $period == 2? 'selected':'' }}>Tarde</option>
-										<option value="3" {{ $period == 3? 'selected':'' }}>Tarde 2</option>
-										<option value="4" {{ $period == 4? 'selected':'' }}>Intermediário</option>
-										<option value="5" {{ $period == 5? 'selected':'' }}>Noite</option>
-										<option value="6" {{ $period == 6? 'selected':'' }}>Noite 2</option>
+									<select name="beginning" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @foreach ($periods as $p)
+                      <option value="{{ $p->id }}" {{ $period == $p->id? 'selected':'' }}>{{ $p->name }}</option>
+                    @endforeach
+									</select>
+
+                  <span>até</span>
+
+									<select name="end" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @foreach ($periods as $p)
+                      <option value="{{ $p->id }}" {{ $period == $p->id? 'selected':'' }}>{{ $p->name }}</option>
+                    @endforeach
 									</select>
 
 								@if ($errors->has('period'))

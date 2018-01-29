@@ -21,11 +21,22 @@
 							<div class="form-group">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Data:</label>
 								<div class="col-sm-10 col-md-10 col-lg-10">
-									<p class="form-control-static"> ({{ $request->dateC->format('d/m/Y') }})
+									<p class="form-control-static">
+                  {{ $request->dateC->format('d/m/Y') }}
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</p>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Horário:</label>
+								<div class="col-sm-10 col-md-10 col-lg-10">
+                  <p class="form-control-static">
+                    {{ $request->beginning->beginningF }} às {{ $request->end->endF }}
+                  </p>
+								</div>
+							</div>
+
 
 							<div class="form-group">
 								<label class="col-sm-2 col-md-2 col-lg-2 control-label">Local:</label>
@@ -129,10 +140,12 @@
               @include('partials.request.request_status_update_show')
             @else
               @if (Auth::id() == $request->user_id and $request->status != 1)
-                <?php $route_args = ["id" => $request->id, "from" => "show"] ?>
-                <a class="btn btn-cancelar" href="{{ route('requests.negate', $route_args) }}">
-                  Cancelar
-                </a>
+                <form class="form-horizontal" method="POST" action="{{ route('requests.negate', $request->id) }}">
+                  <input type="hidden" name="_method" value="PUT">
+                  <input type="hidden" name="from" value="show">
+                  {{ csrf_field() }}
+                    <button style="color:#fff;" type="submit" class="btn btn-cancelar">Cancelar</button>
+                </form>
               @endif
 						@endcan
             </div>
