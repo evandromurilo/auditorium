@@ -10,6 +10,13 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <style media="screen">
+      .icon{
+        display: inline;
+        float: right;
+      }
+    </style>
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	  <link rel="stylesheet" href="{{ asset('css/style-norificaton-request-resolver.css') }}">
@@ -73,7 +80,7 @@
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
-                                            <!--<i style="padding-top:4px;" class="fa fa-sign-in icon" aria-hidden="true"></i>-->
+                                            <i style="padding-top:4px;" class="fa fa-sign-in icon" aria-hidden="true"></i>
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -83,7 +90,7 @@
 																		@can('resolve', App\Request::class)
 																			<li class="dis-inline"><a href="{{ route('requests.index') }}">
                                         Pedidos
-                                         <!--<i style="padding-top:4px;" class="fa fa-list icon" aria-hidden="true"></i>-->
+                                         <i style="padding-top:4px;" class="fa fa-list icon" aria-hidden="true"></i>
                                        </a>
                                      </li>
 																		@endcan
