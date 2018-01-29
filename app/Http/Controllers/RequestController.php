@@ -177,7 +177,10 @@ class RequestController extends Controller
 
 		if (Auth::id() != $nrequest->user_id) {
 			$this->authorize('resolve', \App\Request::class);
-		}
+    }
+    else if (!Auth::user()->isA('secre')) {
+      event(new \App\Events\RequestCancelled($nrequest));
+    }
 
 		return $this->changeStatus($request, 1);
 	}
