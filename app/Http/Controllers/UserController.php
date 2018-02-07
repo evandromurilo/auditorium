@@ -18,9 +18,8 @@ class UserController extends Controller
         return view('user.index')->with('users', User::all());
     }
 
-    public function show(Request $request)
+    public function show(Request $request, User $user)
     {
-        $user = User::find($request->segment(2));
         $requests = \App\Request::where('user_id', $user->id)
             ->orderBy('date', 'desc')
             ->paginate(10);
@@ -31,10 +30,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request, User $user)
     {
-        $user = User::find($request->segment(2));
-
         if (!$user->id == Auth::user()->id) {
             $this->authorize('edit', \App\Request::class);
         }
@@ -42,29 +39,27 @@ class UserController extends Controller
         return view('user.edit')->with('user', $user);
     }
 
-    public function activate(Request $request, $id)
+    public function activate(Request $request, User $user)
     {
         $this->authorize('edit', \App\User::class);
 
-        $user = User::findOrFail($id);
         $user->active = true;
         $user->save();
 
         return route('users.index');
     }
 
-    public function deactivate(Request $request, $id)
+    public function deactivate(Request $request, User $user)
     {
         $this->authorize('edit', \App\User::class);
 
-        $user = User::findOrFail($id);
         $user->active = false;
         $user->save();
 
         return route('users.index');
     }
 
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
         $validateData = $request->validate([
             'name' => 'required|string|max:255',
@@ -82,8 +77,6 @@ class UserController extends Controller
             'color.required' => 'O campo cor é obrigatório.',
             'color.regex' => 'Formato inválido no campo cor.',
         ]);
-
-        $user = User::find($request->segment(2));
 
         $user->name = $request->name;
         $user->color = $request->color;
@@ -107,10 +100,8 @@ class UserController extends Controller
         return redirect()->route('users.show', $user->id);
     }
 
-    public function calls(Request $request)
+    public function calls(Request $request, $user_id)
     {
-        $user_id = $request->segment(2);
-
         if (Auth::user()->isAn('admin') || Auth::id() == $user_id) {
             return Auth::user()->calls;
         } else {
