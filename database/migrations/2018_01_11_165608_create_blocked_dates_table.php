@@ -24,8 +24,8 @@ class CreateBlockedDatesTable extends Migration
         });
 
         Schema::table('blocked_dates', function (Blueprint $table) {
-						$table->foreign('user_id')->references('id')->on('users');
-				});
+                        $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**

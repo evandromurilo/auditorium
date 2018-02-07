@@ -17,11 +17,11 @@ class CreateAuditoriaTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-						$table->string('name', 20);
-						$table->integer('capacity');
-						$table->boolean('accessible');
-						$table->text('obs')->nullable();
-						$table->string('location', 100);
+                        $table->string('name', 20);
+                        $table->integer('capacity');
+                        $table->boolean('accessible');
+                        $table->text('obs')->nullable();
+                        $table->string('location', 100);
         });
     }
 

@@ -14,9 +14,9 @@ class CreateDefaultRequirementsTable extends Migration
     public function up()
     {
         Schema::create('default_requirements', function (Blueprint $table) {
-          $table->timestamps();
-          $table->increments('id');
-          $table->string('name', 15);
+            $table->timestamps();
+            $table->increments('id');
+            $table->string('name', 15);
         });
     }
 

@@ -26,7 +26,7 @@ class CreateActiveColumnInUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-          $table->dropColumn('active');
+            $table->dropColumn('active');
         });
     }
 }

@@ -14,16 +14,16 @@ class CreateRequirementsTable extends Migration
     public function up()
     {
         Schema::create('requirements', function (Blueprint $table) {
-          $table->timestamps();
-          $table->increments('id');
-          $table->integer('request_id')->unsigned();
-          $table->string('name', 30);
-          $table->boolean('granted')->default(false);
+            $table->timestamps();
+            $table->increments('id');
+            $table->integer('request_id')->unsigned();
+            $table->string('name', 30);
+            $table->boolean('granted')->default(false);
         });
 
         Schema::table('requirements', function (Blueprint $table) {
-						$table->foreign('request_id')->references('id')->on('requests');
-				});
+                        $table->foreign('request_id')->references('id')->on('requests');
+        });
     }
 
     /**

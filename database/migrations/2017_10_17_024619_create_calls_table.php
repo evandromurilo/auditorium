@@ -16,7 +16,7 @@ class CreateCallsTable extends Migration
         Schema::create('calls', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-						$table->string('title', 15);
+                        $table->string('title', 15);
         });
     }
 

@@ -22,9 +22,9 @@ class CreatePeriodRequestTable extends Migration
         });
 
         Schema::table('period_request', function (Blueprint $table) {
-						$table->foreign('request_id')->references('id')->on('requests');
-						$table->foreign('period_id')->references('id')->on('periods');
-				});
+                        $table->foreign('request_id')->references('id')->on('requests');
+                        $table->foreign('period_id')->references('id')->on('periods');
+        });
     }
 
     /**
