@@ -10,20 +10,22 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class CallCreated {
+class CallCreated
+{
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-		public $call;
-		public $creator;
+    public $call;
+    public $creator;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Call $call, \App\User $creator) {
+    public function __construct(\App\Call $call, \App\User $creator)
+    {
         $this->call = $call;
-				$this->creator = $creator;
+        $this->creator = $creator;
     }
 
     /**

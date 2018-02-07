@@ -14,7 +14,7 @@ class NotificationRead implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-		public $user;
+    public $user;
 
     /**
      * Create a new event instance.
@@ -33,6 +33,6 @@ class NotificationRead implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-			return new PrivateChannel('App.User.'.$this->user->id);
+        return new PrivateChannel('App.User.'.$this->user->id);
     }
 }

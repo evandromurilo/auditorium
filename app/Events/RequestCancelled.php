@@ -14,7 +14,7 @@ class RequestCancelled
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-		public $request;
+    public $request;
 
     /**
      * Create a new event instance.

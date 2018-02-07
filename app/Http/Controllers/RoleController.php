@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Bouncer;
 use App\User;
 
-class RoleController extends Controller {
-	public function setup() {
+class RoleController extends Controller
+{
+	public function setup()
+    {
 		Bouncer::allow('admin')->to('edit', User::class);
 		Bouncer::allow('admin')->to('create', \App\Request::class);
 		Bouncer::allow('admin')->to('resolve', \App\Request::class);

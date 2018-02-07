@@ -14,19 +14,20 @@ class MessageCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-		public $message_id;
-		public $user_id;
-		private $call_id;
+    public $message_id;
+    public $user_id;
+    private $call_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Message $message) {
+    public function __construct(\App\Message $message)
+    {
         $this->message_id = $message->id;
         $this->user_id = $message->user->id;
-				$this->call_id = $message->call_id;
+        $this->call_id = $message->call_id;
     }
 
     /**

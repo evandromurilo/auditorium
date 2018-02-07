@@ -28,23 +28,23 @@ class SendNewMessageNotification implements ShouldQueue
      */
     public function handle(MessageCreated $event)
     {
-			$message = \App\Message::find($event->message_id);
+        $message = \App\Message::find($event->message_id);
 
-			foreach ($message->call->members as $member) {
-				if ($member->id != $message->user_id) {
-					$send = true;
-					foreach ($member->unreadNotifications as $notification) {
-						if ($notification->type == "App\Notifications\NewMessage" &&
-							$notification->data['call_id'] == $message->call_id) {
-							$send = false;
-							break;
-						}
-					}
-				
-					if ($send) {
-					 	$member->notify(new NewMessage($message));
-					}
-				}
-			}
+        foreach ($message->call->members as $member) {
+            if ($member->id != $message->user_id) {
+                $send = true;
+                foreach ($member->unreadNotifications as $notification) {
+                    if ($notification->type == "App\Notifications\NewMessage" &&
+                        $notification->data['call_id'] == $message->call_id) {
+                        $send = false;
+                        break;
+                    }
+                }
+
+                if ($send) {
+                    $member->notify(new NewMessage($message));
+                }
+            }
+        }
     }
 }

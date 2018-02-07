@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use \App\Helpers\ChatBot;
 use Illuminate\Support\Facades\Log;
 
-class MessageController extends Controller {
-	public function store(Request $request) {
+class MessageController extends Controller
+{
+	public function store(Request $request)
+    {
 		$message = new Message;
 
 		$message->call_id = $request->call_id;
@@ -31,7 +33,8 @@ class MessageController extends Controller {
 		return redirect()->route('calls.show', $message->call_id);
 	}
 
-	public function show(Request $request) {
+    public function show(Request $request)
+    {
 		$message = Message::find($request->segment(2));
 		$call = Call::find($message->call_id);
 

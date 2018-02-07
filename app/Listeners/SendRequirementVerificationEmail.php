@@ -29,22 +29,24 @@ class SendRequirementVerificationEmail implements ShouldQueue
      */
     public function handle(RequestStatusChanged $event)
     {
-      if ($event->request->status != 2) return;
+        if ($event->request->status != 2) return;
 
-      $dean_requirement = $event->request->requirements()->where('name', 'Reitor')->first();
+        $dean_requirement = $event->request->requirements()->where('name', 'Reitor')->first();
 
-      if (!is_null($dean_requirement) &&
-        is_null(RequirementVerification::where('requirement_id', $dean_requirement->id)->first())) {
-        Mail::to(env('MAIL_DEAN'))
-          ->send(new \App\Mail\RequirementVerification($dean_requirement));
-      }
+        if (!is_null($dean_requirement) &&
+            is_null(RequirementVerification::where('requirement_id', $dean_requirement->id)
+            ->first())) {
+            Mail::to(env('MAIL_DEAN'))
+                ->send(new \App\Mail\RequirementVerification($dean_requirement));
+        }
 
-      $chaplain_requirement = $event->request->requirements()->where('name', 'Capelão')->first();
+        $chaplain_requirement = $event->request->requirements()->where('name', 'Capelão')->first();
 
-      if (!is_null($chaplain_requirement) &&
-        is_null(RequirementVerification::where('requirement_id', $chaplain_requirement->id)->first())) {
-        Mail::to(env('MAIL_CHAPLAIN'))
-          ->send(new \App\Mail\RequirementVerification($chaplain_requirement));
-      }
+        if (!is_null($chaplain_requirement) &&
+            is_null(RequirementVerification::where('requirement_id', $chaplain_requirement->id)
+            ->first())) {
+            Mail::to(env('MAIL_CHAPLAIN'))
+                ->send(new \App\Mail\RequirementVerification($chaplain_requirement));
+        }
     }
 }

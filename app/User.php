@@ -10,7 +10,7 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
 class User extends Authenticatable
 {
     use Notifiable;
-		use HasRolesAndAbilities;
+    use HasRolesAndAbilities;
 
     /**
      * The attributes that are mass assignable.
@@ -30,23 +30,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-		public function requests() {
-			return $this->hasMany('App\Request');
-		}
+    public function requests()
+    {
+        return $this->hasMany('App\Request');
+    }
 
-		public function callMembers() {
-			return $this->hasMany('App\CallMember');
-		}
+    public function callMembers()
+    {
+        return $this->hasMany('App\CallMember');
+    }
 
-		public function calls() {
-			return $this->belongsToMany('App\Call');
-		}
+    public function calls()
+    {
+        return $this->belongsToMany('App\Call');
+    }
 
-		public function isMember($callId) {
-		return DB::table('call_user')
-			->select('users.*')
-			->where('user_id', $this->id)
-			->where('call_id', $callId)
-			->count() > 0;
-		}
+    public function isMember($callId)
+    {
+        return DB::table('call_user')
+            ->select('users.*')
+            ->where('user_id', $this->id)
+            ->where('call_id', $callId)
+            ->count() > 0;
+    }
 }

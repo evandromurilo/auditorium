@@ -26,6 +26,6 @@ class SetNewUserRole
      */
     public function handle(UserRegistered $event)
     {
-				$event->user->assign('coord');
+        $event->user->assign('coord');
     }
 }

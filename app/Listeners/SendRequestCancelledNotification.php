@@ -26,21 +26,21 @@ class SendRequestCancelledNotification
      */
     public function handle(RequestCancelled $event)
     {
-			$users = \App\User::whereIs('secre')->where('active', true)->get();
-      $send = true;
+        $users = \App\User::whereIs('secre')->where('active', true)->get();
+        $send = true;
 
-			foreach ($users as $user) {
-        $notification = $user->unreadNotifications()
-          ->where('type', 'App\Notifications\NewRequest')
-          ->first();
+        foreach ($users as $user) {
+            $notification = $user->unreadNotifications()
+                ->where('type', 'App\Notifications\NewRequest')
+                ->first();
 
-        if ($notification) {
-          $notification->markAsRead();
-          event(new \App\Events\NotificationRead($user));
+            if ($notification) {
+                $notification->markAsRead();
+                event(new \App\Events\NotificationRead($user));
+            }
+            else {
+                $user->notify(new \App\Notifications\RequestCancelled($event->request));
+            }
         }
-        else {
-          $user->notify(new \App\Notifications\RequestCancelled($event->request));
-        }
-			}
     }
 }

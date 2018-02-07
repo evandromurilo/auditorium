@@ -4,12 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model {
-	public function user() {
-		return $this->belongsTo('App\User');
-	}
+class Message extends Model
+{
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
-	public function call() {
-		return $this->belongsTo('App\Call');
-	}
+    public function call()
+    {
+        return $this->belongsTo('App\Call');
+    }
 }

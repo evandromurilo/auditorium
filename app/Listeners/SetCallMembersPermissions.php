@@ -26,8 +26,8 @@ class SetCallMembersPermissions
      */
     public function handle(CallCreated $event)
     {
-			foreach ($event->call->members as $member) {
-				$member->allow('see', $event->call);
-			}
+        foreach ($event->call->members as $member) {
+            $member->allow('see', $event->call);
+        }
     }
 }

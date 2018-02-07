@@ -22,15 +22,15 @@ class RequirementVerification extends Mailable
      */
     public function __construct(Requirement $requirement)
     {
-      $this->subject("Confirmação de presença em evento");
+        $this->subject("Confirmação de presença em evento");
 
-      $this->requirement = $requirement;
+        $this->requirement = $requirement;
 
-      $this->verification = new \App\RequirementVerification;
-      $this->verification->hash = md5(rand(0,1000));
-      $this->verification->requirement_id = $requirement->id;
-      $this->verification->status = 0;
-      $this->verification->save();
+        $this->verification = new \App\RequirementVerification;
+        $this->verification->hash = md5(rand(0,1000));
+        $this->verification->requirement_id = $requirement->id;
+        $this->verification->status = 0;
+        $this->verification->save();
     }
 
     /**
@@ -40,6 +40,6 @@ class RequirementVerification extends Mailable
      */
     public function build()
     {
-      return $this->view('email.requirement_verification');
+        return $this->view('email.requirement_verification');
     }
 }

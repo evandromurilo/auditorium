@@ -26,9 +26,9 @@ class AssignNewUserToChat
      */
     public function handle(UserRegistered $event)
     {
-			$call = \App\Call::find(1);
+        $call = \App\Call::find(1);
 
-			$call->members()->attach($event->user->id);
-			$event->user->allow('see', $call);
+        $call->members()->attach($event->user->id);
+        $event->user->allow('see', $call);
     }
 }

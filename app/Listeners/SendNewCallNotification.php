@@ -28,10 +28,10 @@ class SendNewCallNotification implements ShouldQueue
      */
     public function handle(CallCreated $event)
     {
-			foreach ($event->call->members as $member) {
-				if ($member->id != $event->creator->id) {
-					 	$member->notify(new NewCall($event->call));
-				}
-			}
+        foreach ($event->call->members as $member) {
+            if ($member->id != $event->creator->id) {
+                $member->notify(new NewCall($event->call));
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ class RequestResolved extends Notification implements ShouldQueue
 {
     use Queueable;
 
-		public $request;
+    public $request;
 
     /**
      * Create a new notification instance.
@@ -35,34 +35,39 @@ class RequestResolved extends Notification implements ShouldQueue
         return ['database', 'broadcast', 'mail'];
     }
 
-		public function toArray($notifiable) {
-			return [
-				'request_id' => $this->request->id,
-				'auditorium_name' => $this->request->auditorium->name,
-			  'n_message' => "Sua requisição do ".$this->request->auditorium->name." mudou de status.",
-			  'n_url' => route('requests.show', ['id' => $this->request->id, 'from' => 'notification']),
-			];
-		}
+    public function toArray($notifiable)
+    {
+        return [
+            'request_id' => $this->request->id,
+            'auditorium_name' => $this->request->auditorium->name,
+            'n_message' => "Sua requisição do ".$this->request->auditorium->name." mudou de status.",
+            'n_url' => route('requests.show', ['id' => $this->request->id, 'from' => 'notification']),
+        ];
+    }
 
-		public function toBroadcast($notifiable) {
-			return new BroadcastMessage([
-				'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-				'data' => $this->toArray($notifiable),
-			]);
-		}
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'data' => $this->toArray($notifiable),
+        ]);
+    }
 
-		public function toMail($notifiable) {
-      $url = route('requests.show', [
-        'id' => $this->request->id,
-        'from' => 'mail',
-        'notification' => $this->id,
-      ]);
+    public function toMail($notifiable)
+    {
+        $url = route(
+            'requests.show', [
+                'id' => $this->request->id,
+                'from' => 'mail',
+                'notification' => $this->id,
+            ]
+        );
 
-			return (new MailMessage)
-        ->subject('Resolução de pedido')
-				->greeting('Olá!')
-				->line('Um de seus pedidos ('.$this->request->event.') mudou de status.')
-				->action('Ver pedido', $url)
-				->line('Obrigado por utilizar nosso sistema!');
-		}
+        return (new MailMessage)
+            ->subject('Resolução de pedido')
+            ->greeting('Olá!')
+            ->line('Um de seus pedidos ('.$this->request->event.') mudou de status.')
+            ->action('Ver pedido', $url)
+            ->line('Obrigado por utilizar nosso sistema!');
+    }
 }

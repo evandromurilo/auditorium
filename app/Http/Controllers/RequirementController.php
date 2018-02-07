@@ -8,69 +8,76 @@ use Illuminate\Support\Facades\DB;
 use \App\Requirement;
 use \App\RequirementVerification;
 
-class RequirementController extends Controller {
-	public function __construct() {
-		//$this->middleware('auth');
-	}
-
-  public function grant(Request $request) {
-    $this->authorize('resolve', Requirement::class);
-
-    $requirement = Requirement::find($request->id);
-
-    if ($requirement->isVerified()) {
-         return response('OK', 200);
+class RequirementController extends Controller
+{
+    public function __construct()
+    {
+        //$this->middleware('auth');
     }
 
-    $requirement->granted = true;
-    $requirement->save();
+    public function grant(Request $request)
+    {
+        $this->authorize('resolve', Requirement::class);
 
-    return response('OK', 200);
-  }
+        $requirement = Requirement::find($request->id);
 
-  public function ungrant(Request $request) {
-    $this->authorize('resolve', Requirement::class);
+        if ($requirement->isVerified()) {
+            return response('OK', 200);
+        }
 
-    $requirement = Requirement::find($request->id);
+        $requirement->granted = true;
+        $requirement->save();
 
-    if ($requirement->isVerified()) {
-         return response('OK', 200);
+        return response('OK', 200);
     }
 
-    $requirement->granted = false;
-    $requirement->save();
+    public function ungrant(Request $request)
+    {
+        $this->authorize('resolve', Requirement::class);
 
-    return response('OK', 200);
-  }
+        $requirement = Requirement::find($request->id);
 
-  public function showVerification(Request $request) {
-		$requirement = Requirement::findOrFail($request->segment(2));
-    $verification = RequirementVerification::where('requirement_id', $requirement->id)->
-      where('hash', $request->hash)->
-      firstOrFail();
+        if ($requirement->isVerified()) {
+            return response('OK', 200);
+        }
 
-    return view('requirement.verification')->with(['verification' => $verification,
-                                                   'requirement' => $requirement]);
-  }
+        $requirement->granted = false;
+        $requirement->save();
 
-  public function updateVerification(Request $request) {
-		$requirement = Requirement::findOrFail($request->segment(2));
-    $verification = RequirementVerification::where('requirement_id', $requirement->id)->
-      where('hash', $request->hash)->
-      firstOrFail();
-
-    if ($request->confirm == 'true') {
-      $verification->status = 2;
-      $requirement->granted = true;
-    }
-    else {
-      $verification->status = 1;
-      $requirement->granted = false;
+        return response('OK', 200);
     }
 
-    $verification->save();
-    $requirement->save();
+    public function showVerification(Request $request)
+    {
+        $requirement = Requirement::findOrFail($request->segment(2));
+        $verification = RequirementVerification::where('requirement_id', $requirement->id)
+            ->where('hash', $request->hash)
+            ->firstOrFail();
 
-    return response('OK', 200);
-  }
+        return view('requirement.verification')->with([
+            'verification' => $verification,
+            'requirement' => $requirement
+        ]);
+    }
+
+    public function updateVerification(Request $request)
+    {
+        $requirement = Requirement::findOrFail($request->segment(2));
+        $verification = RequirementVerification::where('requirement_id', $requirement->id)
+            ->where('hash', $request->hash)
+            ->firstOrFail();
+
+        if ($request->confirm == 'true') {
+            $verification->status = 2;
+            $requirement->granted = true;
+        } else {
+            $verification->status = 1;
+            $requirement->granted = false;
+        }
+
+        $verification->save();
+        $requirement->save();
+
+        return response('OK', 200);
+    }
 }
