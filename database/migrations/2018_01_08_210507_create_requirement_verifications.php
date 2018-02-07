@@ -23,7 +23,7 @@ class CreateRequirementVerifications extends Migration
         });
 
         Schema::table('requirement_verifications', function (Blueprint $table) {
-                        $table->foreign('requirement_id')->references('id')->on('requirements');
+            $table->foreign('requirement_id')->references('id')->on('requirements');
         });
     }
 

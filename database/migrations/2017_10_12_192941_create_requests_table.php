@@ -17,19 +17,19 @@ class CreateRequestsTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-                        $table->integer('auditorium_id')->unsigned();
-                        $table->integer('user_id')->unsigned();
-                        $table->date('date');
-                        $table->string('event', 100);
-                        $table->text('description');
-                        $table->tinyInteger('status');
+            $table->integer('auditorium_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->date('date');
+            $table->string('event', 100);
+            $table->text('description');
+            $table->tinyInteger('status');
             $table->string('claimant', 20)->nullable();
             $table->string('justification', 300)->nullable();
         });
 
         Schema::table('requests', function (Blueprint $table) {
-                        $table->foreign('auditorium_id')->references('id')->on('auditoria');
-                        $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('auditorium_id')->references('id')->on('auditoria');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

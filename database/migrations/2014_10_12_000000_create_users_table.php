@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-                        $table->char('color', 7);
-                        $table->string('cel', 19);
-                        $table->text('description')->nullable();
+            $table->char('color', 7);
+            $table->string('cel', 19);
+            $table->text('description')->nullable();
         });
     }
 

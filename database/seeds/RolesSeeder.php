@@ -5,26 +5,26 @@ use Carbon\Carbon;
 
 class RolesSeeder extends Seeder
 {
-  /**
-   * Run the database seeds.
-   *
-   * @return void
-   */
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
         Bouncer::role()->create([
-        'name' => 'admin',
-        'title' => 'Administrador',
+            'name' => 'admin',
+            'title' => 'Administrador',
         ]);
 
         Bouncer::role()->create([
-        'name' => 'secre',
-        'title' => 'Secretário',
+            'name' => 'secre',
+            'title' => 'Secretário',
         ]);
 
         Bouncer::role()->create([
-        'name' => 'coord',
-        'title' => 'Coordenador',
+            'name' => 'coord',
+            'title' => 'Coordenador',
         ]);
 
         Bouncer::allow('admin')->to('request-always');

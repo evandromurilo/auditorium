@@ -16,14 +16,14 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-                        $table->integer('call_id')->unsigned();
-                        $table->integer('user_id')->unsigned();
-                        $table->text('body');
+            $table->integer('call_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->text('body');
         });
 
         Schema::table('messages', function (Blueprint $table) {
-                        $table->foreign('call_id')->references('id')->on('calls');
-                        $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('call_id')->references('id')->on('calls');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

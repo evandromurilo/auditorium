@@ -14,7 +14,7 @@ class UpdateCallTitleSize extends Migration
     public function up()
     {
         Schema::table('calls', function (Blueprint $table) {
-                        $table->string('title', 40)->change();
+            $table->string('title', 40)->change();
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateCallTitleSize extends Migration
     public function down()
     {
         Schema::table('calls', function (Blueprint $table) {
-                        $table->string('title', 15)->change();
+            $table->string('title', 15)->change();
         });
     }
 }

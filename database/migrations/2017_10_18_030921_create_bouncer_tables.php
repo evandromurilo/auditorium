@@ -42,7 +42,7 @@ class CreateBouncerTables extends Migration
             $table->morphs('entity');
 
             $table->foreign('role_id')->references('id')->on(Models::table('roles'))
-                  ->onUpdate('cascade')->onDelete('cascade');
+                ->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::create(Models::table('permissions'), function (Blueprint $table) {
@@ -51,7 +51,7 @@ class CreateBouncerTables extends Migration
             $table->boolean('forbidden')->default(false);
 
             $table->foreign('ability_id')->references('id')->on(Models::table('abilities'))
-                  ->onUpdate('cascade')->onDelete('cascade');
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

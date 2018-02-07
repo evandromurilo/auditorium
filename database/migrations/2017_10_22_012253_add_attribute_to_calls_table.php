@@ -14,7 +14,7 @@ class AddAttributeToCallsTable extends Migration
     public function up()
     {
         Schema::table('calls', function (Blueprint $table) {
-                        $table->boolean('user_to_user')->default(false);
+            $table->boolean('user_to_user')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ class AddAttributeToCallsTable extends Migration
     public function down()
     {
         Schema::table('calls', function (Blueprint $table) {
-                        $table->dropColumn('user_to_user');
+            $table->dropColumn('user_to_user');
         });
     }
 }

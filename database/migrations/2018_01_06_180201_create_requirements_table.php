@@ -22,7 +22,7 @@ class CreateRequirementsTable extends Migration
         });
 
         Schema::table('requirements', function (Blueprint $table) {
-                        $table->foreign('request_id')->references('id')->on('requests');
+            $table->foreign('request_id')->references('id')->on('requests');
         });
     }
 
