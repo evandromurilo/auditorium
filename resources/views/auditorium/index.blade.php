@@ -6,9 +6,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<form class="form-group" method="GET" action="{{ route('auditoria.index') }}">
+				<form class="form-group" method="GET" action="{{ route('home') }}">
 					<div class="position-form">
-						<a href="{{ route('auditoria.index', ['date' => $date->format('d/m/Y'),
+						<a href="{{ route('home', ['date' => $date->format('d/m/Y'),
 							'previous' => 'true']) }}"><i class="fa fa-chevron-left arrow-left"
 								aria-hidden="true"></i></a>
 
@@ -20,7 +20,7 @@
 						 autocomplete="off"
 						 value="{{ $date->format('d/m/Y') }}">
 
-						<a href="{{ route('auditoria.index', ['date' => $date->format('d/m/Y'),
+						<a href="{{ route('home', ['date' => $date->format('d/m/Y'),
 							'next' => 'true']) }}"><i class="fa fa-chevron-right arrow-right"
 								aria-hidden="true"></i></a>
 					</div>

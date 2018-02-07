@@ -13,11 +13,6 @@ use App\Period;
 
 class RequestController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index(Request $request)
     {
         $this->authorize('resolve', \App\Request::class);
@@ -155,7 +150,7 @@ class RequestController extends Controller
         event(new \App\Events\RequestCreated($nrequest));
 
         $date = (new Carbon($request->date))->format('d/m/Y');
-        return redirect()->route('auditoria.index', ['date' => $date]);
+        return redirect()->route('home', ['date' => $date]);
     }
 
     public function update(Request $request, \App\Request $nrequest)

@@ -11,14 +11,15 @@
 |
 */
 
-Route::get('/', 'AuditoriumController@index')->name('home');
+Route::get('/', 'AuditoriumController@index')
+    ->middleware('auth')
+    ->name('home');
+
 Route::redirect('/home', '/', 301);
 
 Auth::routes();
 
-Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
-
-Route::prefix('users')->name('users.')->group(function () {
+Route::prefix('users')->name('users.')->middleware('auth')->group(function () {
     Route::get('/', 'UserController@index')->name('index');
     Route::get('{user}', 'UserController@show')->name('show');
     Route::put('{user}', 'UserController@update')->name('update');
@@ -29,7 +30,7 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('{user}/calls', 'UserController@calls')->name('calls');
 });
 
-Route::prefix('requests')->name('requests.')->group(function () {
+Route::prefix('requests')->name('requests.')->middleware('auth')->group(function () {
     Route::get('/', 'RequestController@index')->name('index');
     Route::get('create', 'RequestController@create')->name('create');
     Route::post('/', 'RequestController@store')->name('store');
@@ -42,7 +43,7 @@ Route::prefix('requests')->name('requests.')->group(function () {
     Route::put('{request}/pending', 'RequestController@pending')->name('pending');
 });
 
-Route::prefix('calls')->name('calls.')->group(function () {
+Route::prefix('calls')->name('calls.')->middleware('auth')->group(function () {
     Route::get('/', 'CallController@index')->name('index');
     Route::get('create', 'CallController@create')->name('create');
     Route::post('/', 'CallController@store')->name('store');
@@ -53,12 +54,12 @@ Route::prefix('calls')->name('calls.')->group(function () {
     Route::get('{call}/messages', 'CallController@messages')->name('messages');
 });
 
-Route::prefix('messages')->name('messages.')->group(function () {
+Route::prefix('messages')->name('messages.')->middleware('auth')->group(function () {
     Route::post('/', 'MessageController@store')->name('store');
     Route::get('{message}', 'MessageController@show')->name('show'); // TODO: rename
 });
 
-Route::prefix('notifications')->name('notifications.')->group(function () {
+Route::prefix('notifications')->name('notifications.')->middleware('auth')->group(function () {
     Route::get('clear', 'NotificationController@markAllAsRead')->name('markAllAsRead');
     Route::get('/', 'NotificationController@unreadNotifications')->name('index');
     Route::get('newmessage/{id}', 'NotificationController@markNewMessageAsRead');
@@ -76,7 +77,7 @@ Route::prefix('requirements')->name('requirements.')->group(function () {
         ->name('updateVerification');
 });
 
-Route::prefix('blocked-dates')->name('blocked-dates.')->group(function () {
+Route::prefix('blocked-dates')->name('blocked-dates.')->middleware('auth')->group(function () {
     Route::get('/', 'BlockedDateController@index')->name('index');
     Route::post('/', 'BlockedDateController@store')->name('store');
     Route::delete('/', 'BlockedDateController@delete')->name('delete');

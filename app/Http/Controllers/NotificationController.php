@@ -45,6 +45,6 @@ class NotificationController extends Controller
         Auth::user()->unreadNotifications->markAsRead();
         event(new \App\Events\NotificationRead(Auth::user()));
 
-        return redirect()->route('auditoria.index');
+        return redirect()->route('home');
     }
 }

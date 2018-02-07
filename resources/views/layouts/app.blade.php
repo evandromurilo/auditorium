@@ -53,7 +53,7 @@
                     <ul class="nav navbar-nav">
 											&nbsp;
 											<li class="nav-item">
-												<a class="nav-link" href="{{ route('auditoria.index') }}">Auditórios </a>
+												<a class="nav-link" href="{{ route('home') }}">Auditórios </a>
 											</li>
 											<li class="nav-item">
 												<a class="nav-link" href="{{ route('users.index') }}">Usuários </a>
