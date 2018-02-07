@@ -16,12 +16,8 @@ Route::get('/home', 'AuditoriumController@index')->name('home');
 
 Auth::routes();
 
-Route::resource('calls', 'CallController');
 Route::resource('messages', 'MessageController');
 
-Route::get('/calls/{call}/exit', 'CallController@getOut')->name('calls.exit');
-Route::get('/calls/{call}/members', 'CallController@members')->name('calls.members');
-Route::get('/calls/{call}/messages', 'CallController@messages')->name('calls.messages');
 
 Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 
@@ -47,6 +43,17 @@ Route::prefix('requests')->name('requests.')->group(function () {
     Route::get('{request}/accept', 'RequestController@accept')->name('accept');
     Route::put('{request}/negate', 'RequestController@negate')->name('negate');
     Route::put('{request}/pending', 'RequestController@pending')->name('pending');
+});
+
+Route::prefix('calls')->name('calls.')->group(function () {
+    Route::get('/', 'CallController@index')->name('index');
+    Route::get('create', 'CallController@create')->name('create');
+    Route::post('/', 'CallController@store')->name('store');
+    Route::get('{call}', 'CallController@show')->name('show'); // TODO: rename
+
+    Route::get('{call}/exit', 'CallController@getOut')->name('exit');
+    Route::get('{call}/members', 'CallController@members')->name('members');
+    Route::get('{call}/messages', 'CallController@messages')->name('messages');
 });
 
 Route::get('/notifications/clear', 'NotificationController@markAllAsRead')
