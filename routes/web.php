@@ -58,11 +58,13 @@ Route::prefix('messages')->name('messages.')->group(function () {
     Route::get('{message}', 'MessageController@show')->name('show'); // TODO: rename
 });
 
-Route::get('/notifications/clear', 'NotificationController@markAllAsRead')
-	->name('notifications.markAllAsRead');
-Route::get('/notifications', 'NotificationController@unreadNotifications')->name('notifications');
-Route::get('/notifications/newmessage/{id}', 'NotificationController@markNewMessageAsRead');
-Route::get('/notifications/{id}', 'NotificationController@markAsRead');
+Route::prefix('notifications')->name('notifications.')->group(function () {
+    Route::get('clear', 'NotificationController@markAllAsRead')->name('markAllAsRead');
+    Route::get('/', 'NotificationController@unreadNotifications')->name('index');
+    Route::get('newmessage/{id}', 'NotificationController@markNewMessageAsRead');
+    Route::get('{id}', 'NotificationController@markAsRead');
+});
+
 
 Route::get('/roles/setup', 'RoleController@setup');
 
