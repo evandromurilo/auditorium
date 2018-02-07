@@ -10,6 +10,13 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <style media="screen">
+      .icon{
+        display: inline;
+        float: right;
+      }
+    </style>
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	  <link rel="stylesheet" href="{{ asset('css/style-norificaton-request-resolver.css') }}">

@@ -7,7 +7,7 @@
 
 				<div class="col-md-3">
 					<input type="text" class="form-control"
-					v-mask = "'00/00/0000'"
+					v-mask = "'##/##/####'"
 					v-model="date_input"
 					v-on:keyup.enter="add"
 					id="date-input"
@@ -156,6 +156,10 @@ export default {
         d.date = self.dateFormat(d.date);
       });
     });
+		/*
+		$(document).ready(function(){
+			$('#date-input').mask('00/00/0000');
+		});*/
 
 	}
 }
