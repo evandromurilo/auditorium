@@ -16,9 +16,6 @@ Route::get('/home', 'AuditoriumController@index')->name('home');
 
 Auth::routes();
 
-Route::resource('messages', 'MessageController');
-
-
 Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 
 Route::prefix('users')->name('users.')->group(function () {
@@ -54,6 +51,11 @@ Route::prefix('calls')->name('calls.')->group(function () {
     Route::get('{call}/exit', 'CallController@getOut')->name('exit');
     Route::get('{call}/members', 'CallController@members')->name('members');
     Route::get('{call}/messages', 'CallController@messages')->name('messages');
+});
+
+Route::prefix('messages')->name('messages.')->group(function () {
+    Route::post('/', 'MessageController@store')->name('store');
+    Route::get('{message}', 'MessageController@show')->name('show'); // TODO: rename
 });
 
 Route::get('/notifications/clear', 'NotificationController@markAllAsRead')
