@@ -158,11 +158,9 @@ class RequestController extends Controller
         return redirect()->route('auditoria.index', ['date' => $date]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, \App\Request $nrequest)
     {
         $this->authorize('resolve', \App\Request::class);
-
-        $nrequest = \App\Request::find($request->segment(2));
 
         $nrequest->status = $request->status;
         $nrequest->save();
@@ -182,10 +180,8 @@ class RequestController extends Controller
         return $this->changeStatus($request, 2);
     }
 
-    public function negate(Request $request, $id)
+    public function negate(Request $request, \App\Request $nrequest)
     {
-        $nrequest = \App\Request::find($id);
-
         if (Auth::id() != $nrequest->user_id) {
             $this->authorize('resolve', \App\Request::class);
         } elseif (!Auth::user()->isA('secre')) {
@@ -228,16 +224,13 @@ class RequestController extends Controller
         }
     }
 
-    public function modal(Request $request)
+    public function modal(Request $request, \App\Request $nrequest)
     {
-        $nrequest = \App\Request::find($request->segment(2));
         return view('partials.request.request_modal')->with('request', $nrequest);
     }
 
-    public function show(Request $request)
+    public function show(Request $request, \App\Request $nrequest)
     {
-        $nrequest = \App\Request::find($request->segment(2));
-
         if ($request->from == 'mail') {
             $notification = Auth::user()->notifications()->findOrFail($request->notification);
             $notification->markAsRead();

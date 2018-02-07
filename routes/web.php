@@ -16,7 +16,6 @@ Route::get('/home', 'AuditoriumController@index')->name('home');
 
 Auth::routes();
 
-Route::resource('requests', 'RequestController');
 Route::resource('calls', 'CallController');
 Route::resource('messages', 'MessageController');
 
@@ -27,13 +26,27 @@ Route::get('/calls/{call}/messages', 'CallController@messages')->name('calls.mes
 Route::get('/auditoria', 'AuditoriumController@index')->name('auditoria.index');
 
 Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/', 'UserController@index')->name('index');
+    Route::get('{user}', 'UserController@show')->name('show');
     Route::put('{user}', 'UserController@update')->name('update');
+
     Route::put('{user}/deactivate', 'UserController@deactivate')->name('deactivate');
     Route::put('{user}/activate', 'UserController@activate')->name('activate');
-    Route::get('{user}', 'UserController@show')->name('show');
     Route::get('{user}/edit', 'UserController@edit')->name('edit');
-    Route::get('/', 'UserController@index')->name('index');
     Route::get('{user}/calls', 'UserController@calls')->name('calls');
+});
+
+Route::prefix('requests')->name('requests.')->group(function () {
+    Route::get('/', 'RequestController@index')->name('index');
+    Route::get('create', 'RequestController@create')->name('create');
+    Route::post('/', 'RequestController@store')->name('store');
+    Route::get('{request}', 'RequestController@show')->name('show');
+    Route::match(['put', 'patch'], '{request}', 'RequestController@update')->name('update');
+
+    Route::get('{request}/modal', 'RequestController@modal')->name('modal');
+    Route::get('{request}/accept', 'RequestController@accept')->name('accept');
+    Route::put('{request}/negate', 'RequestController@negate')->name('negate');
+    Route::put('{request}/pending', 'RequestController@pending')->name('pending');
 });
 
 Route::get('/notifications/clear', 'NotificationController@markAllAsRead')
@@ -41,11 +54,6 @@ Route::get('/notifications/clear', 'NotificationController@markAllAsRead')
 Route::get('/notifications', 'NotificationController@unreadNotifications')->name('notifications');
 Route::get('/notifications/newmessage/{id}', 'NotificationController@markNewMessageAsRead');
 Route::get('/notifications/{id}', 'NotificationController@markAsRead');
-
-Route::get('/requests/{id}/modal', 'RequestController@modal')->name('requests.modal');
-Route::get('/requests/{id}/accept', 'RequestController@accept')->name('requests.accept');
-Route::put('/requests/{id}/negate', 'RequestController@negate')->name('requests.negate');
-Route::put('/requests/{id}/pending', 'RequestController@pending')->name('requests.pending');
 
 Route::get('/roles/setup', 'RoleController@setup');
 
