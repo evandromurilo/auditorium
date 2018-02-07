@@ -27,7 +27,7 @@ class RequirementVerification extends Mailable
         $this->requirement = $requirement;
 
         $this->verification = new \App\RequirementVerification;
-        $this->verification->hash = md5(rand(0,1000));
+        $this->verification->hash = md5(rand(0, 1000));
         $this->verification->requirement_id = $requirement->id;
         $this->verification->status = 0;
         $this->verification->save();

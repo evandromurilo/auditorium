@@ -50,8 +50,7 @@ class ChatBot
                 "pela manhã, ".$status->codeToString($status->morning)."; ".
                 "pela tarde, ".$status->codeToString($status->afternoon)."; ".
                 "pela noite, ".$status->codeToString($status->night).".";
-        }
-        else {
+        } else {
             $message = "Não conheço esse comando.";
         }
 

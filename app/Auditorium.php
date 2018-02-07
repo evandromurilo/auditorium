@@ -30,8 +30,10 @@ class Auditorium extends Model
             ->where('auditoria.id', '=', $this->id)
             ->first();
 
-        if (!$query) return 1;
-        else return $query->status;
+        if (!$query) {
+            return 1;
+        } else {
+            return $query->status;
+        }
     }
 }
-

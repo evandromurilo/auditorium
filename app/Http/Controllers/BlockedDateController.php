@@ -28,7 +28,7 @@ class BlockedDateController extends Controller
 
         $validateData = $request->validate([
             'date' => 'required|date_format:d/m/Y',
-        ],[
+        ], [
             'date.required' => 'O campo data é obrigatório.',
         ]);
 

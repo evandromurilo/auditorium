@@ -37,8 +37,7 @@ class SendRequestCancelledNotification
             if ($notification) {
                 $notification->markAsRead();
                 event(new \App\Events\NotificationRead($user));
-            }
-            else {
+            } else {
                 $user->notify(new \App\Notifications\RequestCancelled($event->request));
             }
         }

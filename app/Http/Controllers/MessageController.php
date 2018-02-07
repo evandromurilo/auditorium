@@ -12,34 +12,34 @@ use Illuminate\Support\Facades\Log;
 
 class MessageController extends Controller
 {
-	public function store(Request $request)
+    public function store(Request $request)
     {
-		$message = new Message;
+        $message = new Message;
 
-		$message->call_id = $request->call_id;
+        $message->call_id = $request->call_id;
 
-		if ($request->body[0] == '\\') {
-			$message->user_id = 1;
-			$message->body = ChatBot::resolveCommand($request->body);
-		} else {
-			$message->user_id = Auth::id();
-			$message->body = $request->body;
-		}
+        if ($request->body[0] == '\\') {
+            $message->user_id = 1;
+            $message->body = ChatBot::resolveCommand($request->body);
+        } else {
+            $message->user_id = Auth::id();
+            $message->body = $request->body;
+        }
 
-		$message->save();
+        $message->save();
 
-		event(new \App\Events\MessageCreated($message));
+        event(new \App\Events\MessageCreated($message));
 
-		return redirect()->route('calls.show', $message->call_id);
-	}
+        return redirect()->route('calls.show', $message->call_id);
+    }
 
     public function show(Request $request)
     {
-		$message = Message::find($request->segment(2));
-		$call = Call::find($message->call_id);
+        $message = Message::find($request->segment(2));
+        $call = Call::find($message->call_id);
 
-		$this->authorize('see', $call);
+        $this->authorize('see', $call);
 
-		return $message;
-	}
+        return $message;
+    }
 }

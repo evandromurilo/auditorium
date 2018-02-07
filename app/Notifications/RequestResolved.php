@@ -56,7 +56,8 @@ class RequestResolved extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         $url = route(
-            'requests.show', [
+            'requests.show',
+            [
                 'id' => $this->request->id,
                 'from' => 'mail',
                 'notification' => $this->id,

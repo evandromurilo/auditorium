@@ -34,7 +34,7 @@ class NewRequest extends Notification implements ShouldQueue
         return ['database', 'broadcast'];
     }
 
-    public function toArray($notifiable) 
+    public function toArray($notifiable)
     {
         return [
             'request_id' => $this->request->id,
@@ -43,7 +43,7 @@ class NewRequest extends Notification implements ShouldQueue
         ];
     }
 
-    public function toBroadcast($notifiable) 
+    public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
             'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
@@ -51,7 +51,7 @@ class NewRequest extends Notification implements ShouldQueue
         ]);
     }
 
-    public function toMail($notifiable) 
+    public function toMail($notifiable)
     {
         $url = route('requests.show', ['id' => $this->request->id, 'from' => 'notification']);
 

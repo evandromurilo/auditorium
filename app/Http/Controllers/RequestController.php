@@ -54,7 +54,8 @@ class RequestController extends Controller
         $periods = Period::all();
 
         $view = view(
-            'request.create', [
+            'request.create',
+            [
                 'aud' => $aud,
                 'date' => $date,
                 'period' => $request->period,
@@ -74,7 +75,6 @@ class RequestController extends Controller
         }
 
         return $view;
-
     }
 
     public function store(Request $request)
@@ -188,8 +188,7 @@ class RequestController extends Controller
 
         if (Auth::id() != $nrequest->user_id) {
             $this->authorize('resolve', \App\Request::class);
-        }
-        else if (!Auth::user()->isA('secre')) {
+        } elseif (!Auth::user()->isA('secre')) {
             event(new \App\Events\RequestCancelled($nrequest));
         }
 
@@ -210,8 +209,7 @@ class RequestController extends Controller
 
         if ($request->has('justification')) {
             $nrequest->justification = $request->justification;
-        }
-        else {
+        } else {
             $nrequest->justification = null;
         }
 
@@ -223,11 +221,9 @@ class RequestController extends Controller
 
         if ($request->from == 'index') {
             return redirect()->route('requests.index', ['filter' => $request->filter]);
-        }
-        else if ($request->from == 'show') {
+        } elseif ($request->from == 'show') {
             return redirect()->route('requests.show', $nrequest->id);
-        }
-        else {
+        } else {
             return redirect()->route('requests.index');
         }
     }

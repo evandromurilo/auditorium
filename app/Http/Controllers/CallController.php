@@ -21,8 +21,7 @@ class CallController extends Controller
     {
         if ($request->has("id")) {
             return view('call.show')->with("first_call_id", $request->id);
-        }
-        else {
+        } else {
             return view('call.show')->with("first_call_id", 1);
         }
     }

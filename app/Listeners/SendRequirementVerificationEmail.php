@@ -29,7 +29,9 @@ class SendRequirementVerificationEmail implements ShouldQueue
      */
     public function handle(RequestStatusChanged $event)
     {
-        if ($event->request->status != 2) return;
+        if ($event->request->status != 2) {
+            return;
+        }
 
         $dean_requirement = $event->request->requirements()->where('name', 'Reitor')->first();
 

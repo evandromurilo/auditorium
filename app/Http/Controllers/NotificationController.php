@@ -20,7 +20,7 @@ class NotificationController extends Controller
 
         foreach (Auth::user()->unreadNotifications as $notification) {
             if ($notification->type == "App\Notifications\NewMessage" &&
-                $notification->data['call_id']	== $call_id) {
+                $notification->data['call_id']  == $call_id) {
                 $notification->markAsRead();
 
                 event(new \App\Events\NotificationRead(Auth::user()));
