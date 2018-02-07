@@ -65,13 +65,16 @@ Route::prefix('notifications')->name('notifications.')->group(function () {
     Route::get('{id}', 'NotificationController@markAsRead');
 });
 
-
-Route::get('/roles/setup', 'RoleController@setup');
-
-Route::put('/requirements/{id}/grant', 'RequirementController@grant')->name('requirements.grant')->middleware('auth');
-Route::put('/requirements/{id}/ungrant', 'RequirementController@ungrant')->name('requirements.ungrant')->middleware('auth');
-Route::get('/requirements/{id}/verification', 'RequirementController@showVerification')->name('requirements.showVerification');
-Route::put('/requirements/{id}/verification', 'RequirementController@updateVerification')->name('requirements.updateVerification');
+Route::prefix('requirements')->name('requirements.')->group(function () {
+    Route::put('{requirement}/grant', 'RequirementController@grant')
+        ->name('grant')->middleware('auth');
+    Route::put('{requirement}/ungrant', 'RequirementController@ungrant')
+        ->name('ungrant')->middleware('auth');
+    Route::get('{requirement}/verification', 'RequirementController@showVerification')
+        ->name('showVerification');
+    Route::put('{requirement}/verification', 'RequirementController@updateVerification')
+        ->name('updateVerification');
+});
 
 Route::get('/blocked-dates/', 'BlockedDateController@index')->name('blocked-dates.index');
 Route::post('/blocked-dates/', 'BlockedDateController@store')->name('blocked-dates.store');

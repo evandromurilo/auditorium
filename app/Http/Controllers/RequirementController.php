@@ -15,11 +15,9 @@ class RequirementController extends Controller
         //$this->middleware('auth');
     }
 
-    public function grant(Request $request)
+    public function grant(Request $request, Requirement $requirement)
     {
         $this->authorize('resolve', Requirement::class);
-
-        $requirement = Requirement::find($request->id);
 
         if ($requirement->isVerified()) {
             return response('OK', 200);
@@ -31,11 +29,9 @@ class RequirementController extends Controller
         return response('OK', 200);
     }
 
-    public function ungrant(Request $request)
+    public function ungrant(Request $request, Requirement $requirement)
     {
         $this->authorize('resolve', Requirement::class);
-
-        $requirement = Requirement::find($request->id);
 
         if ($requirement->isVerified()) {
             return response('OK', 200);
@@ -47,9 +43,8 @@ class RequirementController extends Controller
         return response('OK', 200);
     }
 
-    public function showVerification(Request $request)
+    public function showVerification(Request $request, Requirement $requirement)
     {
-        $requirement = Requirement::findOrFail($request->segment(2));
         $verification = RequirementVerification::where('requirement_id', $requirement->id)
             ->where('hash', $request->hash)
             ->firstOrFail();
@@ -60,9 +55,8 @@ class RequirementController extends Controller
         ]);
     }
 
-    public function updateVerification(Request $request)
+    public function updateVerification(Request $request, Requirement $requirement)
     {
-        $requirement = Requirement::findOrFail($request->segment(2));
         $verification = RequirementVerification::where('requirement_id', $requirement->id)
             ->where('hash', $request->hash)
             ->firstOrFail();
