@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'AuditoriumController@index');
-Route::get('/home', 'AuditoriumController@index')->name('home');
+Route::get('/', 'AuditoriumController@index')->name('home');
+Route::redirect('/home', '/', 301);
 
 Auth::routes();
 
@@ -76,7 +76,10 @@ Route::prefix('requirements')->name('requirements.')->group(function () {
         ->name('updateVerification');
 });
 
-Route::get('/blocked-dates/', 'BlockedDateController@index')->name('blocked-dates.index');
-Route::post('/blocked-dates/', 'BlockedDateController@store')->name('blocked-dates.store');
-Route::delete('/blocked-dates/', 'BlockedDateController@delete')->name('blocked-dates.delete');
+Route::prefix('blocked-dates')->name('blocked-dates.')->group(function () {
+    Route::get('/', 'BlockedDateController@index')->name('index');
+    Route::post('/', 'BlockedDateController@store')->name('store');
+    Route::delete('/', 'BlockedDateController@delete')->name('delete');
+});
+
 Route::get('/blocked-dates.json/', 'BlockedDateController@all')->name('blocked-dates.all');
