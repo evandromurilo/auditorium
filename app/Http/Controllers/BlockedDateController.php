@@ -10,11 +10,6 @@ use Carbon\Carbon;
 
 class BlockedDateController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $this->authorize('manage', BlockedDate::class);
@@ -48,7 +43,7 @@ class BlockedDateController extends Controller
     {
         $this->authorize('manage', BlockedDate::class);
 
-        BlockedDate::find($request->date_id)->delete();
+        BlockedDate::findOrFail($request->date_id)->delete();
 
         return response('OK', 200);
     }
