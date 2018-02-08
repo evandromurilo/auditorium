@@ -124,17 +124,19 @@ export default {
       data['_method'] = 'DELETE';
       //data['date_id'] = item.id;
 
+      self = this;
+
       $.ajax({
         url: '/blocked-dates/'+item.id,
         method: 'POST',
-        dataType: 'json',
         data: data,
+        success: function(data) {
+          self.dates.splice(self.dates.indexOf(item), 1);
+        },
         complete: function(data) {
           console.debug(data);
         }
       });
-
-      this.dates.splice(this.dates.indexOf(item), 1);
     },
 
     dateFormat: function(dateString) {

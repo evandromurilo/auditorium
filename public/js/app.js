@@ -49505,17 +49505,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       data['_method'] = 'DELETE';
       //data['date_id'] = item.id;
 
+      self = this;
+
       $.ajax({
         url: '/blocked-dates/' + item.id,
         method: 'POST',
-        dataType: 'json',
         data: data,
+        success: function success(data) {
+          self.dates.splice(self.dates.indexOf(item), 1);
+        },
         complete: function complete(data) {
           console.debug(data);
         }
       });
-
-      this.dates.splice(this.dates.indexOf(item), 1);
     },
 
     dateFormat: function dateFormat(dateString) {
