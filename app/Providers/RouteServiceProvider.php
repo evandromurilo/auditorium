@@ -24,6 +24,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::model('request', \App\Request::class);
+        Route::model('blocked_date', \App\BlockedDate::class);
 
         parent::boot();
     }

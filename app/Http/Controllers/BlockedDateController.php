@@ -23,8 +23,12 @@ class BlockedDateController extends Controller
 
         $validateData = $request->validate([
             'date' => 'required|date_format:d/m/Y',
+            'motive' => 'required|string|max:80',
         ], [
             'date.required' => 'O campo data é obrigatório.',
+            'date.date_format' => 'Data em formato inválido.',
+            'motive.required' => 'O campo de descrição é obrigatório.',
+            'motive.max' => 'O campo de descrição passou do limite de caracteres!',
         ]);
 
         $blocked_date = new BlockedDate;
@@ -39,11 +43,11 @@ class BlockedDateController extends Controller
         return $blocked_date->id;
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request, BlockedDate $date)
     {
         $this->authorize('manage', BlockedDate::class);
 
-        BlockedDate::findOrFail($request->date_id)->delete();
+        $date->delete();
 
         return response('OK', 200);
     }

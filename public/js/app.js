@@ -49445,6 +49445,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -49452,7 +49457,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       dates: [],
       date_input: "",
       motive_input: "",
-      block_input: true
+      block_input: true,
+      errors: []
     };
   },
 
@@ -49471,31 +49477,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       data['motive'] = this.motive_input;
       data['block'] = this.block_input ? '1' : '0';
 
+      var self = this;
+
       $.ajax({
         url: '/blocked-dates/',
         method: 'POST',
         dataType: 'json',
         data: data,
-        complete: function complete(data) {
-          new_date.id = data.responseText;
+        error: function error(data) {
+          self.errors = data.responseJSON.errors;
           console.debug(data);
+        },
+        success: function success(data) {
+          self.dates.push(new_date);
+          new_date.id = data.responseText;
+          self.errors = [];
+          console.debug(data);
+          self.date_input = "";
+          self.motive_input = "";
         }
       });
-
-      this.dates.push(new_date);
-
-      this.date_input = "";
-      this.motive_input = "";
     },
 
     remove: function remove(item) {
       var data = {};
       data['_token'] = $('input[name=_token]').val();
       data['_method'] = 'DELETE';
-      data['date_id'] = item.id;
+      //data['date_id'] = item.id;
 
       $.ajax({
-        url: '/blocked-dates/',
+        url: '/blocked-dates/' + item.id,
         method: 'POST',
         dataType: 'json',
         data: data,
@@ -49530,7 +49541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     self = this;
 
-    $.get('/blocked-dates.json/', function (data) {
+    $.get('/blocked-dates/all.json', function (data) {
       self.dates = data;
 
       self.dates.forEach(function (d) {
@@ -49555,6 +49566,18 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container primary-container" }, [
       _c("div", { staticClass: "row" }, [
+        _vm.errors.date || _vm.errors.motive
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm.errors.date
+                ? _c("p", [_vm._v(_vm._s(_vm.errors.date[0]))])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.errors.motive
+                ? _c("p", [_vm._v(_vm._s(_vm.errors.motive[0]))])
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", { staticClass: "col-md-3" }, [
           _c("input", {
             directives: [
@@ -49702,7 +49725,9 @@ var render = function() {
                     attrs: { "aria-hidden": "true" }
                   }),
                   _vm._v(
-                    "\n\t\t\t\t\t\t\t" + _vm._s(item.date) + "\n\t\t\t\t\t\t\t"
+                    "\n\t\t\t\t\t\t\t\t" +
+                      _vm._s(item.date) +
+                      "\n\t\t\t\t\t\t\t\t"
                   ),
                   item.motive
                     ? _c("span", { staticClass: "descrition" }, [

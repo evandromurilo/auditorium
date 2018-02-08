@@ -5,6 +5,11 @@
 		<div class="container primary-container">
 			<div class="row">
 
+        <div class="alert alert-danger" v-if="errors.date || errors.motive">
+            <p v-if="errors.date">{{ errors.date[0] }}</p>
+            <p v-if="errors.motive">{{ errors.motive[0] }}</p>
+        </div>
+
 				<div class="col-md-3">
 					<input type="text" class="form-control"
 					v-model="date_input"
@@ -72,6 +77,7 @@ export default {
       date_input: "",
       motive_input: "",
       block_input: true,
+      errors: [],
 		}
 	},
 	methods: {
@@ -89,31 +95,37 @@ export default {
       data['motive'] = this.motive_input;
       data['block'] = this.block_input ? '1' : '0';
 
+      var self = this;
+
       $.ajax({
         url: '/blocked-dates/',
         method: 'POST',
         dataType: 'json',
         data: data,
-        complete: function(data) {
-          new_date.id = data.responseText;
+        error: function(data) {
+          self.errors = data.responseJSON.errors;
           console.debug(data);
+        },
+        success: function(data) {
+          self.dates.push(new_date);
+          new_date.id = data.responseText;
+          self.errors = [];
+          console.debug(data);
+          self.date_input = "";
+          self.motive_input = "";
         }
       });
 
-      this.dates.push(new_date);
-
-      this.date_input = "";
-      this.motive_input = "";
     },
 
     remove: function(item) {
       var data = {};
       data['_token'] = $('input[name=_token]').val();
       data['_method'] = 'DELETE';
-      data['date_id'] = item.id;
+      //data['date_id'] = item.id;
 
       $.ajax({
-        url: '/blocked-dates/',
+        url: '/blocked-dates/'+item.id,
         method: 'POST',
         dataType: 'json',
         data: data,
@@ -148,7 +160,7 @@ export default {
 
     self = this;
 
-    $.get('/blocked-dates.json/', function(data) {
+    $.get('/blocked-dates/all.json', function(data) {
       self.dates = data;
 
       self.dates.forEach(function(d) {

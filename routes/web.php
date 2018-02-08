@@ -80,7 +80,7 @@ Route::prefix('requirements')->name('requirements.')->group(function () {
 Route::prefix('blocked-dates')->name('blocked-dates.')->middleware('auth')->group(function () {
     Route::get('/', 'BlockedDateController@index')->name('index');
     Route::post('/', 'BlockedDateController@store')->name('store');
-    Route::delete('/', 'BlockedDateController@delete')->name('delete');
+    Route::delete('{blocked_date}', 'BlockedDateController@delete')->name('delete');
+    Route::get('all.json', 'BlockedDateController@all')->name('all');
 });
 
-Route::get('/blocked-dates.json/', 'BlockedDateController@all')->name('blocked-dates.all');
