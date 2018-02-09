@@ -78,7 +78,7 @@ class UserController extends Controller
         $user->cel = $request->cel;
         $user->description = $request->description;
 
-        if (!empty($request->password)) {
+        if ($request->has('password'))) {
             $user->password = bcrypt($request->password);
         }
 
@@ -97,7 +97,7 @@ class UserController extends Controller
 
     public function calls(Request $request, $user_id)
     {
-        if (Auth::user()->isAn('admin') || Auth::id() == $user_id) {
+        if (Auth::id() == $user_id) {
             return Auth::user()->calls;
         } else {
             abort(403);
