@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Mail\DeanRequired;
 use Illuminate\Support\Facades\Mail;
 use App\Period;
+use Illuminate\Validation\ValidationException;
 
 class RequestController extends Controller
 {
@@ -94,8 +95,9 @@ class RequestController extends Controller
         $end = Period::findOrFail($request->end);
 
         if (strtotime($beginning->beginning) > strtotime($end->beginning)) {
-            return redirect()->back()->withInput($request->input())
-                ->withErrors(['period' => 'Ordem inválida!']);
+            throw ValidationException::withMessages([
+                "period" => ['Ordem inválida!'],
+            ]);
         }
 
         $periods = Period::whereTime('beginning', '>=', $beginning->beginning)
@@ -105,15 +107,17 @@ class RequestController extends Controller
         $audit = \App\Auditorium::find($request->auditorium_id);
         foreach ($periods as $period) {
             if (!$audit->freeOn(new Carbon($request->date), $period)) {
-                return redirect()->back()->withInput($request->input())
-                    ->withErrors(['period' => 'Auditório indisponível!']);
+                throw ValidationException::withMessages([
+                    "period" => ['Auditório indisponível!'],
+                ]);
             }
         }
 
         $date = new Carbon($request->date);
         if (!\App\Helpers\DateHelper::canRequest($date)) {
-            return redirect()->back()->withInput($request->input())
-                ->withErrors(['date' => 'Data estava bloqueada!']);
+            throw ValidationException::withMessages([
+                "date" => ['Data estava bloqueada!'],
+            ]);
         }
 
         $requirements = $request->get('requirement');
