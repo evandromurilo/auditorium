@@ -93,6 +93,16 @@ class RequestController extends Controller
             'claimant.max' => 'O campo requerente deve ter até 30 caracteres.',
         ]);
 
+        // validates for date
+        $date = new Carbon($request->date);
+
+        if (!\App\Helpers\DateHelper::canRequest($date)) {
+            throw ValidationException::withMessages([
+                "date" => ['Data estava bloqueada!'],
+            ]);
+        }
+
+        // validates for period order
         $beginning = Period::findOrFail($request->beginning);
         $end = Period::findOrFail($request->end);
 
@@ -102,25 +112,20 @@ class RequestController extends Controller
             ]);
         }
 
+        // validates for periods availability
         $periods = Period::whereTime('beginning', '>=', $beginning->beginning)
             ->whereTime('end', '<=', $end->end)->get();
-
         $audit = \App\Auditorium::find($request->auditorium_id);
+
         foreach ($periods as $period) {
-            if (!$audit->freeOn(new Carbon($request->date), $period)) {
+            if (!$audit->freeOn($date, $period)) {
                 throw ValidationException::withMessages([
                     "period" => ['Auditório indisponível!'],
                 ]);
             }
         }
 
-        $date = new Carbon($request->date);
-        if (!\App\Helpers\DateHelper::canRequest($date)) {
-            throw ValidationException::withMessages([
-                "date" => ['Data estava bloqueada!'],
-            ]);
-        }
-
+        // stores
         $requirements = $request->get('requirement');
 
         $nrequest = new \App\Request;
@@ -153,8 +158,7 @@ class RequestController extends Controller
 
         event(new \App\Events\RequestCreated($nrequest));
 
-        $date = (new Carbon($request->date))->format('d/m/Y');
-        return redirect()->route('home', ['date' => $date]);
+        return redirect()->route('home', ['date' => $date->format('d/m/Y')]);
     }
 
     public function update(Request $request, \App\Request $nrequest)
