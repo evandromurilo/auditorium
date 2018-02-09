@@ -67,7 +67,9 @@ class RequestController extends Controller
                 $date->addDay();
             }
 
-            return $view->withErrors(['date' => 'A data requisitada estava bloqueada!']);
+            return $view
+                ->withErrors(['date' => 'A data requisitada estava bloqueada!'])
+                ->with('date', $date);
         }
 
         return $view;
@@ -103,7 +105,6 @@ class RequestController extends Controller
         $periods = Period::whereTime('beginning', '>=', $beginning->beginning)
             ->whereTime('end', '<=', $end->end)->get();
 
-
         $audit = \App\Auditorium::find($request->auditorium_id);
         foreach ($periods as $period) {
             if (!$audit->freeOn(new Carbon($request->date), $period)) {
@@ -131,12 +132,11 @@ class RequestController extends Controller
         $nrequest->description = $request->description;
         $nrequest->status = 0;
 
-        if (!empty($request->claimant)) {
+        if ($request->has('claimant')) {
             $nrequest->claimant = $request->claimant;
         }
 
         $nrequest->save();
-
 
         foreach ($periods as $period) {
             $nrequest->periods()->attach($period);
