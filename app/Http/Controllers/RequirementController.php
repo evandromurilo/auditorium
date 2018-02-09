@@ -10,11 +10,6 @@ use \App\RequirementVerification;
 
 class RequirementController extends Controller
 {
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
     public function grant(Request $request, Requirement $requirement)
     {
         $this->authorize('resolve', Requirement::class);
