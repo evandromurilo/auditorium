@@ -29,16 +29,20 @@ class SendStatusChangeNotification implements ShouldQueue
     {
         $send = true;
 
-        foreach ($event->request->user->unreadNotifications as $notification) {
-            if ($notification->type == "App\Notifications\RequestResolved" &&
-                $notification->data['request_id'] == $event->request->id) {
+        $user = $event->request->user;
+        $notifications =  $user->unreadNotifications()
+            ->where('type', 'App\Notifications\RequestResolved')
+            ->get();
+
+        foreach ($notifications as $notification) {
+            if ($notification->data['request_id'] == $event->request->id) {
                 $send = false;
                 break;
             }
         }
 
         if ($send) {
-            $event->request->user->notify(new RequestResolved($event->request));
+            $user->notify(new RequestResolved($event->request));
         }
     }
 }
