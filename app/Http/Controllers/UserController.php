@@ -78,7 +78,7 @@ class UserController extends Controller
         $user->cel = $request->cel;
         $user->description = $request->description;
 
-        if ($request->has('password'))) {
+        if ($request->has('password')) {
             $user->password = bcrypt($request->password);
         }
 
