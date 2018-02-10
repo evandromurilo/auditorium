@@ -85,6 +85,7 @@
 																		<li><a href="{{ route('users.show', Auth::id()) }}">
 																				Perfil
                                          <!--<i style="padding-top:4px;" class="fa fa-user-o icon" aria-hidden="true"></i>-->
+                                                                        </li></a>
 																		@can('manage', App\BlockedDate::class)
 																			<li><a href="{{ route('blocked-dates.index') }}">
                                         Bloqueio de Datas
