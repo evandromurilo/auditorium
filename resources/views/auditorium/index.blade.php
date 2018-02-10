@@ -85,7 +85,7 @@
                     </div>
                     <div class="progress">
                         @foreach ($periods as $period)
-                            @include('partials.progress_bar')
+                            @include('partials.auditorium.progress_bar')
                         @endforeach
                     </div>
 
