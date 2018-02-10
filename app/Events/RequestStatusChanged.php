@@ -15,14 +15,16 @@ class RequestStatusChanged
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $request;
+    public $user_agent;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(\App\Request $request)
+    public function __construct(\App\Request $request, \App\User $user_agent)
     {
         $this->request = $request;
+        $this->user_agent = $user_agent;
     }
 }

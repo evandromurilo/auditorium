@@ -27,6 +27,10 @@ class SendStatusChangeNotification implements ShouldQueue
      */
     public function handle(RequestStatusChanged $event)
     {
+        if ($event->request->user->id == $event->user_agent->id) {
+            return;
+        }
+
         $send = true;
 
         $user = $event->request->user;

@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 use App\RequirementVerification;
+use Illuminate\Support\Facades\Log;
 
 class SendRequirementVerificationEmail implements ShouldQueue
 {
@@ -37,7 +38,7 @@ class SendRequirementVerificationEmail implements ShouldQueue
 
         if (!is_null($dean_requirement) &&
             is_null(RequirementVerification::where('requirement_id', $dean_requirement->id)
-            ->first())) {
+                ->first())) {
             Mail::to(env('MAIL_DEAN'))
                 ->send(new \App\Mail\RequirementVerification($dean_requirement));
         }
@@ -46,7 +47,7 @@ class SendRequirementVerificationEmail implements ShouldQueue
 
         if (!is_null($chaplain_requirement) &&
             is_null(RequirementVerification::where('requirement_id', $chaplain_requirement->id)
-            ->first())) {
+                ->first())) {
             Mail::to(env('MAIL_CHAPLAIN'))
                 ->send(new \App\Mail\RequirementVerification($chaplain_requirement));
         }

@@ -14,6 +14,7 @@ class RequirementVerification extends Mailable
 
     public $requirement;
     public $verification;
+    public $request;
 
     /**
      * Create a new message instance.
@@ -25,6 +26,7 @@ class RequirementVerification extends Mailable
         $this->subject("Confirmação de presença em evento");
 
         $this->requirement = $requirement;
+        $this->request = $requirement->request;
 
         $this->verification = new \App\RequirementVerification;
         $this->verification->hash = md5(rand(0, 1000));

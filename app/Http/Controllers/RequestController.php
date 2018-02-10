@@ -161,22 +161,6 @@ class RequestController extends Controller
         return redirect()->route('home', ['date' => $date->format('d/m/Y')]);
     }
 
-    public function update(Request $request, \App\Request $nrequest)
-    {
-        $this->authorize('resolve', \App\Request::class);
-
-        $nrequest->status = $request->status;
-        $nrequest->save();
-
-        event(new \App\Events\RequestStatusChanged($nrequest));
-
-        if ($request->from == 'index') {
-            return redirect()->route('requests.index', ['filter' => $request->filter]);
-        } elseif ($request->from == 'show') {
-            return redirect()->route('requests.show', $nrequest->id);
-        }
-    }
-
     public function accept(Request $request)
     {
         $this->authorize('resolve', \App\Request::class);
@@ -214,9 +198,7 @@ class RequestController extends Controller
 
         $nrequest->save();
 
-        if (Auth::id() != $nrequest->user_id) {
-            event(new \App\Events\RequestStatusChanged($nrequest));
-        }
+        event(new \App\Events\RequestStatusChanged($nrequest, Auth::user()));
 
         if ($request->from == 'index') {
             return redirect()->route('requests.index', ['filter' => $request->filter]);

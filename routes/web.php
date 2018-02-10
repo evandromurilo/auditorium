@@ -35,7 +35,6 @@ Route::prefix('requests')->name('requests.')->middleware('auth')->group(function
     Route::get('create', 'RequestController@create')->name('create');
     Route::post('/', 'RequestController@store')->name('store');
     Route::get('{request}', 'RequestController@show')->name('show');
-    Route::match(['put', 'patch'], '{request}', 'RequestController@update')->name('update');
 
     Route::get('{request}/modal', 'RequestController@modal')->name('modal');
     Route::get('{request}/accept', 'RequestController@accept')->name('accept');
