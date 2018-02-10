@@ -14,28 +14,20 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'App\Events\RequestCreated' => [
-                    'App\Listeners\SendNewRequestNotification',
+            'App\Listeners\SendNewRequestNotification',
         ],
         'App\Events\RequestStatusChanged' => [
-                    'App\Listeners\SendStatusChangeNotification',
-                    'App\Listeners\SendRequirementVerificationEmail',
+            'App\Listeners\SendStatusChangeNotification',
+            'App\Listeners\SendRequirementVerificationEmail',
         ],
-                'App\Events\NotificationRead' => [
-                ],
-                'App\Events\MessageCreated' => [
-                    'App\Listeners\SendNewMessageNotification',
-                ],
-                'App\Events\CallCreated' => [
-                    'App\Listeners\SendNewCallNotification',
-                    'App\Listeners\SetCallMembersPermissions',
-                ],
-                'App\Events\UserRegistered' => [
-                    'App\Listeners\SetNewUserRole',
-                    'App\Listeners\AssignNewUserToChat'
-                ],
-                'App\Events\RequestCancelled' => [
-          'App\Listeners\SendRequestCancelledNotification',
-                ],
+        'App\Events\NotificationRead' => [
+        ],
+        'App\Events\UserRegistered' => [
+            'App\Listeners\SetNewUserRole',
+        ],
+        'App\Events\RequestCancelled' => [
+            'App\Listeners\SendRequestCancelledNotification',
+        ],
     ];
 
     /**

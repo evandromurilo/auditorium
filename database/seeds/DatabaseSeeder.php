@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             PeriodsTableSeeder::class,
             AuditoriaTableSeeder::class,
-            CallsTableSeeder::class,
             UsersTableSeeder::class,
             DefaultRequirementsTableSeeder::class,
         ]);

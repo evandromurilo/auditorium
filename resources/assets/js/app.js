@@ -14,13 +14,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
 Vue.component('notification', require('./components/Notification.vue'));
 Vue.component('notification-item', require('./components/NotificationItem.vue'));
-Vue.component('new-call', require('./components/NewCall.vue'));
-Vue.component('call', require('./components/Call.vue'));
-Vue.component('call-member', require('./components/CallMember.vue'));
-Vue.component('call-message', require('./components/CallMessage.vue'));
 Vue.component('requirements', require('./components/Requirements.vue'));
 Vue.component('blocked-dates', require('./components/BlockedDates.vue'));
 

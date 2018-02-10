@@ -70,8 +70,6 @@ class UsersTableSeeder extends Seeder
             'description' => 'Filho mais novo da chefe.',
         ]);
 
-        $call = \App\Call::find(1);
-
         foreach (\App\User::all() as $user) {
             event(new \App\Events\UserRegistered($user));
         }

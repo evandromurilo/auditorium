@@ -34,17 +34,6 @@
 				<p>{{ $user->description }}</p>
 				<p>{{ $user->email }} <i class="fa fa-envelope-o" aria-hidden="true"></i></p>
 				<p>{{ $user->cel }}</p>
-				<form id="call-form" method="POST" action="{{ route('calls.store') }}">
-					{{ csrf_field() }}
-					<input type="hidden" name="user_id" value="{{ $user->id }}">
-					<input type="hidden" name="title" value="{{ $user->name }}">
-					@if ($user->id != Auth::id())
-					<p id="chat-button" class="chat" data-toggle="tooltip" title="Chamar '{{ $user->name }}' para conversa!" onclick="$('#call-form').submit()">
-						Chat
-						<i class="fa fa-comments-o" aria-hidden="true"></i>
-					</p>
-					@endif
-				</form>
 			</div>
 
 			<div class="col-md-8 col-lg-8">

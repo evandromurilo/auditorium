@@ -43,22 +43,6 @@ Route::prefix('requests')->name('requests.')->middleware('auth')->group(function
     Route::put('{request}/pending', 'RequestController@pending')->name('pending');
 });
 
-Route::prefix('calls')->name('calls.')->middleware('auth')->group(function () {
-    Route::get('/', 'CallController@index')->name('index');
-    Route::get('create', 'CallController@create')->name('create');
-    Route::post('/', 'CallController@store')->name('store');
-    Route::get('{call}', 'CallController@show')->name('show'); // TODO: rename
-
-    Route::get('{call}/exit', 'CallController@getOut')->name('exit');
-    Route::get('{call}/members', 'CallController@members')->name('members');
-    Route::get('{call}/messages', 'CallController@messages')->name('messages');
-});
-
-Route::prefix('messages')->name('messages.')->middleware('auth')->group(function () {
-    Route::post('/', 'MessageController@store')->name('store');
-    Route::get('{message}', 'MessageController@show')->name('show'); // TODO: rename
-});
-
 Route::prefix('notifications')->name('notifications.')->middleware('auth')->group(function () {
     Route::get('clear', 'NotificationController@markAllAsRead')->name('markAllAsRead');
     Route::get('/', 'NotificationController@unreadNotifications')->name('index');

@@ -34,23 +34,4 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Request');
     }
-
-    public function callMembers()
-    {
-        return $this->hasMany('App\CallMember');
-    }
-
-    public function calls()
-    {
-        return $this->belongsToMany('App\Call');
-    }
-
-    public function isMember($callId)
-    {
-        return DB::table('call_user')
-            ->select('users.*')
-            ->where('user_id', $this->id)
-            ->where('call_id', $callId)
-            ->count() > 0;
-    }
 }

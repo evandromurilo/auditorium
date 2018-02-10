@@ -94,13 +94,4 @@ class UserController extends Controller
 
         return redirect()->route('users.show', $user->id);
     }
-
-    public function calls(Request $request, $user_id)
-    {
-        if (Auth::id() == $user_id) {
-            return Auth::user()->calls;
-        } else {
-            abort(403);
-        }
-    }
 }

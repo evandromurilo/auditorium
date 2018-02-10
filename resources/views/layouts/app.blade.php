@@ -85,11 +85,6 @@
 																		<li><a href="{{ route('users.show', Auth::id()) }}">
 																				Perfil
                                          <!--<i style="padding-top:4px;" class="fa fa-user-o icon" aria-hidden="true"></i>-->
-																			</a></li>
-																		<li><a href="{{ route('calls.index') }}">
-																				Chamadas
-                                        <!-- <i style="padding-top:4px;" class="fa fa-comments-o icon" aria-hidden="true"></i>-->
-																			</a></li>
 																		@can('manage', App\BlockedDate::class)
 																			<li><a href="{{ route('blocked-dates.index') }}">
                                         Bloqueio de Datas
