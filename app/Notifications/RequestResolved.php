@@ -32,7 +32,11 @@ class RequestResolved extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database', 'broadcast', 'mail'];
+        if ($notifiable->receives_mail) {
+            return ['database', 'broadcast', 'mail'];
+        } else {
+            return ['database', 'broadcast'];
+        }
     }
 
     public function toArray($notifiable)

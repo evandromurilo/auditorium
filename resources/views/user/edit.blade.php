@@ -160,6 +160,15 @@
                                 </div>
                             @endif
 
+                            <div class="form-group">
+                                <div class="col-md-4"></div>
+                                <label class="col-md-6">
+                                    <input type="checkbox"
+                                           name="receives-mail"
+                                           {{ $user->receives_mail? 'checked':'' }}>
+                                           Receber emails
+                                </label>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">

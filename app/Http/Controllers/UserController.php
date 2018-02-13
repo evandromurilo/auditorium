@@ -77,6 +77,7 @@ class UserController extends Controller
         $user->color = $request->color;
         $user->cel = $request->cel;
         $user->description = $request->description;
+        $user->receives_mail = $request->has('receives-mail')? true : false;
 
         if ($request->has('password')) {
             $user->password = bcrypt($request->password);
