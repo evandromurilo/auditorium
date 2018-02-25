@@ -36,9 +36,12 @@ class NewRequest extends Notification implements ShouldQueue
 
     public function toArray($notifiable)
     {
+        $date = new \Carbon\Carbon($this->request->date);
+
         return [
             'request_id' => $this->request->id,
-            'n_message' => "Um novo pedido foi feito.",
+            'n_message' => $this->request->auditorium->name . " requisitado para o dia " .
+                $date->format('d/m'),
             'n_url' => route('requests.show', ['id' => $this->request->id, 'from' => 'notification']),
         ];
     }
