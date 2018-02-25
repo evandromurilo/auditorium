@@ -1,5 +1,13 @@
 <?php $status = $aud->statusOn($date, $period) ?>
 
+@cannot('request-always')
+<?php
+    if ($aud->name == "Miniauditório A" && strtotime($period->beginning) < strtotime('19:00:00')) {
+        $canRequest = false;
+    }
+?>
+@endcannot
+
 @if ($status == 1)
     @if ($canRequest)
         <?php $url = route('requests.create', ['date' => $date->format('d/m/Y'),
