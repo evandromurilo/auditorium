@@ -133,24 +133,36 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-2 col-md-2 col-lg-2 control-label">
-                                Requisitos
-                            </label>
+                        @if ($aud->name != 'Auditório A')
+                            <div class="form-group">
+                                <label class="col-sm-2 col-md-2 col-lg-2 control-label">
+                                    Requisitos
+                                </label>
 
-                            <div class="checkbox-inline col-sm-9 col-md-9 col-lg-9">
-                                @foreach ($requirements as $requirement)
-                                    <input type="checkbox"
-                                           class=""
-                                           name="requirement[]"
-                                           value="{{ $requirement->name }}">
-                                        {{ $requirement->name }}<br>
-                                    </input>
-                                @endforeach
+                                <div class="checkbox-inline col-sm-9 col-md-9 col-lg-9">
+                                    @foreach ($requirements as $requirement)
+                                        <input type="checkbox"
+                                               class=""
+                                               name="requirement[]"
+                                               value="{{ $requirement->name }}">
+                                            {{ $requirement->name }}<br>
+                                        </input>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
 
-                        <requirements></requirements>
+                            <requirements></requirements>
+                        @else
+                            <div class="form-group">
+                                <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                                <div class="col-sm-9 col-md-9 col-lg-9">
+                                    <strong>Detalhes para o
+                                        agendamento do Auditório A, como serviços e equipamentos,
+                                        devem ser discutidos através do email
+                                        acs.jiparana@ulbra.br</strong>
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="form-group">
                             <div class="col-sm-2 col-md-2 col-lg-2 col-sm-offset-2 col-md-offset-2

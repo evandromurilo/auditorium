@@ -145,6 +145,18 @@
                                 </div>
                             </div>
                         @endif
+
+                        @if ($request->auditorium->name == 'Auditório A')
+                            <div class="form-group">
+                                <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                                <div class="col-sm-9 col-md-9 col-lg-9">
+                                    <strong>Detalhes para o
+                                        agendamento do Auditório A, como serviços e equipamentos,
+                                        devem ser discutidos através do email
+                                        acs.jiparana@ulbra.br</strong>
+                                </div>
+                            </div>
+                        @endif
                     </form>
 
                     <div class="btn-pedidos">
