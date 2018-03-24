@@ -19,6 +19,7 @@ class RequestController extends Controller
         $this->authorize('resolve', \App\Request::class);
 
         $filter = $request->filter;
+        $filter_aud = "";
 
         if ($request->filter == "resolved") {
             $requests = \App\Request::where('status', '<>', 0)->orderBy('date', 'desc');
@@ -33,9 +34,16 @@ class RequestController extends Controller
             $requests = \App\Request::where('status', 0)->orderBy('date', 'asc');
         }
 
+        if (!empty($request['auditorium'])) {
+            $requests->where('auditorium_id', $request->auditorium);
+            $filter_aud = $request->auditorium;
+        }
+
         return view('request.index')->with([
             'requests' => $requests->paginate(9),
-            'filter' => $filter
+            'filter' => $filter,
+            'filter_aud' => $filter_aud,
+            'auditoria' => Auditorium::all(),
         ]);
     }
 

@@ -10,40 +10,60 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="{{ route('requests.index', ['filter' => 'pending']) }}"
+                            <a href="{{ route('requests.index', [
+                                'filter' => 'pending', 'auditorium' => $filter_aud]) }}"
                                class=" {{ $filter == 'pending' ? 'active' : ''}}">
                                Pendentes
                             </a>
                         </li>
 
                         <li>
-                            <a href="{{ route('requests.index', ['filter' => 'all']) }}"
+                            <a href="{{ route('requests.index', [
+                                'filter' => 'all', 'auditorium' => $filter_aud]) }}"
                                class=" {{ $filter == 'all' ? 'active' : ''}}">
                                Todos
                             </a>
                         </li>
 
                         <li>
-                            <a href="{{ route('requests.index', ['filter' => 'resolved']) }}"
+                            <a href="{{ route('requests.index', [
+                                'filter' => 'resolved', 'auditorium' => $filter_aud]) }}"
                                class=" {{ $filter == 'resolved' ? 'active' : '' }}">
                                Resolvidos
                             </a>
                         </li>
 
                         <li>
-                            <a href="{{ route('requests.index', ['filter' => 'rejected']) }}"
+                            <a href="{{ route('requests.index', [
+                                'filter' => 'rejected', 'auditorium' => $filter_aud]) }}"
                                class=" {{ $filter == 'rejected' ? 'active' : '' }}">
                                Rejeitados
                             </a>
                         </li>
 
                         <li>
-                            <a href="{{ route('requests.index', ['filter' => 'accepted']) }}"
+                            <a href="{{ route('requests.index', [
+                                'filter' => 'accepted', 'auditorium' => $filter_aud]) }}"
                                class=" {{ $filter == 'accepted' ? 'active' : '' }}">
                                Aceitos
                             </a>
                         </li>
                     </ul>
+
+                    <span style="height: 50px; padding: 6px 10px" class="pull-right">
+                        <select class="form-control">
+                            <option value="{{ route('requests.index', ['filter' => $filter]) }}">
+                                Todos os auditórios</option>
+                            @foreach ($auditoria as $aud)
+                                <option value="{{ route('requests.index', [
+                                    'filter' => $filter,
+                                    'auditorium' => $aud->id
+                                  ])}}"
+                                    {{ $filter_aud == $aud->id ? "selected" : "" }}>
+                                    {{ $aud->name }}</option>
+                            @endforeach
+                        </select>
+                    </span>
                 </div>
             </nav>
         </div>
@@ -112,7 +132,7 @@
                 </div>
             @endforeach
         </div>
-        {{ $requests->appends(['filter' => $filter])->links() }}
+        {{ $requests->appends(['filter' => $filter, 'auditorium' => $filter_aud])->links() }}
     </div>
 @endsection
 
@@ -146,6 +166,10 @@
 
             $('#justification-modal form').attr('action', '/requests/'+request_id+'/negate');
             $('#justification-modal').modal('show');
+        });
+
+        $('select').on('change', function(e){
+            window.location = $(this).val();  
         });
     });
 </script>
