@@ -4,6 +4,8 @@
 <?php
     if ($aud->name == "Miniauditório A" && strtotime($period->beginning) < strtotime('19:00:00')) {
         $canRequest = false;
+    } else if ($aud->name == "Auditório A") {
+        $canRequest = false;
     }
 ?>
 @endcannot
